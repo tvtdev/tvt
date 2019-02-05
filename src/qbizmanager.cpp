@@ -31,12 +31,14 @@ Airdrop 100000tvt each
 4. Comment Mercatox E-mail or E-Wallet ID 
 
 #airdrop #freetoken #token #ETH  #Crypto  #BTC #bitcoin #ethereum #blockchain
+
+https://twitter.com/tvtio2/status/1092806072757338114?s=21
 	
 	)");
 
 
 
-	m_StringList.append(R"( m
+	
 
 
 
