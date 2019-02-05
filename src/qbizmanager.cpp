@@ -176,7 +176,7 @@ void QBizManager::doPost()
 		}
 		
 		eventloop;
-		QTimer::singleShot(1000*60*12, &eventloop, SLOT(quit()));
+		QTimer::singleShot(1000*60*3, &eventloop, SLOT(quit()));
 		eventloop.exec();
 		}
 
