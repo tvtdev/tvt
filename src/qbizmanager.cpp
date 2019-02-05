@@ -21,22 +21,23 @@ QBizManager::QBizManager( )
     tnum =0;
 
 	m_StringList.append(R"(
-[b]Week : 11 [/b]
-tvt 
-[url=https://tvt.io]https://tvt.io[/url] )");
+	mercatox.com/exchange/TVT/E
+TVT Airdrop #1
+
+Airdrop 100000tvt each
+1. Follow @tvtio2
+2. Like and Retweet
+3. Tag 5 friends
+4. Comment Mercatox E-mail or E-Wallet ID 
+
+#airdrop #freetoken #token #ETH  #Crypto  #BTC #bitcoin #ethereum #blockchain
+	
+	)");
 
 
 
-	m_StringList.append(R"( 
-tvt  TVT
-[url=https://tvt.io]https://tvt.io[/url] )");
+	m_StringList.append(R"( m
 
-
-	m_StringList.append(R"( 
-tvt 
-[url=https://tvt.io]https://tvt.io[/url]
-
- )");
 
 
 
