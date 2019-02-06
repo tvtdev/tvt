@@ -20,18 +20,22 @@ QBizManager::QBizManager( )
 
     tnum =0;
 
-	m_StringList.append(R"(mercatox.com/exchange/TVT/ETH
-TVT Airdrop #1
+	m_StringList.append(R"(
+	mercatox.com/exchange/TVT/ETH
+TVT Airdrop#1
 
-Airdrop 100000tvt each
-1. Follow @tvtio2
-2. Like and Retweet
-3. Tag 5 friends
-4. Comment Mercatox E-mail or E-Wallet ID 
+Airdrop 100000tvt each
+1.Follow @tvtio2
+2.Like and Retweet
+3.Tag 5 friends
+4.Comment Mercatox E-mail or E-Wallet ID
 
-#airdrop #freetoken #token #ETH  #Crypto  #BTC #bitcoin #ethereum #blockchain
+#airdrop #freetoken #token #ETH #Crypto#BTC #bitcoin #ethereum #blockchain
 
-https://twitter.com/tvtio2/status/1092806072757338114?s=21)");
+https://twitter.com/tvtio2/status/1092806072757338114?s=21
+
+	
+	)");
 
 
 
