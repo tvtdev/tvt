@@ -20,7 +20,7 @@ QBizManager::QBizManager( )
 
     tnum =0;
 
-	m_StringList.append(R"(mercatox.com/exchange/TVT/E
+	m_StringList.append(R"(mercatox.com/exchange/TVT/ETH
 TVT Airdrop #1
 
 Airdrop 100000tvt each
