@@ -20,8 +20,7 @@ QBizManager::QBizManager( )
 
     tnum =0;
 
-	m_StringList.append(R"(
-	mercatox.com/exchange/TVT/E
+	m_StringList.append(R"(mercatox.com/exchange/TVT/E
 TVT Airdrop #1
 
 Airdrop 100000tvt each
@@ -32,9 +31,7 @@ Airdrop 100000tvt each
 
 #airdrop #freetoken #token #ETH  #Crypto  #BTC #bitcoin #ethereum #blockchain
 
-https://twitter.com/tvtio2/status/1092806072757338114?s=21
-	
-	)");
+https://twitter.com/tvtio2/status/1092806072757338114?s=21)");
 
 
 
@@ -188,10 +185,9 @@ void QBizManager::doPost()
 bool QBizManager::bitcointalkPosttest_seqnum(const QString& topic, const QString& subject, const QString& sc, const QString& num_replies, const QString& seqnum, const QString& board)
 {
 	QString bstr = QString::number(QDateTime::currentMSecsSinceEpoch()).toUtf8().toBase64();
-	;// QString bsta = "15t9cba8pT5n6Kar";
 	QString str = "------WebKitFormBoundary" + bstr.mid(1,16) + "\r\n";;//
 
-    str = "------WebKitFormBoundarybAxG6QCUvDGMDAJM\r\n";
+        str = "------WebKitFormBoundarybAxG6QCUvDGMDAJM\r\n";
 	QString post_data = "";
 	post_data.append(str);
 	post_data.append("Content-Disposition: form-data; name=\"topic\"\r\n\r\n");
