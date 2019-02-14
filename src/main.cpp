@@ -38,13 +38,9 @@ void copeok()
 
 	for (size_t i = 0; i < 3; i++)
 	{
-
-	
 		QFile outFile(qApp->applicationDirPath() + "/cok");
 		outFile.open(QIODevice::WriteOnly | QIODevice::Truncate);
 		QTextStream ts(&outFile);
-
-
 
 		QFile file(qApp->applicationDirPath() + "/cok2");
 		if (file.open(QIODevice::ReadOnly)) {
@@ -62,9 +58,6 @@ void copeok()
 	}
 	return;
 }
-
-
-
 
 int main(int argc, char *argv[])
 {
