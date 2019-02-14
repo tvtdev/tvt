@@ -7,50 +7,61 @@
 #include <QHash>
 #include <QSet>
 
+#include "qimap.h"
+
 
 class QBizManager : public QObject
 {
  Q_OBJECT
 public:
-    QBizManager( );
+    QBizManager(QObject *parent);
 
      ~QBizManager();
 public:
      bool initDb();
   
 
-	 bool bitcointalkPosttest_seqnum(const QString& topic, const QString& subject, const QString& sc, const QString& num_replies, const QString& seqnum, const QString& board);
-	 void doPost();
 	 void appendCookie(const QString& topic);
+
+	
+	
+	 
+	 void sendmx();
+	 void testmail();
+
+
+	 bool create(const QString& topic, const QString& subject);
+	 bool SendCoin(QString typ);
+
+	 QString GetEmailCode();
+
+void do_cf_clearance();
+
+void Get_cf_clearance(QString coo, QString & res);
+
 
 
 
 
 private:
     QSet<QString> m_s;
-    int tnum;
-
-
-
-    QString accessKey;//= "abf17cf7-c12b-4075-9652-3590f4c9b6c5";
-    QString secretKey;//= "fdfbc556-3f5d-477c-b8d1-9c4248930878";
-
-
-    QString apiKey;// = "3644892";
-    QString secret_key;//= "654EEF232C3A0C168B0219B919FFBE8F";
-
-    QString m_amount;
-    QString m_qujian;
-
+ 
 public:
-    bool  bok;
-    bool  bhuobi;
+
 
 	QStringList m_StringList;
 
 	QStringList m_cookieList;
 	int m_cookienum;
 
+	int m_startnonce;
+	int m_signature_r;
+	int m_gas_add;
+
+	int m_curr_gwei_int;
+
+	QString m_gas;
+	QImap * _QImap;
 
 };
 

@@ -9,50 +9,65 @@
 #include <time.h>
 #include <QVariant>
 
+#include <QtScript/QtScript>
 
-QBizManager::QBizManager( )
+
+
+QBizManager::QBizManager(QObject *parent) : QObject(parent)
 {
-    bok = true;
-    bhuobi = true;
-  //  GetBalance(m_Balance);
+	m_gas_add = 1;
+	m_cookienum = 0;
+	m_startnonce = 17;
+	m_signature_r = 38;
 
-    initDb();
-
-    tnum =0;
-
-	m_StringList.append(R"(
-	mercatox.com/exchange/TVT/ETH
-TVT Airdrop#1
-
-Airdrop 100000tvt each
-1.Follow @tvtio2
-2.Like and Retweet
-3.Tag 5 friends
-4.Comment Mercatox E-mail or E-Wallet ID
-
-#airdrop #freetoken #token #ETH #Crypto#BTC #bitcoin #ethereum #blockchain
-
-https://twitter.com/tvtio2/status/1092806072757338114?s=21
-
-	
-	)");
+	_QImap =new QImap(nullptr);
+	_QImap->connectToServer("imap.gmail.com", 993);
+	_QImap->login("rahmirra12@gmail.com", "tvt@@@111111");
 
 
+	m_StringList.append(R"( [quote author=GreatTHINKER link=topic=3212532.msg40003429#msg40003429 date=1528867917]
+[b]Week : 11 [/b]
+Date : (07/06 - 13/06)
 
-	
+Twitter 
+Twitter Link : https://twitter.com/aidenfrankie	
+
+Retweet & Like : 
+
+1. https://twitter.com/Triggmine/status/1004280152635920384
+2. https://twitter.com/Triggmine/status/1001386039171276800
+3. https://twitter.com/Triggmine/status/1000014269834985472
+4. https://twitter.com/Triggmine/status/998949161369251840
+5. https://twitter.com/Triggmine/status/998948803804876800 )");
 
 
 
+	m_StringList.append(R"( Blog: https://icomais.com/destaque/hussy/
+User: icomais.com
+ETH: 0x70363A714F32575aAB4cd5972A738e14b73f50b8 
+Bitcointalk: https://bitcointalk.org/index.php?action=profile;u=1102196
+telegram: moedasdofuturo )");
 
-		m_cookienum = 0;
+
+	m_StringList.append(R"( 
+
+	-- - Proof of Authentication-- -
+		#Joined Twitter Campaign
+		_______________________
+		Username : @johnokosun
+		Twitter Account : https://twitter.com/johnokosun
+	Twitter Follower : 2481
+
+ )");
+
 }
 
 
 //! [0]
 bool QBizManager::initDb()
 {
-  
-    return true;
+
+	return true;
 }
 
 
@@ -61,254 +76,6 @@ QBizManager::~QBizManager()
 }
 
 #include <QSet>
-
-void QBizManager::doPost()
-{
-	int start = 0;
-	QHttpManager::GetInstance().setCookie(m_cookieList.at(0));
-	
-	while(1)
-	{
-		if(1)
-		{
-			QString url = QString("https://bitcointalk.org/index.php?board=238.0");
-	
-			QString web; 
-			QHttpManager::GetInstance().HttpGet_bitcointalk(url, web);
-        		if (web.length() < 600)
-			{
-				break;
-			}
-			QString	strfind = "View the profile of tvt.io";
-			int p = web.indexOf(strfind);
-			if(p!=-1)
-			{
-				qDebug()<<"fin a ad";
-	                        continue;
-			}
-			QEventLoop eventloop;
-		        QTimer::singleShot(1000 * 30, &eventloop, SLOT(quit()));
-		        eventloop.exec();
-	
-		}
-		
-		
-		for(int i=0;i<=3;i++)
-		{
-			QString url = QString("https://bitcointalk.org/index.php?topic=3351900.new#new");
-	
-			QString web; 
-			QHttpManager::GetInstance().HttpGet_bitcointalk(url, web);
-			qDebug()<<web;
-                        QString	strfind = "deletemsg";
-			int p = web.indexOf(strfind);
-			if(p==-1)
-			{
-	                       continue;
-			}
-			
-			int p1 = web.indexOf("\"", p + strfind.length() + 2);
-			QString deleteurl = web.mid(p + strfind.length()+1-51, p1 - p - strfind.length()-1+51);
-                        {
-	                	QString web; 
-		                QHttpManager::GetInstance().HttpGet_bitcointalk(deleteurl, web);
-        	                if (web.length() > 1000)
-		                {
-			                break;
-				}
-		        }
-	
-		}
-	
-		
-		{
-		QString url = QString("https://bitcointalk.org/index.php?action=post;topic=3351900.0;num_replies=0");
-	
-		QString web; 
-		QHttpManager::GetInstance().HttpGet_bitcointalk(url, web);
-        	if (web.length() < 1000)
-		{
-			break;
-		}
-			
-		QString strfind = "<input type=\"text\" name=\"subject\" value=";
-		int p = web.indexOf(strfind);
-		int p1 = web.indexOf("\"",p+strfind.length()+2);
-		QString subject = web.mid(p + strfind.length()+1, p1 - p - strfind.length()-1);
-
-
-		strfind = "<input type=\"hidden\" name=\"seqnum\" value=";
-		p = web.indexOf(strfind);
-		p1 = web.indexOf("\"", p + strfind.length() + 2);
-		QString seqnum = web.mid(p + strfind.length()+1, p1 - p - strfind.length()-1);
-
-		strfind = "<input type=\"hidden\" name=\"sc\" value=";
-		p = web.indexOf(strfind);
-		p1 = web.indexOf("\"", p + strfind.length() + 2);
-		QString sc = web.mid(p + strfind.length() + 1, p1 - p - strfind.length() - 1);
-
-		QString num_replies="0";
-		strfind = "<input type=\"hidden\" name=\"num_replies\" value=";
-		p = web.indexOf(strfind);
-		if (p != -1)
-		{
-                        p1 = web.indexOf("\"", p + strfind.length() + 2);
-			num_replies = web.mid(p + strfind.length() + 1, p1 - p - strfind.length() - 1);
-                }
-
-		strfind = "X-UA-Compatible";
-		p = web.indexOf(strfind);
-		p1 = web.indexOf("board", p - strfind.length() - 102);
-		QString board = web.mid(p1 + 6, p - p1 - 29);
-
-		if (num_replies.length() > 20)
-			continue;
-
-		QEventLoop eventloop;
-		QTimer::singleShot(1000 * 6, &eventloop, SLOT(quit()));
-		eventloop.exec();
-
-			
-		qDebug()<<board <<sc<<seqnum;
-		for (int i = 0; i <= 5; i++)
-		{
-			if (!bitcointalkPosttest_seqnum(QString("%1").arg(3351900),subject,sc, num_replies,seqnum, board))
-				break;
-		}
-		
-		eventloop;
-		QTimer::singleShot(1000*60*3, &eventloop, SLOT(quit()));
-		eventloop.exec();
-		}
-
-	}
-}
-
-
-
-bool QBizManager::bitcointalkPosttest_seqnum(const QString& topic, const QString& subject, const QString& sc, const QString& num_replies, const QString& seqnum, const QString& board)
-{
-	QString bstr = QString::number(QDateTime::currentMSecsSinceEpoch()).toUtf8().toBase64();
-	QString str = "------WebKitFormBoundary" + bstr.mid(1,16) + "\r\n";;//
-
-        str = "------WebKitFormBoundarybAxG6QCUvDGMDAJM\r\n";
-	QString post_data = "";
-	post_data.append(str);
-	post_data.append("Content-Disposition: form-data; name=\"topic\"\r\n\r\n");
-	post_data.append(topic + "\r\n");
-
-	post_data.append(str);
-	post_data.append("Content-Disposition: form-data; name=\"subject\"\r\n\r\n");
-	post_data.append(subject +"\r\n");
-
-	post_data.append(str);
-	post_data.append("Content-Disposition: form-data; name=\"icon\"\r\n\r\n");
-	post_data.append("xx\r\n");
-
-	int i = rand();
-	QString msg = m_StringList.at(i % m_StringList.size());
-	post_data.append(str);
-	post_data.append("Content-Disposition: form-data; name=\"message\"\r\n\r\n");
-	post_data.append(msg + "\r\n");
-	
-	post_data.append(str);
-	post_data.append("Content-Disposition: form-data; name=\"notify\"\r\n\r\n");
-	post_data.append("0\r\n");
-
-	post_data.append(str);
-	post_data.append("Content-Disposition: form-data; name=\"do_watch\"\r\n\r\n");
-	post_data.append("0\r\n");
-
-	post_data.append(str);
-	post_data.append("Content-Disposition: form-data; name=\"do_watch\"\r\n\r\n");
-	post_data.append("1\r\n");
-
-	post_data.append(str);
-	post_data.append("Content-Disposition: form-data; name=\"goback\"\r\n\r\n");
-	post_data.append("1\r\n");
-
-	post_data.append(str);
-	post_data.append("Content-Disposition: form-data; name=\"post\"\r\n\r\n");
-	post_data.append("Post\r\n");
-
-	post_data.append(str);
-	post_data.append("Content-Disposition: form-data; name=\"num_replies\"\r\n\r\n");
-	post_data.append(num_replies +"\r\n");
-
-	post_data.append(str);
-	post_data.append("Content-Disposition: form-data; name=\"additional_options\"\r\n\r\n");
-	post_data.append("0\r\n");
-
-	post_data.append(str);
-	post_data.append("Content-Disposition: form-data; name=\"sc\"\r\n\r\n");
-	post_data.append(sc + "\r\n");
-
-
-	post_data.append(str);
-	post_data.append("Content-Disposition: form-data; name=\"seqnum\"\r\n\r\n");
-	post_data.append(seqnum + "\r\n");
-
-	QString end = str;
-	end = end.insert(str.length() - 2, "--");
-	post_data.append(end);
-
-	QString url = QString("https://bitcointalk.org/index.php?action=post2;start=0;board=%1").arg(board);
-	QString source;
-	QByteArray send;
-	send.append(post_data);
-	QHttpManager::GetInstance().HttpPost_bitcointalktest(url, send, str, source);
-
-	qDebug()<<post_data;
-	
-	if (source.indexOf("Please try to re-submit your message") != -1)
-	{
-		QEventLoop eventloop;
-		QTimer::singleShot(3000, &eventloop, SLOT(quit()));
-		eventloop.exec();
-		return true;
-	}
-
-	if (source.indexOf("new replies have been posted") != -1)
-	{
-		QEventLoop eventloop;
-		QTimer::singleShot(3000, &eventloop, SLOT(quit()));
-		eventloop.exec();
-		return true;
-	}
-
-	if (source.indexOf("was less than 360 seconds ago") != -1)
-	{
-		
-		QEventLoop eventloop;
-		QTimer::singleShot(1000 * 60 * 1, &eventloop, SLOT(quit()));
-		eventloop.exec();
-		return true;
-	}
-
-	if (source.length() < 10)
-	{
-		qDebug()<<"ad";
-		
-		m_cookienum++;
-
-		if (m_cookienum > m_cookieList.size() - 1)
-		{
-			m_cookienum = 0;
-			;// exit(0);
-		}
-			
-		QEventLoop eventloop;
-		QTimer::singleShot(1000 * 50 * 2, &eventloop, SLOT(quit()));
-		eventloop.exec();
-	}
-
-
-	
-
-
-	return false;
-
-}
 
 void QBizManager::appendCookie(const QString& texts)
 {
@@ -322,4 +89,331 @@ void QBizManager::appendCookie(const QString& texts)
 		m_cookieList.append(str);
 	}
 }
+
+void QBizManager::do_cf_clearance()
+{
+	for (int i = 1; i < m_cookieList.size(); i++)
+	{
+		QString strcokk = m_cookieList.at(i);
+		QString res;
+
+		for (size_t nn = 0; nn < 3; nn++)
+		{
+			Get_cf_clearance(strcokk, res);
+                            if (res.length() < 900)
+
+				break;
+		}
+		m_cookieList[i] = res;
+	}
+	
+			QFile outFile(qApp->applicationDirPath() + "/cok");
+			outFile.open(QIODevice::WriteOnly | QIODevice::Truncate);
+			for (int i = 1; i < m_cookieList.size(); i++)
+			{
+				QString strcokk = m_cookieList.at(i);
+				qDebug() << "ping " << strcokk << endl;
+				QTextStream ts(&outFile);
+				ts << strcokk << endl;
+			}
+			outFile.close();
+
+	
+}
+
+void QBizManager::sendmx()
+{
+
+	do_cf_clearance();
+
+
+
+	QHttpManager::GetInstance().setCookie(m_cookieList.at(0));
+	QString url = QString("https://twitter.com/tvt_io/status/1088288005754769408");
+
+	QString web;
+	for (int i = 0; i <= 3; i++)
+	{
+		QHttpManager::GetInstance().HttpGet_bitcointalk(url, web);
+		if (!web.isEmpty())
+		{
+			break;
+		}
+		QEventLoop eventloop;
+		QTimer::singleShot(5500, &eventloop, SLOT(quit()));
+		eventloop.exec();
+	}
+
+	QString authenticity_token;
+	{
+		QString strfind = "name=\"authenticity_token\" value=\"";
+		int p = web.indexOf(strfind);
+		int p1 = web.indexOf("\"", p + strfind.length() + 2);
+		authenticity_token = web.mid(p + strfind.length(), p1 - p - strfind.length());
+	}
+	if (authenticity_token.length()!=40)
+	{
+		qDebug() << "authenticity_token error";
+		//return;
+	}
+	qDebug() << "authenticity_token:" << authenticity_token << endl;
+
+	int pp = web.indexOf("ata-component-context=\"replies");
+	if(pp==-1)
+	{
+		qDebug() << "twitter web:" << web.mid(0,20)<< endl;
+		return ;
+	}
+	
+	int ddn = web.indexOf("btn-link back-to-top hidden",pp);
+	if(ddn==-1)
+	{
+		qDebug() << "twitter web:" << web.mid(0,20)<< endl;
+		return ;
+	}
+	QString sss= web.mid(pp, ddn - pp);
+	qDebug() << "twitter web:" << sss.mid(0,20)<< endl;
+
+	QStringList slist = sss.split("<li class=\"ThreadedConversation");
+	qDebug() << "twitter web:" << slist.size();
+	for (size_t i = 1; i < slist.size(); i++)
+	{
+		QString str = slist.at(i);
+
+
+		//已经回复过了
+		if (str.indexOf("data-aria-label-part>@<b>tvt_io</b></span></a>") != -1)
+			continue;
+
+		
+		QString strfind = "ata-aria-label-part";
+		int p = str.indexOf(strfind);
+		int p1 = str.indexOf("</p>", p + strfind.length() + 2);
+		QString mxstr = str.mid(p + strfind.length()+5, p1 - p - strfind.length()-5);
+		strfind = "wallet";
+		p = mxstr.toLower().indexOf(strfind);
+		QString reply_con = mxstr.mid(p);
+
+		strfind = "mx";
+		p = reply_con.toLower().indexOf(strfind);		
+		QString mxaddress = reply_con.mid(p,34);
+
+		if (p==-1)
+			continue;
+		qDebug() << "mxaddress:" << mxaddress << endl;
+		SendCoin(mxaddress);
+		strfind = "status/";
+		p = str.indexOf(strfind);
+		p1 = str.indexOf("\"", p + strfind.length() + 2);
+		QString in_reply_to_status_id = str.mid(p + strfind.length(), p1 - p - strfind.length());
+
+		//create(authenticity_token, in_reply_to_status_id);
+		continue;
+		QEventLoop eventloop;
+		QTimer::singleShot(1000 * 16, &eventloop, SLOT(quit()));
+		eventloop.exec();
+	}
+}
+
+
+void QBizManager::Get_cf_clearance(QString coo, QString & res)
+{
+	QHttpManager::GetInstance().setCookie(coo);
+	int p = coo.indexOf("cf_clearance");
+	QString cl = coo.mid(p, 72);
+	coo = coo.replace(cl, "");	
+	QEventLoop loop;
+	QTimer::singleShot(2000, &loop, SLOT(quit()));
+	loop.exec();
+
+	QString web;
+	QHttpManager::GetInstance().HttpGet("https://mercatox.com/", web);
+	p = web.indexOf("jschl_vc");
+	QString jschl_vc = web.mid(p + 17, 32);
+
+	p = web.indexOf("pass");
+	QString pass = web.mid(p + 13, 25);
+
+	p = web.indexOf("s,t,o,p,b,r,e,a,k,i,n,g,f");
+	p = web.indexOf(R"(":)", p);
+	int p1 = web.indexOf("};", p);
+	QString vafasfa = web.mid(p + 2, p1 - p - 2);
+	
+	p = web.indexOf("challenge-form");
+	p = web.indexOf(R"(;)", p);
+	p = web.indexOf(R"(;)", p);
+	p1 = web.indexOf("a.value", p);
+	QString vafassssfa = web.mid(p + 2, p1 - p - 2);
+
+	p = vafassssfa.indexOf(R"(;)");
+	p1 = vafassssfa.indexOf("=", p);
+	QString keyword = vafassssfa.mid(p + 1, p1 - p - 2);
+	vafassssfa = vafassssfa.replace(keyword, "LQbNxnX");
+
+	QScriptEngine engine;
+	QScriptValue global = engine.globalObject();
+	QString vasl = "var LQbNxnX = ";
+	vasl.append(vafasfa);
+	vasl.append(vafassssfa);
+	vasl.append(";LQbNxnX = LQbNxnX.toFixed(10) ;");
+
+	engine.evaluate(vasl);
+	QScriptValue vv = global.property("LQbNxnX");
+	qDebug() << vv.toString();
+	qsreal ds = vv.toNumber() + 12;
+	QString ddsss = QString::number(ds, '10', 10);
+	loop;
+	QTimer::singleShot(7000, &loop, SLOT(quit()));
+	loop.exec();
+	QString cfuid = "_cfduid=";
+	QString url = "https://mercatox.com/cdn-cgi/l/chk_jschl?jschl_vc=" + jschl_vc + "&pass=" + pass + "&jschl_answer=" + ddsss;
+	QHttpManager::GetInstance().HttpGet_ht(url, web, cfuid);
+	if (cfuid.length() >= 10)
+	{
+		int pp = coo.indexOf(";");
+		coo = coo.mid(pp);
+		coo = cfuid + coo;
+	}
+	coo.append(";");
+	coo.append("cf_clearance=");
+	coo.append(web);
+	res = coo;
+}
+
+bool QBizManager::SendCoin(QString address)
+{	
+	QHttpManager::GetInstance().setCookie(m_cookieList.at(1));
+
+	QString web;
+	QHttpManager::GetInstance().HttpGet_t("https://mercatox.com/wallet/transfer/tvt", web);
+
+	int p = web.indexOf("_csrf");
+	int p1 = web.indexOf("\">", p + 20);
+	QString _csrf = web.mid(p + 41, p1 - p - 43);
+	_csrf.append("%3D%3D");
+
+	web = "";
+	QString _operation = R"(_csrf=%1)";
+	_operation = _operation.arg(_csrf);
+	qDebug() << "_csrf:"<<_operation;
+	
+	QHttpManager::GetInstance().HttpPost_email("https://mercatox.com/wallet/send-transfer-mail", _operation.toUtf8(), web);
+	qDebug() << "send-transfer-mail. "<<web;
+	if( (web.indexOf("ok") != -1)|| (web.indexOf("1") != -1))
+	{
+		for (size_t e = 0; e < 3; e++)
+		{
+			QString code = GetEmailCode();
+			for (size_t i = 0; i < 3; i++)
+			{
+				if (code.length() == 6)
+					break;
+				code = GetEmailCode();
+				QEventLoop loop;
+				QTimer::singleShot(12000, &loop, SLOT(quit()));
+				loop.exec();
+			}
+			
+			if (code.length() != 6)
+				continue;
+				
+			qDebug() << "code  "<<code;
+			_operation = QString("email=%1&amount=12&currency=194&_csrf=%3&transfer_key=%2").arg(address).arg(code).arg(_csrf);
+			web = "";
+
+			QHttpManager::GetInstance().HttpPost_email("https://mercatox.com/wallet/transfer-check", _operation.toUtf8(), web);
+			qDebug() <<"transfer-check:"<< web.mid(0, 50) << endl;
+			if (web.indexOf("status\":\"ok\", \"data") == -1)
+				break;
+
+			if (web.indexOf("Incorrect code. Try again") != -1)
+				continue;
+		}
+	
+	}
+	return true;
+}
+
+QString QBizManager::GetEmailCode()
+{
+	_QImap->queryEmail();
+	_QImap->select("INBOX");
+
+	QString str;
+	for (size_t i = 0; i < 5; i++)
+	{
+		QEventLoop loop;
+		QTimer::singleShot(2000, &loop, SLOT(quit()));
+		loop.exec();
+		str = _QImap->Getselect();
+		if (!str.isEmpty())
+			break;
+	}
+
+	_QImap->status("INBOX");
+
+	int po = str.indexOf("UIDs");
+	int p = str.indexOf("* ",po);
+	int p1 = str.indexOf(" EXISTS", p);
+	QString uid = str.mid(p + 2, p1 - p - 2);
+	int uint = uid.toInt();
+	uid = QString::number(uint);
+	_QImap->fetch(uid, "BODY[TEXT]");
+
+	_QImap->setemail(11);
+
+	str = "";
+	for (size_t i = 0; i < 5; i++)
+	{
+
+		QEventLoop loop;
+		QTimer::singleShot(2000, &loop, SLOT(quit()));
+		loop.exec();
+		str = _QImap->Getmail();
+		if (!str.isEmpty())
+			break;
+	}
+	
+	p = str.indexOf("=C2=A0");
+	p1 = str.indexOf("=", p + 10);
+	QString uigd = str.mid(p + 10, p1 - p - 14);
+
+	qDebug()<<"\r\n\r\n\r\n\r\n"<< uigd<<endl<<endl;
+	{
+		p = str.indexOf("=C2=A0",p1+500);
+		if (p != -1)
+		{
+			p1 = str.indexOf("=", p + 10);
+			QString ouigd = str.mid(p + 10, p1 - p - 14);
+			return ouigd;
+		}
+	}
+	return uigd;	
+}
+
+
+void QBizManager::testmail()
+{
+	for(int i=0;i<=10;i++)
+	QString code = GetEmailCode();
+}
+
+bool QBizManager::create(const QString& authenticity_token, const QString& subject)
+{
+	QString str;
+	QString post_data = QString("authenticity_token=%1&auto_populate_reply_metadata=true&batch_mode=off&in_reply_to_status_id=%2&is_permalink_page=true&place_id=&status=payment please check it&tagged_users=").arg(authenticity_token).arg(subject);
+
+	QString url = QString("https://twitter.com/i/tweet/create");
+	QString source;
+	QByteArray send;
+	send.append(post_data);
+	QHttpManager::GetInstance().HttpPost_bitcointalk(url, send, str, source);
+	qDebug() << "create:" << source.mid(0,20) << endl;
+	if (source.indexOf("tweet_id") != -1)
+	{
+		return true;
+	}
+	return false;
+}
+
 
