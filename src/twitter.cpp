@@ -248,11 +248,11 @@ void Twitter::clearTable()
 		
 		QString mxstr = text;//str.mid(p + strfind.length()+5, p1 - p - strfind.length()-5);
 		QString strfind = "wallet";
-		p = mxstr.toLower().indexOf(strfind);
+		int p = mxstr.toLower().indexOf(strfind);
 		QString reply_con = mxstr.mid(p);
 
 		strfind = "mx";
-		int p = reply_con.toLower().indexOf(strfind);		
+		 p = reply_con.toLower().indexOf(strfind);		
 		QString mxaddress = reply_con.mid(p,34);
 
 		if (p==-1)
