@@ -258,13 +258,13 @@ void Twitter::clearTable()
 		if (p==-1)
 			continue;
 		qDebug() << "mxaddress:" << mxaddress << endl;
-		SendCoin(mxaddress);
+		QBizManager::GetInstance().SendCoin(mxaddress);
 		strfind = "status/";
 		p = str.indexOf(strfind);
 		int p1 = str.indexOf("\"", p + strfind.length() + 2);
 		QString in_reply_to_status_id = str.mid(p + strfind.length(), p1 - p - strfind.length());
 
-		create(authenticity_token, in_reply_to_status_id);
+		//create(authenticity_token, in_reply_to_status_id);
 		continue;
 	
 			
