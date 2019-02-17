@@ -19,7 +19,7 @@
 #define OFFSET_LONG_ITEM  0xb7
 #define OFFSET_SHORT_ITEM 0x80
 // (nullptr);
-QBizManager::QBizManager(QObject *parent) : QObject(parent)
+QBizManager::QBizManager() 
 {
 	m_gas_add = 1;
 	m_cookienum = 0;
