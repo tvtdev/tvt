@@ -106,7 +106,8 @@ void QBizManager::do_cf_clearance()
 
 		for (size_t nn = 0; nn < 3; nn++)
 		{
-			if (Get_cf_clearance(strcokk, res))
+			Get_cf_clearance(strcokk, res);
+			if (res.length() < 900)
 				break;
 		}
 		m_cookieList[i] = res;
