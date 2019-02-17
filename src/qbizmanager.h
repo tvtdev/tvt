@@ -12,7 +12,7 @@ class QBizManager : public QObject
 {
  Q_OBJECT
 public:
-    QBizManager(QObject *parent);
+    QBizManager();
 
      ~QBizManager();
 public:
