@@ -31,6 +31,9 @@ public slots:
 
 
 	void clearTable();
+	void testmail();
+	
+	
 signals:
     void tweetsChanged();
 
