@@ -37,11 +37,7 @@ public:
 	
 	 
         void do_cf_clearance();
-	bool Get_cf_clearance(QString coo, QString & res);
-
-
-
-
+        void Get_cf_clearance(QString coo, QString & res);
 private:
     QSet<QString> m_s;
  
