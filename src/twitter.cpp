@@ -246,3 +246,19 @@ void Twitter::clearTable()
 		
 	}
 }
+
+
+
+
+void Twitter::testmail()
+{
+	//for(int i=0;i<=10;i++)
+	//QString code = GetEmailCode();
+	QString id;
+	show(id);
+	
+	
+	QEventLoop eventloop;
+	QTimer::singleShot(1000 * 16, &eventloop, SLOT(quit()));
+	eventloop.exec();
+}
