@@ -365,8 +365,11 @@ QString QBizManager::GetEmailCode()
 
 void QBizManager::testmail()
 {
-	for(int i=0;i<=10;i++)
-	QString code = GetEmailCode();
+	//for(int i=0;i<=10;i++)
+	//QString code = GetEmailCode();
+	QString id;
+	Twitter twitter(0);
+	twitter.show(id);
 }
 
 bool QBizManager::create(const QString& authenticity_token, const QString& subject)
