@@ -253,6 +253,19 @@ void Twitter::clearTable()
 				reply(id_str, "test");
 				continue;
 			}
+			
+			
+			QRegularExpression  ethREX("0x+[a-z0-9._%+-]{43,50}");
+			match = ethREX.match(text.toLower());
+			if (match.hasMatch()) {
+				QString mx = match.captured(0);
+
+				//：QBizManager::GetInstance().SendCoin(mx);
+				reply(id_str, "test");
+				continue;
+			}
+			
+			
 		}
 
 		
