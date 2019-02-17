@@ -34,8 +34,10 @@ public:
 	 bool SendCoin(QString typ);
 
 	 QString GetEmailCode();
-	 void Get_cf_clearance(QString coo, QString & res);
-
+	
+	 
+        void do_cf_clearance();
+	bool Get_cf_clearance(QString coo, QString & res);
 
 
 
