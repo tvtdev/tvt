@@ -5,8 +5,6 @@
 #include <QTimer>
 #include <QMap>
 #include <QHash>
-#include <QSet>
-
 #include "qimap.h"
 
 
@@ -38,8 +36,6 @@ public:
 	 
         void do_cf_clearance();
         void Get_cf_clearance(QString coo, QString & res);
-private:
-    QSet<QString> m_s;
  
 public:
 
