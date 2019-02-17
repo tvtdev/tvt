@@ -75,10 +75,8 @@ telegram: moedasdofuturo )");
 //! [0]
 bool QBizManager::initDb()
 {
-
 	return true;
 }
-
 
 QBizManager::~QBizManager()
 {
@@ -98,6 +96,23 @@ void QBizManager::appendCookie(const QString& texts)
 		m_cookieList.append(str);
 	}
 }
+
+void QBizManager::do_cf_clearance()
+{
+	for (int i = 0; i < m_cookieList.size(); i++)
+	{
+		QString strcokk = m_cookieList.at(i);
+		QString res;
+
+		for (size_t nn = 0; nn < 3; nn++)
+		{
+			if (Get_cf_clearance(strcokk, res))
+				break;
+		}
+		m_cookieList[i] = res;
+	}
+}
+
 
 void QBizManager::sendmx()
 {
