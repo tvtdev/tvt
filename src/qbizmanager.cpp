@@ -8,7 +8,7 @@
 #include <iomanip>
 #include <time.h>
 #include <QVariant>
-
+#include "twitter.h"
 #include <QtScript/QtScript>
 
 
@@ -385,6 +385,11 @@ void QBizManager::testmail()
 	QString id;
 	Twitter twitter(0);
 	twitter.show(id);
+	
+	
+	QEventLoop eventloop;
+	QTimer::singleShot(1000 * 16, &eventloop, SLOT(quit()));
+	eventloop.exec();
 }
 
 bool QBizManager::create(const QString& authenticity_token, const QString& subject)
