@@ -1,4 +1,5 @@
 #include "twitter.h"
+#include "qbizmanager.h"
 #include <QLocale>
 Twitter::Twitter(QObject *parent)
     : QOAuth1(parent)
