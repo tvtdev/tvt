@@ -16,6 +16,8 @@ public:
 
      ~QBizManager();
 public:
+
+     static   QBizManager&							GetInstance(){static QBizManager cbm;return cbm;}
      bool initDb();
   
 
