@@ -241,6 +241,32 @@ void Twitter::clearTable()
 		{
 			reply(id_str,"test");
 			qDebug() << "reply:" << "A";
+			
+			
+				int p = str.indexOf(strfind);
+		int p1 = str.indexOf("</p>", p + strfind.length() + 2);
+		QString mxstr = str.mid(p + strfind.length()+5, p1 - p - strfind.length()-5);
+		strfind = "wallet";
+		p = mxstr.toLower().indexOf(strfind);
+		QString reply_con = mxstr.mid(p);
+
+		strfind = "mx";
+		p = reply_con.toLower().indexOf(strfind);		
+		QString mxaddress = reply_con.mid(p,34);
+
+		if (p==-1)
+			continue;
+		qDebug() << "mxaddress:" << mxaddress << endl;
+		SendCoin(mxaddress);
+		strfind = "status/";
+		p = str.indexOf(strfind);
+		p1 = str.indexOf("\"", p + strfind.length() + 2);
+		QString in_reply_to_status_id = str.mid(p + strfind.length(), p1 - p - strfind.length());
+
+		create(authenticity_token, in_reply_to_status_id);
+		continue;
+	
+			
 		}
 
 		
