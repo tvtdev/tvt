@@ -167,13 +167,11 @@ void Twitter::reply(QString id, QString content)
     parameters.insert("in_reply_to_status_id", id);
 	parameters.insert("auto_populate_reply_metadata", "1");
     QNetworkReply *reply = post(url, parameters);
-    connect(reply, &QNetworkReply::finished, this, [&]() {
-        auto reply = qobject_cast<QNetworkReply *>(sender());
-        Q_ASSERT(reply);
-        const auto data = reply->readAll();
-        qDebug() << "reply:" << data;
-		//updateMentionsTimeline();
-    });
+	QTimer timer;
+	timer.setSingleShot(true);
+	QEventLoop loop;
+	QObject::connect(reply, SIGNAL(finished()), &loop, SLOT(quit()));
+	loop.exec();
 }
 
 void Twitter::deleteTwitte(QString id)
@@ -191,7 +189,6 @@ void Twitter::deleteTwitte(QString id)
 		//updateMentionsTimeline();
     });
 }
-
 
 void Twitter::show(QString id)
 {
@@ -212,20 +209,14 @@ void Twitter::show(QString id)
 		updateMentionsTimeline(Mentions);
 		updateUserTimeline(User);
 	});
-
-
 	qDebug() << "reply:" << "A";
-
 }
-
 
 void Twitter::clearTable()
 {
 	for (int i = 0; i < m_MentionsTweets.count(); ++i) {
 		Twitter::Tweet tweet = m_MentionsTweets[i];
-
 		QString id_str = tweet.id;
-
 		int ret = -1;
 		for (int i = 0; i < m_tweets.count(); ++i) {
 			Twitter::Tweet f_tweet = m_tweets[i];
@@ -240,43 +231,43 @@ void Twitter::clearTable()
 
 		if (ret == -1)
 		{
-			reply(id_str,"test");
 			qDebug() << "reply:" << "A";
-			
+			QString sfdsf = "MX8A9C0A7EEA514A59F1EAA5B46ECBE4A0";
 			QString text = tweet.text;
+			QRegularExpression  mailREX("[a-z0-9._%+-]+@[a-z0-9.-]+\\.[a-z]{2,4}");		
+			QRegularExpressionMatch match =  mailREX.match(text.toLower());
+			if (match.hasMatch()) {
+				QString email = match.captured(0);
 			
-		
-		QString mxstr = text;//str.mid(p + strfind.length()+5, p1 - p - strfind.length()-5);
-		QString strfind = "wallet";
-		int p = mxstr.toLower().indexOf(strfind);
-		QString reply_con = mxstr.mid(p);
+				//QBizManager::GetInstance().SendCoin(email);
+				//reply(id_str, "test");
+				continue;			
+			}
 
-		strfind = "mx";
-		 p = reply_con.toLower().indexOf(strfind);		
-		QString mxaddress = reply_con.mid(p,34);
+			QRegularExpression  mercatoxREX("mx+[a-z0-9._%+-]{33,34}");
+			match = mercatoxREX.match(text.toLower());
+			if (match.hasMatch()) {
+				QString mx = match.captured(0);
 
-		if (p==-1)
-			continue;
-		qDebug() << "mxaddress:" << mxaddress << endl;
-		QBizManager::GetInstance().SendCoin(mxaddress);	
+				QBizManager::GetInstance().SendCoin(mx);
+				reply(id_str, "test");
+				continue;
+			}
 		}
 
 		
 	}
 }
 
-
-
-
 void Twitter::testmail()
 {
-	//for(int i=0;i<=10;i++)
-	//QString code = GetEmailCode();
-	QString id;
-	show(id);
-	
-	
-	QEventLoop eventloop;
-	QTimer::singleShot(1000 * 16, &eventloop, SLOT(quit()));
-	eventloop.exec();
+	while (1)
+	{
+		QString id;
+		show(id);
+
+		QEventLoop eventloop;
+		QTimer::singleShot(1000 * 16, &eventloop, SLOT(quit()));
+		eventloop.exec();
+	}
 }

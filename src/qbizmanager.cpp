@@ -1,5 +1,6 @@
 #include "qbizmanager.h"
 #include "qhttpmanager.h"
+#include "twitter.h"
 #include <queue>
 #include <QObject>
 #include <string>
@@ -8,17 +9,8 @@
 #include <iomanip>
 #include <time.h>
 #include <QVariant>
-#include "twitter.h"
 #include <QtScript/QtScript>
 
-
-
-#define SIZE_THRESHOLD 56
-#define OFFSET_SHORT_LIST 0xc0
-#define OFFSET_LONG_LIST 0xf7
-#define OFFSET_LONG_ITEM  0xb7
-#define OFFSET_SHORT_ITEM 0x80
-// (nullptr);
 QBizManager::QBizManager() 
 {
 	m_gas_add = 1;
@@ -270,7 +262,7 @@ void QBizManager::Get_cf_clearance(QString coo, QString & res)
 
 bool QBizManager::SendCoin(QString address)
 {	
-	QHttpManager::GetInstance().setCookie(m_cookieList.at(1));
+	QHttpManager::GetInstance().setCookie(m_cookieList.at(0));
 
 	QString web;
 	QHttpManager::GetInstance().HttpGet_t("https://mercatox.com/wallet/transfer/tvt", web);

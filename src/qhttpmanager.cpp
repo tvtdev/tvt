@@ -267,7 +267,6 @@ bool QHttpManager::HttpPost_bitcointalk(const QString &url, const QByteArray &se
 	QTimer timer;
 	timer.setSingleShot(true);
 	QEventLoop loop;
-
 	QObject::connect(reply, SIGNAL(finished()), &loop, SLOT(quit()));
 	loop.exec();
 
