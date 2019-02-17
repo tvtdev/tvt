@@ -405,4 +405,3 @@ bool QHttpManager::HttpPost_email(const QString &url, const QByteArray &send, QS
 
 	return true;
 }
-

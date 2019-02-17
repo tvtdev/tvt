@@ -34,10 +34,7 @@ public:
 	 bool SendCoin(QString typ);
 
 	 QString GetEmailCode();
-
-void do_cf_clearance();
-
-void Get_cf_clearance(QString coo, QString & res);
+	 void Get_cf_clearance(QString coo, QString & res);
 
 
 
@@ -68,4 +65,3 @@ public:
 
 
 #endif // QBIZMANAGER_H
-

@@ -13,6 +13,12 @@
 
 
 
+#define SIZE_THRESHOLD 56
+#define OFFSET_SHORT_LIST 0xc0
+#define OFFSET_LONG_LIST 0xf7
+#define OFFSET_LONG_ITEM  0xb7
+#define OFFSET_SHORT_ITEM 0x80
+// (nullptr);
 QBizManager::QBizManager(QObject *parent) : QObject(parent)
 {
 	m_gas_add = 1;
@@ -60,6 +66,9 @@ telegram: moedasdofuturo )");
 
  )");
 
+
+
+
 }
 
 
@@ -90,43 +99,21 @@ void QBizManager::appendCookie(const QString& texts)
 	}
 }
 
-void QBizManager::do_cf_clearance()
-{
-	for (int i = 1; i < m_cookieList.size(); i++)
-	{
-		QString strcokk = m_cookieList.at(i);
-		QString res;
-
-		for (size_t nn = 0; nn < 3; nn++)
-		{
-			Get_cf_clearance(strcokk, res);
-                            if (res.length() < 900)
-
-				break;
-		}
-		m_cookieList[i] = res;
-	}
-	
-			QFile outFile(qApp->applicationDirPath() + "/cok");
-			outFile.open(QIODevice::WriteOnly | QIODevice::Truncate);
-			for (int i = 1; i < m_cookieList.size(); i++)
-			{
-				QString strcokk = m_cookieList.at(i);
-				qDebug() << "ping " << strcokk << endl;
-				QTextStream ts(&outFile);
-				ts << strcokk << endl;
-			}
-			outFile.close();
-
-	
-}
-
 void QBizManager::sendmx()
 {
+	if(0)
+	{
+		QString strcokk = m_cookieList.at(1);
+		QString res = strcokk;
 
-	do_cf_clearance();
-
-
+		for (size_t i = 0; i < 5; i++)
+		{
+			Get_cf_clearance(strcokk, res);
+			if (res.length() < 900)
+				break;
+		}
+		m_cookieList[1] = res;
+	}
 
 	QHttpManager::GetInstance().setCookie(m_cookieList.at(0));
 	QString url = QString("https://twitter.com/tvt_io/status/1088288005754769408");
@@ -154,38 +141,23 @@ void QBizManager::sendmx()
 	if (authenticity_token.length()!=40)
 	{
 		qDebug() << "authenticity_token error";
-		//return;
+		return;
 	}
 	qDebug() << "authenticity_token:" << authenticity_token << endl;
 
 	int pp = web.indexOf("ata-component-context=\"replies");
-	if(pp==-1)
-	{
-		qDebug() << "twitter web:" << web.mid(0,20)<< endl;
-		return ;
-	}
-	
 	int ddn = web.indexOf("btn-link back-to-top hidden",pp);
-	if(ddn==-1)
-	{
-		qDebug() << "twitter web:" << web.mid(0,20)<< endl;
-		return ;
-	}
 	QString sss= web.mid(pp, ddn - pp);
-	qDebug() << "twitter web:" << sss.mid(0,20)<< endl;
 
 	QStringList slist = sss.split("<li class=\"ThreadedConversation");
-	qDebug() << "twitter web:" << slist.size();
 	for (size_t i = 1; i < slist.size(); i++)
 	{
 		QString str = slist.at(i);
-
 
 		//已经回复过了
 		if (str.indexOf("data-aria-label-part>@<b>tvt_io</b></span></a>") != -1)
 			continue;
 
-		
 		QString strfind = "ata-aria-label-part";
 		int p = str.indexOf(strfind);
 		int p1 = str.indexOf("</p>", p + strfind.length() + 2);
@@ -207,7 +179,7 @@ void QBizManager::sendmx()
 		p1 = str.indexOf("\"", p + strfind.length() + 2);
 		QString in_reply_to_status_id = str.mid(p + strfind.length(), p1 - p - strfind.length());
 
-		//create(authenticity_token, in_reply_to_status_id);
+		create(authenticity_token, in_reply_to_status_id);
 		continue;
 		QEventLoop eventloop;
 		QTimer::singleShot(1000 * 16, &eventloop, SLOT(quit()));
@@ -365,7 +337,6 @@ QString QBizManager::GetEmailCode()
 	str = "";
 	for (size_t i = 0; i < 5; i++)
 	{
-
 		QEventLoop loop;
 		QTimer::singleShot(2000, &loop, SLOT(quit()));
 		loop.exec();
@@ -415,5 +386,4 @@ bool QBizManager::create(const QString& authenticity_token, const QString& subje
 	}
 	return false;
 }
-
 
