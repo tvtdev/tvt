@@ -345,10 +345,9 @@ QString QBizManager::GetEmailCode()
 	
 	QString uigd ;
 	int ppp=0;
-	while(1)
-	{
 	
-		QString  strs = QString("BODY[]<%1.400>").arg(QString::number(ppp));
+	
+		QString  strs = QString("BODY[]<3200.400>").arg(QString::number(ppp));
 		ppp+=400;
 		_QImap->fetch(uid,strs );
 
@@ -388,11 +387,11 @@ QString QBizManager::GetEmailCode()
 		if(uigd.length()==6)
 		{
 			qDebug()<<"\r\n\raaaaxxxxsssaaaaaaa\n\r\n\r\n"<<QString::number(ppp)<<endl<<endl;
-			break;
+			//break;
 			
 		}
 	
-	}
+
 	return uigd;	
 }
 
