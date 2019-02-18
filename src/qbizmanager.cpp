@@ -354,6 +354,8 @@ QString QBizManager::GetEmailCode()
 		if (!str.isEmpty())
 			break;
 	}
+	qDebug()<<"\r\n"<< str<<endl<<endl;
+	
 	
 	p = str.indexOf("=C2=A0");
 	p1 = str.indexOf("=", p + 10);
