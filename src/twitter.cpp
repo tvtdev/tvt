@@ -239,7 +239,7 @@ void Twitter::clearTable()
 			if (match.hasMatch()) {
 				QString email = match.captured(0);
 			
-				//QBizManager::GetInstance().SendCoin(email);
+				QBizManager::GetInstance().SendCoin(email);
 				//reply(id_str, "test");
 				continue;			
 			}
