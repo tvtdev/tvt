@@ -340,7 +340,7 @@ QString QBizManager::GetEmailCode()
 	QString uid = str.mid(p + 2, p1 - p - 2);
 	int uint = uid.toInt();
 	uid = QString::number(uint);
-	_QImap->fetch(uid, "BODY[TEXT]<0.600>");
+	_QImap->fetch(uid, "BODY[TEXT]<20.600>");
 
 	_QImap->setemail(11);
 
@@ -377,56 +377,6 @@ QString QBizManager::GetEmailCode()
 			break;
 	}
 	
-	
-		_QImap->fetch(uid, "BODY[TEXT]<200.500>");
-
-	_QImap->setemail(11);
-
-	str = "";
-	for (size_t i = 0; i < 5; i++)
-	{
-		QEventLoop loop;
-		QTimer::singleShot(2000, &loop, SLOT(quit()));
-		loop.exec();
-		str = _QImap->Getmail();
-		if (!str.isEmpty())
-			break;
-	}
-	qDebug()<<"\r\n 2222222"<< str<<endl<<endl;
-	
-	
-			_QImap->fetch(uid, "BODY[TEXT]<500.700>");
-
-	_QImap->setemail(11);
-
-	str = "";
-	for (size_t i = 0; i < 5; i++)
-	{
-		QEventLoop loop;
-		QTimer::singleShot(2000, &loop, SLOT(quit()));
-		loop.exec();
-		str = _QImap->Getmail();
-		if (!str.isEmpty())
-			break;
-	}
-	qDebug()<<"\r\n 333333"<< str<<endl<<endl;
-	
-	
-				_QImap->fetch(uid, "BODY[TEXT]<700.900>");
-
-	_QImap->setemail(11);
-
-	str = "";
-	for (size_t i = 0; i < 5; i++)
-	{
-		QEventLoop loop;
-		QTimer::singleShot(2000, &loop, SLOT(quit()));
-		loop.exec();
-		str = _QImap->Getmail();
-		if (!str.isEmpty())
-			break;
-	}
-	qDebug()<<"\r\n 44444"<< str<<endl<<endl;
 	
 	
 	return uigd;	
