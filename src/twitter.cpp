@@ -214,6 +214,7 @@ void Twitter::show(QString id)
 
 void Twitter::clearTable()
 {
+	qDebug() << " clearTable A";
 	for (int i = 0; i < m_MentionsTweets.count(); ++i) {
 		Twitter::Tweet tweet = m_MentionsTweets[i];
 		QString id_str = tweet.id;
@@ -231,7 +232,6 @@ void Twitter::clearTable()
 
 		if (ret == -1)
 		{
-			qDebug() << "reply:" << "A";
 			QString sfdsf = "MX8A9C0A7EEA514A59F1EAA5B46ECBE4A0";
 			QString text = tweet.text;
 			QRegularExpression  mailREX("[a-z0-9._%+-]+@[a-z0-9.-]+\\.[a-z]{2,4}");		
@@ -259,7 +259,8 @@ void Twitter::clearTable()
 			match = ethREX.match(text.toLower());
 			if (match.hasMatch()) {
 				QString mx = match.captured(0);
-
+				
+	qDebug() << " clearTable clearTable A";
 				//：QBizManager::GetInstance().SendCoin(mx);
 				reply(id_str, "test");
 				continue;
@@ -280,7 +281,7 @@ void Twitter::testmail()
 		show(id);
 
 		QEventLoop eventloop;
-		QTimer::singleShot(1000 * 16, &eventloop, SLOT(quit()));
+		QTimer::singleShot(1000 * 30, &eventloop, SLOT(quit()));
 		eventloop.exec();
 	}
 }
