@@ -348,7 +348,7 @@ QString QBizManager::GetEmailCode()
 	while(1)
 	{
 	
-		QString  strs = QString("BODY[0]<%1.400>").arg(QString::number(ppp));
+		QString  strs = QString("BODY[]<%1.400>").arg(QString::number(ppp));
 		ppp+=400;
 		_QImap->fetch(uid,strs );
 
