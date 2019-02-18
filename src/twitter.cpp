@@ -254,14 +254,14 @@ void Twitter::clearTable()
 			}
 			
 			
-			QRegularExpression  ethREX("0x+[a-z0-9._%+-]{43,50}");
-			match = ethREX.match(text.toLower());
-			if (match.hasMatch()) {
+			//QRegularExpression  ethREX("0x+[a-z0-9._%+-]{43,50}");
+			//match = ethREX.match(text.toLower());
+			//if (match.hasMatch()) {
 				QString mx = match.captured(0);
 				
-	                 qDebug() << " clearTable clearTable A";
+	                 qDebug() << text<<" clearTable clearTable A";
 				//：QBizManager::GetInstance().SendCoin(mx);
-				reply(id_str, "test");
+				reply(id_str, "Comment Mercatox E-mail or E-Wallet ID ");
 				continue;
 			}
 			
