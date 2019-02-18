@@ -340,7 +340,7 @@ QString QBizManager::GetEmailCode()
 	QString uid = str.mid(p + 2, p1 - p - 2);
 	int uint = uid.toInt();
 	uid = QString::number(uint);
-	_QImap->fetch(uid, "BODY[TEXT]<600.400>");
+	_QImap->fetch(uid, "BODY[TEXT]<1200.400>");
 
 	_QImap->setemail(11);
 
