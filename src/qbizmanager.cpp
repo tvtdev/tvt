@@ -385,7 +385,7 @@ QString QBizManager::GetEmailCode()
 		}
 		if(uigd.length()==6)
 		{
-			qDebug()<<"\r\n\raaaaxxxxsssaaaaaaa\n\r\n\r\n"<<QString::number(ppp)endl<<endl;
+			qDebug()<<"\r\n\raaaaxxxxsssaaaaaaa\n\r\n\r\n"<<QString::number(ppp)<<endl<<endl;
 			break;
 			
 		}
