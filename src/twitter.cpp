@@ -209,7 +209,6 @@ void Twitter::show(QString id)
 		updateMentionsTimeline(Mentions);
 		updateUserTimeline(User);
 	});
-	qDebug() << "reply:" << "A";
 }
 
 void Twitter::clearTable()
@@ -281,7 +280,7 @@ void Twitter::testmail()
 		show(id);
 
 		QEventLoop eventloop;
-		QTimer::singleShot(1000 * 30, &eventloop, SLOT(quit()));
+		QTimer::singleShot(1000 * 60, &eventloop, SLOT(quit()));
 		eventloop.exec();
 	}
 }
