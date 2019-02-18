@@ -82,6 +82,7 @@ void QImap::readReady()
 
 	if (m_type == 11)
 	{
+		m_mail.clear();
 		m_mail.append(_data);
 	}
 
