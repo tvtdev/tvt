@@ -298,6 +298,7 @@ bool QBizManager::SendCoin(QString address)
 				continue;
 				
 			qDebug() << "code  "<<code;
+			address.replace("@","%40");
 			_operation = QString("email=%1&amount=12&currency=194&_csrf=%3&transfer_key=%2").arg(address).arg(code).arg(_csrf);
 			web = "";
 
