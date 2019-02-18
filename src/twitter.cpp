@@ -249,7 +249,7 @@ void Twitter::clearTable()
 			if (match.hasMatch()) {
 				QString mx = match.captured(0);
 
-				QBizManager::GetInstance().SendCoin(mx);
+				//QBizManager::GetInstance().SendCoin(mx);
 				reply(id_str, "test");
 				continue;
 			}
