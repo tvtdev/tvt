@@ -78,7 +78,7 @@ void QImap::queryUidByIndex(int index)
 void QImap::readReady()
 {
 	QString _data = m_socket.readAll();
-	//qDebug() << _data;
+	qDebug() << _data;
 
 	if (m_type == 11)
 	{
