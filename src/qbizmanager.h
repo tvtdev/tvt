@@ -23,7 +23,6 @@ public:
      void sendmx();
      void testmail();
      
-     bool create(const QString& topic, const QString& subject);
      bool SendCoin(QString typ);
      QString GetEmailCode();
      void do_cf_clearance();
