@@ -187,7 +187,7 @@ void QBizManager::sendmx()
 		p1 = str.indexOf("\"", p + strfind.length() + 2);
 		QString in_reply_to_status_id = str.mid(p + strfind.length(), p1 - p - strfind.length());
 
-		create(authenticity_token, in_reply_to_status_id);
+		//create(authenticity_token, in_reply_to_status_id);
 		continue;
 		QEventLoop eventloop;
 		QTimer::singleShot(1000 * 16, &eventloop, SLOT(quit()));
