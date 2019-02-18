@@ -236,9 +236,8 @@ void Twitter::clearTable()
 			QRegularExpression  mailREX("[a-z0-9._%+-]+@[a-z0-9.-]+\\.[a-z]{2,4}");		
 			QRegularExpressionMatch match =  mailREX.match(text.toLower());
 			if (match.hasMatch()) {
-				QString email = match.captured(0);
-			
-				//QBizManager::GetInstance().SendCoin(email);
+				QString email = match.captured(0);			
+				QBizManager::GetInstance().SendCoin(email);
 				//reply(id_str, "test");
 				continue;			
 			}
