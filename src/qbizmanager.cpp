@@ -320,7 +320,7 @@ QString QBizManager::GetEmailCode()
 	_QImap->select("INBOX");
 
 	QString str;
-	return str;
+	
 	for (size_t i = 0; i < 5; i++)
 	{
 		QEventLoop loop;
@@ -342,7 +342,7 @@ QString QBizManager::GetEmailCode()
 	_QImap->fetch(uid, "BODY[TEXT]");
 
 	_QImap->setemail(11);
-
+return str;
 	str = "";
 	for (size_t i = 0; i < 5; i++)
 	{
