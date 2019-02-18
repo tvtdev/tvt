@@ -342,6 +342,8 @@ QString QBizManager::GetEmailCode()
 	uid = QString::number(uint);	
 	_QImap->setemail(11);
 	
+	
+	QString uigd ;
 	int ppp=0;
 	while(1)
 	{
@@ -366,7 +368,7 @@ QString QBizManager::GetEmailCode()
 
 		p = str.indexOf("=C2=A0");
 		p1 = str.indexOf("=", p + 10);
-		QString uigd = str.mid(p + 10, p1 - p - 14);
+		uigd = str.mid(p + 10, p1 - p - 14);
 
 		if(uigd.length()<10)
 			qDebug()<<"\r\n\r\n\r\n\r\n"<< uigd<<endl<<endl;
