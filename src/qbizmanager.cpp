@@ -320,6 +320,7 @@ QString QBizManager::GetEmailCode()
 	_QImap->select("INBOX");
 
 	QString str;
+	return str;
 	for (size_t i = 0; i < 5; i++)
 	{
 		QEventLoop loop;
@@ -384,22 +385,3 @@ void QBizManager::testmail()
 	QTimer::singleShot(1000 * 16, &eventloop, SLOT(quit()));
 	eventloop.exec();
 }
-
-bool QBizManager::create(const QString& authenticity_token, const QString& subject)
-{
-	QString str;
-	QString post_data = QString("authenticity_token=%1&auto_populate_reply_metadata=true&batch_mode=off&in_reply_to_status_id=%2&is_permalink_page=true&place_id=&status=payment please check it&tagged_users=").arg(authenticity_token).arg(subject);
-
-	QString url = QString("https://twitter.com/i/tweet/create");
-	QString source;
-	QByteArray send;
-	send.append(post_data);
-	QHttpManager::GetInstance().HttpPost_bitcointalk(url, send, str, source);
-	qDebug() << "create:" << source.mid(0,20) << endl;
-	if (source.indexOf("tweet_id") != -1)
-	{
-		return true;
-	}
-	return false;
-}
-
