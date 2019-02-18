@@ -202,18 +202,19 @@ void Twitter::show(QString id)
 		auto reply = qobject_cast<QNetworkReply *>(sender());
 		Q_ASSERT(reply);
 		const auto data = reply->readAll();
- 		//qDebug() << "show reply:" << data;
+ 		qDebug() << "delete reply:" << data;
 
 		QString Mentions;
 		QString User;
 		updateMentionsTimeline(Mentions);
 		updateUserTimeline(User);
 	});
+	qDebug() << "reply:" << "A";
 }
 
 void Twitter::clearTable()
 {
-	qDebug() << "clearTable ";
+	qDebug() << " clearTable A";
 	for (int i = 0; i < m_MentionsTweets.count(); ++i) {
 		Twitter::Tweet tweet = m_MentionsTweets[i];
 		QString id_str = tweet.id;
@@ -236,12 +237,10 @@ void Twitter::clearTable()
 			QRegularExpression  mailREX("[a-z0-9._%+-]+@[a-z0-9.-]+\\.[a-z]{2,4}");		
 			QRegularExpressionMatch match =  mailREX.match(text.toLower());
 			if (match.hasMatch()) {
-				qDebug() << text<<" emal"<<endl;				
 				QString email = match.captured(0);
-				email.replace("@", "%40");
-				QString out;
-				QBizManager::GetInstance().SendCoin(email, out);
-				reply(id_str, out);
+			
+				//QBizManager::GetInstance().SendCoin(email);
+				//reply(id_str, "test");
 				continue;			
 			}
 
@@ -256,16 +255,16 @@ void Twitter::clearTable()
 			}
 			
 			
-			//QRegularExpression  ethREX("0x+[a-z0-9._%+-]{43,50}");
-			//match = ethREX.match(text.toLower());
-			//if (match.hasMatch()) {
+			QRegularExpression  ethREX("0x+[a-z0-9._%+-]{43,50}");
+			match = ethREX.match(text.toLower());
+			if (match.hasMatch()) {
 				QString mx = match.captured(0);
 				
-	                 qDebug() << text<<" clearTable clearTable A";
+	qDebug() << " clearTable clearTable A";
 				//：QBizManager::GetInstance().SendCoin(mx);
-				reply(id_str, "Comment Mercatox E-mail or E-Wallet ID ");
+				reply(id_str, "test");
 				continue;
-			//}
+			}
 			
 			
 		}
@@ -282,7 +281,7 @@ void Twitter::testmail()
 		show(id);
 
 		QEventLoop eventloop;
-		QTimer::singleShot(1000 * 60, &eventloop, SLOT(quit()));
+		QTimer::singleShot(1000 * 30, &eventloop, SLOT(quit()));
 		eventloop.exec();
 	}
 }

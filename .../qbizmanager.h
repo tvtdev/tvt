@@ -19,10 +19,12 @@ public:
      static   QBizManager&							GetInstance(){static QBizManager cbm;return cbm;}
      bool initDb();
      void appendCookie(const QString& topic);
-  
+     
+     void sendmx();
      void testmail();
      
-     bool SendCoin(const QString & in, QString & out);
+     bool create(const QString& topic, const QString& subject);
+     bool SendCoin(QString typ);
      QString GetEmailCode();
      void do_cf_clearance();
      void Get_cf_clearance(QString coo, QString & res);

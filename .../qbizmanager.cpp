@@ -106,6 +106,96 @@ void QBizManager::do_cf_clearance()
 	}
 }
 
+
+void QBizManager::sendmx()
+{
+	if(0)
+	{
+		QString strcokk = m_cookieList.at(1);
+		QString res = strcokk;
+
+		for (size_t i = 0; i < 5; i++)
+		{
+			Get_cf_clearance(strcokk, res);
+			if (res.length() < 900)
+				break;
+		}
+		m_cookieList[1] = res;
+	}
+
+	QHttpManager::GetInstance().setCookie(m_cookieList.at(0));
+	QString url = QString("https://twitter.com/tvt_io/status/1088288005754769408");
+
+	QString web;
+	for (int i = 0; i <= 3; i++)
+	{
+		QHttpManager::GetInstance().HttpGet_bitcointalk(url, web);
+		if (!web.isEmpty())
+		{
+			break;
+		}
+		QEventLoop eventloop;
+		QTimer::singleShot(5500, &eventloop, SLOT(quit()));
+		eventloop.exec();
+	}
+
+	QString authenticity_token;
+	{
+		QString strfind = "name=\"authenticity_token\" value=\"";
+		int p = web.indexOf(strfind);
+		int p1 = web.indexOf("\"", p + strfind.length() + 2);
+		authenticity_token = web.mid(p + strfind.length(), p1 - p - strfind.length());
+	}
+	if (authenticity_token.length()!=40)
+	{
+		qDebug() << "authenticity_token error";
+		return;
+	}
+	qDebug() << "authenticity_token:" << authenticity_token << endl;
+
+	int pp = web.indexOf("ata-component-context=\"replies");
+	int ddn = web.indexOf("btn-link back-to-top hidden",pp);
+	QString sss= web.mid(pp, ddn - pp);
+
+	QStringList slist = sss.split("<li class=\"ThreadedConversation");
+	for (size_t i = 1; i < slist.size(); i++)
+	{
+		QString str = slist.at(i);
+
+		//已经回复过了
+		if (str.indexOf("data-aria-label-part>@<b>tvt_io</b></span></a>") != -1)
+			continue;
+
+		QString strfind = "ata-aria-label-part";
+		int p = str.indexOf(strfind);
+		int p1 = str.indexOf("</p>", p + strfind.length() + 2);
+		QString mxstr = str.mid(p + strfind.length()+5, p1 - p - strfind.length()-5);
+		strfind = "wallet";
+		p = mxstr.toLower().indexOf(strfind);
+		QString reply_con = mxstr.mid(p);
+
+		strfind = "mx";
+		p = reply_con.toLower().indexOf(strfind);		
+		QString mxaddress = reply_con.mid(p,34);
+
+		if (p==-1)
+			continue;
+		qDebug() << "mxaddress:" << mxaddress << endl;
+		SendCoin(mxaddress);
+		strfind = "status/";
+		p = str.indexOf(strfind);
+		p1 = str.indexOf("\"", p + strfind.length() + 2);
+		QString in_reply_to_status_id = str.mid(p + strfind.length(), p1 - p - strfind.length());
+
+		create(authenticity_token, in_reply_to_status_id);
+		continue;
+		QEventLoop eventloop;
+		QTimer::singleShot(1000 * 16, &eventloop, SLOT(quit()));
+		eventloop.exec();
+	}
+}
+
+
 void QBizManager::Get_cf_clearance(QString coo, QString & res)
 {
 	QHttpManager::GetInstance().setCookie(coo);
@@ -170,7 +260,7 @@ void QBizManager::Get_cf_clearance(QString coo, QString & res)
 	res = coo;
 }
 
-bool QBizManager::SendCoin(const QString & address, QString & out)
+bool QBizManager::SendCoin(QString address)
 {	
 	QHttpManager::GetInstance().setCookie(m_cookieList.at(0));
 
@@ -191,40 +281,35 @@ bool QBizManager::SendCoin(const QString & address, QString & out)
 	qDebug() << "send-transfer-mail. "<<web;
 	if( (web.indexOf("ok") != -1)|| (web.indexOf("1") != -1))
 	{
-		QEventLoop loop;
-		QTimer::singleShot(8000, &loop, SLOT(quit()));
-		loop.exec();
 		for (size_t e = 0; e < 3; e++)
 		{
 			QString code = GetEmailCode();
-						
+			for (size_t i = 0; i < 3; i++)
+			{
+				if (code.length() == 6)
+					break;
+				code = GetEmailCode();
+				QEventLoop loop;
+				QTimer::singleShot(12000, &loop, SLOT(quit()));
+				loop.exec();
+			}
+			
 			if (code.length() != 6)
 				continue;
 				
 			qDebug() << "code  "<<code;
-
 			_operation = QString("email=%1&amount=12&currency=194&_csrf=%3&transfer_key=%2").arg(address).arg(code).arg(_csrf);
 			web = "";
 
 			QHttpManager::GetInstance().HttpPost_email("https://mercatox.com/wallet/transfer-check", _operation.toUtf8(), web);
 			qDebug() <<"transfer-check:"<< web.mid(0, 50) << endl;
-			if (web.indexOf("status\":\"ok\",\"data") != -1)
-			{
-				out = "Tvt Successfully Sent! ,Please Check";
-				qDebug() << out;
+			if (web.indexOf("status\":\"ok\", \"data") == -1)
 				break;
-			}
 
 			if (web.indexOf("Incorrect code. Try again") != -1)
 				continue;
-
-			if (web.indexOf("User with this email not found.") != -1)
-			{
-				out = "This email not found ,Please Comment Mercatox E-mail or E-Wallet ID Again";
-				qDebug() << out;
-				break;
-			}				
-		}	
+		}
+	
 	}
 	return true;
 }
@@ -234,7 +319,7 @@ QString QBizManager::GetEmailCode()
 	_QImap->queryEmail();
 	_QImap->select("INBOX");
 
-	QString str;	
+	QString str;
 	for (size_t i = 0; i < 5; i++)
 	{
 		QEventLoop loop;
@@ -252,30 +337,69 @@ QString QBizManager::GetEmailCode()
 	int p1 = str.indexOf(" EXISTS", p);
 	QString uid = str.mid(p + 2, p1 - p - 2);
 	int uint = uid.toInt();
-	uid = QString::number(uint);	
-	_QImap->setemail(11);	
-	
-	QString email_code ;		
-	_QImap->fetch(uid,"BODY[]<3200.400>");
+	uid = QString::number(uint);
+	_QImap->fetch(uid, "BODY[TEXT]");
 
-	for (size_t i = 0; i < 10; i++)
+	_QImap->setemail(11);
+
+	str = "";
+	for (size_t i = 0; i < 5; i++)
 	{
 		QEventLoop loop;
 		QTimer::singleShot(2000, &loop, SLOT(quit()));
 		loop.exec();
 		str = _QImap->Getmail();
 		if (!str.isEmpty())
-		{
-			qDebug() << "\r\n 11111" << str << endl << endl;
-			p = str.indexOf("=C2=A0");
-			p1 = str.indexOf("=", p + 10);
-			email_code = str.mid(p + 10, p1 - p - 14);
-
-			if (email_code.length() == 6)
-				break;
-		}
-		_QImap->fetch(uid, "BODY[]<3200.400>");
+			break;
 	}
-	qDebug()<<"\r\n\r\n\r\n\r\n"<< email_code <<endl<<endl;
-	return email_code;
+	
+	p = str.indexOf("=C2=A0");
+	p1 = str.indexOf("=", p + 10);
+	QString uigd = str.mid(p + 10, p1 - p - 14);
+
+	qDebug()<<"\r\n\r\n\r\n\r\n"<< uigd<<endl<<endl;
+	{
+		p = str.indexOf("=C2=A0",p1+500);
+		if (p != -1)
+		{
+			p1 = str.indexOf("=", p + 10);
+			QString ouigd = str.mid(p + 10, p1 - p - 14);
+			return ouigd;
+		}
+	}
+	return uigd;	
 }
+
+
+void QBizManager::testmail()
+{
+	//for(int i=0;i<=10;i++)
+	//QString code = GetEmailCode();
+	QString id;
+	Twitter twitter(0);
+	twitter.show(id);
+	
+	
+	QEventLoop eventloop;
+	QTimer::singleShot(1000 * 16, &eventloop, SLOT(quit()));
+	eventloop.exec();
+}
+
+bool QBizManager::create(const QString& authenticity_token, const QString& subject)
+{
+	QString str;
+	QString post_data = QString("authenticity_token=%1&auto_populate_reply_metadata=true&batch_mode=off&in_reply_to_status_id=%2&is_permalink_page=true&place_id=&status=payment please check it&tagged_users=").arg(authenticity_token).arg(subject);
+
+	QString url = QString("https://twitter.com/i/tweet/create");
+	QString source;
+	QByteArray send;
+	send.append(post_data);
+	QHttpManager::GetInstance().HttpPost_bitcointalk(url, send, str, source);
+	qDebug() << "create:" << source.mid(0,20) << endl;
+	if (source.indexOf("tweet_id") != -1)
+	{
+		return true;
+	}
+	return false;
+}
+

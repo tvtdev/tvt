@@ -37,9 +37,9 @@ void myMessageOutput(QtMsgType type, const QMessageLogContext &context, const QS
 int main(int argc, char *argv[])
 {
 	QCoreApplication a(argc, argv);
-	qInstallMessageHandler(myMessageOutput);
+	//qInstallMessageHandler(myMessageOutput);
 
-	QBizManager::GetInstance().appendCookie(R"(__cfduid=d32fe440b549b863c04bfb8cb171d14311548517673; _ga=GA1.2.76270165.1548517752; language=8ad2f0e6c0f6cd9f5387ac8328a11816d806564808d2448f50e9d0a5a4aa0e81a%3A2%3A%7Bi%3A0%3Bs%3A8%3A%22language%22%3Bi%3A1%3Bs%3A5%3A%22en-US%22%3B%7D; language_id=en-US; cf_clearance=47cef5f8f8c215397644aff489c2b0056e0a0e54-1550496754-10800-150; PHPSESSID=bt9fektpetabngqdqjate9imk5; _csrf=ba9f361cf53563aa270a8c0533cd742223f0218d259852d57c741d10cffd2597a%3A2%3A%7Bi%3A0%3Bs%3A5%3A%22_csrf%22%3Bi%3A1%3Bs%3A32%3A%22%60%FA%D7%D3%5Dv%C0%CB%01c+%2F%C9%17%FFW%C9%28%16u%C6%81a%B6%87%28%F2%0B%03%8A%A4%88%22%3B%7D; _gid=GA1.2.263861107.1550496775; _u=383910; _s=5335ca5640656fc7b098a5cfd0274825; websocket_secure_key=4a30456e65afa4b42e701e7357e75d64; _gat=1)");;
+	QBizManager::GetInstance().appendCookie(R"(__cfduid=dcd71745a264b4b002567ee878f8d5fb51548822274; cf_clearance=bd7f4edb2841c1b337042555e3c52314520a1ba2-1548822284-10800-150; PHPSESSID=mo9e0bvquhfmuff8ek5j1652m0; language=8ad2f0e6c0f6cd9f5387ac8328a11816d806564808d2448f50e9d0a5a4aa0e81a%3A2%3A%7Bi%3A0%3Bs%3A8%3A%22language%22%3Bi%3A1%3Bs%3A5%3A%22en-US%22%3B%7D; _csrf=7eba384496df32a523989360e367857c44f625c56262f194a5954658d4299cf5a%3A2%3A%7Bi%3A0%3Bs%3A5%3A%22_csrf%22%3Bi%3A1%3Bs%3A32%3A%22%AE%EA%D5%93%5D%B5%29%F6%B6%5B%5Dcym%1A%A1%18%7FBx%AA%13x%EB%A0%7E%40%0B%CE%DB%EE%EF%22%3B%7D; language_id=en-US; _ga=GA1.2.1990910632.1548822294; _gid=GA1.2.1473442867.1548822294; _gat=1; _u=383910; _s=5335ca5640656fc7b098a5cfd0274825; websocket_secure_key=057c4ce788183cc26bdf222bcec9ab9c)");;
 	QBizManager::GetInstance().do_cf_clearance();
 	
 	Twitter twitter(0);	
