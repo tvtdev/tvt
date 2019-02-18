@@ -202,7 +202,7 @@ void Twitter::show(QString id)
 		auto reply = qobject_cast<QNetworkReply *>(sender());
 		Q_ASSERT(reply);
 		const auto data = reply->readAll();
- 		qDebug() << "delete reply:" << data;
+ 		//qDebug() << "show reply:" << data;
 
 		QString Mentions;
 		QString User;
