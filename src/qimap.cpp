@@ -83,7 +83,6 @@ void QImap::readReady()
 	if (m_type == 11)
 	{
 		m_mail.append(_data);
-
 	}
 
 	QRegExp _regexp(R"(##(\d+)##)");
