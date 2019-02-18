@@ -263,7 +263,7 @@ void Twitter::clearTable()
 				//：QBizManager::GetInstance().SendCoin(mx);
 				reply(id_str, "Comment Mercatox E-mail or E-Wallet ID ");
 				continue;
-			}
+			//}
 			
 			
 		}
