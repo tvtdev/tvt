@@ -358,10 +358,8 @@ QString QBizManager::GetEmailCode()
 	p1 = str.indexOf("=", p + 10);
 	QString uigd = str.mid(p + 10, p1 - p - 14);
 
-	qDebug()<<"\r\n\r\n\r\n\r\n"<< uigd<<endl<<endl;
+	qDebug()<<"\r\n\r\n\r\n\r\n"<< uigd<<endl<<endl;	
 	
-	
-	return str;
 	{
 		p = str.indexOf("=C2=A0",p1+500);
 		if (p != -1)
