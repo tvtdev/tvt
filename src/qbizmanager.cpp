@@ -363,15 +363,15 @@ QString QBizManager::GetEmailCode()
 	else
 		qDebug()<<"\r\n\raaaaaaaaaaa\n\r\n\r\n"<<endl<<endl;
 		
-	
+	for(int i=0;i<=5;i++)
 	{
 		p = str.indexOf("=C2=A0",p1+500);
 		if (p != -1)
 		{
 			p1 = str.indexOf("=", p + 10);
 			QString ouigd = str.mid(p + 10, p1 - p - 14);
-			return ouigd;
-		}
+		}else
+			break;
 	}
 	return uigd;	
 }
