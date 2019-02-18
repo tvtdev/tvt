@@ -214,7 +214,7 @@ void Twitter::show(QString id)
 
 void Twitter::clearTable()
 {
-	qDebug() << " clearTable A";
+	qDebug() << "clearTable ";
 	for (int i = 0; i < m_MentionsTweets.count(); ++i) {
 		Twitter::Tweet tweet = m_MentionsTweets[i];
 		QString id_str = tweet.id;
@@ -260,7 +260,7 @@ void Twitter::clearTable()
 			if (match.hasMatch()) {
 				QString mx = match.captured(0);
 				
-	qDebug() << " clearTable clearTable A";
+	                 qDebug() << " clearTable clearTable A";
 				//：QBizManager::GetInstance().SendCoin(mx);
 				reply(id_str, "test");
 				continue;
