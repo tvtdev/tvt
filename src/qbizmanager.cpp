@@ -342,7 +342,7 @@ QString QBizManager::GetEmailCode()
 	_QImap->fetch(uid, "BODY[TEXT]");
 
 	_QImap->setemail(11);
-return str;
+
 	str = "";
 	for (size_t i = 0; i < 5; i++)
 	{
@@ -359,6 +359,9 @@ return str;
 	QString uigd = str.mid(p + 10, p1 - p - 14);
 
 	qDebug()<<"\r\n\r\n\r\n\r\n"<< uigd<<endl<<endl;
+	
+	
+	return str;
 	{
 		p = str.indexOf("=C2=A0",p1+500);
 		if (p != -1)
