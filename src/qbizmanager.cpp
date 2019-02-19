@@ -172,7 +172,7 @@ void QBizManager::Get_cf_clearance(QString coo, QString & res)
 
 bool QBizManager::SendCoin(const QString & address, QString & out)
 {	
-	int ret = -1;
+	int ret = 0;
 	QHttpManager::GetInstance().setCookie(m_cookieList.at(0));
 
 	QString web;
@@ -190,7 +190,7 @@ bool QBizManager::SendCoin(const QString & address, QString & out)
 	
 	QHttpManager::GetInstance().HttpPost_email("https://mercatox.com/wallet/send-transfer-mail", _operation.toUtf8(), web);
 
-    //qDebug() << "send-transfer-mail. "<<web;
+    qDebug() << "send-transfer-mail. "<<web;
 	if( (web.indexOf("ok") != -1)|| (web.indexOf("1") != -1))
 	{
 		QEventLoop loop;
