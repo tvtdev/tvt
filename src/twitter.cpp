@@ -280,7 +280,7 @@ void Twitter::clearTable()
 			int p = tweet.text.indexOf("https://t.co");
 			if (p != -1)
 			{
-				qDebug() << "text short" << text;
+        //			qDebug() << "text short" << text;
 				QString url = "https://twitter.com/i/web/status/" + id_str;
 				QString out;
 				QHttpManager::GetInstance().HttpGet_twitter(url, out);
