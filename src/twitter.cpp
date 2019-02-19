@@ -162,7 +162,7 @@ void Twitter::retwitte(QString id)
 
 void Twitter::reply(QString id, QString content)
 {
-    qDebug() <<"\r\n"<< id<<"\r\n"<<content;
+    qDebug() <<"\r\n reply"<< id<<"\r\n"<<content;
 
     QUrl url("https://api.twitter.com/1.1/statuses/update.json");
     QVariantMap parameters;
