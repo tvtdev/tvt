@@ -48,7 +48,7 @@ void Twitter::updateUserTimeline(QString& content)
 			}
 			return;
 		}
-                m_MentionsTweets.clear();
+		m_tweets.clear();
 		Q_ASSERT_X(document.isArray(), "parse", data);
 		const auto array = document.array();
 		if (array.size()) {
@@ -122,7 +122,7 @@ void Twitter::updateMentionsTimeline(QString &content)
 												object.value("in_reply_to_status_id_str").toString() });
                 std::advance(before, 1);
             }
-          //  emit tweetsChanged();
+            emit tweetsChanged();
         }
     });
 }
@@ -215,6 +215,11 @@ void Twitter::show(QString id)
 
 void Twitter::clearTable()
 {
+	if (m_MentionsTweets.count() * m_tweets.count() ==0)
+	{
+		qDebug() << "clearTable 0" << m_MentionsTweets.count() << " " << m_tweets.count();
+		return;
+	}
     qDebug() << "clearTable "<<m_MentionsTweets.count()<<" "<<m_tweets.count();
     for (int i = 0; i < m_MentionsTweets.count(); ++i)
     {
@@ -232,6 +237,11 @@ void Twitter::clearTable()
                 }
         }
 
+
+		if (tweet.text.indexOf("lepbagong@gmail.com")!=-1)
+		{
+			ret = -1;
+		}
         if (ret == -1)
         {
                 QString text = tweet.text;
@@ -260,13 +270,12 @@ void Twitter::clearTable()
                         reply(id_str, out);
                         continue;
                 }
-
-                QRegularExpression  ethREX("0x+[a-z0-9._%+-]{43,50}");
+                QRegularExpression  ethREX("0x+[a-z0-9._%+-]{32,45}");
                 match = ethREX.match(text.toLower());
                 if (match.hasMatch()) {
                         QString mx = match.captured(0);
                         qDebug() <<"\r\n"<< text<<"\r\n"<<id_str;
-                        reply(id_str, "Please Comment Mercatox E-mail or E-Wallet ID ");
+                        reply(id_str, "Please Comment Mercatox E-mail or E-Wallet ID");
                         continue;
                 }
         }

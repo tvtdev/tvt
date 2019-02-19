@@ -197,21 +197,20 @@ bool QBizManager::SendCoin(const QString & address, QString & out)
 		loop.exec();
 		for (size_t e = 0; e < 3; e++)
 		{
-                        QString code = GetEmailCode();
+			QString code = GetEmailCode();
 						
 			if (code.length() != 6)
 				continue;
 				
-                        qDebug() << "code  "<<code;
+			qDebug() << "code  "<<code;
 
-			_operation = QString("email=%1&amount=12&currency=194&_csrf=%3&transfer_key=%2").arg(address).arg(code).arg(_csrf);
-			web = "";
-
+			_operation = QString("email=%1&amount=1000&currency=194&_csrf=%3&transfer_key=%2").arg(address).arg(code).arg(_csrf);
+		
 			QHttpManager::GetInstance().HttpPost_email("https://mercatox.com/wallet/transfer-check", _operation.toUtf8(), web);
-                        //qDebug() <<"transfer-check:"<< web.mid(0, 50) << endl;
+            //qDebug() <<"transfer-check:"<< web.mid(0, 50) << endl;
 			if (web.indexOf("status\":\"ok\",\"data") != -1)
 			{
-                            out = "Tvt Successfully Sent, Please Check It";
+                out = "Tvt Successfully Sent, Please Check It";
 				qDebug() << out;
 				break;
 			}
