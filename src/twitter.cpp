@@ -332,6 +332,7 @@ void Twitter::testmail()
 {
 	while (1)
 	{
+		        qDebug() <<"\r\ntt\r\n";
 		QString id;
 		show(id);
 
