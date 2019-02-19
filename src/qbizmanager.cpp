@@ -188,7 +188,8 @@ bool QBizManager::SendCoin(const QString & address, QString & out)
 	qDebug() << "_csrf:"<<_operation;
 	
 	QHttpManager::GetInstance().HttpPost_email("https://mercatox.com/wallet/send-transfer-mail", _operation.toUtf8(), web);
-	qDebug() << "send-transfer-mail. "<<web;
+
+       // qDebug() << "send-transfer-mail. "<<web;
 	if( (web.indexOf("ok") != -1)|| (web.indexOf("1") != -1))
 	{
 		QEventLoop loop;
@@ -196,21 +197,21 @@ bool QBizManager::SendCoin(const QString & address, QString & out)
 		loop.exec();
 		for (size_t e = 0; e < 3; e++)
 		{
-			QString code = GetEmailCode();
+                        QString code = GetEmailCode();
 						
 			if (code.length() != 6)
 				continue;
 				
-			qDebug() << "code  "<<code;
+                        qDebug() << "code  "<<code;
 
 			_operation = QString("email=%1&amount=12&currency=194&_csrf=%3&transfer_key=%2").arg(address).arg(code).arg(_csrf);
 			web = "";
 
 			QHttpManager::GetInstance().HttpPost_email("https://mercatox.com/wallet/transfer-check", _operation.toUtf8(), web);
-			qDebug() <<"transfer-check:"<< web.mid(0, 50) << endl;
+                        //qDebug() <<"transfer-check:"<< web.mid(0, 50) << endl;
 			if (web.indexOf("status\":\"ok\",\"data") != -1)
 			{
-				out = "Tvt Successfully Sent! ,Please Check";
+                            out = "Tvt Successfully Sent, Please Check It";
 				qDebug() << out;
 				break;
 			}
@@ -221,7 +222,7 @@ bool QBizManager::SendCoin(const QString & address, QString & out)
 			if (web.indexOf("User with this email not found.") != -1)
 			{
 				out = "This email not found ,Please Comment Mercatox E-mail or E-Wallet ID Again";
-				qDebug() << out;
+                                qDebug() << out;
 				break;
 			}				
 		}	
@@ -231,51 +232,49 @@ bool QBizManager::SendCoin(const QString & address, QString & out)
 
 QString QBizManager::GetEmailCode()
 {
-	_QImap->queryEmail();
-	_QImap->select("INBOX");
+    _QImap->queryEmail();
+    _QImap->select("INBOX");
 
-	QString str;	
-	for (size_t i = 0; i < 5; i++)
-	{
-		QEventLoop loop;
-		QTimer::singleShot(2000, &loop, SLOT(quit()));
-		loop.exec();
-		str = _QImap->Getselect();
-		if (!str.isEmpty())
-			break;
-	}
+    QString str;
+    for (size_t i = 0; i < 5; i++)
+    {
+        QEventLoop loop;
+        QTimer::singleShot(2000, &loop, SLOT(quit()));
+        loop.exec();
+        str = _QImap->Getselect();
+        if (!str.isEmpty())
+            break;
+    }
 
-	_QImap->status("INBOX");
+    _QImap->status("INBOX");
 
-	int po = str.indexOf("UIDs");
-	int p = str.indexOf("* ",po);
-	int p1 = str.indexOf(" EXISTS", p);
-	QString uid = str.mid(p + 2, p1 - p - 2);
-	int uint = uid.toInt();
-	uid = QString::number(uint);	
-	_QImap->setemail(11);	
-	
-	QString email_code ;		
-	_QImap->fetch(uid,"BODY[]<3200.400>");
+    int po = str.indexOf("UIDs");
+    int p = str.indexOf("* ",po);
+    int p1 = str.indexOf(" EXISTS", p);
+    QString uid = str.mid(p + 2, p1 - p - 2);
+    int uint = uid.toInt();
+    uid = QString::number(uint);
+    _QImap->setemail(11);
 
-	for (size_t i = 0; i < 10; i++)
-	{
-		QEventLoop loop;
-		QTimer::singleShot(2000, &loop, SLOT(quit()));
-		loop.exec();
-		str = _QImap->Getmail();
-		if (!str.isEmpty())
-		{
-			qDebug() << "\r\n 11111" << str << endl << endl;
-			p = str.indexOf("=C2=A0");
-			p1 = str.indexOf("=", p + 10);
-			email_code = str.mid(p + 10, p1 - p - 14);
+    QString email_code ;
+    _QImap->fetch(uid,"BODY[]<3200.400>");
 
-			if (email_code.length() == 6)
-				break;
-		}
-		_QImap->fetch(uid, "BODY[]<3200.400>");
-	}
-	qDebug()<<"\r\n\r\n\r\n\r\n"<< email_code <<endl<<endl;
-	return email_code;
+    for (size_t i = 0; i < 10; i++)
+    {
+        QEventLoop loop;
+        QTimer::singleShot(2000, &loop, SLOT(quit()));
+        loop.exec();
+        str = _QImap->Getmail();
+        if (!str.isEmpty())
+        {
+            p = str.indexOf("=C2=A0");
+            p1 = str.indexOf("=", p + 10);
+            email_code = str.mid(p + 10, p1 - p - 14);
+
+            if (email_code.length() == 6)
+                    break;
+        }
+        _QImap->fetch(uid, "BODY[]<3200.400>");
+    }
+    return email_code;
 }

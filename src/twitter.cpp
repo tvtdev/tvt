@@ -12,8 +12,7 @@ Twitter::Twitter(QObject *parent)
     setTokenCredentialsUrl(QUrl("https://api.twitter.com/oauth/access_token"));
     setTokenCredentials(qMakePair(QString("1042664255017775104-tVRT3LT7N1GMqAOqyYU5nQr226alIO"),QString("BYk68YM4nQxg6MjuVKcvudh3cqZEuzHMPjFJYqWp09X65")));
     setClientCredentials(qMakePair(QString("SdwCVB4tXLngpiGzQe5HbCEhd"), QString("EFNgyhcvn2l6YSz4b8LT67weIpT2bpH5hQoKCYMBmCz73NEgP2")));
-
-	connect(this, &Twitter::tweetsChanged, &Twitter::clearTable);
+    connect(this, &Twitter::tweetsChanged, &Twitter::clearTable);
 }
 
 
@@ -161,17 +160,21 @@ void Twitter::retwitte(QString id)
 
 void Twitter::reply(QString id, QString content)
 {
+    qDebug() <<"\r\n"<< id<<"\r\n"<<content;
+
     QUrl url("https://api.twitter.com/1.1/statuses/update.json");
     QVariantMap parameters;
     parameters.insert("status", content);
     parameters.insert("in_reply_to_status_id", id);
-	parameters.insert("auto_populate_reply_metadata", "1");
+    parameters.insert("auto_populate_reply_metadata", "1");
     QNetworkReply *reply = post(url, parameters);
-	QTimer timer;
-	timer.setSingleShot(true);
-	QEventLoop loop;
-	QObject::connect(reply, SIGNAL(finished()), &loop, SLOT(quit()));
-	loop.exec();
+    connect(reply, &QNetworkReply::finished, this, [&]() {
+        auto reply = qobject_cast<QNetworkReply *>(sender());
+        Q_ASSERT(reply);
+        const auto data = reply->readAll();
+        qDebug() << "reply:" << data<<"\r\n\r\n\r\n";
+      //  updateTimeline();
+    });
 }
 
 void Twitter::deleteTwitte(QString id)
@@ -192,28 +195,28 @@ void Twitter::deleteTwitte(QString id)
 
 void Twitter::show(QString id)
 {
-	id = "1092806072757338114";
-	QString url = "https://api.twitter.com/1.1/statuses/show.json";
-	QVariantMap parameters;
-	parameters.insert("id", id);
+    id = "1092806072757338114";
+    QString url = "https://api.twitter.com/1.1/statuses/show.json";
+    QVariantMap parameters;
+    parameters.insert("id", id);
 
-	QNetworkReply *reply = get(url, parameters);
-	connect(reply, &QNetworkReply::finished, this, [&]() {
-		auto reply = qobject_cast<QNetworkReply *>(sender());
-		Q_ASSERT(reply);
-		const auto data = reply->readAll();
- 		//qDebug() << "show reply:" << data;
+    QNetworkReply *reply = get(url, parameters);
+    connect(reply, &QNetworkReply::finished, this, [&]() {
+            auto reply = qobject_cast<QNetworkReply *>(sender());
+            Q_ASSERT(reply);
+            const auto data = reply->readAll();
+            //qDebug() << "show reply:" << data;
 
-		QString Mentions;
-		QString User;
-		updateMentionsTimeline(Mentions);
-		updateUserTimeline(User);
-	});
+            QString Mentions;
+            QString User;
+            updateMentionsTimeline(Mentions);
+            updateUserTimeline(User);
+    });
 }
 
 void Twitter::clearTable()
 {
-	qDebug() << "clearTable ";
+        qDebug() << "clearTable "<<m_MentionsTweets.count()<<" "<<m_tweets.count();
 	for (int i = 0; i < m_MentionsTweets.count(); ++i) {
 		Twitter::Tweet tweet = m_MentionsTweets[i];
 		QString id_str = tweet.id;
@@ -230,28 +233,41 @@ void Twitter::clearTable()
 		}
 
 		if (ret == -1)
-		{
-			QString sfdsf = "MX8A9C0A7EEA514A59F1EAA5B46ECBE4A0";
+                {
 			QString text = tweet.text;
+                        qDebug() << "text"<<text;
 			QRegularExpression  mailREX("[a-z0-9._%+-]+@[a-z0-9.-]+\\.[a-z]{2,4}");		
 			QRegularExpressionMatch match =  mailREX.match(text.toLower());
 			if (match.hasMatch()) {
-				qDebug() << text<<" emal"<<endl;				
 				QString email = match.captured(0);
 				email.replace("@", "%40");
-				QString out;
-				QBizManager::GetInstance().SendCoin(email, out);
-				reply(id_str, out);
+                                QString out="abc";
+                                {
+                                    QBizManager::GetInstance().SendCoin(email, out);
+                                    QEventLoop loop;
+                                    QTimer::singleShot(8000, &loop, SLOT(quit()));
+                                    loop.exec();
+                                }
+                                qDebug() << "email out"<<email<<"  "<<id_str<<" "<<out<<"\r\n\r\n\r\n\r\n"<<endl;
+                                reply(id_str, out);
+
+                              //  reply(id_str, "outa");
+                                qDebug() <<"\r\n\r\n\r\n\r\n";
+                                QEventLoop loop;
+                                QTimer::singleShot(8000, &loop, SLOT(quit()));
+                                loop.exec();
+                                return;
 				continue;			
 			}
-
+continue;
 			QRegularExpression  mercatoxREX("mx+[a-z0-9._%+-]{33,34}");
 			match = mercatoxREX.match(text.toLower());
 			if (match.hasMatch()) {
 				QString mx = match.captured(0);
 
-				//QBizManager::GetInstance().SendCoin(mx);
-				reply(id_str, "test");
+                                QString out;
+                                QBizManager::GetInstance().SendCoin(mx,out);
+                                //reply(id_str, "test");
 				continue;
 			}
 			
@@ -259,11 +275,11 @@ void Twitter::clearTable()
 			//QRegularExpression  ethREX("0x+[a-z0-9._%+-]{43,50}");
 			//match = ethREX.match(text.toLower());
 			//if (match.hasMatch()) {
-				QString mx = match.captured(0);
+                                //QString mx = match.captured(0);
 				
-	                 qDebug() << text<<" clearTable clearTable A";
-				//：QBizManager::GetInstance().SendCoin(mx);
-				reply(id_str, "Comment Mercatox E-mail or E-Wallet ID ");
+                              //  qDebug() <<"\r\n"<< text<<"\r\n"<<id_str;
+                              //  reply(id_str, "Comment Mercatox E-mail or E-Wallet ID ");
+                              //  qDebug() <<"\r\n\r\n\r\n\r\n";
 				continue;
 			//}
 			
@@ -282,7 +298,7 @@ void Twitter::testmail()
 		show(id);
 
 		QEventLoop eventloop;
-		QTimer::singleShot(1000 * 60, &eventloop, SLOT(quit()));
+                QTimer::singleShot(1000 * 260, &eventloop, SLOT(quit()));
 		eventloop.exec();
 	}
 }

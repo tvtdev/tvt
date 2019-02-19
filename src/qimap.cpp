@@ -94,7 +94,7 @@ void QImap::readReady()
 		if (_capturedTexts.count() == 2)
 		{
 			CMD _cmd = (CMD)_regexp.capturedTexts()[1].toInt();
-			qDebug() << _cmd;
+                        //qDebug() << _cmd;
 			switch (_cmd)
 			{
 			case QImap::CMD_CAPALIBILY:
@@ -149,6 +149,6 @@ void QImap::readReady()
 
 void QImap::sendCmd(QByteArray msg)
 {
-	qDebug() << "Send cmd:"<<msg;
+        //qDebug() << "Send cmd:"<<msg;
 	m_socket.write(msg);
 }
