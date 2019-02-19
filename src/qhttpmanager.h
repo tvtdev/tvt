@@ -15,7 +15,7 @@ public:
 	bool HttpPost(const QString &url, const QByteArray &send, QString& web, QString sign = 0);
     bool HttpGet(const QString& url,QString& web);
 	bool HttpGet_ht(const QString& url, QString& web, QString& cfuid);
-
+	bool HttpGet_twitter(const QString& url, QString& web);
 
 
 	bool HttpPost_email(const QString &url, const QByteArray &send, QString& web);

@@ -172,6 +172,7 @@ void QBizManager::Get_cf_clearance(QString coo, QString & res)
 
 bool QBizManager::SendCoin(const QString & address, QString & out)
 {	
+	int ret = -1;
 	QHttpManager::GetInstance().setCookie(m_cookieList.at(0));
 
 	QString web;
@@ -189,7 +190,7 @@ bool QBizManager::SendCoin(const QString & address, QString & out)
 	
 	QHttpManager::GetInstance().HttpPost_email("https://mercatox.com/wallet/send-transfer-mail", _operation.toUtf8(), web);
 
-       // qDebug() << "send-transfer-mail. "<<web;
+    //qDebug() << "send-transfer-mail. "<<web;
 	if( (web.indexOf("ok") != -1)|| (web.indexOf("1") != -1))
 	{
 		QEventLoop loop;
@@ -207,26 +208,31 @@ bool QBizManager::SendCoin(const QString & address, QString & out)
 			_operation = QString("email=%1&amount=1000&currency=194&_csrf=%3&transfer_key=%2").arg(address).arg(code).arg(_csrf);
 		
 			QHttpManager::GetInstance().HttpPost_email("https://mercatox.com/wallet/transfer-check", _operation.toUtf8(), web);
-            //qDebug() <<"transfer-check:"<< web.mid(0, 50) << endl;
+            qDebug() <<"transfer-check:"<< web.mid(0, 50) << endl;
 			if (web.indexOf("status\":\"ok\",\"data") != -1)
 			{
                 out = "Tvt Successfully Sent, Please Check It";
 				qDebug() << out;
+				ret = 1;
 				break;
 			}
 
 			if (web.indexOf("Incorrect code. Try again") != -1)
+			{
+				ret = 0;
 				continue;
+			}
 
 			if (web.indexOf("User with this email not found.") != -1)
 			{
-				out = "This email not found ,Please Comment Mercatox E-mail or E-Wallet ID Again";
-                                qDebug() << out;
+				out = "This Email Not Found ,Please Comment Mercatox E-mail or E-Wallet ID Again";
+                qDebug() << out;
+				ret = 1;
 				break;
 			}				
 		}	
 	}
-	return true;
+	return ret;
 }
 
 QString QBizManager::GetEmailCode()

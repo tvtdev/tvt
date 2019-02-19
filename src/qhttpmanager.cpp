@@ -6,7 +6,7 @@ QHttpManager::QHttpManager( QObject *parent) :
 	m_agent = QString(R"(Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/71.0.3578.98 Safari/537.36)");
 }
 
-bool QHttpManager::HttpGet(const QString& url,QString& web)
+bool QHttpManager::HttpGet_twitter(const QString& url,QString& web)
  {
     QNetworkAccessManager* manager = new QNetworkAccessManager();
     QNetworkRequest request;
@@ -17,12 +17,9 @@ bool QHttpManager::HttpGet(const QString& url,QString& web)
     request.setUrl(QUrl(url));
     request.setRawHeader("Accept", "text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,*/*;q=0.8");
     request.setRawHeader("Cookie", "zh-CN,zh;q=0.8,en;q=0.6");
-	request.setRawHeader("User-Agent", m_Cookie.toUtf8());
-
 	request.setRawHeader("User-Agent", m_agent.toUtf8());
 
     QNetworkReply *reply =    manager->get(request);
-
     QTimer timer;
     timer.setSingleShot(true);
     QEventLoop loop;
@@ -40,6 +37,42 @@ bool QHttpManager::HttpGet(const QString& url,QString& web)
 
     return true;
  }
+
+
+bool QHttpManager::HttpGet(const QString& url, QString& web)
+{
+	QNetworkAccessManager* manager = new QNetworkAccessManager();
+	QNetworkRequest request;
+	QSslConfiguration sslConfig = request.sslConfiguration();
+	sslConfig.setPeerVerifyMode(QSslSocket::QueryPeer);
+	request.setSslConfiguration(sslConfig);
+
+	request.setUrl(QUrl(url));
+	request.setRawHeader("Accept", "text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,*/*;q=0.8");
+	request.setRawHeader("Cookie", "zh-CN,zh;q=0.8,en;q=0.6");
+	request.setRawHeader("User-Agent", m_Cookie.toUtf8());
+
+	request.setRawHeader("User-Agent", m_agent.toUtf8());
+
+	QNetworkReply *reply = manager->get(request);
+
+	QTimer timer;
+	timer.setSingleShot(true);
+	QEventLoop loop;
+
+	QObject::connect(reply, SIGNAL(finished()), &loop, SLOT(quit()));
+	loop.exec();
+
+	QByteArray responseData;
+	responseData = reply->readAll();
+	web = QString(responseData);
+	reply->close();
+	reply->abort();
+
+	delete manager;
+
+	return true;
+}
 
 
 bool QHttpManager::HttpGet_t(const QString& url, QString& web)

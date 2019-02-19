@@ -28,7 +28,7 @@ public slots:
     void deleteTwitte(QString id);
 
 	void show(QString id);
-
+	void show_id(QString id);
 
 	void clearTable();
 	void testmail();
