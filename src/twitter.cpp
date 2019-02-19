@@ -48,7 +48,7 @@ void Twitter::updateUserTimeline(QString& content)
 			}
 			return;
 		}
-
+                m_MentionsTweets.clear();
 		Q_ASSERT_X(document.isArray(), "parse", data);
 		const auto array = document.array();
 		if (array.size()) {
@@ -103,6 +103,7 @@ void Twitter::updateMentionsTimeline(QString &content)
             }
             return;
         }
+        m_MentionsTweets.clear();
 
         Q_ASSERT_X(document.isArray(), "parse", data);
         const auto array = document.array();
@@ -205,8 +206,6 @@ void Twitter::show(QString id)
             auto reply = qobject_cast<QNetworkReply *>(sender());
             Q_ASSERT(reply);
             const auto data = reply->readAll();
-            //qDebug() << "show reply:" << data;
-
             QString Mentions;
             QString User;
             updateMentionsTimeline(Mentions);
