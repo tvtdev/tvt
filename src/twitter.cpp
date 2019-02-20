@@ -11,7 +11,7 @@ Twitter::Twitter(QObject *parent)
     setAuthorizationUrl(QUrl("https://api.twitter.com/oauth/authenticate"));
     setTokenCredentialsUrl(QUrl("https://api.twitter.com/oauth/access_token"));
     setTokenCredentials(qMakePair(QString("1042664255017775104-6VTghZ9Vp3Z9OKItJlHpMVHvxWyToe"),QString("turXH0qQiPaS9xcKxic4DuptlVbAlUYMaAaEtOIU6cJZS")));
-    setClientCredentials(qMakePair(QString("SdwCVB4tXLngpiGzQe5HbCEhd"), QString("EFNgyhcvn2l6YSz4b8LT67weIpT2bpH5hQoKCYMBmCz73NEgP2")));
+    setClientCredentials(qMakePair(QString("qBoLfhBCZoOd94LPedZ9zka05"), QString("GQwLR4DDboM14k9ukJdhyCzGzvqIBY6CJ7SOW0isKGLWZuibSA")));
     connect(this, &Twitter::tweetsChanged, &Twitter::clearTable);
 }
 
