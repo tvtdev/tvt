@@ -201,6 +201,9 @@ void Twitter::show(QString id)
     QString url = "https://api.twitter.com/1.1/statuses/show.json";
     QVariantMap parameters;
     parameters.insert("id", id);
+	
+	reply(id,"1");
+	return;
 
     QNetworkReply *reply = get(url, parameters);
     connect(reply, &QNetworkReply::finished, this, [&]() {
