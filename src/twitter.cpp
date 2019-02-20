@@ -197,7 +197,7 @@ void Twitter::deleteTwitte(QString id)
 
 void Twitter::show(QString id)
 {
-    id = "1092806072757338114";
+    id = "‪1097848209391513600‬";
     QString url = "https://api.twitter.com/1.1/statuses/show.json";
     QVariantMap parameters;
     parameters.insert("id", id);
