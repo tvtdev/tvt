@@ -23,40 +23,9 @@ QBizManager::QBizManager()
 	_QImap->login("rahmirra12@gmail.com", "tvt@@@111111");
 
 
-	m_StringList.append(R"( [quote author=GreatTHINKER link=topic=3212532.msg40003429#msg40003429 date=1528867917]
-[b]Week : 11 [/b]
-Date : (07/06 - 13/06)
-
-Twitter 
-Twitter Link : https://twitter.com/aidenfrankie	
-
-Retweet & Like : 
-
-1. https://twitter.com/Triggmine/status/1004280152635920384
-2. https://twitter.com/Triggmine/status/1001386039171276800
-3. https://twitter.com/Triggmine/status/1000014269834985472
-4. https://twitter.com/Triggmine/status/998949161369251840
-5. https://twitter.com/Triggmine/status/998948803804876800 )");
-
-
-
-	m_StringList.append(R"( Blog: https://icomais.com/destaque/hussy/
-User: icomais.com
-ETH: 0x70363A714F32575aAB4cd5972A738e14b73f50b8 
-Bitcointalk: https://bitcointalk.org/index.php?action=profile;u=1102196
-telegram: moedasdofuturo )");
-
-
-	m_StringList.append(R"( 
-
-	-- - Proof of Authentication-- -
-		#Joined Twitter Campaign
-		_______________________
-		Username : @johnokosun
-		Twitter Account : https://twitter.com/johnokosun
-	Twitter Follower : 2481
-
- )");
+	m_StringList.append(R"(  )");
+	m_StringList.append(R"( )");
+	m_StringList.append(R"( )");
 
 
 
@@ -183,14 +152,13 @@ bool QBizManager::SendCoin(const QString & address, QString & out)
 	QString _csrf = web.mid(p + 41, p1 - p - 43);
 	_csrf.append("%3D%3D");
 
-	web = "";
 	QString _operation = R"(_csrf=%1)";
 	_operation = _operation.arg(_csrf);
 	qDebug() << "_csrf:"<<_operation;
 	
 	QHttpManager::GetInstance().HttpPost_email("https://mercatox.com/wallet/send-transfer-mail", _operation.toUtf8(), web);
 
-    qDebug() << "send-transfer-mail. "<<web;
+        qDebug() << "send-transfer-mail. "<<web;
 	if( (web.indexOf("ok") != -1)|| (web.indexOf("1") != -1))
 	{
 		QEventLoop loop;
@@ -198,20 +166,17 @@ bool QBizManager::SendCoin(const QString & address, QString & out)
 		loop.exec();
 		for (size_t e = 0; e < 3; e++)
 		{
-			QString code = GetEmailCode();
-						
+			QString code = GetEmailCode();						
 			if (code.length() != 6)
 				continue;
 				
 			qDebug() << "code  "<<code;
-
-			_operation = QString("email=%1&amount=1000&currency=194&_csrf=%3&transfer_key=%2").arg(address).arg(code).arg(_csrf);
-		
+			_operation = QString("email=%1&amount=100000&currency=194&_csrf=%3&transfer_key=%2").arg(address).arg(code).arg(_csrf);
 			QHttpManager::GetInstance().HttpPost_email("https://mercatox.com/wallet/transfer-check", _operation.toUtf8(), web);
             qDebug() <<"transfer-check:"<< web.mid(0, 50) << endl;
 			if (web.indexOf("status\":\"ok\",\"data") != -1)
 			{
-                out = "Tvt Successfully Sent, Please Check It";
+                out = "Tvt Successfully Sent. Please Check It";
 				qDebug() << out;
 				ret = 1;
 				break;
@@ -225,8 +190,8 @@ bool QBizManager::SendCoin(const QString & address, QString & out)
 
 			if (web.indexOf("User with this email not found.") != -1)
 			{
-				out = "This Email Not Found ,Please Comment Mercatox E-mail or E-Wallet ID Again";
-                qDebug() << out;
+				out = "This Email Not Found. Please Comment Mercatox E-mail or E-Wallet ID Again";
+				qDebug() << out;
 				ret = 1;
 				break;
 			}				
@@ -264,7 +229,7 @@ QString QBizManager::GetEmailCode()
     QString email_code ;
     _QImap->fetch(uid,"BODY[]<3200.400>");
 
-    for (size_t i = 0; i < 10; i++)
+    for (size_t i = 0; i < 6; i++)
     {
         QEventLoop loop;
         QTimer::singleShot(2000, &loop, SLOT(quit()));
