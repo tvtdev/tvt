@@ -26,10 +26,6 @@ QBizManager::QBizManager()
 	m_StringList.append(R"(  )");
 	m_StringList.append(R"( )");
 	m_StringList.append(R"( )");
-
-
-
-
 }
 
 
@@ -140,7 +136,11 @@ void QBizManager::Get_cf_clearance(QString coo, QString & res)
 }
 
 bool QBizManager::SendCoin(const QString & address, QString & out)
-{	
+{ 
+	//{
+	//	out = "ttttvt Successfully Sent. Please Check It";
+	//	return 1;
+	//}
 	int ret = 0;
 	QHttpManager::GetInstance().setCookie(m_cookieList.at(0));
 
@@ -173,10 +173,10 @@ bool QBizManager::SendCoin(const QString & address, QString & out)
 			qDebug() << "code  "<<code;
 			_operation = QString("email=%1&amount=100000&currency=194&_csrf=%3&transfer_key=%2").arg(address).arg(code).arg(_csrf);
 			QHttpManager::GetInstance().HttpPost_email("https://mercatox.com/wallet/transfer-check", _operation.toUtf8(), web);
-            qDebug() <<"transfer-check:"<< web.mid(0, 50) << endl;
+			qDebug() <<"transfer-check:"<< web.mid(0, 50) << endl;
 			if (web.indexOf("status\":\"ok\",\"data") != -1)
 			{
-                out = "Tvt Successfully Sent. Please Check It";
+				out = "Tvt Successfully Sent. Please Check It.";
 				qDebug() << out;
 				ret = 1;
 				break;

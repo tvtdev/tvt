@@ -11,17 +11,17 @@ class Twitter : public QOAuth1
 public:
     Twitter(QObject *parent = nullptr);
     struct Tweet {
-		QString id;
+        QString id;
         QDateTime createdAt;
         QString user;
         QString text;
-		QString in_reply_to_status_id_str;
+        QString in_reply_to_status_id_str;
 
     };
 
 public slots:
-    void updateUserTimeline(QString &content);
-	void updateMentionsTimeline(QString& content);
+    void updateUserTimeline();
+	void updateMentionsTimeline();
     void statusUpdate(QString content);
     void retwitte(QString id);
     void reply(QString id, QString content);

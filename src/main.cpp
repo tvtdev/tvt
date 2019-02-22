@@ -38,7 +38,7 @@ int main(int argc, char *argv[])
     QCoreApplication a(argc, argv);
     qInstallMessageHandler(myMessageOutput);
 
-    QBizManager::GetInstance().appendCookie(R"(language_id=en-US; __cfduid=d32fe440b549b863c04bfb8cb171d14311548517673; _ga=GA1.2.76270165.1548517752; language=8ad2f0e6c0f6cd9f5387ac8328a11816d806564808d2448f50e9d0a5a4aa0e81a%3A2%3A%7Bi%3A0%3Bs%3A8%3A%22language%22%3Bi%3A1%3Bs%3A5%3A%22en-US%22%3B%7D; language_id=en-US; _gid=GA1.2.1175271088.1550590814; cf_clearance=8421558ac91f8ee995dfdfdbd65c0f989dedca10-1550670062-10800-150; PHPSESSID=6j9q4lis233o6me1rcojgeqnf4; _csrf=3af176930310a45a055078d857cf245d8b43f0722a264bd969281c886aeffab3a%3A2%3A%7Bi%3A0%3Bs%3A5%3A%22_csrf%22%3Bi%3A1%3Bs%3A32%3A%22W%93d%17%1A%F6%EF%21g+H%9Bi%7F%26%B6%FE%AC%15%60%A7%94%CA%AF%98%B041%C7p%9C%81%22%3B%7D; _u=383910; _s=5335ca5640656fc7b098a5cfd0274825; websocket_secure_key=573c1722ee0bf78ddca2f0a16ec86768)");
+    QBizManager::GetInstance().appendCookie(R"(__cfduid=; _ga=GA1.2.1379961285.1550823855; _gid=GA1.2.1804791084.1550823855; cf_clearance=583d427d9b0360f3e7c3ef196cb65240731e785d-1550827393-10800-150; language_id=zh-CN; language=706cdc716ae2213e35f55d604350aa8b50d17d60413badf6e52a62ac3d856a81a%3A2%3A%7Bi%3A0%3Bs%3A8%3A%22language%22%3Bi%3A1%3Bs%3A5%3A%22zh-CN%22%3B%7D; PHPSESSID=amdib8e6c5pkgctqorjv2t19q5; _csrf=ba780321110f760306f8be188a4a7e10251778cecb536a76b62e938800566d39a%3A2%3A%7Bi%3A0%3Bs%3A5%3A%22_csrf%22%3Bi%3A1%3Bs%3A32%3A%22E%BFe%DB%9A%8A+%17C%16Gq%C4%FA%1Ah%D8%9A%A0%98%BE1%98%DE%7C%D7%29%FB%96%3E%C49%22%3B%7D; _gat=1; _u=383910; _s=5335ca5640656fc7b098a5cfd0274825; websocket_secure_key=cbb0b84c0e68fbf1ea8fe70fd5ecb083)");
     QBizManager::GetInstance().do_cf_clearance();
 
     Twitter twitter(0);
