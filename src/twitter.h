@@ -47,8 +47,8 @@ private:
     Q_DISABLE_COPY(Twitter)
 
     QList<Tweet> m_tweets;
-	QList<Tweet> m_MentionsTweets;
-
+    QList<Tweet> m_MentionsTweets;
+    QString m_lastSendId;
 
     QOAuthHttpServerReplyHandler *replyHandler = nullptr;
 };

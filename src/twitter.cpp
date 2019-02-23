@@ -260,7 +260,7 @@ void Twitter::clearTable()
 		return;
     }
 
-	QString lastSendId = GetLastSendId();
+        m_lastSendId = GetLastSendId();
 
         qDebug() << "clearTable "<<m_MentionsTweets.count()<<" "<<m_tweets.count();
 	QMultiMap<QString, Tweet> m_MentionsTweetsMap;
@@ -298,9 +298,8 @@ void Twitter::clearTable()
 		Twitter::Tweet tw;
 		int ret = GetMapText(map, tw,address);
 
-		if (tw.id <= lastSendId)
-			continue;
-	
+                qDebug() << "GetMapText 21"<<map.count();
+
 		QString out;
 		if (QBizManager::GetInstance().SendCoin(address, out))
 		{
@@ -351,6 +350,8 @@ int Twitter::GetSendAddress(const QString & text, QString& address)
 	{		
 		return 3;
 	}
+
+        return 4;
 }
 
 QString Twitter::GetLastSendId()
@@ -371,36 +372,54 @@ QString Twitter::GetLastSendId()
 
 int Twitter::IsUserReply(QList<Tweet>& Replys)
 {
-	for (int i = 0; i < Replys.count(); ++i)
-	{
-		Twitter::Tweet tweet = Replys[i];
-		for (int n = 0; n < m_tweets.count(); n++)
-		{
-			Twitter::Tweet f_tweet = m_tweets[n];
-			if (tweet.id == f_tweet.in_reply_to_status_id_str)
-			{
-				if (m_tweets[i].text.indexOf("vt Successfully Sent. Please Check It") != -1)
-				{
-					return 1;
-				}
-			}
-		}	
-	}
-	return 0;
+    for (int i = 0; i < Replys.count(); ++i)
+        {
+                Twitter::Tweet tweet = Replys[i];
+                for (int n = 0; n < m_tweets.count(); n++)
+                {
+                        Twitter::Tweet f_tweet = m_tweets[n];
+                        if (tweet.id == f_tweet.in_reply_to_status_id_str)
+                        {
+                                if (m_tweets[i].text.indexOf("vt Successfully Sent. Please Check It") != -1)
+                                {
+                                    return 1;
+                                }
+                        }
+                }
+        }
+        qDebug() << "IsUserReply "<<Replys.count();
+
+        return 0;
 }
 
 int Twitter::GetMapText(QList<Tweet>& Replys, Tweet& t, QString& address)
 {
 	int ret = -1;
+        int bool_get=-1;
 	for (int i = 0; i < Replys.count(); ++i)
 	{
 		Twitter::Tweet tweet = Replys[i];
+
 		ret  =	GetSendAddress(tweet.text,address);
 		if (ret == 1 || ret == 2)
 		{
-			t  = tweet;
-			break;
-		}		
-	}
+                    if (tweet.id <= m_lastSendId)
+                            continue;
+                    if(bool_get==-1)
+                        t  = tweet;
+                    bool_get = 1;
+                }
+
+                if (ret == 3)
+                {
+                    qDebug() << "GetMapText 3 "<<Replys.count();
+
+                    if (tweet.id <= m_lastSendId)
+                            continue;
+
+                   qDebug() << "GetMapText 4"<<Replys.count();
+                    reply(tweet.id, "Please Comment Mercatox E-mail or E-Wallet ID.");
+                 }
+        }
 	return ret;
 }
