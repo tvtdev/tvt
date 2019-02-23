@@ -29,14 +29,12 @@ void Twitter::updateUserTimeline()
 		auto reply = qobject_cast<QNetworkReply *>(sender());
 		Q_ASSERT(reply);
 		const auto data = reply->readAll();
-		//content = data
 		const auto document = QJsonDocument::fromJson(data, &parseError);
 		if (parseError.error) {
 			qCritical() << "parse reply error at:" << parseError.offset << parseError.errorString();
 			return;
 		}
 		else if (document.isObject()) {
-			// Error received :(
 			const auto object = document.object();
 			const auto errorArray = object.value("errors").toArray();
 			Q_ASSERT_X(errorArray.size(), "parse", data);
@@ -89,9 +87,6 @@ void Twitter::updateMentionsTimeline()
 		}
 	}
 
-    //if (m_tweets.size()) {
-		parameters.insert("since_id",id);
-    //}
     QNetworkReply *reply = get(url, parameters);
     connect(reply, &QNetworkReply::finished, this, [&]() {
         QJsonParseError parseError;
@@ -174,7 +169,7 @@ void Twitter::retwitte(QString id)
 
 void Twitter::reply(QString id, QString content)
 {
-    qDebug() <<"\r\nreply"<< id<<"\r\n"<<content;
+    qDebug() <<"reply"<< id<<""<<content;
 
     QUrl url("https://api.twitter.com/1.1/statuses/update.json");
     QVariantMap parameters;
@@ -186,7 +181,7 @@ void Twitter::reply(QString id, QString content)
         auto reply = qobject_cast<QNetworkReply *>(sender());
         Q_ASSERT(reply);
         const auto data = reply->readAll();
-        qDebug() << "reply:" << data<<"\r\n\r\n\r\n";
+        //qDebug() << "reply:" << data<<"\r\n\r\n\r\n";
     });
 }
 
@@ -265,138 +260,61 @@ void Twitter::clearTable()
 		return;
     }
 
+	QString lastSendId = GetLastSendId();
+
     qDebug() << "clearTable "<<m_MentionsTweets.count()<<" "<<m_tweets.count();
-
-
-
-
-	QList<Tweet> send_tweets;
+	QMultiMap<QString, Tweet> m_MentionsTweetsMap;
 	for (int i = 0; i < m_MentionsTweets.count(); ++i)
 	{
 		Twitter::Tweet tweet = m_MentionsTweets[i];
 
 		if (tweet.in_reply_to_status_id_str != "1098274577275187201")
+			continue;   
+
+		qDebug() << "text id map " <<  tweet.user <<"  "<< tweet.text.mid(0,30);
+		m_MentionsTweetsMap.insert(tweet.user,tweet);
+	}
+	
+	QMultiMap<QString, Tweet>::iterator iter = m_MentionsTweetsMap.begin();
+	for ( ; iter != m_MentionsTweetsMap.end(); ) 
+	{
+		qDebug() << "user" << iter->user;
+		Twitter::Tweet tweet = *iter;
+		
+
+		QList<Tweet> map = m_MentionsTweetsMap.values(iter->user);
+		auto lower = m_MentionsTweetsMap.lowerBound(iter->user);
+		auto upper = m_MentionsTweetsMap.upperBound(iter->user);
+		while (lower != upper)
+		{
+			qDebug() << "user" << iter->user << "text a " << lower->text.mid(0, 30);
+			iter++;
+			lower++;
+		}
+		
+		if (IsUserReply(map))
 			continue;
 
-		int ret = -1;
-		for (int n = 0; n < m_tweets.count(); n++)
-		{
-			Twitter::Tweet f_tweet = m_tweets[n];
+		QString address;
+		QString id_str;
+		int ret = GetMapText(map, id_str,address);
 
-			if (tweet.id == f_tweet.in_reply_to_status_id_str)
-			{
-				ret = 1;
-				break;
-			}
+
+		if (map.size()==1)
+		{			
+			if (tweet.id <= lastSendId)
+				continue;
 		}
 
-		if (ret ==1)
-			continue;
-
-		send_tweets.append(tweet);
-	}
-	//for (int i = 0; i < m_tweets.count(); ++i)
-	//{
-	//	Twitter::Tweet tweet = m_tweets[i];
-	//	qDebug() << "text" << tweet.text;
-	//}
-	//return;
-    for (int i = 0; i < send_tweets.count(); ++i)
-    {
-        Twitter::Tweet tweet = send_tweets[i];
-        QString id_str = tweet.id;
-  
-        {
-            QString text = tweet.text;
-            int p = tweet.text.indexOf("https://t.co");
-            if (p != -1)
-            {
-				QString url = tweet.text.mid(p,23);
-				qDebug() << "text short" << url;
-            }
-            qDebug() << "text" << text;
-			               
-            QRegularExpression  mailREX("[a-z0-9._%+-]+@[a-z0-9.-]+\\.[a-z]{2,4}");
-            QRegularExpressionMatch match =  mailREX.match(text.toLower());
-            if (match.hasMatch()) {
-				for (int n = 0; n < m_MentionsTweets.count() && i != n; n++)
-				{
-					Twitter::Tweet & f_tweet = m_MentionsTweets[n];
-					if (f_tweet.in_reply_to_status_id_str == tweet.in_reply_to_status_id_str)
-					{
-						if (f_tweet.user == tweet.user)
-						{
-							reply(f_tweet.id, "Join Happy.");
-
-							qDebug() << tweet.in_reply_to_status_id_str << "--text--" << tweet.text << " " << f_tweet.text << " " << f_tweet.user;
-							f_tweet.text = "";
-						}
-					}
-				}
-				QString email = match.captured(0);
-				email.replace("@", "%40");
-				QString out;
-				qDebug() << "text email" << email;
-				if (QBizManager::GetInstance().SendCoin(email, out))
-				{
-					reply(id_str, out);
-
-					qDebug()  << id_str << " " << out << "\r\n\r\n\r\n\r\n" << endl;
-					QEventLoop loop;
-					QTimer::singleShot(8000, &loop, SLOT(quit()));
-					loop.exec();
-				}else
-					qDebug() << "Not foud email code \r\n\r\n\r\n\r\n" << endl;
-				continue;
-            }
-
-            QRegularExpression  mercatoxREX("mx+[a-z0-9._%+-]{30,34}");
-            match = mercatoxREX.match(text.toLower());
-            if (match.hasMatch()) {
-				for (int n = 0; n < m_MentionsTweets.count() && i != n; n++)
-				{
-					Twitter::Tweet & f_tweet = m_MentionsTweets[n];
-					if (f_tweet.in_reply_to_status_id_str == tweet.in_reply_to_status_id_str)
-					{
-						if (f_tweet.user == tweet.user)
-						{
-							reply(f_tweet.id, "Join Happy.");
-
-							qDebug() << tweet.in_reply_to_status_id_str << "--text--" << tweet.text << " " << f_tweet.text << " " << f_tweet.user;
-							f_tweet.text = "";
-						}
-					}
-				}
-                    QString mx = match.captured(0);
-                    QString out;
-					if (QBizManager::GetInstance().SendCoin(mx, out))
-					{
-						reply(id_str, out);
-						qDebug() << "mx out" << mx << "  " << id_str << " " << out << "\r\n\r\n\r\n\r\n" << endl;
-						QEventLoop loop;
-						QTimer::singleShot(8000, &loop, SLOT(quit()));
-						loop.exec();
-					}
-					else
-						qDebug() << "Not foud email code \r\n\r\n\r\n\r\n" << endl;
-					continue;
-            }
-
-            if (text.indexOf("oennnoun")!=-1) {
-                    qDebug() <<"\r\n"<< text<<"\r\n"<<id_str;
-                    reply(id_str, "Join Happy.");
-                    continue;
-            }
-
-            QRegularExpression  ethREX("0x+[a-z0-9._%+-]{32,45}");
-            match = ethREX.match(text.toLower());
-            if (match.hasMatch()) {
-                    QString mx = match.captured(0);
-                    qDebug() <<"\r\n"<< text<<"\r\n"<<id_str;
-                    reply(id_str, "Please Comment Mercatox E-mail or E-Wallet ID.");
-                    continue;
-            }
-        }
+		QString out;
+		if (QBizManager::GetInstance().SendCoin(address, out))
+		{
+			reply(id_str, out);
+			qDebug() << "mx out" << address << "  " << id_str << " " << out << "\r\n\r\n\r\n\r\n" << endl;
+			QEventLoop loop;
+			QTimer::singleShot(8000, &loop, SLOT(quit()));
+			loop.exec();
+		}
     }
 }
 
@@ -408,7 +326,86 @@ void Twitter::testmail()
 		updateUserTimeline();
 
         QEventLoop eventloop;
-        QTimer::singleShot(1000 * 260, &eventloop, SLOT(quit()));
+        QTimer::singleShot(1000 * 120, &eventloop, SLOT(quit()));
 		eventloop.exec();
 	}
+}
+
+int Twitter::GetSendAddress(const QString & text, QString& address)
+{
+	QRegularExpression  mailREX("[a-z0-9._%+-]+@[a-z0-9.-]+\\.[a-z]{2,4}");
+	QRegularExpressionMatch match = mailREX.match(text.toLower());
+	if (match.hasMatch()) 
+	{
+		address = match.captured(0);
+		address.replace("@", "%40");
+		return 1;
+	}
+
+	QRegularExpression  mercatoxREX("mx+[a-z0-9._%+-]{30,34}");
+	match = mercatoxREX.match(text.toLower());
+	if (match.hasMatch())
+	{
+		address = match.captured(0);
+		return 2;
+	}
+
+	QRegularExpression  ethREX("0x+[a-z0-9._%+-]{32,45}");
+	match = ethREX.match(text.toLower());
+	if (match.hasMatch())
+	{		
+		return 3;
+	}
+}
+
+QString Twitter::GetLastSendId()
+{
+	QString id;
+	for (int i = 0; i < m_tweets.count(); ++i)
+	{
+		Twitter::Tweet tweet = m_tweets[i];
+		if (m_tweets[i].text.indexOf("vt Successfully Sent. Please Check It") != -1)
+		{
+			id = m_tweets[i].id;
+			break;
+		}
+	}
+	return id;
+
+}
+
+int Twitter::IsUserReply(QList<Tweet>& Replys)
+{
+	for (int i = 0; i < Replys.count(); ++i)
+	{
+		Twitter::Tweet tweet = Replys[i];
+		for (int n = 0; n < m_tweets.count(); n++)
+		{
+			Twitter::Tweet f_tweet = m_tweets[n];
+			if (tweet.id == f_tweet.in_reply_to_status_id_str)
+			{
+				if (m_tweets[i].text.indexOf("vt Successfully Sent. Please Check It") != -1)
+				{
+					return 1;
+				}
+			}
+		}	
+	}
+	return 0;
+}
+
+int Twitter::GetMapText(QList<Tweet>& Replys, QString& id, QString& address)
+{
+	int ret = -1;
+	for (int i = 0; i < Replys.count(); ++i)
+	{
+		Twitter::Tweet tweet = Replys[i];
+		ret  =	GetSendAddress(tweet.text,address);
+		if (ret == 1 || ret == 2)
+		{
+			id = tweet.id;
+			break;
+		}		
+	}
+	return ret;
 }

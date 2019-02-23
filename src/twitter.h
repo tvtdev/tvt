@@ -5,6 +5,9 @@
 #include <QtCore>
 #include <QtNetwork>
 #include <QtNetworkAuth>
+#include <map>
+
+
 class Twitter : public QOAuth1
 {
     Q_OBJECT
@@ -33,7 +36,10 @@ public slots:
 	void clearTable();
 	void testmail();
 	
-	
+	int GetSendAddress(const QString & text, QString& out);
+	QString GetLastSendId();
+	int IsUserReply(QList<Tweet>& map);
+	int GetMapText(QList<Tweet>& Replys, QString& id, QString& address);
 signals:
     void tweetsChanged();
 
@@ -42,6 +48,8 @@ private:
 
     QList<Tweet> m_tweets;
 	QList<Tweet> m_MentionsTweets;
+
+
     QOAuthHttpServerReplyHandler *replyHandler = nullptr;
 };
 

@@ -138,8 +138,8 @@ void QBizManager::Get_cf_clearance(QString coo, QString & res)
 bool QBizManager::SendCoin(const QString & address, QString & out)
 { 
 	//{
-	//	out = "ttttvt Successfully Sent. Please Check It";
-	//	return 1;
+                out = "ttttvt Successfully Sent. Please Check It";
+                return 1;
 	//}
 	int ret = 0;
 	QHttpManager::GetInstance().setCookie(m_cookieList.at(0));
