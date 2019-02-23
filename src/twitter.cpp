@@ -260,9 +260,15 @@ void Twitter::clearTable()
 		return;
     }
 
-        m_lastSendId = GetLastSendId();
+	m_lastSendId = GetLastSendId();
+	if (m_lastSendId.isEmpty())
+	{
+		qDebug() << "clearTable m_lastSendId.isEmpty" ;
+		return;
+	}
 
-        qDebug() << "clearTable "<<m_MentionsTweets.count()<<" "<<m_tweets.count();
+
+    qDebug() << "clearTable "<<m_MentionsTweets.count()<<" "<<m_tweets.count();
 	QMultiMap<QString, Tweet> m_MentionsTweetsMap;
 	for (int i = 0; i < m_MentionsTweets.count(); ++i)
 	{
@@ -280,35 +286,63 @@ void Twitter::clearTable()
 	{
 		Twitter::Tweet tweet = *iter;
 		
-
 		QList<Tweet> map = m_MentionsTweetsMap.values(iter->user);
 		auto lower = m_MentionsTweetsMap.lowerBound(iter->user);
 		auto upper = m_MentionsTweetsMap.upperBound(iter->user);
 		while (lower != upper)
 		{
-                        qDebug() << "user" << iter->user << "text a " << lower->text.mid(0, 90);
+            qDebug() << "user" << iter->user << " id " << iter->id<< " text " << lower->text.mid(0, 90);
 			iter++;
 			lower++;
 		}
 		
-		if (IsUserReply(map))
-			continue;
-
-		QString address;
-		Twitter::Tweet tw;
-		int ret = GetMapText(map, tw,address);
-
-                qDebug() << "GetMapText 21"<<map.count();
-
-		QString out;
-		if (QBizManager::GetInstance().SendCoin(address, out))
+		if (IsUserSent(map))
 		{
-			reply(tw.id, out);
-			//qDebug() << "mx out" << address << "  " << tw.id << " " << out << "\r\n\r\n\r\n\r\n" << endl;
-			QEventLoop loop;
-			QTimer::singleShot(8000, &loop, SLOT(quit()));
-			loop.exec();
+			ReplyMap(map);
+			continue;
+		}	
+
+		
+		QString address;
+		int  one = -1;
+		int ret = -1;
+		for (int i = 0; i < map.count(); ++i)
+		{
+			Twitter::Tweet tweet = map[i];
+
+			if (IsTweetReply(tweet))
+				continue;
+
+			if (tweet.id <= m_lastSendId)
+				continue;
+
+			ret = GetSendAddress(tweet.text, address);
+			if (ret == 1 || ret == 2)
+			{
+				if (one == 1)
+				{
+					reply(tweet.id, "Btc & Eth Go To Moon.");
+					continue;
+				}
+				one = 1;
+				QString out;
+				if (QBizManager::GetInstance().SendCoin(address, out))
+				{
+					reply(tweet.id, out);
+					continue;
+				}				
+			}
+
+			if (ret == 3)
+			{
+			    reply(tweet.id, "Please Comment Mercatox E-mail or E-Wallet ID.");
+				continue;
+			}
+
+			reply(tweet.id, "Btc & Eth Go To Moon.");
 		}
+
+	
     }
 }
 
@@ -370,7 +404,7 @@ QString Twitter::GetLastSendId()
 
 }
 
-int Twitter::IsUserReply(QList<Tweet>& Replys)
+int Twitter::IsUserSent(QList<Tweet>& Replys)
 {
     for (int i = 0; i < Replys.count(); ++i)
         {
@@ -384,6 +418,7 @@ int Twitter::IsUserReply(QList<Tweet>& Replys)
                                 {
                                     return 1;
                                 }
+								
                         }
                 }
         }
@@ -392,10 +427,24 @@ int Twitter::IsUserReply(QList<Tweet>& Replys)
         return 0;
 }
 
+
+int Twitter::IsTweetReply(Tweet tweet)
+{
+	for (int n = 0; n < m_tweets.count(); n++)
+	{
+		Twitter::Tweet f_tweet = m_tweets[n];
+		if (tweet.id == f_tweet.in_reply_to_status_id_str)
+		{
+			return 1;
+		}
+	}
+	return 0;
+}
+
+
 int Twitter::GetMapText(QList<Tweet>& Replys, Tweet& t, QString& address)
 {
 	int ret = -1;
-        int bool_get=-1;
 	for (int i = 0; i < Replys.count(); ++i)
 	{
 		Twitter::Tweet tweet = Replys[i];
@@ -403,23 +452,42 @@ int Twitter::GetMapText(QList<Tweet>& Replys, Tweet& t, QString& address)
 		ret  =	GetSendAddress(tweet.text,address);
 		if (ret == 1 || ret == 2)
 		{
-                    if (tweet.id <= m_lastSendId)
-                            continue;
-                    if(bool_get==-1)
-                        t  = tweet;
-                    bool_get = 1;
-                }
-
-                if (ret == 3)
-                {
-                    qDebug() << "GetMapText 3 "<<Replys.count();
-
-                    if (tweet.id <= m_lastSendId)
-                            continue;
-
-                   qDebug() << "GetMapText 4"<<Replys.count();
-                    reply(tweet.id, "Please Comment Mercatox E-mail or E-Wallet ID.");
-                 }
+			t  = tweet;
+			break;
         }
+
+		if (ret == 3)
+		{
+			if (tweet.id <= m_lastSendId)
+				continue;
+
+			reply(tweet.id, "Please Comment Mercatox E-mail or E-Wallet ID.");
+		}
+	}
 	return ret;
+}
+
+int Twitter::ReplyMap(QList<Tweet>& Replys)
+{
+	for (int i = 0; i < Replys.count(); ++i)
+	{
+		Twitter::Tweet tweet = Replys[i];
+
+		int ret = -1;
+		for (int n = 0; n < m_tweets.count(); n++)
+		{
+			Twitter::Tweet f_tweet = m_tweets[n];
+			if (tweet.id == f_tweet.in_reply_to_status_id_str)
+				ret = 1;
+		}
+		if (ret == 1)
+			continue;
+
+		if (tweet.id <= m_lastSendId)
+			continue;
+
+		reply(tweet.id, "Btc & Eth Go To Moon.");
+
+	}
+	return 0;
 }
