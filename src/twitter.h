@@ -39,7 +39,7 @@ public slots:
 	int GetSendAddress(const QString & text, QString& out);
 	QString GetLastSendId();
 	int IsUserReply(QList<Tweet>& map);
-	int GetMapText(QList<Tweet>& Replys, QString& id, QString& address);
+	int GetMapText(QList<Tweet>& Replys, Tweet& t, QString& address);
 signals:
     void tweetsChanged();
 

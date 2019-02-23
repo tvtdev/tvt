@@ -262,7 +262,7 @@ void Twitter::clearTable()
 
 	QString lastSendId = GetLastSendId();
 
-    qDebug() << "clearTable "<<m_MentionsTweets.count()<<" "<<m_tweets.count();
+        qDebug() << "clearTable "<<m_MentionsTweets.count()<<" "<<m_tweets.count();
 	QMultiMap<QString, Tweet> m_MentionsTweetsMap;
 	for (int i = 0; i < m_MentionsTweets.count(); ++i)
 	{
@@ -278,7 +278,6 @@ void Twitter::clearTable()
 	QMultiMap<QString, Tweet>::iterator iter = m_MentionsTweetsMap.begin();
 	for ( ; iter != m_MentionsTweetsMap.end(); ) 
 	{
-		qDebug() << "user" << iter->user;
 		Twitter::Tweet tweet = *iter;
 		
 
@@ -287,7 +286,7 @@ void Twitter::clearTable()
 		auto upper = m_MentionsTweetsMap.upperBound(iter->user);
 		while (lower != upper)
 		{
-			qDebug() << "user" << iter->user << "text a " << lower->text.mid(0, 30);
+                        qDebug() << "user" << iter->user << "text a " << lower->text.mid(0, 90);
 			iter++;
 			lower++;
 		}
@@ -296,21 +295,17 @@ void Twitter::clearTable()
 			continue;
 
 		QString address;
-		QString id_str;
-		int ret = GetMapText(map, id_str,address);
+		Twitter::Tweet tw;
+		int ret = GetMapText(map, tw,address);
 
-
-		if (map.size()==1)
-		{			
-			if (tweet.id <= lastSendId)
-				continue;
-		}
-
+		if (tw.id <= lastSendId)
+			continue;
+	
 		QString out;
 		if (QBizManager::GetInstance().SendCoin(address, out))
 		{
-			reply(id_str, out);
-			qDebug() << "mx out" << address << "  " << id_str << " " << out << "\r\n\r\n\r\n\r\n" << endl;
+			reply(tw.id, out);
+			//qDebug() << "mx out" << address << "  " << tw.id << " " << out << "\r\n\r\n\r\n\r\n" << endl;
 			QEventLoop loop;
 			QTimer::singleShot(8000, &loop, SLOT(quit()));
 			loop.exec();
@@ -394,7 +389,7 @@ int Twitter::IsUserReply(QList<Tweet>& Replys)
 	return 0;
 }
 
-int Twitter::GetMapText(QList<Tweet>& Replys, QString& id, QString& address)
+int Twitter::GetMapText(QList<Tweet>& Replys, Tweet& t, QString& address)
 {
 	int ret = -1;
 	for (int i = 0; i < Replys.count(); ++i)
@@ -403,7 +398,7 @@ int Twitter::GetMapText(QList<Tweet>& Replys, QString& id, QString& address)
 		ret  =	GetSendAddress(tweet.text,address);
 		if (ret == 1 || ret == 2)
 		{
-			id = tweet.id;
+			t  = tweet;
 			break;
 		}		
 	}
