@@ -473,15 +473,8 @@ int Twitter::ReplyMap(QList<Tweet>& Replys)
 	{
 		Twitter::Tweet tweet = Replys[i];
 
-		int ret = -1;
-		for (int n = 0; n < m_tweets.count(); n++)
-		{
-			Twitter::Tweet f_tweet = m_tweets[n];
-			if (tweet.id == f_tweet.in_reply_to_status_id_str)
-				ret = 1;
-		}
-		if (ret == 1)
-			continue;
+		if (IsTweetReply(tweet))
+				continue;
 
 		if (tweet.id <= m_lastSendId)
 			continue;
