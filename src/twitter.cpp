@@ -16,13 +16,67 @@ Twitter::Twitter(QObject *parent)
 }
 
 
+
+void Twitter::get_statuses_home_timeline()
+{
+	QUrl url("https://api.twitter.com/1.1/statuses/home_timeline.json");
+	QVariantMap parameters;
+	//if (m_tweets.size()) {
+		parameters.insert("count", 200);
+	//}
+	QNetworkReply *reply = get(url, parameters);
+	connect(reply, &QNetworkReply::finished, this, [&]() {
+		QJsonParseError parseError;
+		auto reply = qobject_cast<QNetworkReply *>(sender());
+		Q_ASSERT(reply);
+		const auto data = reply->readAll();
+		const auto document = QJsonDocument::fromJson(data, &parseError);
+		if (parseError.error) {
+			qCritical() << "parse reply error at:" << parseError.offset << parseError.errorString();
+			return;
+		}
+		else if (document.isObject()) {
+			const auto object = document.object();
+			const auto errorArray = object.value("errors").toArray();
+			Q_ASSERT_X(errorArray.size(), "parse", data);
+			QStringList errors;
+			for (const auto error : errorArray) {
+				Q_ASSERT(error.isObject());
+				Q_ASSERT(error.toObject().contains("message"));
+				errors.append(error.toObject().value("message").toString());
+			}
+			return;
+		}
+		m_home_timeline_Tweets.clear();
+		Q_ASSERT_X(document.isArray(), "parse", data);
+		const auto array = document.array();
+		if (array.size()) {
+			auto before = m_home_timeline_Tweets.begin();
+			for (const auto &value : array) {
+				Q_ASSERT(value.isObject());
+				const auto object = value.toObject();
+				auto locale = QLocale(QLocale::English, QLocale::UnitedStates);
+				const auto createdAt =
+					locale.toDateTime(object.value("created_at").toString(), "ddd MMM dd HH:mm:ss +0000 yyyy");
+				before = m_home_timeline_Tweets.insert(before,
+					Tweet{ object.value("id_str").toString(),
+					createdAt,
+					object.value("user").toObject().value("screen_name").toString(),
+					object.value("text").toString(),
+					object.value("in_reply_to_status_id_str").toString() });
+				std::advance(before, 1);
+			}
+			updateMentionsTimeline();
+			//emit tweetsChanged();
+		}
+	});
+}
+
 void Twitter::updateUserTimeline()
 {
 	QUrl url("https://api.twitter.com/1.1/statuses/user_timeline.json");
 	QVariantMap parameters;
-	if (m_tweets.size()) {
-		parameters.insert("since_id", m_tweets.first().id);
-	}
+	parameters.insert("count", 200);
 	QNetworkReply *reply = get(url, parameters);
 	connect(reply, &QNetworkReply::finished, this, [&]() {
 		QJsonParseError parseError;
@@ -66,7 +120,6 @@ void Twitter::updateUserTimeline()
 				std::advance(before, 1);
 			}
 			updateMentionsTimeline();
-			//emit tweetsChanged();
 		}
 	});
 }
@@ -76,16 +129,8 @@ void Twitter::updateMentionsTimeline()
     QUrl url("https://api.twitter.com/1.1/statuses/mentions_timeline.json");
     QVariantMap parameters;
    
-	QString id ;
-	for (int i = 0; i < m_tweets.count(); ++i)
-	{
-		Twitter::Tweet tweet = m_tweets[i];
-		if (m_tweets[i].text.indexOf("vt Successfully Sent. Please Check It")!=-1)
-		{	
-			id = m_tweets[i].id;
-			break;
-		}
-	}
+	parameters.insert("count", 200);
+
 
     QNetworkReply *reply = get(url, parameters);
     connect(reply, &QNetworkReply::finished, this, [&]() {
@@ -203,8 +248,8 @@ void Twitter::deleteTwitte(QString id)
 
 void Twitter::show(QString id)
 {
-    id = "1092806072757338114";
-    QString url = "https://api.twitter.com/1.1/statuses/show.json";
+    id = "30,1092806072757338114";
+    QString url = "https://api.twitter.com/1.1/statuses/lookup.json";
     QVariantMap parameters;
     parameters.insert("id", id);
 	
@@ -260,12 +305,17 @@ void Twitter::clearTable()
 		return;
     }
 
+
+
 	m_lastSendId = GetLastSendId();
 	if (m_lastSendId.isEmpty())
 	{
 		qDebug() << "clearTable m_lastSendId.isEmpty" ;
 		return;
 	}
+
+	GetMyTwitterId();
+
 
 
     qDebug() << "clearTable "<<m_MentionsTweets.count()<<" "<<m_tweets.count();
@@ -274,8 +324,19 @@ void Twitter::clearTable()
 	{
 		Twitter::Tweet tweet = m_MentionsTweets[i];
 
-		if (tweet.in_reply_to_status_id_str != "1098274577275187201")
-			continue;   
+		if (tweet.in_reply_to_status_id_str != m_MyLastTwitterId)
+		{
+			if (IsTweetReply(tweet))
+				continue;
+
+			if (tweet.id <= m_lastSendId)
+				continue;
+
+			reply(tweet.id, "Please Comment Newest Twitter Again.");
+
+			continue;
+		 }
+			     
 
 		qDebug() << "text id map " <<  tweet.user <<"  "<< tweet.text.mid(0,30);
 		m_MentionsTweetsMap.insert(tweet.user,tweet);
@@ -401,8 +462,26 @@ QString Twitter::GetLastSendId()
 		}
 	}
 	return id;
-
 }
+
+void Twitter::GetMyTwitterId()
+{	
+	for (int i = 0; i < m_tweets.count(); ++i)
+	{		Twitter::Tweet tweet = m_tweets[i];
+		if (m_tweets[i].in_reply_to_status_id_str.isEmpty())
+		{
+			m_MyTweets.append(tweet);
+		}
+	}
+
+	if (m_MyTweets.size() >=1 )
+	{
+
+		m_MyLastTwitterId = m_MyTweets.at(0).id;
+	}
+	
+}
+
 
 int Twitter::IsUserSent(QList<Tweet>& Replys)
 {
@@ -474,13 +553,29 @@ int Twitter::ReplyMap(QList<Tweet>& Replys)
 		Twitter::Tweet tweet = Replys[i];
 
 		if (IsTweetReply(tweet))
-				continue;
+                        continue;
 
 		if (tweet.id <= m_lastSendId)
 			continue;
 
 		reply(tweet.id, "Btc & Eth Go To Moon.");
-
 	}
 	return 0;
 }
+
+
+
+int Twitter::MyTweetsCount()
+{
+	int ret = 0;
+	for (int i = 0; i < m_MentionsTweets.count(); ++i)
+	{
+		if (m_tweets[i].in_reply_to_status_id_str.isEmpty())
+		{
+			ret++;
+		}		
+	}
+	return ret;
+}
+
+

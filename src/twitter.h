@@ -23,6 +23,7 @@ public:
     };
 
 public slots:
+	void get_statuses_home_timeline();
     void updateUserTimeline();
 	void updateMentionsTimeline();
     void statusUpdate(QString content);
@@ -36,6 +37,8 @@ public slots:
 	void clearTable();
 	void testmail();
 	
+	void GetMyTwitterId();
+
 	int GetSendAddress(const QString & text, QString& out);
 	QString GetLastSendId();
 	int IsUserSent(QList<Tweet>& map); 
@@ -44,15 +47,21 @@ public slots:
 	int GetMapText(QList<Tweet>& Replys, Tweet& t, QString& address);
 	int ReplyMap(QList<Tweet>& Replys);
 
+	int MyTweetsCount();
+
 signals:
     void tweetsChanged();
 
 private:
     Q_DISABLE_COPY(Twitter)
-
+		
+	QList<Tweet> m_MyTweets;
     QList<Tweet> m_tweets;
     QList<Tweet> m_MentionsTweets;
+	QList<Tweet> m_home_timeline_Tweets;
+
     QString m_lastSendId;
+	QString m_MyLastTwitterId;
 
     QOAuthHttpServerReplyHandler *replyHandler = nullptr;
 };
