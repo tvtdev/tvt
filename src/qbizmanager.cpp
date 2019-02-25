@@ -13,10 +13,7 @@
 
 QBizManager::QBizManager() 
 {
-	m_gas_add = 1;
-	m_cookienum = 0;
-	m_startnonce = 17;
-	m_signature_r = 38;
+
 
 	_QImap =new QImap(nullptr);
 	_QImap->connectToServer("imap.gmail.com", 993);
@@ -64,6 +61,7 @@ void QBizManager::do_cf_clearance()
 		for (size_t nn = 0; nn < 3; nn++)
 		{
 			Get_cf_clearance(strcokk, res);
+			qDebug() << "Get_cf_clearance ."<< res.length() << res;
 			if (res.length() < 900)
 				break;
 		}
@@ -77,12 +75,16 @@ void QBizManager::Get_cf_clearance(QString coo, QString & res)
 	int p = coo.indexOf("cf_clearance");
 	QString cl = coo.mid(p, 72);
 	coo = coo.replace(cl, "");	
-	QEventLoop loop;
-	QTimer::singleShot(2000, &loop, SLOT(quit()));
-	loop.exec();
+
 
 	QString web;
 	QHttpManager::GetInstance().HttpGet("https://mercatox.com/", web);
+	if (web.isEmpty())
+	{
+		qDebug() << "Get_cf_clearance is empty.";
+		return;
+	}
+
 	p = web.indexOf("jschl_vc");
 	QString jschl_vc = web.mid(p + 17, 32);
 
@@ -114,12 +116,13 @@ void QBizManager::Get_cf_clearance(QString coo, QString & res)
 
 	engine.evaluate(vasl);
 	QScriptValue vv = global.property("LQbNxnX");
-	qDebug() << vv.toString();
+
+	QEventLoop loop;
+	QTimer::singleShot(8000, &loop, SLOT(quit()));
+	loop.exec();
+
 	qsreal ds = vv.toNumber() + 12;
 	QString ddsss = QString::number(ds, '10', 10);
-	loop;
-	QTimer::singleShot(7000, &loop, SLOT(quit()));
-	loop.exec();
 	QString cfuid = "_cfduid=";
 	QString url = "https://mercatox.com/cdn-cgi/l/chk_jschl?jschl_vc=" + jschl_vc + "&pass=" + pass + "&jschl_answer=" + ddsss;
 	QHttpManager::GetInstance().HttpGet_ht(url, web, cfuid);
@@ -133,15 +136,15 @@ void QBizManager::Get_cf_clearance(QString coo, QString & res)
 	coo.append("cf_clearance=");
 	coo.append(web);
 	res = coo;
+	qDebug() <<"cf_clearance=" << web;
+
+	QTimer::singleShot(8000, &loop, SLOT(quit()));
+	loop.exec();
 }
 
 bool QBizManager::SendCoin(const QString & address, QString & out)
 { 
-	//{
-               // out = "ttttvt Successfully Sent. Please Check It";
-                //return 1;
-	//}
-	int ret = 0;
+	int rets = 3;
 	QHttpManager::GetInstance().setCookie(m_cookieList.at(0));
 
 	QString web;
@@ -150,20 +153,30 @@ bool QBizManager::SendCoin(const QString & address, QString & out)
 	int p = web.indexOf("_csrf");
 	int p1 = web.indexOf("\">", p + 20);
 	QString _csrf = web.mid(p + 41, p1 - p - 43);
-	_csrf.append("%3D%3D");
 
+	if (_csrf.length() <= 70)
+	{
+		qDebug() << "SendCoin _csrf error" << _csrf;
+		return rets;
+	}
+	if (_csrf.length() >= 200)
+	{
+		qDebug() << "_csrf error" << _csrf;;
+		return rets;
+	}
+
+	_csrf.append("%3D%3D");
 	QString _operation = R"(_csrf=%1)";
 	_operation = _operation.arg(_csrf);
 	qDebug() << "_csrf:"<<_operation;
 	
 	QHttpManager::GetInstance().HttpPost_email("https://mercatox.com/wallet/send-transfer-mail", _operation.toUtf8(), web);
 
-        qDebug() << "send-transfer-mail. "<<web;
+    qDebug() << "send-transfer-mail. "<<web;
 	if( (web.indexOf("ok") != -1)|| (web.indexOf("1") != -1))
 	{
-		QEventLoop loop;
-		QTimer::singleShot(8000, &loop, SLOT(quit()));
-		loop.exec();
+		qDebug() << "send-transfer-mail. a ";;
+
 		for (size_t e = 0; e < 3; e++)
 		{
 			QString code = GetEmailCode();						
@@ -178,13 +191,13 @@ bool QBizManager::SendCoin(const QString & address, QString & out)
 			{
 				out = "Tvt Successfully Sent. Please Check It.";
 				qDebug() << out;
-				ret = 1;
+				rets = 1;
 				break;
 			}
 
 			if (web.indexOf("Incorrect code. Try again") != -1)
 			{
-				ret = 0;
+				rets = 0;
 				continue;
 			}
 
@@ -192,12 +205,13 @@ bool QBizManager::SendCoin(const QString & address, QString & out)
 			{
 				out = "This Email Not Found. Please Comment Mercatox E-mail or E-Wallet ID Again";
 				qDebug() << out;
-				ret = 1;
+				rets = 1;
 				break;
 			}				
 		}	
 	}
-	return ret;
+	qDebug() << "send-transfer-mail. b " << rets;;
+	return rets;
 }
 
 QString QBizManager::GetEmailCode()
@@ -215,9 +229,7 @@ QString QBizManager::GetEmailCode()
         if (!str.isEmpty())
             break;
     }
-
     _QImap->status("INBOX");
-
     int po = str.indexOf("UIDs");
     int p = str.indexOf("* ",po);
     int p1 = str.indexOf(" EXISTS", p);
@@ -247,4 +259,19 @@ QString QBizManager::GetEmailCode()
         _QImap->fetch(uid, "BODY[]<3200.400>");
     }
     return email_code;
+}
+
+QString QBizManager::WriteCookie()
+{
+	QFile outFile(qApp->applicationDirPath() + "/cok");
+	outFile.open(QIODevice::WriteOnly | QIODevice::Truncate);
+	for (int i = 0; i < m_cookieList.size(); i++)
+	{
+		QString strcokk = m_cookieList.at(i);
+		QTextStream ts(&outFile);
+		ts << strcokk << endl;
+	}
+	outFile.close();
+
+	return 0;
 }

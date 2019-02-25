@@ -50,6 +50,9 @@ public slots:
 	int MyTweetsCount();
 	void AirdropPerTweet(const QString& Tweetid);
 
+
+	int DoTestMail(QString & out);
+
 signals:
     void tweetsChanged();
 

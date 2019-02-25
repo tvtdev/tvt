@@ -3,7 +3,7 @@
 QHttpManager::QHttpManager( QObject *parent) :
     QObject(parent)
 {
-	m_agent = QString(R"(Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/71.0.3578.98 Safari/537.36)");
+	m_agent = QString(R"(Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/72.0.3626.81 Safari/537.36)");
 }
 
 bool QHttpManager::HttpGet_twitter(const QString& url,QString& web)
@@ -137,7 +137,7 @@ bool QHttpManager::HttpGet_ht(const QString& url, QString& web, QString& cfuid)
 	auto _cookies = manager->cookieJar()->cookiesForUrl(QUrl("https://mercatox.com/"));
 	for (QNetworkCookie cookie : _cookies)
 	{
-		qDebug() << cookie.name() << ":" << cookie.value();
+		//qDebug() << cookie.name() << ":" << cookie.value();
 		if (cookie.name().indexOf("cfduid") != -1)
 		{
 			cfuid.append(cookie.value());

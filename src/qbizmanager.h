@@ -26,9 +26,12 @@ public:
      QString GetEmailCode();
      void do_cf_clearance();
      void Get_cf_clearance(QString coo, QString & res);
+
+	 QString WriteCookie();
+
  
 public:
-
+	
 
 	QStringList m_StringList;
 

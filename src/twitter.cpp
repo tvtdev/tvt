@@ -307,6 +307,7 @@ void Twitter::clearTable()
 
 
 
+
 	m_lastSendId = GetLastSendId();
 	if (m_lastSendId.isEmpty())
 	{
@@ -524,8 +525,7 @@ int Twitter::MyTweetsCount()
 
 void Twitter::AirdropPerTweet(const QString& Tweetid)
 {
-
-	qDebug() << "clearTable " << m_MentionsTweets.count() << " " << m_tweets.count();
+	qDebug() << "AirdropPerTweet " << m_MentionsTweets.count() << " " << m_tweets.count();
 	QMultiMap<QString, Tweet> _MentionsTweetsMap;
 	for (int i = 0; i < m_MentionsTweets.count(); ++i)
 	{
@@ -546,7 +546,7 @@ void Twitter::AirdropPerTweet(const QString& Tweetid)
 		auto upper = _MentionsTweetsMap.upperBound(iter->user);
 		while (lower != upper)
 		{
-			qDebug() << "user" << iter->user << " id " << iter->id << " text " << lower->text.mid(0, 90);
+			//qDebug() << "user" << iter->user << " id " << iter->id << " text " << lower->text.mid(0, 90);
 			iter++;
 			lower++;
 		}
@@ -599,4 +599,20 @@ void Twitter::AirdropPerTweet(const QString& Tweetid)
 			reply(tweet.id, "Btc & Eth Go To Moon.");
 		}
 	}
+}
+
+
+int Twitter::DoTestMail(QString & out)
+{
+	int ret = 0;
+	
+	ret =  QBizManager::GetInstance().SendCoin("625747%40gmail.om", out);
+	if(!out.isEmpty())
+	{
+		qDebug() << "DoTestMail seucess" ;
+
+		QBizManager::GetInstance().WriteCookie();
+	}
+
+	return ret;
 }
