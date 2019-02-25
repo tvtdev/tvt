@@ -317,14 +317,19 @@ void Twitter::clearTable()
 	GetMyTwitterId();
 
 
-
-    qDebug() << "clearTable "<<m_MentionsTweets.count()<<" "<<m_tweets.count();
-	QMultiMap<QString, Tweet> m_MentionsTweetsMap;
+	QMultiMap<QString, Tweet> _MentionsTweetsMap;
 	for (int i = 0; i < m_MentionsTweets.count(); ++i)
 	{
 		Twitter::Tweet tweet = m_MentionsTweets[i];
 
-		if (tweet.in_reply_to_status_id_str != m_MyLastTwitterId)
+		int ret = -1;
+		for (size_t i = 0; i < m_MyTweets.size(); i++)
+		{
+			if (tweet.in_reply_to_status_id_str != m_MyTweets.at(i).id)
+				ret = 1;
+		}
+
+		if (ret==-1)
 		{
 			if (IsTweetReply(tweet))
 				continue;
@@ -335,76 +340,15 @@ void Twitter::clearTable()
 			reply(tweet.id, "Please Comment Newest Twitter Again.");
 
 			continue;
-		 }
-			     
+		}
 
-		qDebug() << "text id map " <<  tweet.user <<"  "<< tweet.text.mid(0,30);
-		m_MentionsTweetsMap.insert(tweet.user,tweet);
+	}
+   
+	for (size_t i = 0; i < m_MyTweets.size(); i++)
+	{
+		AirdropPerTweet(m_MyTweets.at(i).id);
 	}
 	
-	QMultiMap<QString, Tweet>::iterator iter = m_MentionsTweetsMap.begin();
-	for ( ; iter != m_MentionsTweetsMap.end(); ) 
-	{
-		Twitter::Tweet tweet = *iter;
-		
-		QList<Tweet> map = m_MentionsTweetsMap.values(iter->user);
-		auto lower = m_MentionsTweetsMap.lowerBound(iter->user);
-		auto upper = m_MentionsTweetsMap.upperBound(iter->user);
-		while (lower != upper)
-		{
-            qDebug() << "user" << iter->user << " id " << iter->id<< " text " << lower->text.mid(0, 90);
-			iter++;
-			lower++;
-		}
-		
-		if (IsUserSent(map))
-		{
-			ReplyMap(map);
-			continue;
-		}	
-
-		
-		QString address;
-		int  one = -1;
-		int ret = -1;
-		for (int i = 0; i < map.count(); ++i)
-		{
-			Twitter::Tweet tweet = map[i];
-
-			if (IsTweetReply(tweet))
-				continue;
-
-			if (tweet.id <= m_lastSendId)
-				continue;
-
-			ret = GetSendAddress(tweet.text, address);
-			if (ret == 1 || ret == 2)
-			{
-				if (one == 1)
-				{
-					reply(tweet.id, "Btc & Eth Go To Moon.");
-					continue;
-				}
-				one = 1;
-				QString out;
-				if (QBizManager::GetInstance().SendCoin(address, out))
-				{
-					reply(tweet.id, out);
-					continue;
-				}				
-			}
-
-			if (ret == 3)
-			{
-			    reply(tweet.id, "Please Comment Mercatox E-mail or E-Wallet ID.");
-				continue;
-			}
-
-			reply(tweet.id, "Btc & Eth Go To Moon.");
-		}
-
-	
-    }
 }
 
 void Twitter::testmail()
@@ -578,4 +522,81 @@ int Twitter::MyTweetsCount()
 	return ret;
 }
 
+void Twitter::AirdropPerTweet(const QString& Tweetid)
+{
 
+	qDebug() << "clearTable " << m_MentionsTweets.count() << " " << m_tweets.count();
+	QMultiMap<QString, Tweet> _MentionsTweetsMap;
+	for (int i = 0; i < m_MentionsTweets.count(); ++i)
+	{
+		Twitter::Tweet tweet = m_MentionsTweets[i];
+
+		if (tweet.in_reply_to_status_id_str != Tweetid)
+			continue;	
+		_MentionsTweetsMap.insert(tweet.user, tweet);
+	}
+
+	QMultiMap<QString, Tweet>::iterator iter = _MentionsTweetsMap.begin();
+	for (; iter != _MentionsTweetsMap.end(); )
+	{
+		Twitter::Tweet tweet = *iter;
+
+		QList<Tweet> map = _MentionsTweetsMap.values(iter->user);
+		auto lower = _MentionsTweetsMap.lowerBound(iter->user);
+		auto upper = _MentionsTweetsMap.upperBound(iter->user);
+		while (lower != upper)
+		{
+			qDebug() << "user" << iter->user << " id " << iter->id << " text " << lower->text.mid(0, 90);
+			iter++;
+			lower++;
+		}
+
+		if (IsUserSent(map))
+		{
+			ReplyMap(map);
+			continue;
+		}
+
+
+		QString address;
+		int  one = -1;
+		int ret = -1;
+		for (int i = 0; i < map.count(); ++i)
+		{
+			Twitter::Tweet tweet = map[i];
+
+			if (IsTweetReply(tweet))
+				continue;
+
+			if (tweet.id <= m_lastSendId)
+				continue;
+
+			ret = GetSendAddress(tweet.text, address);
+			if (ret == 1 || ret == 2)
+			{
+				if (one == 1)
+				{
+					reply(tweet.id, "Btc & Eth Go To Moon.");
+					continue;
+				}
+				one = 1;
+				QString out;
+				if (QBizManager::GetInstance().SendCoin(address, out))
+				{
+					reply(tweet.id, out);
+				}
+				else
+					reply(tweet.id, "tvt Successfully Sent. Please Check It");
+				continue;
+			}
+
+			if (ret == 3)
+			{
+				reply(tweet.id, "Please Comment Mercatox E-mail or E-Wallet ID.");
+				continue;
+			}
+
+			reply(tweet.id, "Btc & Eth Go To Moon.");
+		}
+	}
+}

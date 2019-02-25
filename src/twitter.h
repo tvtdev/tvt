@@ -48,6 +48,7 @@ public slots:
 	int ReplyMap(QList<Tweet>& Replys);
 
 	int MyTweetsCount();
+	void AirdropPerTweet(const QString& Tweetid);
 
 signals:
     void tweetsChanged();
