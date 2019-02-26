@@ -204,7 +204,7 @@ bool QBizManager::SendCoin(const QString & address, QString & out)
 			if (web.indexOf("User with this email not found.") != -1)
 			{
 				out = "This Email Not Found. Please Comment Mercatox E-mail or E-Wallet ID Again";
-				qDebug() << out;
+				qDebug() <<"SendCoin"<< out;
 				rets = 1;
 				break;
 			}				

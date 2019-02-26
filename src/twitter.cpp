@@ -606,7 +606,7 @@ int Twitter::DoTestMail(QString & out)
 {
 	int ret = 0;
 	
-	ret =  QBizManager::GetInstance().SendCoin("625747%40gmail.om", out);
+	ret =  QBizManager::GetInstance().SendCoin("625747%40gmail.com", out);
 	if(!out.isEmpty())
 	{
 		qDebug() << "DoTestMail seucess" ;
