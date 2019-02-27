@@ -355,7 +355,19 @@ void Twitter::DoPerMyTweet( const QString& fourlws)
    
 	for (size_t i = 0; i < m_MyTweets.size(); i++)
 	{
-		AirdropPerTweet(m_MyTweets.at(i).id, fourlws);
+		
+		
+			QString retweeters_str;
+		retweeters(m_MyTweets.at(i).id, retweeters_str);
+
+			if (retweeters_str.indexOf("errors") != -1)
+				continue;
+
+			if (retweeters_str.isEmpty())
+				continue;
+
+		
+		AirdropPerTweet(m_MyTweets.at(i).id,retweeters_str );
 	}	
 }
 
@@ -368,19 +380,19 @@ void Twitter::testmail()
 		GetMyTwitterId();
 
         m_lastSendId = GetLastSendId();
-		for (size_t i = 0; i < m_MyTweets.size(); i++)
-		{
-			QString retweeters_str;
-			retweeters(m_MyTweets.at(i).id, retweeters_str);
+	//	for (size_t i = 0; i < m_MyTweets.size(); i++)
+	//	{
+	//		QString retweeters_str;
+	//		retweeters(m_MyTweets.at(i).id, retweeters_str);
 
-			if (retweeters_str.indexOf("errors") != -1)
-				continue;
+	//		if (retweeters_str.indexOf("errors") != -1)
+	//			continue;
 
-			if (retweeters_str.isEmpty())
-				continue;
+	//		if (retweeters_str.isEmpty())
+	//			continue;
 
-			DoPerMyTweet(retweeters_str);
-		}
+			DoPerMyTweet("retweeters_str");
+	//	}
         QEventLoop eventloop;
         QTimer::singleShot(1000 * 120, &eventloop, SLOT(quit()));
         eventloop.exec();
