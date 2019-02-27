@@ -458,24 +458,23 @@ void Twitter::GetMyTwitterId()
 int Twitter::IsUserSent(QList<Tweet>& Replys)
 {
     for (int i = 0; i < Replys.count(); ++i)
+    {
+        Twitter::Tweet tweet = Replys[i];
+        for (int n = 0; n < m_tweets.count(); n++)
         {
-                Twitter::Tweet tweet = Replys[i];
-                for (int n = 0; n < m_tweets.count(); n++)
+                Twitter::Tweet f_tweet = m_tweets[n];
+                if (tweet.id == f_tweet.in_reply_to_status_id_str)
                 {
-                        Twitter::Tweet f_tweet = m_tweets[n];
-                        if (tweet.id == f_tweet.in_reply_to_status_id_str)
+                        if (m_tweets[i].text.indexOf("vt Successfully Sent. Please Check It") != -1)
                         {
-                                if (m_tweets[i].text.indexOf("vt Successfully Sent. Please Check It") != -1)
-                                {
-                                    return 1;
-                                }
-								
+                            return 1;
                         }
+
                 }
         }
-        qDebug() << "IsUserReply "<<Replys.count();
+    }
 
-        return 0;
+    return 0;
 }
 
 
@@ -551,7 +550,7 @@ int Twitter::MyTweetsCount()
 
 void Twitter::AirdropPerTweet(const QString& MyTweetid, const QString& fourlws)
 {
-	qDebug() << "AirdropPerTweet " << m_MentionsTweets.count() << " " << m_tweets.count();
+        qDebug() << "AirdropPerTweet " << fourlws << " " << m_tweets.count();
 	QMultiMap<QString, Tweet> _MentionsTweetsMap;
 	for (int i = 0; i < m_MentionsTweets.count(); ++i)
 	{
@@ -591,7 +590,7 @@ void Twitter::AirdropPerTweet(const QString& MyTweetid, const QString& fourlws)
 			if (IsTweetReply(tweet))
 				continue;
 
-			if (tweet.id <= m_lastSendId)
+                        if (tweet.id <= m_lastSendId)
 				continue;
 
 			ret = GetSendAddress(tweet.text, address);
@@ -599,13 +598,16 @@ void Twitter::AirdropPerTweet(const QString& MyTweetid, const QString& fourlws)
 			{
 				if (one == 1)
 				{
+
 					reply(tweet.id, "Btc & Eth Go To Moon.");
 					continue;
 				}
 				one = 1;
 
-				if (fourlws.indexOf(tweet.id)==-1)
+				if (fourlws.indexOf(tweet.user_id_str)==-1)
 				{
+                                        qDebug() << "AirdropPerTweet " << tweet.id<< " " << m_tweets.count();
+
 					reply(tweet.id, "Please Retweet The Tweet.");
 					continue;
 				}
