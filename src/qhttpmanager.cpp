@@ -369,9 +369,6 @@ bool QHttpManager::HttpPost_Transaction(const QString &url, const QByteArray &se
 	request.setHeader(QNetworkRequest::ContentTypeHeader, ContentTypeHeader);
 	request.setHeader(QNetworkRequest::ContentLengthHeader, send.length());
 
-
-
-	//request.setRawHeader("authorization", "Bearer AAAAAAAAAAAAAAAAAAAAAPYXBAAAAAAACLXUNDekMxqa8h%2F40K4moUkGsoc%3DTYfbDKbT3jJPCEVnMYqilB28NHfOPqkca3qaAxGfsyKCs0wRbw");
 	request.setRawHeader("Accept", "text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,*/*;q=0.8");
 	request.setRawHeader("User-Agent", m_agent.toUtf8());
 	//request.setRawHeader("Cookie", m_Cookie.toUtf8());

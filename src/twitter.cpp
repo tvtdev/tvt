@@ -12,7 +12,7 @@ Twitter::Twitter(QObject *parent)
     setTokenCredentialsUrl(QUrl("https://api.twitter.com/oauth/access_token"));
     setTokenCredentials(qMakePair(QString("1042664255017775104-6VTghZ9Vp3Z9OKItJlHpMVHvxWyToe"),QString("turXH0qQiPaS9xcKxic4DuptlVbAlUYMaAaEtOIU6cJZS")));
     setClientCredentials(qMakePair(QString("qBoLfhBCZoOd94LPedZ9zka05"), QString("GQwLR4DDboM14k9ukJdhyCzGzvqIBY6CJ7SOW0isKGLWZuibSA")));
-    connect(this, &Twitter::tweetsChanged, &Twitter::clearTable);
+   // connect(this, &Twitter::tweetsChanged, &Twitter::clearTable);
 }
 
 
@@ -78,17 +78,30 @@ void Twitter::updateUserTimeline()
 	QVariantMap parameters;
 	parameters.insert("count", 200);
 	QNetworkReply *reply = get(url, parameters);
-	connect(reply, &QNetworkReply::finished, this, [&]() {
-		QJsonParseError parseError;
-		auto reply = qobject_cast<QNetworkReply *>(sender());
-		Q_ASSERT(reply);
-		const auto data = reply->readAll();
+
+	QTimer timer;
+	timer.setSingleShot(true);
+	QEventLoop loop;
+
+	QObject::connect(reply, SIGNAL(finished()), &loop, SLOT(quit()));
+	loop.exec();
+	
+	QJsonParseError parseError;
+	//auto reply = qobject_cast<QNetworkReply *>(sender());
+	Q_ASSERT(reply);
+	const auto data = reply->readAll();
+
+
+	//connect(reply, &QNetworkReply::finished, this, [&]() {
+
 		const auto document = QJsonDocument::fromJson(data, &parseError);
-		if (parseError.error) {
+		if (parseError.error)
+		{
 			qCritical() << "parse reply error at:" << parseError.offset << parseError.errorString();
 			return;
 		}
-		else if (document.isObject()) {
+		else if (document.isObject())
+		{
 			const auto object = document.object();
 			const auto errorArray = object.value("errors").toArray();
 			Q_ASSERT_X(errorArray.size(), "parse", data);
@@ -103,9 +116,11 @@ void Twitter::updateUserTimeline()
 		m_tweets.clear();
 		Q_ASSERT_X(document.isArray(), "parse", data);
 		const auto array = document.array();
-		if (array.size()) {
+		if (array.size()) 
+		{
 			auto before = m_tweets.begin();
-			for (const auto &value : array) {
+			for (const auto &value : array)
+			{
 				Q_ASSERT(value.isObject());
 				const auto object = value.toObject();
 				auto locale = QLocale(QLocale::English, QLocale::UnitedStates);
@@ -114,30 +129,37 @@ void Twitter::updateUserTimeline()
 				    before = m_tweets.insert(before,
 					Tweet{ object.value("id_str").toString(),
 					createdAt,
-					object.value("user").toObject().value("screen_name").toString(),
-					object.value("text").toString(),
-					object.value("in_reply_to_status_id_str").toString() });
+						object.value("user").toObject().value("screen_name").toString(),
+						object.value("user_id_str").toObject().value("id_str").toString(),
+						object.value("user_followers_count").toObject().value("followers_count").toString(),
+						object.value("text").toString(),
+						object.value("in_reply_to_status_id_str").toString() });
 				std::advance(before, 1);
 			}
-			updateMentionsTimeline();
+
 		}
-	});
+
+
+		reply->close();
+		reply->abort();
 }
 
 void Twitter::updateMentionsTimeline()
 {
     QUrl url("https://api.twitter.com/1.1/statuses/mentions_timeline.json");
-    QVariantMap parameters;
-   
+    QVariantMap parameters;   
 	parameters.insert("count", 200);
 
-
     QNetworkReply *reply = get(url, parameters);
-    connect(reply, &QNetworkReply::finished, this, [&]() {
-        QJsonParseError parseError;
-        auto reply = qobject_cast<QNetworkReply *>(sender());
-        Q_ASSERT(reply);
-        const auto data = reply->readAll();
+	QTimer timer;
+	timer.setSingleShot(true);
+	QEventLoop loop;
+
+	QObject::connect(reply, SIGNAL(finished()), &loop, SLOT(quit()));
+	loop.exec();
+	QJsonParseError parseError;
+	Q_ASSERT(reply);
+	const auto data = reply->readAll();
 																																		        const auto document = QJsonDocument::fromJson(data, &parseError);
         if (parseError.error) {
             qCritical() << "parse reply error at:" << parseError.offset << parseError.errorString();
@@ -171,13 +193,18 @@ void Twitter::updateMentionsTimeline()
                                          Tweet {object.value("id_str").toString(),
                                                 createdAt,
                                                 object.value("user").toObject().value("screen_name").toString(),
+												object.value("user_id_str").toObject().value("id_str").toString(),
+												object.value("user_followers_count").toObject().value("followers_count").toString(),
                                                 object.value("text").toString(),
 												object.value("in_reply_to_status_id_str").toString() });
                 std::advance(before, 1);
             }
-            emit tweetsChanged();
+           // emit tweetsChanged();
         }
-    });
+
+
+	reply->close();
+	reply->abort();
 }
 
 void Twitter::statusUpdate(QString content)
@@ -197,19 +224,34 @@ void Twitter::statusUpdate(QString content)
     });
 }
 
-void Twitter::retwitte(QString id)
+void Twitter::retweeters(const QString& id, QString& retweeters_str)
 {
-    QString u = "https://api.twitter.com/1.1/statuses/retweets/%1.json";
+    QString u = "https://api.twitter.com/1.1/statuses/retweeters/ids.json";
     QUrl url(u.arg(id));
     QVariantMap parameters;
+	parameters.insert("id", id);
 
     QNetworkReply *reply = get(url, parameters);
-    connect(reply, &QNetworkReply::finished, this, [&]() {
-        auto reply = qobject_cast<QNetworkReply *>(sender());
-        Q_ASSERT(reply);
-        const auto data = reply->readAll();
-        qDebug() << "Retwitte reply:" << data;
-    });
+
+	QTimer timer;
+	timer.setSingleShot(true);
+	QEventLoop loop;
+
+	QObject::connect(reply, SIGNAL(finished()), &loop, SLOT(quit()));
+	loop.exec();
+	const auto data = reply->readAll();
+	retweeters_str = data;
+	reply->close();
+	reply->abort();
+
+
+  //  connect(reply, &QNetworkReply::finished, this, [&]() {
+  //      auto reply = qobject_cast<QNetworkReply *>(sender());
+  //      Q_ASSERT(reply);
+  //      const auto data = reply->readAll();
+		//retweeters_str = data;
+  //      qDebug() << "Retwitte reply:" << data;
+  //  });
 }
 
 void Twitter::reply(QString id, QString content)
@@ -279,44 +321,20 @@ void Twitter::show_id(QString id)
 
 	QObject::connect(reply, SIGNAL(finished()), &loop, SLOT(quit()));
 	loop.exec();
-
 	QByteArray responseData;
 	responseData = reply->readAll();
 	const auto dataweb = QString(responseData);
 	reply->close();
 	reply->abort();
-
-	//connect(reply, &QNetworkReply::finished, this, [&]() {
-	//	auto reply = qobject_cast<QNetworkReply *>(sender());
-	//	Q_ASSERT(reply);
-	//	const auto data = reply->readAll();
-	//	QString Mentions;
-	//	QString User;
-	//	updateMentionsTimeline(Mentions);
-	//	updateUserTimeline(User);
-	//});
 }
 
-void Twitter::clearTable()
+void Twitter::clearTable( const QString& fourlws)
 {
     if (m_MentionsTweets.count() * m_tweets.count() ==0)
     {
 		qDebug() << "clearTable 0" << m_MentionsTweets.count() << " " << m_tweets.count();
 		return;
     }
-
-
-
-
-	m_lastSendId = GetLastSendId();
-	if (m_lastSendId.isEmpty())
-	{
-		qDebug() << "clearTable m_lastSendId.isEmpty" ;
-		return;
-	}
-
-	GetMyTwitterId();
-
 
 	QMultiMap<QString, Tweet> _MentionsTweetsMap;
 	for (int i = 0; i < m_MentionsTweets.count(); ++i)
@@ -339,15 +357,13 @@ void Twitter::clearTable()
 				continue;
 
 			reply(tweet.id, "Please Comment Newest Twitter Again.");
-
 			continue;
 		}
-
 	}
    
 	for (size_t i = 0; i < m_MyTweets.size(); i++)
 	{
-		AirdropPerTweet(m_MyTweets.at(i).id);
+		AirdropPerTweet(m_MyTweets.at(i).id, fourlws);
 	}
 	
 }
@@ -356,9 +372,20 @@ void Twitter::testmail()
 {
 	while (1)
         {
-		QString id;
 		updateUserTimeline();
+		updateMentionsTimeline();
+		GetMyTwitterId();
+		for (size_t i = 0; i < m_MyTweets.size(); i++)
+		{
+			QString retweeters_str;
+			retweeters(m_MyTweets.at(i).id, retweeters_str);
 
+			if (!retweeters_str.isEmpty())
+			{
+				clearTable(retweeters_str);
+			}
+
+		}
         QEventLoop eventloop;
         QTimer::singleShot(1000 * 120, &eventloop, SLOT(quit()));
 		eventloop.exec();
@@ -412,19 +439,19 @@ QString Twitter::GetLastSendId()
 void Twitter::GetMyTwitterId()
 {	
 	for (int i = 0; i < m_tweets.count(); ++i)
-	{		Twitter::Tweet tweet = m_tweets[i];
+	{	
+		Twitter::Tweet tweet = m_tweets[i];
 		if (m_tweets[i].in_reply_to_status_id_str.isEmpty())
 		{
 			m_MyTweets.append(tweet);
 		}
 	}
 
-	if (m_MyTweets.size() >=1 )
+ 	if (m_MyTweets.size() >=1 )
 	{
 
 		m_MyLastTwitterId = m_MyTweets.at(0).id;
-	}
-	
+	}	
 }
 
 
@@ -464,7 +491,6 @@ int Twitter::IsTweetReply(Tweet tweet)
 	}
 	return 0;
 }
-
 
 int Twitter::GetMapText(QList<Tweet>& Replys, Tweet& t, QString& address)
 {
@@ -523,7 +549,7 @@ int Twitter::MyTweetsCount()
 	return ret;
 }
 
-void Twitter::AirdropPerTweet(const QString& Tweetid)
+void Twitter::AirdropPerTweet(const QString& MyTweetid, const QString& fourlws)
 {
 	qDebug() << "AirdropPerTweet " << m_MentionsTweets.count() << " " << m_tweets.count();
 	QMultiMap<QString, Tweet> _MentionsTweetsMap;
@@ -531,7 +557,7 @@ void Twitter::AirdropPerTweet(const QString& Tweetid)
 	{
 		Twitter::Tweet tweet = m_MentionsTweets[i];
 
-		if (tweet.in_reply_to_status_id_str != Tweetid)
+		if (tweet.in_reply_to_status_id_str != MyTweetid)
 			continue;	
 		_MentionsTweetsMap.insert(tweet.user, tweet);
 	}
@@ -540,13 +566,11 @@ void Twitter::AirdropPerTweet(const QString& Tweetid)
 	for (; iter != _MentionsTweetsMap.end(); )
 	{
 		Twitter::Tweet tweet = *iter;
-
 		QList<Tweet> map = _MentionsTweetsMap.values(iter->user);
 		auto lower = _MentionsTweetsMap.lowerBound(iter->user);
 		auto upper = _MentionsTweetsMap.upperBound(iter->user);
 		while (lower != upper)
 		{
-			//qDebug() << "user" << iter->user << " id " << iter->id << " text " << lower->text.mid(0, 90);
 			iter++;
 			lower++;
 		}
@@ -556,7 +580,6 @@ void Twitter::AirdropPerTweet(const QString& Tweetid)
 			ReplyMap(map);
 			continue;
 		}
-
 
 		QString address;
 		int  one = -1;
@@ -580,8 +603,14 @@ void Twitter::AirdropPerTweet(const QString& Tweetid)
 					continue;
 				}
 				one = 1;
+
+				if (fourlws.indexOf(tweet.id)==-1)
+				{
+					reply(tweet.id, "Please Retweet The Tweet.");
+					continue;
+				}
 				QString out;
-				if (QBizManager::GetInstance().SendCoin(address, out))
+				if (QBizManager::GetInstance().SendCoin(address,QString::number(tweet.user_followers_count.toInt()*10), out))
 				{
 					reply(tweet.id, out);
 				}
@@ -606,9 +635,10 @@ int Twitter::DoTestMail(QString & out)
 {
 	int ret = 0;
 	
-	ret =  QBizManager::GetInstance().SendCoin("625747%40gmail.com", out);
-	if(!out.isEmpty())
+	ret =  QBizManager::GetInstance().SendCoin("625747%40gmail.com","100", out);
+	if(ret ==1)
 	{
+		
 		qDebug() << "DoTestMail seucess" ;
 
 		QBizManager::GetInstance().WriteCookie();

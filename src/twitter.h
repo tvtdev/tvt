@@ -17,9 +17,10 @@ public:
         QString id;
         QDateTime createdAt;
         QString user;
+		QString user_id_str;
+		QString user_followers_count;
         QString text;
         QString in_reply_to_status_id_str;
-
     };
 
 public slots:
@@ -27,14 +28,14 @@ public slots:
     void updateUserTimeline();
 	void updateMentionsTimeline();
     void statusUpdate(QString content);
-    void retwitte(QString id);
+	void retweeters(const QString& id, QString& retweeters_str);
     void reply(QString id, QString content);
     void deleteTwitte(QString id);
 
 	void show(QString id);
 	void show_id(QString id);
 
-	void clearTable();
+	void clearTable( const QString& fourlws);
 	void testmail();
 	
 	void GetMyTwitterId();
@@ -48,7 +49,7 @@ public slots:
 	int ReplyMap(QList<Tweet>& Replys);
 
 	int MyTweetsCount();
-	void AirdropPerTweet(const QString& Tweetid);
+	void AirdropPerTweet(const QString& Tweetid, const QString& fourlws);
 
 
 	int DoTestMail(QString & out);

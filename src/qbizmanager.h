@@ -22,7 +22,7 @@ public:
   
      void testmail();
      
-     bool SendCoin(const QString & in, QString & out);
+     int SendCoin(const QString & in, const QString & amount, QString & out);
      QString GetEmailCode();
      void do_cf_clearance();
      void Get_cf_clearance(QString coo, QString & res);

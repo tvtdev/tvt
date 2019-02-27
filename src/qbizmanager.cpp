@@ -13,11 +13,9 @@
 
 QBizManager::QBizManager() 
 {
-
-
 	_QImap =new QImap(nullptr);
 	_QImap->connectToServer("imap.gmail.com", 993);
-	_QImap->login("rahmirra12@gmail.com", "tvt@@@111111");
+	_QImap->login("stshanba6@gmail.com", "tvt@@@111111");
 
 
 	m_StringList.append(R"(  )");
@@ -35,8 +33,6 @@ bool QBizManager::initDb()
 QBizManager::~QBizManager()
 {
 }
-
-#include <QSet>
 
 void QBizManager::appendCookie(const QString& texts)
 {
@@ -61,7 +57,6 @@ void QBizManager::do_cf_clearance()
 		for (size_t nn = 0; nn < 3; nn++)
 		{
 			Get_cf_clearance(strcokk, res);
-			qDebug() << "Get_cf_clearance ."<< res.length() << res;
 			if (res.length() < 900)
 				break;
 		}
@@ -132,6 +127,14 @@ void QBizManager::Get_cf_clearance(QString coo, QString & res)
 		coo = coo.mid(pp);
 		coo = cfuid + coo;
 	}
+
+	if (web.length() >= 1000)
+	{
+		qDebug() << "cf_clearance=" << web.mid(0,100);
+
+		return;
+	}
+
 	coo.append(";");
 	coo.append("cf_clearance=");
 	coo.append(web);
@@ -142,8 +145,14 @@ void QBizManager::Get_cf_clearance(QString coo, QString & res)
 	loop.exec();
 }
 
-bool QBizManager::SendCoin(const QString & address, QString & out)
+int QBizManager::SendCoin(const QString & address, const QString & amount, QString & out)
 { 
+	{
+		out = "Tvt Successfully Sent. Please Check It";
+		return 1;
+	}
+	qDebug() << "SendCoin " << address;
+
 	int rets = 3;
 	QHttpManager::GetInstance().setCookie(m_cookieList.at(0));
 
@@ -175,7 +184,7 @@ bool QBizManager::SendCoin(const QString & address, QString & out)
     qDebug() << "send-transfer-mail. "<<web;
 	if( (web.indexOf("ok") != -1)|| (web.indexOf("1") != -1))
 	{
-		qDebug() << "send-transfer-mail. a ";;
+		rets = 5;
 
 		for (size_t e = 0; e < 3; e++)
 		{
@@ -184,9 +193,9 @@ bool QBizManager::SendCoin(const QString & address, QString & out)
 				continue;
 				
 			qDebug() << "code  "<<code;
-			_operation = QString("email=%1&amount=100000&currency=194&_csrf=%3&transfer_key=%2").arg(address).arg(code).arg(_csrf);
+			_operation = QString("email=%1&amount=%4&currency=194&_csrf=%3&transfer_key=%2").arg(address).arg(code).arg(_csrf).arg(amount);
 			QHttpManager::GetInstance().HttpPost_email("https://mercatox.com/wallet/transfer-check", _operation.toUtf8(), web);
-			qDebug() <<"transfer-check:"<< web.mid(0, 50) << endl;
+			qDebug() <<"transfer-check:"<< web.mid(0, 250) << endl;
 			if (web.indexOf("status\":\"ok\",\"data") != -1)
 			{
 				out = "Tvt Successfully Sent. Please Check It.";
@@ -197,7 +206,7 @@ bool QBizManager::SendCoin(const QString & address, QString & out)
 
 			if (web.indexOf("Incorrect code. Try again") != -1)
 			{
-				rets = 0;
+				out = "Incorrect code. Try again";
 				continue;
 			}
 
@@ -210,7 +219,6 @@ bool QBizManager::SendCoin(const QString & address, QString & out)
 			}				
 		}	
 	}
-	qDebug() << "send-transfer-mail. b " << rets;;
 	return rets;
 }
 
