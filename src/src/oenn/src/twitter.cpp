@@ -178,7 +178,8 @@ void Twitter::statusUpdate(QString content)
 void Twitter::retweeters(const QString& id, QString& retweeters_str)
 {
 	qDebug() << "retweeters " << id;
-    QUrl url("https://api.twitter.com/1.1/statuses/retweeters/ids.json");
+    QString u = "https://api.twitter.com/1.1/statuses/retweeters/ids.json";
+    QUrl url(u.arg(id));
     QVariantMap parameters;
 	parameters.insert("id", id);
 
@@ -194,7 +195,7 @@ void Twitter::retweeters(const QString& id, QString& retweeters_str)
 	retweeters_str = data;
 	//reply->close();
 	//reply->abort();
-	qDebug() << "retweeters .." << data;
+	qDebug() << "retweeters " << data;
 
 }
 
@@ -280,7 +281,6 @@ void Twitter::DoPerMyTweet( )
 		return;
     }
 
-	qDebug() << "DoPerMyTweet " << m_MentionsTweets.count() << " " << m_tweets.count();
 	QMultiMap<QString, Tweet> _MentionsTweetsMap;
 	for (int i = 0; i < m_MentionsTweets.count(); ++i)
 	{
@@ -322,27 +322,37 @@ void Twitter::testmail()
 {
 	while (1)
 	{
-		updateUserTimeline();
+		for (size_t i = 0; i < 3; i++)
+			updateUserTimeline();
+
+		if (m_tweets.size() == 0)
+		{
+			qDebug() << "twitter api error";
+			QEventLoop eventloop;
+			QTimer::singleShot(1000 * 120, &eventloop, SLOT(quit()));
+			eventloop.exec();
+			return;
+		}
+
 		updateMentionsTimeline();
 		GetMyTwitterId();
 
         m_lastSendId = GetLastSendId();
-
         DoPerMyTweet();
         QEventLoop eventloop;
         QTimer::singleShot(1000 * 120, &eventloop, SLOT(quit()));
         eventloop.exec();
 
-		//m_runnum++;
-		//if (m_runnum % 10 == 1)
-		//{
-		//	QString out;
-		//	DoTestMail(out);
-		//}
-		//if (m_runnum % 5 == 1)
-		//{
-		//	QCoreApplication::quit();
-		//}
+		m_runnum++;
+		if (m_runnum % 10 == 1)
+		{
+			QString out;
+			DoTestMail(out);
+		}
+		if (m_runnum % 5 == 1)
+		{
+			QCoreApplication::quit();
+		}
 	}
 }
 
