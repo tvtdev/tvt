@@ -39,6 +39,8 @@ void Twitter::updateUserTimeline()
 	if (parseError.error)
 	{
 		qCritical() << "parse reply error at:" << parseError.offset << parseError.errorString();
+		//reply->close();
+		//reply->abort();
 		return;
 	}
 	else if (document.isObject())
@@ -53,6 +55,8 @@ void Twitter::updateUserTimeline()
 			Q_ASSERT(error.toObject().contains("message"));
 			errors.append(error.toObject().value("message").toString());
 		}
+		//reply->close();
+		//reply->abort();
 		return;
 	}
 
@@ -80,8 +84,8 @@ void Twitter::updateUserTimeline()
 			std::advance(before, 1);
 		}
 	}
-	reply->close();
-	reply->abort();
+	//reply->close();
+	//reply->abort();
 }
 
 void Twitter::updateMentionsTimeline()
@@ -106,6 +110,8 @@ void Twitter::updateMentionsTimeline()
 	if (parseError.error)
 	{
 		qCritical() << "parse reply error at:" << parseError.offset << parseError.errorString();
+		reply->close();
+		reply->abort();
 		return;
 	}
 	else if (document.isObject())
@@ -119,6 +125,8 @@ void Twitter::updateMentionsTimeline()
 			Q_ASSERT(error.toObject().contains("message"));
 			errors.append(error.toObject().value("message").toString());
 		}
+		//reply->close();
+		//reply->abort();
 		return;
 	}
 	m_MentionsTweets.clear();
@@ -146,8 +154,8 @@ void Twitter::updateMentionsTimeline()
 		}
 	}
 
-	reply->close();
-	reply->abort();
+	//reply->close();
+	//reply->abort();
 }
 
 void Twitter::statusUpdate(QString content)
@@ -169,6 +177,7 @@ void Twitter::statusUpdate(QString content)
 
 void Twitter::retweeters(const QString& id, QString& retweeters_str)
 {
+	qDebug() << "retweeters " << id;
     QString u = "https://api.twitter.com/1.1/statuses/retweeters/ids.json";
     QUrl url(u.arg(id));
     QVariantMap parameters;
@@ -184,8 +193,10 @@ void Twitter::retweeters(const QString& id, QString& retweeters_str)
 	loop.exec();
 	const auto data = reply->readAll();
 	retweeters_str = data;
-	reply->close();
-	reply->abort();
+	//reply->close();
+	//reply->abort();
+	qDebug() << "retweeters " << data;
+
 }
 
 void Twitter::reply(QString id, QString content)
@@ -310,26 +321,35 @@ void Twitter::DoPerMyTweet( )
 void Twitter::testmail()
 {
 	while (1)
-        {
-		updateUserTimeline();
+	{
+		for (size_t i = 0; i < 3; i++)
+			updateUserTimeline();
+
+		if (m_tweets.size() == 0)
+		{
+			qDebug() << "twitter api error";
+			QEventLoop eventloop;
+			QTimer::singleShot(1000 * 120, &eventloop, SLOT(quit()));
+			eventloop.exec();
+			return;
+		}
+
 		updateMentionsTimeline();
 		GetMyTwitterId();
 
-                m_lastSendId = GetLastSendId();
-                DoPerMyTweet();
-                QEventLoop eventloop;
-                QTimer::singleShot(1000 * 120, &eventloop, SLOT(quit()));
-                eventloop.exec();
+        m_lastSendId = GetLastSendId();
+        DoPerMyTweet();
+        QEventLoop eventloop;
+        QTimer::singleShot(1000 * 120, &eventloop, SLOT(quit()));
+        eventloop.exec();
 
 		m_runnum++;
-
 		if (m_runnum % 10 == 1)
 		{
 			QString out;
 			DoTestMail(out);
 		}
-
-                if (m_runnum % 5 == 1)
+		if (m_runnum % 5 == 1)
 		{
 			QCoreApplication::quit();
 		}

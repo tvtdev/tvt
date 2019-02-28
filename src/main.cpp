@@ -93,7 +93,6 @@ int main(int argc, char *argv[])
 	QString out;
 	for (size_t i = 0; i < 3; i++)
 	{
-		QBizManager::GetInstance().do_cf_clearance();
 		int ret = twitter.DoTestMail(out);
 		if (ret == 5)
 		{
@@ -112,7 +111,6 @@ int main(int argc, char *argv[])
 	}
 
     twitter.testmail();
-
     qDebug() << "qDebug test";
     return a.exec();
 }
