@@ -410,6 +410,7 @@ QString Twitter::GetLastSendId()
 
 void Twitter::GetMyTwitterId()
 {	
+	m_tweets.clear();
 	for (int i = 0; i < m_tweets.count(); ++i)
 	{	
 		Twitter::Tweet tweet = m_tweets[i];
