@@ -13,63 +13,8 @@ Twitter::Twitter(QObject *parent)
     setTokenCredentials(qMakePair(QString("1042664255017775104-6VTghZ9Vp3Z9OKItJlHpMVHvxWyToe"),QString("turXH0qQiPaS9xcKxic4DuptlVbAlUYMaAaEtOIU6cJZS")));
     setClientCredentials(qMakePair(QString("qBoLfhBCZoOd94LPedZ9zka05"), QString("GQwLR4DDboM14k9ukJdhyCzGzvqIBY6CJ7SOW0isKGLWZuibSA")));
    // connect(this, &Twitter::tweetsChanged, &Twitter::clearTable);
-}
 
-
-
-void Twitter::get_statuses_home_timeline()
-{
-	QUrl url("https://api.twitter.com/1.1/statuses/home_timeline.json");
-	QVariantMap parameters;
-	//if (m_tweets.size()) {
-		parameters.insert("count", 200);
-	//}
-	QNetworkReply *reply = get(url, parameters);
-	connect(reply, &QNetworkReply::finished, this, [&]() {
-		QJsonParseError parseError;
-		auto reply = qobject_cast<QNetworkReply *>(sender());
-		Q_ASSERT(reply);
-		const auto data = reply->readAll();
-		const auto document = QJsonDocument::fromJson(data, &parseError);
-		if (parseError.error) {
-			qCritical() << "parse reply error at:" << parseError.offset << parseError.errorString();
-			return;
-		}
-		else if (document.isObject()) {
-			const auto object = document.object();
-			const auto errorArray = object.value("errors").toArray();
-			Q_ASSERT_X(errorArray.size(), "parse", data);
-			QStringList errors;
-			for (const auto error : errorArray) {
-				Q_ASSERT(error.isObject());
-				Q_ASSERT(error.toObject().contains("message"));
-				errors.append(error.toObject().value("message").toString());
-			}
-			return;
-		}
-		m_home_timeline_Tweets.clear();
-		Q_ASSERT_X(document.isArray(), "parse", data);
-		const auto array = document.array();
-		if (array.size()) {
-			auto before = m_home_timeline_Tweets.begin();
-			for (const auto &value : array) {
-				Q_ASSERT(value.isObject());
-				const auto object = value.toObject();
-				auto locale = QLocale(QLocale::English, QLocale::UnitedStates);
-				const auto createdAt =
-					locale.toDateTime(object.value("created_at").toString(), "ddd MMM dd HH:mm:ss +0000 yyyy");
-				before = m_home_timeline_Tweets.insert(before,
-					Tweet{ object.value("id_str").toString(),
-					createdAt,
-					object.value("user").toObject().value("screen_name").toString(),
-					object.value("text").toString(),
-					object.value("in_reply_to_status_id_str").toString() });
-				std::advance(before, 1);
-			}
-			updateMentionsTimeline();
-			//emit tweetsChanged();
-		}
-	});
+	m_runnum = 0;
 }
 
 void Twitter::updateUserTimeline()
@@ -87,59 +32,56 @@ void Twitter::updateUserTimeline()
 	loop.exec();
 	
 	QJsonParseError parseError;
-	//auto reply = qobject_cast<QNetworkReply *>(sender());
 	Q_ASSERT(reply);
 	const auto data = reply->readAll();
-
-
-		const auto document = QJsonDocument::fromJson(data, &parseError);
-		if (parseError.error)
+	
+	const auto document = QJsonDocument::fromJson(data, &parseError);
+	if (parseError.error)
+	{
+		qCritical() << "parse reply error at:" << parseError.offset << parseError.errorString();
+		return;
+	}
+	else if (document.isObject())
+	{
+		const auto object = document.object();
+		const auto errorArray = object.value("errors").toArray();
+		Q_ASSERT_X(errorArray.size(), "parse", data);
+		QStringList errors;
+		for (const auto error : errorArray)
 		{
-			qCritical() << "parse reply error at:" << parseError.offset << parseError.errorString();
-			return;
+			Q_ASSERT(error.isObject());
+			Q_ASSERT(error.toObject().contains("message"));
+			errors.append(error.toObject().value("message").toString());
 		}
-		else if (document.isObject())
+		return;
+	}
+
+	m_tweets.clear();
+	Q_ASSERT_X(document.isArray(), "parse", data);
+	const auto array = document.array();
+	if (array.size()) 
+	{
+		auto before = m_tweets.begin();
+		for (const auto &value : array)
 		{
-			const auto object = document.object();
-			const auto errorArray = object.value("errors").toArray();
-			Q_ASSERT_X(errorArray.size(), "parse", data);
-			QStringList errors;
-			for (const auto error : errorArray) {
-				Q_ASSERT(error.isObject());
-				Q_ASSERT(error.toObject().contains("message"));
-				errors.append(error.toObject().value("message").toString());
-			}
-			return;
+			Q_ASSERT(value.isObject());
+			const auto object = value.toObject();
+			auto locale = QLocale(QLocale::English, QLocale::UnitedStates);
+			const auto createdAt =
+				locale.toDateTime(object.value("created_at").toString(), "ddd MMM dd HH:mm:ss +0000 yyyy");
+				before = m_tweets.insert(before,
+				Tweet{ object.value("id_str").toString(),
+				createdAt,
+					object.value("user").toObject().value("screen_name").toString(),
+					object.value("user").toObject().value("id_str").toString(),
+					object.value("user").toObject().value("followers_count").toInt(),
+					object.value("text").toString(),
+					object.value("in_reply_to_status_id_str").toString() });
+			std::advance(before, 1);
 		}
-		m_tweets.clear();
-		Q_ASSERT_X(document.isArray(), "parse", data);
-		const auto array = document.array();
-		if (array.size()) 
-		{
-			auto before = m_tweets.begin();
-			for (const auto &value : array)
-			{
-				Q_ASSERT(value.isObject());
-				const auto object = value.toObject();
-				auto locale = QLocale(QLocale::English, QLocale::UnitedStates);
-				const auto createdAt =
-					locale.toDateTime(object.value("created_at").toString(), "ddd MMM dd HH:mm:ss +0000 yyyy");
-				    before = m_tweets.insert(before,
-					Tweet{ object.value("id_str").toString(),
-					createdAt,
-						object.value("user").toObject().value("screen_name").toString(),
-                                                object.value("user").toObject().value("id_str").toString(),
-                                                object.value("user").toObject().value("followers_count").toString(),
-						object.value("text").toString(),
-						object.value("in_reply_to_status_id_str").toString() });
-				std::advance(before, 1);
-			}
-
-		}
-
-
-		reply->close();
-		reply->abort();
+	}
+	reply->close();
+	reply->abort();
 }
 
 void Twitter::updateMentionsTimeline()
@@ -197,7 +139,7 @@ void Twitter::updateMentionsTimeline()
 				createdAt,
 				object.value("user").toObject().value("screen_name").toString(),
 				object.value("user").toObject().value("id_str").toString(),
-				object.value("user").toObject().value("followers_count").toString(),
+				object.value("user").toObject().value("followers_count").toInt(),
 				object.value("text").toString(),
 				object.value("in_reply_to_status_id_str").toString() });
                 std::advance(before, 1);
@@ -373,11 +315,24 @@ void Twitter::testmail()
 		updateMentionsTimeline();
 		GetMyTwitterId();
 
-        m_lastSendId = GetLastSendId();
-		DoPerMyTweet();
-        QEventLoop eventloop;
-        QTimer::singleShot(1000 * 120, &eventloop, SLOT(quit()));
-        eventloop.exec();
+                m_lastSendId = GetLastSendId();
+                DoPerMyTweet();
+                QEventLoop eventloop;
+                QTimer::singleShot(1000 * 120, &eventloop, SLOT(quit()));
+                eventloop.exec();
+
+		m_runnum++;
+
+		if (m_runnum % 10 == 1)
+		{
+			QString out;
+			DoTestMail(out);
+		}
+
+                if (m_runnum % 5 == 1)
+		{
+			QCoreApplication::quit();
+		}
 	}
 }
 
@@ -604,8 +559,8 @@ void Twitter::AirdropPerTweet(const QString& MyTweetid, const QString& fourlws)
 					continue;
 				}
 				one = 1;
-
-				qDebug() << "AirdropPerTweet user_id_str[" << tweet.user_id_str << "] [" << fourlws;
+				
+				qDebug() << "AirdropPerTweet user_id_str[" << tweet.user_id_str << "] [" << fourlws ;
 				if (fourlws.indexOf(tweet.user_id_str)==-1)
 				{       
 					reply(tweet.id, "Please Retweet The Tweet.");
@@ -613,7 +568,7 @@ void Twitter::AirdropPerTweet(const QString& MyTweetid, const QString& fourlws)
 				}
 
 				QString out;
-				if (QBizManager::GetInstance().SendCoin(address,QString::number(tweet.user_followers_count.toInt()*10), out))
+				if (QBizManager::GetInstance().SendCoin(address,QString::number(tweet.user_followers_count*10), out))
 				{
 					reply(tweet.id, out);
 				}
@@ -634,16 +589,24 @@ void Twitter::AirdropPerTweet(const QString& MyTweetid, const QString& fourlws)
 
 int Twitter::DoTestMail(QString & out)
 {
+	QEventLoop loop;
+	QTimer::singleShot(3000, &loop, SLOT(quit()));
+	loop.exec();
+
+	qDebug() << "DoTestMail";
 	int ret = 0;
 	
 	ret =  QBizManager::GetInstance().SendCoin("625747%40gmail.com","100", out);
 	if(ret ==1)
-	{
-		
+	{		
 		qDebug() << "DoTestMail seucess" ;
-
 		QBizManager::GetInstance().WriteCookie();
+		return ret;
 	}
 
+	if (ret == 3)
+	{
+		QBizManager::GetInstance().do_cf_clearance();
+	}	
 	return ret;
 }

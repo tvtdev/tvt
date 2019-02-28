@@ -147,11 +147,11 @@ void QBizManager::Get_cf_clearance(QString coo, QString & res)
 
 int QBizManager::SendCoin(const QString & address, const QString & amount, QString & out)
 { 
-	//{
-	//	out = "Tvt Successfully Sent. Please Check It";
-	//	return 1;
-	//}
-	qDebug() << "SendCoin " << address;
+	{
+		out = "Tvt Successfully Sent. Please Check It";
+		return 1;
+	}
+        qDebug() << "SendCoin " << address<<"  "<<amount;
 
 	int rets = 3;
 	QHttpManager::GetInstance().setCookie(m_cookieList.at(0));
@@ -174,6 +174,8 @@ int QBizManager::SendCoin(const QString & address, const QString & amount, QStri
 		return rets;
 	}
 
+	rets = 101;
+
 	_csrf.append("%3D%3D");
 	QString _operation = R"(_csrf=%1)";
 	_operation = _operation.arg(_csrf);
@@ -193,7 +195,7 @@ int QBizManager::SendCoin(const QString & address, const QString & amount, QStri
 				continue;
 				
 			qDebug() << "code  "<<code;
-			_operation = QString("email=%1&amount=%4&currency=194&_csrf=%3&transfer_key=%2").arg(address).arg(code).arg(_csrf).arg(amount);
+			_operation = QString("email=%1&amount=%2&currency=194&_csrf=%4&transfer_key=%3").arg(address).arg(amount).arg(code).arg(_csrf);
 			QHttpManager::GetInstance().HttpPost_email("https://mercatox.com/wallet/transfer-check", _operation.toUtf8(), web);
 			qDebug() <<"transfer-check:"<< web.mid(0, 250) << endl;
 			if (web.indexOf("status\":\"ok\",\"data") != -1)
@@ -249,10 +251,10 @@ QString QBizManager::GetEmailCode()
     QString email_code ;
     _QImap->fetch(uid,"BODY[]<3200.400>");
 
-    for (size_t i = 0; i < 6; i++)
+    for (size_t i = 0; i < 30; i++)
     {
         QEventLoop loop;
-        QTimer::singleShot(2000, &loop, SLOT(quit()));
+        QTimer::singleShot(1000, &loop, SLOT(quit()));
         loop.exec();
         str = _QImap->Getmail();
         if (!str.isEmpty())

@@ -18,13 +18,12 @@ public:
         QDateTime createdAt;
         QString user;
 		QString user_id_str;
-		QString user_followers_count;
+		int user_followers_count;
         QString text;
         QString in_reply_to_status_id_str;
     };
 
 public slots:
-	void get_statuses_home_timeline();
     void updateUserTimeline();
 	void updateMentionsTimeline();
     void statusUpdate(QString content);
@@ -56,18 +55,17 @@ public slots:
 
 signals:
     void tweetsChanged();
-
 private:
     Q_DISABLE_COPY(Twitter)
-		
-	QList<Tweet> m_MyTweets;
+
+    QList<Tweet> m_MyTweets;
     QList<Tweet> m_tweets;
     QList<Tweet> m_MentionsTweets;
-	QList<Tweet> m_home_timeline_Tweets;
+    QList<Tweet> m_home_timeline_Tweets;
 
     QString m_lastSendId;
-	QString m_MyLastTwitterId;
-
+    QString m_MyLastTwitterId;
+    int m_runnum;
     QOAuthHttpServerReplyHandler *replyHandler = nullptr;
 };
 
