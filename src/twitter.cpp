@@ -280,7 +280,8 @@ void Twitter::DoPerMyTweet( )
 		qDebug() << "DoPerMyTweet " << m_MentionsTweets.count() << " " << m_tweets.count();
 		return;
     }
-
+qDebug() << "DoPerMyTweet ..." << m_MentionsTweets.count() << " " << m_tweets.count();
+		
 	QMultiMap<QString, Tweet> _MentionsTweetsMap;
 	for (int i = 0; i < m_MentionsTweets.count(); ++i)
 	{
