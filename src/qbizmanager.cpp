@@ -148,8 +148,8 @@ void QBizManager::Get_cf_clearance(QString coo, QString & res)
 int QBizManager::SendCoin(const QString & address, const QString & amount, QString & out)
 { 
 	{
-		out = "Tvt Successfully Sent. Please Check It";
-		return 1;
+	//	out = "Tvt Successfully Sent. Please Check It";
+	//	return 1;
 	}
         qDebug() << "SendCoin " << address<<"  "<<amount;
 
