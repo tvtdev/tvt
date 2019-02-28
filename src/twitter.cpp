@@ -320,7 +320,7 @@ void Twitter::show_id(QString id)
 	reply->abort();
 }
 
-void Twitter::DoPerMyTweet( const QString& fourlws)
+void Twitter::DoPerMyTweet( )
 {
     if (m_MentionsTweets.count() * m_tweets.count() ==0)
     {
@@ -355,18 +355,12 @@ void Twitter::DoPerMyTweet( const QString& fourlws)
    
 	for (size_t i = 0; i < m_MyTweets.size(); i++)
 	{
-		
-		
-			QString retweeters_str;
+		QString retweeters_str;
 		retweeters(m_MyTweets.at(i).id, retweeters_str);
-
-			if (retweeters_str.indexOf("errors") != -1)
-				continue;
-
-			if (retweeters_str.isEmpty())
-				continue;
-
-		
+		if (retweeters_str.indexOf("errors") != -1)
+			continue;
+		if (retweeters_str.isEmpty())
+				continue;	
 		AirdropPerTweet(m_MyTweets.at(i).id,retweeters_str );
 	}	
 }
@@ -380,19 +374,7 @@ void Twitter::testmail()
 		GetMyTwitterId();
 
         m_lastSendId = GetLastSendId();
-	//	for (size_t i = 0; i < m_MyTweets.size(); i++)
-	//	{
-	//		QString retweeters_str;
-	//		retweeters(m_MyTweets.at(i).id, retweeters_str);
-
-	//		if (retweeters_str.indexOf("errors") != -1)
-	//			continue;
-
-	//		if (retweeters_str.isEmpty())
-	//			continue;
-
-			DoPerMyTweet("retweeters_str");
-	//	}
+		DoPerMyTweet();
         QEventLoop eventloop;
         QTimer::singleShot(1000 * 120, &eventloop, SLOT(quit()));
         eventloop.exec();
@@ -425,21 +407,11 @@ int Twitter::GetSendAddress(const QString & text, QString& address)
 		return 3;
 	}
 
-        return 4;
+    return 4;
 }
 
 QString Twitter::GetLastSendId()
 {
-/*	QString id ;
-	for (int i = 0; i < m_tweets.count(); ++i)
-	{
-		Twitter::Tweet tweet = m_tweets[i];
-		if (m_tweets[i].text.mid(0,5).indexOf("RT @") == -1)
-		{
-			return m_tweets[i].id;
-		}
-	}*/	
-
 	QString id ;
 	for (int i = 0; i < m_tweets.count(); ++i)
 	{

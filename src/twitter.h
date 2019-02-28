@@ -35,7 +35,7 @@ public slots:
 	void show(QString id);
 	void show_id(QString id);
 
-	void DoPerMyTweet( const QString& fourlws);
+	void DoPerMyTweet();
 	void testmail();
 	
 	void GetMyTwitterId();
