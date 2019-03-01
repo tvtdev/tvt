@@ -15,7 +15,7 @@ QBizManager::QBizManager()
 {
 	_QImap =new QImap(nullptr);
 	_QImap->connectToServer("imap.gmail.com", 993);
-	_QImap->login("stshanba6@gmail.com", "tvt@@@111111");
+	_QImap->login("rahmirra12@gmail.com", "tvt@@@111111");
 
 
 	m_StringList.append(R"(  )");
