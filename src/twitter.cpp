@@ -33,14 +33,14 @@ void Twitter::updateUserTimeline()
 	
 	QJsonParseError parseError;
 	Q_ASSERT(reply);
-	const auto data = reply->readAll();
-	
+        const auto data = reply->readAll();
+
 	const auto document = QJsonDocument::fromJson(data, &parseError);
 	if (parseError.error)
 	{
 		qCritical() << "parse reply error at:" << parseError.offset << parseError.errorString();
-		//reply->close();
-		//reply->abort();
+                reply->close();
+                reply->abort();
 		return;
 	}
 	else if (document.isObject())
@@ -55,8 +55,8 @@ void Twitter::updateUserTimeline()
 			Q_ASSERT(error.toObject().contains("message"));
 			errors.append(error.toObject().value("message").toString());
 		}
-		//reply->close();
-		//reply->abort();
+                reply->close();
+                reply->abort();
 		return;
 	}
 
@@ -84,17 +84,17 @@ void Twitter::updateUserTimeline()
 			std::advance(before, 1);
 		}
 	}
-	//reply->close();
-	//reply->abort();
+        reply->close();
+        reply->abort();
 }
 
 void Twitter::updateMentionsTimeline()
 {
-    QUrl url("https://api.twitter.com/1.1/statuses/mentions_timeline.json");
-    QVariantMap parameters;   
-	parameters.insert("count", 200);
+        QUrl url("https://api.twitter.com/1.1/statuses/mentions_timeline.json");
+        QVariantMap parameters;
+        parameters.insert("count", 200);
 
-    QNetworkReply *reply = get(url, parameters);
+        QNetworkReply *reply = get(url, parameters);
 	QTimer timer;
 	timer.setSingleShot(true);
 	QEventLoop loop;
@@ -125,8 +125,8 @@ void Twitter::updateMentionsTimeline()
 			Q_ASSERT(error.toObject().contains("message"));
 			errors.append(error.toObject().value("message").toString());
 		}
-		//reply->close();
-		//reply->abort();
+                reply->close();
+                reply->abort();
 		return;
 	}
 	m_MentionsTweets.clear();
@@ -154,8 +154,8 @@ void Twitter::updateMentionsTimeline()
 		}
 	}
 
-	//reply->close();
-	//reply->abort();
+        reply->close();
+        reply->abort();
 }
 
 void Twitter::statusUpdate(QString content)
@@ -177,24 +177,24 @@ void Twitter::statusUpdate(QString content)
 
 void Twitter::retweeters(const QString& id, QString& retweeters_str)
 {
-	qDebug() << "retweeters " << id;
+    qDebug() << "retweeters " << id;
     QUrl url("https://api.twitter.com/1.1/statuses/retweeters/ids.json");
     QVariantMap parameters;
-	parameters.insert("id", id);
+    parameters.insert("id", id);
 
     QNetworkReply *reply = get(url, parameters);
 
-	QTimer timer;
-	timer.setSingleShot(true);
-	QEventLoop loop;
+    QTimer timer;
+    timer.setSingleShot(true);
+    QEventLoop loop;
 
-	QObject::connect(reply, SIGNAL(finished()), &loop, SLOT(quit()));
-	loop.exec();
-	const auto data = reply->readAll();
-	retweeters_str = data;
-	//reply->close();
-	//reply->abort();
-	qDebug() << "retweeters .." << data;
+    QObject::connect(reply, SIGNAL(finished()), &loop, SLOT(quit()));
+    loop.exec();
+    const auto data = reply->readAll();
+    retweeters_str = data;
+    //reply->close();
+    //reply->abort();
+    qDebug() << "retweeters .." << data;
 
 }
 
@@ -410,7 +410,7 @@ QString Twitter::GetLastSendId()
 
 void Twitter::GetMyTwitterId()
 {	
-	m_tweets.clear();
+        m_MyTweets.clear();
 	for (int i = 0; i < m_tweets.count(); ++i)
 	{	
 		Twitter::Tweet tweet = m_tweets[i];
