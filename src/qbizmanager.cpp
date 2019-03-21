@@ -77,7 +77,22 @@ void QBizManager::doBuy(const QStringList& buy_list)
 	
 QString amount = QString::number((13.08) / price.toDouble(),'f',6);
 
-	yobit_make_trade(price, amount , "buy");
+QString res =	yobit_make_trade(price, amount , "buy");
+		
+		
+int p = res.indexOf("doge");
+
+if (p == -1)
+return 0;
+int p1 = res.indexOf(",", p);
+QString rate = res.mid(p + 6, p1 - p - 6);
+//if (rate.toDouble()> 1600) {
+
+QString amount_str = QString::number(rate.toDouble()*0.5, 'f', 8);
+yobit_make_trade("0.00001400", "11", "sell", "doge_eth");
+//}
+		
+		
 	}
 }
 
@@ -131,17 +146,6 @@ int QBizManager::CheckBuyList(const QStringList& buy_list)
 
 
 
-int p = res.indexOf("doge");
-
-if (p == -1)
-return 0;
-int p1 = res.indexOf(",", p);
-QString rate = res.mid(p + 6, p1 - p - 6);
-//if (rate.toDouble()> 1600) {
-
-QString amount_str = QString::number(rate.toDouble()*0.5, 'f', 8);
-yobit_make_trade("0.00001400", amount_str, "sell", "doge_eth");
-//}
 
 
 
