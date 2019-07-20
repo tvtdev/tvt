@@ -28,17 +28,7 @@ void QBizManager::doTransfer()
 		GetPrice(source,  buy_list, sell_list);	
 		AddTradeVolume(buy_list, sell_list);
 
-		if (num % 523 == 1)
-		{
-			int ret = doCancleAll();
-			if (ret == 1)
-			{
-				if (doBuyAll(sell_list) == 1)
-				{
-					;// return;
-				}
-			}
-		}
+		
 		if (m_doge_balance.toDouble() > 100 && m_cancleAll == 1 )
 		{
 			QString amount = QString::number(m_doge_balance.toDouble() - 40, 'f', 8);
@@ -55,9 +45,6 @@ void QBizManager::doTransfer()
 
 		if (num % 53 == 1)
 			doCancleAll();
-
-		
-		
 	}
 	return;
 }
@@ -101,11 +88,11 @@ int QBizManager::doBuyAll(const QStringList& sell_list)
 			QString amount = str.split(",").at(1);
 			total_amount += amount.toDouble()*price.toDouble();			
 			
-		    if (m_doge_balance.toDouble() - total_amount < 1000 )
+		    if (m_doge_balance.toDouble() - total_amount < 500 )
 			{					
 				QString sell_price = sell_list.at(i).split(",").at(0);
 				QString str_Rate = QString::number(sell_price.toDouble() + 0.00000001, 'f', 8);
-				QString amount = QString::number((m_doge_balance.toDouble()-1000 )/ str_Rate.toDouble(), 'f', 6);
+				QString amount = QString::number((m_doge_balance.toDouble()-500 )/ str_Rate.toDouble(), 'f', 6);
 				QString res = yobit_make_trade(str_Rate, amount, "buy");
 				qDebug() << "doBuyAll " << str << "m_doge_balance[" << m_doge_balance << "]total_amount" << total_amount<< res;
 				if (res.indexOf("success\":1") != -1)
@@ -204,6 +191,20 @@ bool QBizManager::initDb()
 	//}
 
 	qDebug() << "QBizManager()" << m_cancleAll << m_oenoen;
+
+
+
+	doCancle();
+	QString source = yobit_depth();	
+
+	QStringList buy_list;
+	QStringList sell_list;
+	GetPrice(source, buy_list, sell_list);		
+	AddTradeVolume(buy_list, sell_list);
+	int ret = doCancleAll(true);
+	if (ret == 1)
+		doBuyAll(sell_list);			
+
 	return true;
 }
 
@@ -314,36 +315,39 @@ void QBizManager::doCancle(int type)
 	return;
 }
 
-int QBizManager::doCancleAll()
+int QBizManager::doCancleAll(bool b)
 {
-	QString orders = yobit_ActiveOrders_List(1);
-	if (orders.size() == 0)
+	for (int loop = 0; loop < 2&&b; loop)
 	{
-		//qDebug() << "doCancleAll orders.size() == 0";
-		return 0;
-	}
+		QString orders = yobit_ActiveOrders_List(1);
+		if (orders.size() == 0)
+		{
+			//qDebug() << "doCancleAll orders.size() == 0";
+			return 0;
+		}
 
-	if (orders.indexOf("invalid nonce") != -1)
-	{
-		//qDebug() << "doCancleAll invalid nonce";
-		return 0;
-	}
+		if (orders.indexOf("invalid nonce") != -1)
+		{
+			//qDebug() << "doCancleAll invalid nonce";
+			return 0;
+		}
 
-	if (orders.indexOf("!DOCTYPE html") != -1)
-	{
-		//qDebug() << "doCancleAll DOCTYPE html";
-		return 0;
-	}
+		if (orders.indexOf("!DOCTYPE html") != -1)
+		{
+			//qDebug() << "doCancleAll DOCTYPE html";
+			return 0;
+		}
 
 
-	if (orders.indexOf("{\"success\":1}") != -1)
-		return 1;
+		if (orders.indexOf("{\"success\":1}") != -1)
+			return 1;
 
-	QStringList orders_list = orders.mid(18).split("status");
-	for (int i = 0; i < orders_list.size() && orders_list.size() != 1; i++)
-	{
-		QString OrderId = orders_list.at(i).mid(6, 16);
-		QString res = yobit_CancelOrder(OrderId);		
+		QStringList orders_list = orders.mid(18).split("status");
+		for (int i = 0; i < orders_list.size() && orders_list.size() != 1; i++)
+		{
+			QString OrderId = orders_list.at(i).mid(6, 16);
+			QString res = yobit_CancelOrder(OrderId);		
+		}
 	}
 	return 0;
 }

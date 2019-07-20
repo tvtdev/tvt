@@ -33,7 +33,7 @@ public:
 	QString GetBalance(const QString & bal,int price);
 	void doTransfer();
 	void doCancle(int type =0);
-	int doCancleAll();
+	int doCancleAll(bool b= false);
 
 
 	int GetPrice(const QString & source,  QStringList& buy_list, QStringList& sell_list);
