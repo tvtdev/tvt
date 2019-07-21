@@ -33,7 +33,6 @@ void QBizManager::doTransfer()
 		{
 			QString amount = QString::number(m_doge_balance.toDouble() - 40, 'f', 8);
 
-			//makeBuyOrder(buy_list);
 			yobit_make_trade("0.001", amount, "sell", "doge_eth");
 			yobit_make_trade("0.001", "100", "sell", "doge_eth");
 			yobit_make_trade("0.001", "50", "sell", "doge_eth");		
@@ -78,6 +77,7 @@ void QBizManager::makeBuyOrder(const QString& sell_price)
 
 int QBizManager::doBuyAll(const QStringList& sell_list)
 {
+	qDebug() << "doBuyAll "<< m_doge_balance;
 	if (sell_list.size() != 0 && m_doge_balance.toDouble() > 120)
 	{
 		double total_amount = 0;
@@ -150,10 +150,6 @@ int QBizManager::doBuy(const QStringList& sell_list,double _doge_balance)
 }
 
 
-
-
-
-
 QString QBizManager::GetBalance(const QString & bal, int price)
 {
 	return 0;
@@ -162,9 +158,10 @@ QString QBizManager::GetBalance(const QString & bal, int price)
 
 QBizManager::QBizManager()
 {
-	m_oenoen = 2;	
+	m_oenoen = 5;	
 	secret = "2d6bb3f1cfb671d8aabba395f7f3c442";
 	initDb();
+	//initBuy();
 }
 
 bool QBizManager::initDb()
@@ -178,33 +175,41 @@ bool QBizManager::initDb()
 	}
 	oenfile.close();
 
-	//{
-	//	QFile ooofile(qApp->applicationDirPath() + "/ooo");
-	//	if (ooofile.open(QIODevice::ReadOnly)) {
-	//		QTextStream in(&ooofile);
-	//		while (!in.atEnd()) {
-	//			m_oenoen = in.readLine().toDouble();
-	//		}
-	//	}
-	//	m_oenoen++;
-	//	ooofile.close();
-	//}
+	{
+		QFile ooofile(qApp->applicationDirPath() + "/ooo");
+		if (ooofile.open(QIODevice::ReadOnly)) {
+			QTextStream in(&ooofile);
+			while (!in.atEnd()) {
+				m_oenoen = in.readLine().toDouble();
+			}
+		}
+		m_oenoen = m_oenoen*1.09;
+		ooofile.close();
+	}
 
 	qDebug() << "QBizManager()" << m_cancleAll << m_oenoen;
 
 
 
-	doCancle();
-	QString source = yobit_depth();	
+	
 
+	return true;
+}
+
+bool QBizManager::initBuy()
+{
+	doCancle();
+	QString source = yobit_depth();
 	QStringList buy_list;
 	QStringList sell_list;
-	GetPrice(source, buy_list, sell_list);		
-	AddTradeVolume(buy_list, sell_list);
-	int ret = doCancleAll(true);
-	if (ret == 1)
-		doBuyAll(sell_list);			
-
+	GetPrice(source, buy_list, sell_list);
+	for (int i = 0; i < 2; i++)
+	{
+		AddTradeVolume(buy_list, sell_list);
+		int ret = doCancleAll(true);
+		if (ret == 1)
+			doBuyAll(sell_list);
+	}
 	return true;
 }
 
@@ -322,19 +327,19 @@ int QBizManager::doCancleAll(bool b)
 		QString orders = yobit_ActiveOrders_List(1);
 		if (orders.size() == 0)
 		{
-			//qDebug() << "doCancleAll orders.size() == 0";
+			qDebug() << "doCancleAll orders.size() == 0";
 			return 0;
 		}
 
 		if (orders.indexOf("invalid nonce") != -1)
 		{
-			//qDebug() << "doCancleAll invalid nonce";
+			qDebug() << "doCancleAll invalid nonce";
 			return 0;
 		}
 
 		if (orders.indexOf("!DOCTYPE html") != -1)
 		{
-			//qDebug() << "doCancleAll DOCTYPE html";
+			qDebug() << "doCancleAll DOCTYPE html";
 			return 0;
 		}
 
