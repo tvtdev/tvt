@@ -34,24 +34,20 @@ public:
 	QString GetBalance(const QString & bal,int price);
 	void doTransfer();
 	void doCancle(int type =0);
-	int doCancleAll(bool b= false);
+	int doCancleAll(bool b = false);
 
 
 	int GetPrice(const QString & source,  QStringList& buy_list, QStringList& sell_list);
 	double GenAmount();
+
 	int GetMaxOrder(const QStringList& buy_list);
+	int GetMaxOrderBuy(const QStringList& sell_list);
 
-	int doBuyMax(const QStringList& buy_list, const QStringList& sell_list);
-	int GetMaxOrderBuy(const QStringList& buy_list);
-	double GetBuyMaxOrder(const QStringList& buy_list);
-	
 
-	int doBuy(const QStringList& buy_list,double );
 	int doBuyAll(const QStringList& buy_list);
-	void makeBuyOrder(const QString& buy_list);
-
-	//void doSell(const QStringList& buy_list);
 	void AddTradeVolume(const QStringList& buy_list, const  QStringList& sell_list,int vol=1);
+
+	int makeOrder(const QStringList& buy_list, int pos);
 
 private:
 	QString secret ;
@@ -61,8 +57,6 @@ private:
     
 	double m_oenoen;
 	int   m_cancleAll;
-
-	double m_dogeea;
 
 };
 
