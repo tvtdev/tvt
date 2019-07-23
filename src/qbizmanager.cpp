@@ -45,30 +45,9 @@ void QBizManager::doTransfer()
 			{
 				QString res;
 				QString sell_price = sell_list.at(0).split(",").at(0);
-				QString str_Rate = QString::number(sell_price.toDouble() - 0.00000002, 'f', 8);
+				QString str_Rate = QString::number(sell_price.toDouble() - 0.00000003, 'f', 8);
 				QString amount = QString::number(100 / str_Rate.toDouble(), 'f', 8);
 				res = yobit_make_trade(str_Rate, amount, "sell");
-			
-				{
-					int p = res.indexOf("doge");
-					if (p == -1)
-						return;
-
-					int p1 = res.indexOf(",", p);
-					m_doge_balance = res.mid(p + 6, p1 - p - 6);
-					
-
-					{
-						int p = res.indexOf("doge", p1);
-						if (p == -1)
-							return;
-
-						int p1 = res.indexOf(",", p);
-						m_doge_balance_include = res.mid(p + 6, p1 - p - 6);
-
-					}
-					
-				}
 			}
 
 
@@ -278,8 +257,6 @@ bool QBizManager::initBuy()
 	GetPrice(source, buy_list, sell_list);
 	while (1)
 	{
-
-	
 		AddTradeVolume(buy_list, sell_list);
 		int ret = doCancleAll(true);
 		if (m_doge_balance_include.toDouble() > 1)
@@ -686,16 +663,16 @@ int QBizManager::zitamakeOrder(const QStringList& sell_list)
 
 	{
 		QString buy_price = sell_list.at(10 ).split(",").at(0);
-		QString str_Rate = QString::number(buy_price.toDouble() - 0.00000021, 'f', 8);
+		QString str_Rate = QString::number(buy_price.toDouble() - 0.00000029, 'f', 8);
 		QString amount = QString::number(18000 / str_Rate.toDouble(), 'f', 8);
 		res = yobit_make_trade(str_Rate, amount, "buy");
 
-		if (res.indexOf("success\":1") != -1)
+	/*	if (res.indexOf("success\":1") != -1)
 		{ 
 		QEventLoop loop;
 		QTimer::singleShot(10060000, &loop, SLOT(quit()));
 		loop.exec();
-		}
+		}*/
 	
 	}
 
@@ -720,21 +697,13 @@ int QBizManager::getText(const QStringList& buy_list)
 {
 	if (buy_list.size() >= 110)
 	{
-		double total_amount = 0;
-		double max_amount = 0;
-		int index = 0;
 		for (int i = 60; i < buy_list.size(); i++)
 		{
 			QString str = buy_list.at(i);
 			QString price = str.split(",").at(0);
 			QString amount = str.split(",").at(1);
-
 			if (amount.indexOf("23211") != -1)
-			{
 				return 1;
-			}
-
-
 		}
 	}
 	return 0;
@@ -742,31 +711,12 @@ int QBizManager::getText(const QStringList& buy_list)
 
 int QBizManager::setTextOrder(const QStringList& buy_list)
 {
-	QString res;
-
-
-
-	{
-		QString buy_price = buy_list.at(66).split(",").at(0);
-		QString str_Rate = QString::number(buy_price.toDouble() - 0.00000021, 'f', 8);
-		QString amount = QString::number(11.232111 / str_Rate.toDouble(), 'f', 0)+".232111";
-		res = yobit_make_trade(str_Rate, amount, "buy");
-
-		if (res.indexOf("success\":1") != -1)
-		{
-			QEventLoop loop;
-			QTimer::singleShot(1165500, &loop, SLOT(quit()));
-			loop.exec();
-		}
-
-	}
-
-	
-
+	QString buy_price = buy_list.at(66).split(",").at(0);
+	QString str_Rate = QString::number(buy_price.toDouble() - 0.00000021, 'f', 8);
+	QString amount = QString::number(11.232111 / str_Rate.toDouble(), 'f', 0)+".232111";
+	yobit_make_trade(str_Rate, amount, "buy");
 	return 0;
 }
-
-
 
 void QBizManager::CreateOrderPos(int pos) 
 {
