@@ -33,9 +33,16 @@ public:
 	int GetPriceInt(const QString & source);
 	QString GetBalance(const QString & bal,int price);
 	void doTransfer();
-	void doCancle(int type =0);
+	void doCancle(QString st="",int type =0);
 	int doCancleAll(bool b = false);
 
+	void checkFirst();
+
+	void CreateOrderPos(int);
+	int zitamakeOrder(const QStringList& buy_list);
+
+	//int signalOrder(const QStringList& buy_list);
+	//int readsignal(const QStringList& buy_list);
 
 	int GetPrice(const QString & source,  QStringList& buy_list, QStringList& sell_list);
 	double GenAmount();
@@ -48,7 +55,12 @@ public:
 	void AddTradeVolume(const QStringList& buy_list, const  QStringList& sell_list,int vol=1);
 
 	int makeOrder(const QStringList& buy_list, int pos);
+	int premakeOrder(const QStringList& buy_list, int pos);
 
+
+	int setTextOrder(const QStringList& buy_list);
+	int getText(const QStringList& buy_list);
+	int delTextOrder();
 private:
 	QString secret ;
 	QString m_doge_balance;
