@@ -6,7 +6,7 @@
 #include <QMap>
 #include <QHash>
 #include <QSet>
-
+#include <QSettings>
 
 
 
@@ -43,7 +43,7 @@ public:
 	
 
 	void CreateOrderPos(int);
-	int zitamakeOrder(const QStringList& buy_list,int step=0);
+	int zitamakeOrder(const QStringList& buy_list, int pos);
 
 	//int signalOrder(const QStringList& buy_list);
 	//int readsignal(const QStringList& buy_list);
@@ -70,11 +70,17 @@ private:
 	QString secret ;
 	QString m_doge_balance;
 	QString m_doge_balance_include;
+
+	QString m_doge_balance_include_befor;
+
 	QStringList m_buyList;
     
 	double m_oenoen;
 	int   m_cancleAll;
 
+	QSettings m_settings;
+
+	int m_cur;
 };
 
 
