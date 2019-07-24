@@ -7,5 +7,6 @@ enc_temp_folder/
 release/
  x64/
  v
- v*
- tvt/
+ v.*
+ tvt/*
+ .vs
