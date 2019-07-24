@@ -35,15 +35,14 @@ void QBizManager::doTransfer()
 			zitamakeOrder(sell_list);			
 		}else	 if (m_doge_balance_include.toDouble() <= 20000)
 		{
-
-				 QString source = yobit_depth();
-				 if (source.length() < 50 || source.indexOf("!DOCTYPE html") != -1)
-				 {
-					 continue;
-				 }
-				 QStringList buy_list;
-				 QStringList sell_list;
-				 GetPrice(source, buy_list, sell_list);
+			QString source = yobit_depth();
+			if (source.length() < 50 || source.indexOf("!DOCTYPE html") != -1)
+			{
+				continue;
+			}
+			QStringList buy_list;
+			QStringList sell_list;
+			GetPrice(source, buy_list, sell_list);
 
 				 //last_prict = buy_list.at(50).split(",").at(0);
 				 //doCancle(last_prict);
