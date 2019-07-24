@@ -2,6 +2,10 @@ src -*
 src/qhttpmanager.*
 src/main.*
 src/*.txt
-debug
-enc_temp_folder
-release
+debug/
+enc_temp_folder/
+release/
+ x64/
+ v
+ v*
+ tvt/
