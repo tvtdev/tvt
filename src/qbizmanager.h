@@ -34,6 +34,7 @@ public:
 	void GetBalance();
 	void doTransfer();
 
+	void CancelOrder();
 	void CancleSmall();
 	int doCancleAll(bool b = false);
 	void doCancle(QString st = "", int type = 0);
