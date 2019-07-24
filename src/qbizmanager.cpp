@@ -16,7 +16,7 @@ void QBizManager::doTransfer()
 	int num = 0;
 	while (1)
 	{	//int ret = checkOrder();
-//faf
+//fafgdfsg
 		GetBalance();
 		if (m_doge_balance_include.toDouble() >= 20000&& m_doge_balance.toDouble() >= 20000)
 		{
