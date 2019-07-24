@@ -43,7 +43,7 @@ public:
 	
 
 	void CreateOrderPos(int);
-	int zitamakeOrder(const QStringList& buy_list);
+	int zitamakeOrder(const QStringList& buy_list,int step=0);
 
 	//int signalOrder(const QStringList& buy_list);
 	//int readsignal(const QStringList& buy_list);
