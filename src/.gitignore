@@ -5,7 +5,7 @@ src/*.txt
 debug/
 enc_temp_folder/
 release/
- x64/
- v
- v*
- tvt/
+x64/
+v
+v*
+tvt/
