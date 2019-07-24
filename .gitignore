@@ -1,4 +1,4 @@
-src -*
+src -*/
 src/qhttpmanager.cpp
 src/main.cpp
 src/*.txt
