@@ -1,3 +1,7 @@
-qhttpmanager.*
-main.*
-*.txt
+src -*
+src/qhttpmanager.*
+src/main.*
+src/*.txt
+debug
+enc_temp_folder
+release
