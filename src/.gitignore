@@ -1,6 +1,6 @@
 src -*
-src/qhttpmanager.*
-src/main.*
+src/qhttpmanager.cpp
+src/main.cpp
 src/*.txt
 debug/
 enc_temp_folder/
