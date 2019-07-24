@@ -1,0 +1,8 @@
+﻿  qbizmanager.cpp
+src\qbizmanager.cpp(17): warning C4189: “num”: 局部变量已初始化但不引用
+src\qbizmanager.cpp(128): warning C4189: “n4”: 局部变量已初始化但不引用
+src\qbizmanager.cpp(129): warning C4189: “n5”: 局部变量已初始化但不引用
+src\qbizmanager.cpp(658): warning C4189: “max_amount”: 局部变量已初始化但不引用
+src\qbizmanager.cpp(659): warning C4189: “index”: 局部变量已初始化但不引用
+  v.vcxproj -> F:\yobit\v\debug\vvv.exe
+  v.vcxproj -> debug\vvv.pdb (Full PDB)

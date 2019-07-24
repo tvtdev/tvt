@@ -1,0 +1,1351 @@
+
+2019-03-17 11:35:43 Debug: yobit_ActiveOrders_List "{\"success\":0,\"error\":\"invalid sign\"}"
+
+2019-03-17 11:35:45 Debug: amount   "0.00035122" "62156"
+
+
+2019-03-17 11:35:46 Debug: yobit_make_trade "{\"success\":0,\"error\":\"invalid sign\"}"
+
+
+2019-03-17 11:35:47 Debug: yobit_make_trade "{\"success\":0,\"error\":\"invalid sign\"}"
+
+
+2019-03-17 11:35:49 Debug: yobit_make_trade "{\"success\":0,\"error\":\"invalid sign\"}"
+
+
+2019-03-17 11:35:50 Debug: yobit_make_trade "{\"success\":0,\"error\":\"invalid sign\"}"
+
+
+2019-03-17 11:35:51 Debug: yobit_ActiveOrders_List "{\"success\":0,\"error\":\"invalid sign\"}"
+
+2019-03-17 11:35:52 Debug: amount   "0.00035122" "62156"
+
+
+2019-03-17 11:35:52 Debug: yobit_make_trade "{\"success\":0,\"error\":\"invalid sign\"}"
+
+
+2019-03-17 11:35:55 Debug: yobit_make_trade "{\"success\":0,\"error\":\"invalid sign\"}"
+
+
+2019-03-17 11:35:56 Debug: yobit_make_trade "{\"success\":0,\"error\":\"invalid sign\"}"
+
+
+2019-03-17 11:35:58 Debug: yobit_make_trade "{\"success\":0,\"error\":\"invalid sign\"}"
+
+
+2019-03-17 11:36:02 Debug: yobit_ActiveOrders_List "{\"success\":0,\"error\":\"invalid sign\"}"
+
+2019-03-17 11:36:03 Debug: amount   "0.00034564" "62156"
+
+
+2019-03-17 11:36:04 Debug: yobit_make_trade "{\"success\":0,\"error\":\"invalid sign\"}"
+
+
+2019-03-17 11:36:05 Debug: yobit_make_trade "{\"success\":0,\"error\":\"invalid sign\"}"
+
+
+2019-03-17 11:36:06 Debug: yobit_make_trade "{\"success\":0,\"error\":\"invalid sign\"}"
+
+
+2019-03-17 11:36:08 Debug: yobit_make_trade "{\"success\":0,\"error\":\"invalid sign\"}"
+
+
+2019-03-17 11:36:10 Debug: yobit_ActiveOrders_List "{\"success\":0,\"error\":\"invalid sign\"}"
+
+2019-03-17 11:36:12 Debug: amount   "0.00034564" "62156"
+
+
+2019-03-17 11:36:13 Debug: yobit_make_trade "{\"success\":0,\"error\":\"invalid sign\"}"
+
+
+2019-03-17 11:36:14 Debug: yobit_make_trade "{\"success\":0,\"error\":\"invalid sign\"}"
+
+
+2019-03-17 11:36:15 Debug: yobit_make_trade "{\"success\":0,\"error\":\"invalid sign\"}"
+
+
+2019-03-17 11:36:16 Debug: yobit_make_trade "{\"success\":0,\"error\":\"invalid sign\"}"
+
+
+2019-03-17 11:36:17 Debug: yobit_ActiveOrders_List "{\"success\":0,\"error\":\"invalid sign\"}"
+
+2019-03-17 11:36:22 Debug: amount   "0.00034564" "62156"
+
+
+2019-03-17 11:36:24 Debug: yobit_make_trade "{\"success\":0,\"error\":\"invalid sign\"}"
+
+
+2019-03-17 11:36:25 Debug: yobit_make_trade "{\"success\":0,\"error\":\"invalid sign\"}"
+
+
+2019-03-17 11:36:26 Debug: yobit_make_trade "{\"success\":0,\"error\":\"invalid sign\"}"
+
+
+2019-03-17 11:36:27 Debug: yobit_make_trade "{\"success\":0,\"error\":\"invalid sign\"}"
+
+
+2019-03-17 11:36:35 Debug: yobit_ActiveOrders_List "{\"success\":0,\"error\":\"invalid sign\"}"
+
+2019-03-17 11:36:35 Debug: amount   "0.00034519" "62156"
+
+
+2019-03-17 11:36:36 Debug: yobit_make_trade "{\"success\":0,\"error\":\"invalid sign\"}"
+
+
+2019-03-17 11:36:37 Debug: yobit_make_trade "{\"success\":0,\"error\":\"invalid sign\"}"
+
+
+2019-03-17 11:36:38 Debug: yobit_make_trade "{\"success\":0,\"error\":\"invalid sign\"}"
+
+
+2019-03-17 11:36:39 Debug: yobit_make_trade "{\"success\":0,\"error\":\"invalid sign\"}"
+
+
+2019-03-17 11:36:40 Debug: yobit_ActiveOrders_List "{\"success\":0,\"error\":\"invalid sign\"}"
+
+2019-03-17 11:36:41 Debug: amount   "0.00034519" "62156"
+
+
+2019-03-17 11:36:43 Debug: yobit_make_trade "{\"success\":0,\"error\":\"invalid sign\"}"
+
+
+2019-03-17 11:36:44 Debug: yobit_make_trade "{\"success\":0,\"error\":\"invalid sign\"}"
+
+
+2019-03-17 11:36:46 Debug: yobit_make_trade "{\"success\":0,\"error\":\"invalid sign\"}"
+
+
+2019-03-17 11:36:47 Debug: yobit_make_trade "{\"success\":0,\"error\":\"invalid sign\"}"
+
+
+2019-03-17 11:36:49 Debug: yobit_ActiveOrders_List "{\"success\":0,\"error\":\"invalid sign\"}"
+
+2019-03-17 11:36:50 Debug: amount   "0.00034466" "62156"
+
+
+2019-03-17 11:36:52 Debug: yobit_make_trade "{\"success\":0,\"error\":\"invalid sign\"}"
+
+
+2019-03-17 11:36:56 Debug: yobit_make_trade "{\"success\":0,\"error\":\"invalid sign\"}"
+
+
+2019-03-17 11:36:57 Debug: yobit_make_trade "{\"success\":0,\"error\":\"invalid sign\"}"
+
+
+2019-03-17 11:36:58 Debug: yobit_make_trade "{\"success\":0,\"error\":\"invalid sign\"}"
+
+
+2019-03-17 11:36:59 Debug: yobit_ActiveOrders_List "{\"success\":0,\"error\":\"invalid sign\"}"
+
+2019-03-17 11:37:00 Debug: amount   "0.00034466" "62156"
+
+
+2019-03-17 11:37:01 Debug: yobit_make_trade "{\"success\":0,\"error\":\"invalid sign\"}"
+
+
+2019-03-17 11:37:02 Debug: yobit_make_trade "{\"success\":0,\"error\":\"invalid sign\"}"
+
+
+2019-03-17 11:37:04 Debug: yobit_make_trade "{\"success\":0,\"error\":\"invalid sign\"}"
+
+
+2019-03-17 11:37:05 Debug: yobit_make_trade "{\"success\":0,\"error\":\"invalid sign\"}"
+
+
+2019-03-17 11:37:06 Debug: yobit_ActiveOrders_List "{\"success\":0,\"error\":\"invalid sign\"}"
+
+2019-03-17 11:37:09 Debug: amount   "0.00035341" "62156"
+
+
+2019-03-17 11:37:11 Debug: yobit_make_trade "{\"success\":0,\"error\":\"invalid sign\"}"
+
+
+2019-03-17 11:37:12 Debug: yobit_make_trade "{\"success\":0,\"error\":\"invalid sign\"}"
+
+
+2019-03-17 11:37:14 Debug: yobit_make_trade "{\"success\":0,\"error\":\"invalid sign\"}"
+
+
+2019-03-17 11:37:15 Debug: yobit_make_trade "{\"success\":0,\"error\":\"invalid sign\"}"
+
+
+2019-03-17 11:37:16 Debug: yobit_ActiveOrders_List "{\"success\":0,\"error\":\"invalid sign\"}"
+
+2019-03-17 11:37:18 Debug: amount   "0.00035341" "62156"
+
+
+2019-03-17 11:37:19 Debug: yobit_make_trade "{\"success\":0,\"error\":\"invalid sign\"}"
+
+
+2019-03-17 11:37:20 Debug: yobit_make_trade "{\"success\":0,\"error\":\"invalid sign\"}"
+
+
+2019-03-17 11:37:21 Debug: yobit_make_trade "{\"success\":0,\"error\":\"invalid sign\"}"
+
+
+2019-03-17 11:37:23 Debug: yobit_make_trade "{\"success\":0,\"error\":\"invalid sign\"}"
+
+
+2019-03-17 11:37:24 Debug: yobit_ActiveOrders_List "{\"success\":0,\"error\":\"invalid sign\"}"
+
+2019-03-17 11:37:25 Debug: amount   "0.00035158" "62156"
+
+
+2019-03-17 11:37:25 Debug: yobit_make_trade "{\"success\":0,\"error\":\"invalid sign\"}"
+
+
+2019-03-17 11:37:27 Debug: yobit_make_trade "{\"success\":0,\"error\":\"invalid sign\"}"
+
+
+2019-03-17 11:37:28 Debug: yobit_make_trade "{\"success\":0,\"error\":\"invalid sign\"}"
+
+
+2019-03-17 11:37:29 Debug: yobit_make_trade "{\"success\":0,\"error\":\"invalid sign\"}"
+
+
+2019-03-17 11:37:30 Debug: yobit_ActiveOrders_List "{\"success\":0,\"error\":\"invalid sign\"}"
+
+2019-03-17 11:37:31 Debug: amount   "0.00035158" "62156"
+
+
+2019-03-17 11:37:32 Debug: yobit_make_trade "{\"success\":0,\"error\":\"invalid sign\"}"
+
+
+2019-03-17 11:37:33 Debug: yobit_make_trade "{\"success\":0,\"error\":\"invalid sign\"}"
+
+
+2019-03-17 11:37:35 Debug: yobit_make_trade "{\"success\":0,\"error\":\"invalid sign\"}"
+
+
+2019-03-17 11:37:37 Debug: yobit_make_trade "{\"success\":0,\"error\":\"invalid sign\"}"
+
+
+2019-03-17 11:37:38 Debug: yobit_ActiveOrders_List "{\"success\":0,\"error\":\"invalid sign\"}"
+
+2019-03-17 11:37:40 Debug: amount   "0.00035338" "62156"
+
+
+2019-03-17 11:37:41 Debug: yobit_make_trade "{\"success\":0,\"error\":\"invalid sign\"}"
+
+
+2019-03-17 11:37:42 Debug: yobit_make_trade "{\"success\":0,\"error\":\"invalid sign\"}"
+
+
+2019-03-17 11:37:43 Debug: yobit_make_trade "{\"success\":0,\"error\":\"invalid sign\"}"
+
+
+2019-03-17 11:37:45 Debug: yobit_make_trade "{\"success\":0,\"error\":\"invalid sign\"}"
+
+
+2019-03-17 11:37:46 Debug: yobit_ActiveOrders_List "{\"success\":0,\"error\":\"invalid sign\"}"
+
+
+2019-03-17 21:51:21 Debug: yobit_ActiveOrders_List "{\"success\":0,\"error\":\"invalid sign\"}"
+
+2019-03-17 21:51:27 Debug: amount   "0.00034657" "62156"
+
+
+2019-03-17 21:51:28 Debug: yobit_make_trade "{\"success\":0,\"error\":\"invalid sign\"}"
+
+
+2019-03-17 21:51:30 Debug: yobit_make_trade "{\"success\":0,\"error\":\"invalid sign\"}"
+
+
+2019-03-17 21:51:33 Debug: yobit_make_trade "{\"success\":0,\"error\":\"invalid sign\"}"
+
+
+2019-03-17 21:51:34 Debug: yobit_make_trade "{\"success\":0,\"error\":\"invalid sign\"}"
+
+
+2019-03-17 21:51:38 Debug: yobit_ActiveOrders_List "{\"success\":0,\"error\":\"invalid sign\"}"
+
+2019-03-17 21:51:39 Debug: amount   "0.00034657" "62156"
+
+
+2019-03-17 21:51:44 Debug: yobit_make_trade "{\"success\":0,\"error\":\"invalid sign\"}"
+
+
+2019-03-17 21:51:45 Debug: yobit_make_trade "{\"success\":0,\"error\":\"invalid sign\"}"
+
+
+2019-03-17 21:51:48 Debug: yobit_make_trade "{\"success\":0,\"error\":\"invalid sign\"}"
+
+
+2019-03-17 21:51:49 Debug: yobit_make_trade "{\"success\":0,\"error\":\"invalid sign\"}"
+
+
+2019-03-17 21:51:53 Debug: yobit_ActiveOrders_List "{\"success\":0,\"error\":\"invalid sign\"}"
+
+2019-03-17 21:51:54 Debug: amount   "0.00034645" "62156"
+
+
+2019-03-17 21:51:59 Debug: yobit_make_trade "{\"success\":0,\"error\":\"invalid sign\"}"
+
+
+2019-03-17 21:52:03 Debug: yobit_make_trade "{\"success\":0,\"error\":\"invalid sign\"}"
+
+
+2019-03-17 21:52:08 Debug: yobit_make_trade "{\"success\":0,\"error\":\"invalid sign\"}"
+
+
+2019-03-17 21:52:12 Debug: yobit_make_trade "{\"success\":0,\"error\":\"invalid sign\"}"
+
+
+2019-03-17 21:52:17 Debug: yobit_ActiveOrders_List "{\"success\":0,\"error\":\"invalid sign\"}"
+
+2019-03-17 21:52:23 Debug: amount   "0.00034667" "62156"
+
+
+2019-03-17 21:52:29 Debug: yobit_make_trade "{\"success\":0,\"error\":\"invalid sign\"}"
+
+
+2019-03-17 21:52:31 Debug: yobit_make_trade "{\"success\":0,\"error\":\"invalid sign\"}"
+
+
+2019-03-17 21:52:32 Debug: yobit_make_trade "{\"success\":0,\"error\":\"invalid sign\"}"
+
+
+2019-03-17 21:52:36 Debug: yobit_make_trade "{\"success\":0,\"error\":\"invalid sign\"}"
+
+
+2019-03-17 21:52:40 Debug: yobit_ActiveOrders_List "{\"success\":0,\"error\":\"invalid sign\"}"
+
+2019-03-17 21:52:42 Debug: amount   "0.00034662" "62156"
+
+
+2019-03-17 21:52:46 Debug: yobit_make_trade "{\"success\":0,\"error\":\"invalid sign\"}"
+
+
+2019-03-17 21:52:49 Debug: yobit_make_trade "{\"success\":0,\"error\":\"invalid sign\"}"
+
+
+2019-03-17 21:52:51 Debug: yobit_make_trade "{\"success\":0,\"error\":\"invalid sign\"}"
+
+
+2019-03-17 21:52:54 Debug: yobit_make_trade "{\"success\":0,\"error\":\"invalid sign\"}"
+
+
+2019-03-17 21:52:55 Debug: yobit_ActiveOrders_List "{\"success\":0,\"error\":\"invalid sign\"}"
+
+2019-03-17 21:52:57 Debug: amount   "0.00034662" "62156"
+
+
+2019-03-17 21:52:59 Debug: yobit_make_trade "{\"success\":0,\"error\":\"invalid sign\"}"
+
+
+2019-03-17 21:53:02 Debug: yobit_make_trade "{\"success\":0,\"error\":\"invalid sign\"}"
+
+
+2019-03-17 21:53:03 Debug: yobit_make_trade "{\"success\":0,\"error\":\"invalid sign\"}"
+
+
+2019-03-17 21:53:04 Debug: yobit_make_trade "{\"success\":0,\"error\":\"invalid sign\"}"
+
+
+2019-03-17 21:53:12 Debug: yobit_ActiveOrders_List "{\"success\":0,\"error\":\"invalid sign\"}"
+
+2019-03-17 21:53:14 Debug: amount   "0.00034662" "62156"
+
+
+2019-03-17 21:53:17 Debug: yobit_make_trade "{\"success\":0,\"error\":\"invalid sign\"}"
+
+
+2019-03-17 21:53:18 Debug: yobit_make_trade "{\"success\":0,\"error\":\"invalid sign\"}"
+
+
+2019-03-17 21:53:20 Debug: yobit_make_trade "{\"success\":0,\"error\":\"invalid sign\"}"
+
+
+2019-03-17 21:53:22 Debug: yobit_make_trade "{\"success\":0,\"error\":\"invalid sign\"}"
+
+
+2019-03-17 21:53:25 Debug: yobit_ActiveOrders_List "{\"success\":0,\"error\":\"invalid sign\"}"
+
+2019-03-17 21:53:28 Debug: amount   "0.00034654" "62156"
+
+
+2019-03-17 21:53:32 Debug: yobit_make_trade "{\"success\":0,\"error\":\"invalid sign\"}"
+
+
+2019-03-17 21:53:34 Debug: yobit_make_trade "{\"success\":0,\"error\":\"invalid sign\"}"
+
+
+2019-03-17 21:53:36 Debug: yobit_make_trade "{\"success\":0,\"error\":\"invalid sign\"}"
+
+
+2019-03-17 21:53:38 Debug: yobit_make_trade "{\"success\":0,\"error\":\"invalid sign\"}"
+
+
+2019-03-17 21:53:41 Debug: yobit_ActiveOrders_List "{\"success\":0,\"error\":\"invalid sign\"}"
+
+2019-03-17 21:53:43 Debug: amount   "0.00034662" "62156"
+
+
+2019-03-17 21:53:44 Debug: yobit_make_trade "{\"success\":0,\"error\":\"invalid sign\"}"
+
+
+2019-03-17 21:53:47 Debug: yobit_make_trade "{\"success\":0,\"error\":\"invalid sign\"}"
+
+
+2019-03-17 21:53:48 Debug: yobit_make_trade "{\"success\":0,\"error\":\"invalid sign\"}"
+
+
+2019-03-17 21:53:50 Debug: yobit_make_trade "{\"success\":0,\"error\":\"invalid sign\"}"
+
+
+2019-03-17 21:53:52 Debug: yobit_ActiveOrders_List "{\"success\":0,\"error\":\"invalid sign\"}"
+
+2019-03-17 21:53:56 Debug: amount   "0.00034654" "62156"
+
+
+2019-03-17 21:53:57 Debug: yobit_make_trade "{\"success\":0,\"error\":\"invalid sign\"}"
+
+
+2019-03-17 21:54:00 Debug: yobit_make_trade "{\"success\":0,\"error\":\"invalid sign\"}"
+
+
+2019-03-17 21:54:05 Debug: yobit_make_trade "{\"success\":0,\"error\":\"invalid sign\"}"
+
+
+2019-03-17 21:54:07 Debug: yobit_make_trade "{\"success\":0,\"error\":\"invalid sign\"}"
+
+
+2019-03-17 21:54:09 Debug: yobit_ActiveOrders_List "{\"success\":0,\"error\":\"invalid sign\"}"
+
+2019-03-17 21:54:13 Debug: amount   "0.00034653" "62156"
+
+
+2019-03-17 21:54:15 Debug: yobit_make_trade "{\"success\":0,\"error\":\"invalid sign\"}"
+
+
+2019-03-17 21:54:18 Debug: yobit_make_trade "{\"success\":0,\"error\":\"invalid sign\"}"
+
+
+2019-03-17 21:54:20 Debug: yobit_make_trade "{\"success\":0,\"error\":\"invalid sign\"}"
+
+
+2019-03-17 21:54:23 Debug: yobit_make_trade "{\"success\":0,\"error\":\"invalid sign\"}"
+
+
+2019-03-17 21:54:24 Debug: yobit_ActiveOrders_List "{\"success\":0,\"error\":\"invalid sign\"}"
+
+2019-03-17 21:54:26 Debug: amount   "0.00034647" "62156"
+
+
+2019-03-17 21:54:28 Debug: yobit_make_trade "{\"success\":0,\"error\":\"invalid sign\"}"
+
+
+2019-03-17 21:54:30 Debug: yobit_make_trade "{\"success\":0,\"error\":\"invalid sign\"}"
+
+
+2019-03-17 21:54:32 Debug: yobit_make_trade "{\"success\":0,\"error\":\"invalid sign\"}"
+
+
+2019-03-17 21:54:34 Debug: yobit_make_trade "{\"success\":0,\"error\":\"invalid sign\"}"
+
+
+2019-03-17 21:54:35 Debug: yobit_ActiveOrders_List "{\"success\":0,\"error\":\"invalid sign\"}"
+
+2019-03-17 21:54:41 Debug: amount   "0.00034662" "62156"
+
+
+2019-03-17 21:54:47 Debug: yobit_make_trade "{\"success\":0,\"error\":\"invalid sign\"}"
+
+
+2019-03-17 21:54:50 Debug: yobit_make_trade "{\"success\":0,\"error\":\"invalid sign\"}"
+
+
+2019-03-17 21:54:53 Debug: yobit_make_trade "{\"success\":0,\"error\":\"invalid sign\"}"
+
+
+2019-03-17 21:54:57 Debug: yobit_make_trade "{\"success\":0,\"error\":\"invalid sign\"}"
+
+
+2019-03-17 21:55:00 Debug: yobit_ActiveOrders_List "{\"success\":0,\"error\":\"invalid sign\"}"
+
+2019-03-17 21:55:02 Debug: amount   "0.00034662" "62156"
+
+
+2019-03-17 21:55:05 Debug: yobit_make_trade "{\"success\":0,\"error\":\"invalid sign\"}"
+
+
+2019-03-17 21:55:07 Debug: yobit_make_trade "{\"success\":0,\"error\":\"invalid sign\"}"
+
+
+2019-03-17 21:55:08 Debug: yobit_make_trade "{\"success\":0,\"error\":\"invalid sign\"}"
+
+
+2019-03-17 21:55:09 Debug: yobit_make_trade "{\"success\":0,\"error\":\"invalid sign\"}"
+
+
+2019-03-17 21:55:11 Debug: yobit_ActiveOrders_List "{\"success\":0,\"error\":\"invalid sign\"}"
+
+2019-03-17 21:55:13 Debug: amount   "0.00034654" "62156"
+
+
+2019-03-17 21:55:15 Debug: yobit_make_trade "{\"success\":0,\"error\":\"invalid sign\"}"
+
+
+2019-03-17 21:55:21 Debug: yobit_make_trade "{\"success\":0,\"error\":\"invalid sign\"}"
+
+
+2019-03-17 21:55:24 Debug: yobit_make_trade "{\"success\":0,\"error\":\"invalid sign\"}"
+
+
+2019-03-17 21:55:26 Debug: yobit_make_trade "{\"success\":0,\"error\":\"invalid sign\"}"
+
+
+2019-03-17 21:55:29 Debug: yobit_ActiveOrders_List "{\"success\":0,\"error\":\"invalid sign\"}"
+
+2019-03-17 21:55:31 Debug: amount   "0.00034662" "62156"
+
+
+2019-03-17 21:55:32 Debug: yobit_make_trade "{\"success\":0,\"error\":\"invalid sign\"}"
+
+
+2019-03-17 21:55:35 Debug: yobit_make_trade "{\"success\":0,\"error\":\"invalid sign\"}"
+
+
+2019-03-17 21:55:37 Debug: yobit_make_trade "{\"success\":0,\"error\":\"invalid sign\"}"
+
+
+2019-03-17 21:55:47 Debug: yobit_make_trade "{\"success\":0,\"error\":\"invalid sign\"}"
+
+
+2019-03-17 21:55:50 Debug: yobit_ActiveOrders_List "{\"success\":0,\"error\":\"invalid sign\"}"
+
+2019-03-17 21:55:56 Debug: amount   "0.00034662" "62156"
+
+
+2019-03-17 21:55:57 Debug: yobit_make_trade "{\"success\":0,\"error\":\"invalid sign\"}"
+
+
+2019-03-17 21:56:00 Debug: yobit_make_trade "{\"success\":0,\"error\":\"invalid sign\"}"
+
+
+2019-03-17 21:56:01 Debug: yobit_make_trade "{\"success\":0,\"error\":\"invalid sign\"}"
+
+
+2019-03-17 21:56:05 Debug: yobit_make_trade "{\"success\":0,\"error\":\"invalid sign\"}"
+
+
+2019-03-17 21:56:07 Debug: yobit_ActiveOrders_List "{\"success\":0,\"error\":\"invalid sign\"}"
+
+2019-03-17 21:56:12 Debug: amount   "0.00034654" "62156"
+
+
+2019-03-17 21:56:13 Debug: yobit_make_trade "{\"success\":0,\"error\":\"invalid sign\"}"
+
+
+2019-03-17 21:56:15 Debug: yobit_make_trade "{\"success\":0,\"error\":\"invalid sign\"}"
+
+
+2019-03-17 21:56:17 Debug: yobit_make_trade "{\"success\":0,\"error\":\"invalid sign\"}"
+
+
+2019-03-17 21:56:18 Debug: yobit_make_trade "{\"success\":0,\"error\":\"invalid sign\"}"
+
+
+2019-03-17 21:56:20 Debug: yobit_ActiveOrders_List "{\"success\":0,\"error\":\"invalid sign\"}"
+
+2019-03-17 21:56:22 Debug: amount   "0.00034662" "62156"
+
+2019-03-17 21:56:25 Debug: yobit_make_trade "{\"success\":0,\"error\":\"invalid sign\"}"
+
+
+2019-03-17 21:56:26 Debug: yobit_make_trade "{\"success\":0,\"error\":\"invalid sign\"}"
+
+
+2019-03-17 21:56:28 Debug: yobit_make_trade "{\"success\":0,\"error\":\"invalid sign\"}"
+
+
+2019-03-17 21:56:29 Debug: yobit_make_trade "{\"success\":0,\"error\":\"invalid sign\"}"
+
+
+2019-03-17 21:56:34 Debug: yobit_ActiveOrders_List "{\"success\":0,\"error\":\"invalid sign\"}"
+
+2019-03-17 21:56:38 Debug: amount   "0.00034662" "62156"
+
+
+2019-03-17 21:56:41 Debug: yobit_make_trade "{\"success\":0,\"error\":\"invalid sign\"}"
+
+
+2019-03-17 21:56:46 Debug: yobit_make_trade "{\"success\":0,\"error\":\"invalid sign\"}"
+
+
+2019-03-17 21:56:48 Debug: yobit_make_trade "{\"success\":0,\"error\":\"invalid sign\"}"
+
+
+2019-03-17 21:56:50 Debug: yobit_make_trade "{\"success\":0,\"error\":\"invalid sign\"}"
+
+
+2019-03-17 21:56:52 Debug: yobit_ActiveOrders_List "{\"success\":0,\"error\":\"invalid sign\"}"
+
+2019-03-17 21:56:56 Debug: amount   "0.00034662" "62156"
+
+
+2019-03-17 21:56:59 Debug: yobit_make_trade "{\"success\":0,\"error\":\"invalid sign\"}"
+
+
+2019-03-17 21:57:01 Debug: yobit_make_trade "{\"success\":0,\"error\":\"invalid sign\"}"
+
+
+2019-03-17 21:57:03 Debug: yobit_make_trade "{\"success\":0,\"error\":\"invalid sign\"}"
+
+
+2019-03-17 21:57:09 Debug: yobit_make_trade "{\"success\":0,\"error\":\"invalid sign\"}"
+
+
+2019-03-17 21:57:11 Debug: yobit_ActiveOrders_List "{\"success\":0,\"error\":\"invalid sign\"}"
+
+2019-03-17 21:57:14 Debug: amount   "0.00034662" "62156"
+
+
+2019-03-17 21:57:16 Debug: yobit_make_trade "{\"success\":0,\"error\":\"invalid sign\"}"
+
+
+2019-03-17 21:57:19 Debug: yobit_make_trade "{\"success\":0,\"error\":\"invalid sign\"}"
+
+
+2019-03-17 21:57:20 Debug: yobit_make_trade "{\"success\":0,\"error\":\"invalid sign\"}"
+
+
+2019-03-17 21:57:24 Debug: yobit_make_trade "{\"success\":0,\"error\":\"invalid sign\"}"
+
+
+2019-03-17 21:57:28 Debug: yobit_ActiveOrders_List "{\"success\":0,\"error\":\"invalid sign\"}"
+
+2019-03-17 21:57:40 Debug: amount   "0.00034654" "62156"
+
+
+2019-03-17 21:57:43 Debug: yobit_make_trade "{\"success\":0,\"error\":\"invalid sign\"}"
+
+
+2019-03-17 21:57:45 Debug: yobit_make_trade "{\"success\":0,\"error\":\"invalid sign\"}"
+
+
+2019-03-17 21:57:47 Debug: yobit_make_trade "{\"success\":0,\"error\":\"invalid sign\"}"
+
+
+2019-03-17 21:57:50 Debug: yobit_make_trade "{\"success\":0,\"error\":\"invalid sign\"}"
+
+
+2019-03-17 21:57:54 Debug: yobit_ActiveOrders_List "{\"success\":0,\"error\":\"invalid sign\"}"
+
+2019-03-17 21:57:57 Debug: amount   "0.00034662" "62156"
+
+
+2019-03-17 21:57:59 Debug: yobit_make_trade "{\"success\":0,\"error\":\"invalid sign\"}"
+
+
+2019-03-17 21:58:01 Debug: yobit_make_trade "{\"success\":0,\"error\":\"invalid sign\"}"
+
+
+2019-03-17 21:58:03 Debug: yobit_make_trade "{\"success\":0,\"error\":\"invalid sign\"}"
+
+
+2019-03-17 21:58:06 Debug: yobit_make_trade "{\"success\":0,\"error\":\"invalid sign\"}"
+
+
+2019-03-17 21:58:10 Debug: yobit_ActiveOrders_List "{\"success\":0,\"error\":\"invalid sign\"}"
+
+2019-03-17 21:58:11 Debug: amount   "0.00034654" "62156"
+
+
+2019-03-17 21:58:14 Debug: yobit_make_trade "{\"success\":0,\"error\":\"invalid sign\"}"
+
+
+2019-03-17 21:58:17 Debug: yobit_make_trade "{\"success\":0,\"error\":\"invalid sign\"}"
+
+
+2019-03-17 21:58:19 Debug: yobit_make_trade "{\"success\":0,\"error\":\"invalid sign\"}"
+
+
+2019-03-17 21:58:21 Debug: yobit_make_trade "{\"success\":0,\"error\":\"invalid sign\"}"
+
+
+2019-03-17 21:58:23 Debug: yobit_ActiveOrders_List "{\"success\":0,\"error\":\"invalid sign\"}"
+
+2019-03-17 21:58:24 Debug: amount   "0.00034647" "62156"
+
+
+2019-03-17 21:58:26 Debug: yobit_make_trade "{\"success\":0,\"error\":\"invalid sign\"}"
+
+
+2019-03-17 21:58:29 Debug: yobit_make_trade "{\"success\":0,\"error\":\"invalid sign\"}"
+
+
+2019-03-17 21:58:31 Debug: yobit_make_trade "{\"success\":0,\"error\":\"invalid sign\"}"
+
+2019-03-17 21:58:35 Debug: yobit_make_trade "{\"success\":0,\"error\":\"invalid sign\"}"
+
+
+2019-03-17 21:58:38 Debug: yobit_ActiveOrders_List "{\"success\":0,\"error\":\"invalid sign\"}"
+
+2019-03-17 21:58:44 Debug: amount   "0.00034662" "62156"
+
+
+2019-03-17 21:58:45 Debug: yobit_make_trade "{\"success\":0,\"error\":\"invalid sign\"}"
+
+
+2019-03-17 21:58:50 Debug: yobit_make_trade "{\"success\":0,\"error\":\"invalid sign\"}"
+
+
+2019-03-17 21:58:53 Debug: yobit_make_trade "{\"success\":0,\"error\":\"invalid sign\"}"
+
+
+2019-03-17 21:58:55 Debug: yobit_make_trade "{\"success\":0,\"error\":\"invalid sign\"}"
+
+
+2019-03-17 21:58:57 Debug: yobit_ActiveOrders_List "{\"success\":0,\"error\":\"invalid sign\"}"
+
+2019-03-17 21:59:01 Debug: amount   "0.00034662" "62156"
+
+
+2019-03-17 21:59:03 Debug: yobit_make_trade "{\"success\":0,\"error\":\"invalid sign\"}"
+
+
+2019-03-17 21:59:05 Debug: yobit_make_trade "{\"success\":0,\"error\":\"invalid sign\"}"
+
+
+2019-03-17 21:59:06 Debug: yobit_make_trade "{\"success\":0,\"error\":\"invalid sign\"}"
+
+
+2019-03-17 21:59:07 Debug: yobit_make_trade "{\"success\":0,\"error\":\"invalid sign\"}"
+
+
+2019-03-17 21:59:10 Debug: yobit_ActiveOrders_List "{\"success\":0,\"error\":\"invalid sign\"}"
+
+2019-03-17 21:59:14 Debug: amount   "0.00034662" "62156"
+
+
+2019-03-17 21:59:16 Debug: yobit_make_trade "{\"success\":0,\"error\":\"invalid sign\"}"
+
+
+2019-03-17 21:59:19 Debug: yobit_make_trade "{\"success\":0,\"error\":\"invalid sign\"}"
+
+
+2019-03-17 21:59:22 Debug: yobit_make_trade "{\"success\":0,\"error\":\"invalid sign\"}"
+
+
+2019-03-17 21:59:25 Debug: yobit_make_trade "{\"success\":0,\"error\":\"invalid sign\"}"
+
+
+2019-03-17 21:59:27 Debug: yobit_ActiveOrders_List "{\"success\":0,\"error\":\"invalid sign\"}"
+
+2019-03-17 21:59:34 Debug: amount   "0.00034662" "62156"
+
+
+2019-03-17 21:59:35 Debug: yobit_make_trade "{\"success\":0,\"error\":\"invalid sign\"}"
+
+
+2019-03-17 21:59:40 Debug: yobit_make_trade "{\"success\":0,\"error\":\"invalid sign\"}"
+
+
+2019-03-17 21:59:42 Debug: yobit_make_trade "{\"success\":0,\"error\":\"invalid sign\"}"
+
+
+2019-03-17 21:59:45 Debug: yobit_make_trade "{\"success\":0,\"error\":\"invalid sign\"}"
+
+
+2019-03-17 21:59:47 Debug: yobit_ActiveOrders_List "{\"success\":0,\"error\":\"invalid sign\"}"
+
+2019-03-17 21:59:49 Debug: amount   "0.00034662" "62156"
+
+
+2019-03-17 21:59:50 Debug: yobit_make_trade "{\"success\":0,\"error\":\"invalid sign\"}"
+
+
+2019-03-17 21:59:51 Debug: yobit_make_trade "{\"success\":0,\"error\":\"invalid sign\"}"
+
+
+2019-03-17 21:59:53 Debug: yobit_make_trade "{\"success\":0,\"error\":\"invalid sign\"}"
+
+
+2019-03-17 21:59:54 Debug: yobit_make_trade "{\"success\":0,\"error\":\"invalid sign\"}"
+
+
+2019-03-17 21:59:55 Debug: yobit_ActiveOrders_List "{\"success\":0,\"error\":\"invalid sign\"}"
+
+2019-03-17 21:59:58 Debug: amount   "0.00034662" "62156"
+
+
+2019-03-17 22:00:00 Debug: yobit_make_trade "{\"success\":0,\"error\":\"invalid sign\"}"
+
+
+2019-03-17 22:00:08 Debug: yobit_make_trade "{\"success\":0,\"error\":\"invalid sign\"}"
+
+
+2019-03-17 22:00:09 Debug: yobit_make_trade "{\"success\":0,\"error\":\"invalid sign\"}"
+
+
+2019-03-17 22:00:13 Debug: yobit_make_trade "{\"success\":0,\"error\":\"invalid sign\"}"
+
+
+2019-03-17 22:00:15 Debug: yobit_ActiveOrders_List "{\"success\":0,\"error\":\"invalid sign\"}"
+
+2019-03-17 22:00:17 Debug: amount   "0.00034662" "62156"
+
+
+2019-03-17 22:00:20 Debug: yobit_make_trade "{\"success\":0,\"error\":\"invalid sign\"}"
+
+
+2019-03-17 22:00:21 Debug: yobit_make_trade "{\"success\":0,\"error\":\"invalid sign\"}"
+
+
+2019-03-17 22:00:23 Debug: yobit_make_trade "{\"success\":0,\"error\":\"invalid sign\"}"
+
+
+2019-03-17 22:00:24 Debug: yobit_make_trade "{\"success\":0,\"error\":\"invalid sign\"}"
+
+
+2019-03-17 22:00:25 Debug: yobit_ActiveOrders_List "{\"success\":0,\"error\":\"invalid sign\"}"
+
+2019-03-17 22:00:28 Debug: amount   "0.00034662" "62156"
+
+
+2019-03-17 22:00:32 Debug: yobit_make_trade "{\"success\":0,\"error\":\"invalid sign\"}"
+
+
+2019-03-17 22:00:35 Debug: yobit_make_trade "{\"success\":0,\"error\":\"invalid sign\"}"
+
+
+2019-03-17 22:00:36 Debug: yobit_make_trade "{\"success\":0,\"error\":\"invalid sign\"}"
+
+
+2019-03-17 22:00:37 Debug: yobit_make_trade "{\"success\":0,\"error\":\"invalid sign\"}"
+
+
+2019-03-17 22:00:39 Debug: yobit_ActiveOrders_List "{\"success\":0,\"error\":\"invalid sign\"}"
+
+2019-03-17 22:00:44 Debug: amount   "0.00034661" "62156"
+
+
+2019-03-17 22:00:45 Debug: yobit_make_trade "{\"success\":0,\"error\":\"invalid sign\"}"
+
+
+2019-03-17 22:00:47 Debug: yobit_make_trade "{\"success\":0,\"error\":\"invalid sign\"}"
+
+
+2019-03-17 22:00:49 Debug: yobit_make_trade "{\"success\":0,\"error\":\"invalid sign\"}"
+
+
+2019-03-17 22:00:51 Debug: yobit_make_trade "{\"success\":0,\"error\":\"invalid sign\"}"
+
+
+2019-03-17 22:00:53 Debug: yobit_ActiveOrders_List "{\"success\":0,\"error\":\"invalid sign\"}"
+
+2019-03-17 22:01:00 Debug: amount   "0.00034661" "62156"
+
+
+2019-03-17 22:01:02 Debug: yobit_make_trade "{\"success\":0,\"error\":\"invalid sign\"}"
+
+
+2019-03-17 22:01:04 Debug: yobit_make_trade "{\"success\":0,\"error\":\"invalid sign\"}"
+
+
+2019-03-17 22:01:09 Debug: yobit_make_trade "{\"success\":0,\"error\":\"invalid sign\"}"
+
+
+2019-03-17 22:01:11 Debug: yobit_make_trade "{\"success\":0,\"error\":\"invalid sign\"}"
+
+
+2019-03-17 22:01:13 Debug: yobit_ActiveOrders_List "{\"success\":0,\"error\":\"invalid sign\"}"
+
+2019-03-17 22:01:14 Debug: amount   "0.00034653" "62156"
+
+
+2019-03-17 22:01:16 Debug: yobit_make_trade "{\"success\":0,\"error\":\"invalid sign\"}"
+
+
+2019-03-17 22:01:20 Debug: yobit_make_trade "{\"success\":0,\"error\":\"invalid sign\"}"
+
+
+2019-03-17 22:01:21 Debug: yobit_make_trade "{\"success\":0,\"error\":\"invalid sign\"}"
+
+
+2019-03-17 22:01:23 Debug: yobit_make_trade "{\"success\":0,\"error\":\"invalid sign\"}"
+
+
+2019-03-17 22:01:25 Debug: yobit_ActiveOrders_List "{\"success\":0,\"error\":\"invalid sign\"}"
+
+2019-03-17 22:01:29 Debug: amount   "0.00034653" "62156"
+
+
+2019-03-17 22:01:31 Debug: yobit_make_trade "{\"success\":0,\"error\":\"invalid sign\"}"
+
+
+2019-03-17 22:01:32 Debug: yobit_make_trade "{\"success\":0,\"error\":\"invalid sign\"}"
+
+
+2019-03-17 22:01:34 Debug: yobit_make_trade "{\"success\":0,\"error\":\"invalid sign\"}"
+
+
+2019-03-17 22:01:36 Debug: yobit_make_trade "{\"success\":0,\"error\":\"invalid sign\"}"
+
+
+2019-03-17 22:01:38 Debug: yobit_ActiveOrders_List "{\"success\":0,\"error\":\"invalid sign\"}"
+
+2019-03-17 22:01:41 Debug: amount   "0.00034653" "62156"
+
+
+2019-03-17 22:01:42 Debug: yobit_make_trade "{\"success\":0,\"error\":\"invalid sign\"}"
+
+
+2019-03-17 22:01:44 Debug: yobit_make_trade "{\"success\":0,\"error\":\"invalid sign\"}"
+
+
+2019-03-17 22:01:47 Debug: yobit_make_trade "{\"success\":0,\"error\":\"invalid sign\"}"
+
+
+2019-03-17 22:01:49 Debug: yobit_make_trade "{\"success\":0,\"error\":\"invalid sign\"}"
+
+
+2019-03-17 22:01:50 Debug: yobit_ActiveOrders_List "{\"success\":0,\"error\":\"invalid sign\"}"
+
+2019-03-17 22:01:51 Debug: amount   "0.00034646" "62156"
+
+
+2019-03-17 22:01:54 Debug: yobit_make_trade "{\"success\":0,\"error\":\"invalid sign\"}"
+
+
+2019-03-17 22:01:56 Debug: yobit_make_trade "{\"success\":0,\"error\":\"invalid sign\"}"
+
+
+2019-03-17 22:01:58 Debug: yobit_make_trade "{\"success\":0,\"error\":\"invalid sign\"}"
+
+
+2019-03-17 22:02:03 Debug: yobit_make_trade "{\"success\":0,\"error\":\"invalid sign\"}"
+
+
+2019-03-17 22:02:41 Debug: yobit_ActiveOrders_List "{\"success\":0,\"error\":\"invalid sign\"}"
+
+
+2019-03-17 22:03:30 Debug: yobit_ActiveOrders_List "{\"success\":0,\"error\":\"invalid sign\"}"
+
+
+2019-03-17 22:04:44 Debug: yobit_ActiveOrders_List "{\"success\":0,\"error\":\"invalid sign\"}"
+
+
+2019-03-17 22:05:18 Debug: yobit_ActiveOrders_List "{\"success\":0,\"error\":\"invalid sign\"}"
+
+
+2019-03-17 22:05:36 Debug: yobit_ActiveOrders_List "{\"success\":0,\"error\":\"invalid sign\"}"
+
+2019-03-17 22:05:41 Debug: amount   "0.00034661" "62156"
+
+
+2019-03-17 22:05:42 Debug: yobit_make_trade "{\"success\":0,\"error\":\"invalid sign\"}"
+
+
+2019-03-17 22:05:44 Debug: yobit_make_trade "{\"success\":0,\"error\":\"invalid sign\"}"
+
+
+2019-03-17 22:05:46 Debug: yobit_make_trade "{\"success\":0,\"error\":\"invalid sign\"}"
+
+
+2019-03-17 22:05:47 Debug: yobit_make_trade "{\"success\":0,\"error\":\"invalid sign\"}"
+
+
+2019-03-17 22:05:49 Debug: yobit_ActiveOrders_List "{\"success\":0,\"error\":\"invalid sign\"}"
+
+
+2019-03-17 23:21:55 Debug: yobit_ActiveOrders_List "{\"success\":0,\"error\":\"invalid sign\"}"
+
+
+2019-03-17 23:22:01 Debug: yobit_ActiveOrders_List "{\"success\":0,\"error\":\"invalid sign\"}"
+
+2019-03-17 23:22:03 Debug: amount   "0.00034155" "62156"
+
+
+2019-03-17 23:22:05 Debug: yobit_make_trade "{\"success\":0,\"error\":\"invalid sign\"}"
+
+
+2019-03-17 23:22:16 Debug: yobit_make_trade "{\"success\":0,\"error\":\"invalid sign\"}"
+
+
+2019-03-17 23:22:17 Debug: yobit_make_trade "{\"success\":0,\"error\":\"invalid sign\"}"
+
+
+2019-03-17 23:22:18 Debug: yobit_make_trade "{\"success\":0,\"error\":\"invalid sign\"}"
+
+
+2019-03-17 23:22:39 Debug: yobit_ActiveOrders_List "{\"success\":0,\"error\":\"invalid sign\"}"
+
+
+2019-03-17 23:26:14 Debug: yobit_ActiveOrders_List "{\"success\":0,\"error\":\"invalid sign\"}"
+
+
+2019-03-17 23:26:23 Debug: yobit_ActiveOrders_List "{\"success\":0,\"error\":\"invalid sign\"}"
+
+
+2019-03-17 23:27:15 Debug: yobit_ActiveOrders_List "{\"success\":0,\"error\":\"invalid sign\"}"
+
+
+2019-03-17 23:27:24 Debug: yobit_ActiveOrders_List "{\"success\":0,\"error\":\"invalid sign\"}"
+
+
+2019-03-17 23:30:18 Debug: yobit_ActiveOrders_List "{\"success\":0,\"error\":\"invalid sign\"}"
+
+
+2019-03-17 23:30:37 Debug: yobit_ActiveOrders_List "{\"success\":0,\"error\":\"invalid sign\"}"
+
+
+2019-03-17 23:32:50 Debug: yobit_make_trade "{\"success\":0,\"error\":\"invalid sign\"}"
+
+2019-03-17 23:32:50 Debug: amount   "0.00033876" "62156"
+
+
+2019-03-17 23:32:51 Debug: yobit_make_trade "{\"success\":0,\"error\":\"invalid sign\"}"
+
+
+2019-03-17 23:32:53 Debug: yobit_make_trade "{\"success\":0,\"error\":\"invalid sign\"}"
+
+
+2019-03-17 23:32:54 Debug: yobit_make_trade "{\"success\":0,\"error\":\"invalid sign\"}"
+
+
+2019-03-17 23:33:46 Debug: yobit_make_trade "{\"success\":0,\"error\":\"invalid sign\"}"
+
+
+2019-03-17 23:33:49 Debug: yobit_ActiveOrders_List "{\"success\":0,\"error\":\"invalid sign\"}"
+
+
+2019-03-17 23:35:41 Debug: yobit_ActiveOrders_List "{\"success\":0,\"error\":\"invalid sign\"}"
+
+
+2019-03-17 23:36:05 Debug: yobit_ActiveOrders_List "{\"success\":0,\"error\":\"invalid sign\"}"
+
+
+2019-03-17 23:37:30 Debug: yobit_ActiveOrders_List "{\"success\":0,\"error\":\"invalid sign\"}"
+
+
+2019-03-17 23:37:48 Debug: yobit_ActiveOrders_List "{\"success\":0,\"error\":\"invalid sign\"}"
+
+
+2019-03-17 23:37:59 Debug: yobit_ActiveOrders_List "{\"success\":0,\"error\":\"invalid sign\"}"
+
+
+2019-03-17 23:40:45 Debug: yobit_ActiveOrders_List "{\"success\":0,\"error\":\"invalid sign\"}"
+
+
+2019-03-17 23:40:55 Debug: yobit_ActiveOrders_List "{\"success\":0,\"error\":\"invalid sign\"}"
+
+2019-03-17 23:41:11 Debug: amount   "0.00034007" "62156"
+
+
+2019-03-17 23:41:12 Debug: yobit_make_trade "{\"success\":0,\"error\":\"invalid sign\"}"
+
+
+2019-03-17 23:41:13 Debug: yobit_make_trade "{\"success\":0,\"error\":\"invalid sign\"}"
+
+
+2019-03-17 23:41:15 Debug: yobit_make_trade "{\"success\":0,\"error\":\"invalid sign\"}"
+
+
+2019-03-17 23:41:25 Debug: yobit_make_trade "{\"success\":0,\"error\":\"invalid sign\"}"
+
+
+2019-03-17 23:41:32 Debug: yobit_ActiveOrders_List "{\"success\":0,\"error\":\"invalid sign\"}"
+
+2019-03-17 23:41:51 Debug: amount   "0.00033997" "62156"
+
+
+2019-03-17 23:41:54 Debug: yobit_make_trade "{\"success\":0,\"error\":\"invalid sign\"}"
+
+
+2019-03-17 23:42:02 Debug: yobit_make_trade "{\"success\":0,\"error\":\"invalid sign\"}"
+
+
+2019-03-17 23:42:03 Debug: yobit_make_trade "{\"success\":0,\"error\":\"invalid sign\"}"
+
+
+2019-03-17 23:42:06 Debug: yobit_make_trade "{\"success\":0,\"error\":\"invalid sign\"}"
+
+
+2019-03-17 23:42:11 Debug: yobit_ActiveOrders_List "{\"success\":0,\"error\":\"invalid sign\"}"
+
+2019-03-17 23:42:15 Debug: amount   "0.00034021" "62156"
+
+
+2019-03-17 23:42:28 Debug: yobit_make_trade "{\"success\":0,\"error\":\"invalid sign\"}"
+
+
+2019-03-17 23:42:30 Debug: yobit_make_trade "{\"success\":0,\"error\":\"invalid sign\"}"
+
+
+2019-03-17 23:42:33 Debug: yobit_make_trade "{\"success\":0,\"error\":\"invalid sign\"}"
+
+
+2019-03-17 23:42:36 Debug: yobit_make_trade "{\"success\":0,\"error\":\"invalid sign\"}"
+
+
+2019-03-17 23:42:39 Debug: yobit_ActiveOrders_List "{\"success\":0,\"error\":\"invalid sign\"}"
+
+
+2019-03-17 23:43:55 Debug: yobit_ActiveOrders_List "{\"success\":0,\"error\":\"invalid sign\"}"
+
+
+2019-03-17 23:43:59 Debug: yobit_ActiveOrders_List "{\"success\":0,\"error\":\"invalid sign\"}"
+
+2019-03-17 23:44:11 Debug: amount   "0.00033965" "62156"
+
+
+2019-03-17 23:44:23 Debug: yobit_make_trade "{\"success\":0,\"error\":\"invalid sign\"}"
+
+
+2019-03-17 23:44:29 Debug: yobit_make_trade "{\"success\":0,\"error\":\"invalid sign\"}"
+
+
+2019-03-17 23:44:31 Debug: yobit_make_trade "{\"success\":0,\"error\":\"invalid sign\"}"
+
+
+2019-03-17 23:44:39 Debug: yobit_make_trade "{\"success\":0,\"error\":\"invalid sign\"}"
+
+
+2019-03-17 23:45:06 Debug: yobit_ActiveOrders_List "{\"success\":0,\"error\":\"invalid sign\"}"
+
+2019-03-17 23:45:14 Debug: amount   "0.00033982" "62156"
+
+
+2019-03-17 23:45:30 Debug: yobit_make_trade "{\"success\":0,\"error\":\"invalid sign\"}"
+
+
+2019-03-17 23:45:31 Debug: yobit_make_trade "{\"success\":0,\"error\":\"invalid sign\"}"
+
+
+2019-03-17 23:45:32 Debug: yobit_make_trade "{\"success\":0,\"error\":\"invalid sign\"}"
+
+
+2019-03-17 23:45:40 Debug: yobit_make_trade "{\"success\":0,\"error\":\"invalid sign\"}"
+
+
+2019-03-17 23:45:41 Debug: yobit_ActiveOrders_List "{\"success\":0,\"error\":\"invalid sign\"}"
+
+2019-03-17 23:45:46 Debug: amount   "0.00033965" "62156"
+
+
+2019-03-17 23:46:35 Debug: yobit_make_trade "{\"success\":0,\"error\":\"invalid sign\"}"
+
+
+2019-03-17 23:47:13 Debug: yobit_make_trade "{\"success\":0,\"error\":\"invalid sign\"}"
+
+
+2019-03-17 23:47:40 Debug: yobit_make_trade "{\"success\":0,\"error\":\"invalid sign\"}"
+
+
+2019-03-17 23:47:41 Debug: yobit_make_trade "{\"success\":0,\"error\":\"invalid sign\"}"
+
+
+2019-03-17 23:47:43 Debug: yobit_ActiveOrders_List "{\"success\":0,\"error\":\"invalid sign\"}"
+
+
+2019-03-17 23:47:59 Debug: yobit_make_trade "{\"success\":0,\"error\":\"invalid sign\"}"
+
+
+2019-03-17 23:48:36 Debug: yobit_ActiveOrders_List "{\"success\":0,\"error\":\"invalid sign\"}"
+
+
+2019-03-17 23:48:41 Debug: yobit_ActiveOrders_List "{\"success\":0,\"error\":\"invalid sign\"}"
+
+2019-03-17 23:48:45 Debug: amount   "0.00033848" "62156"
+
+
+2019-03-17 23:48:46 Debug: yobit_make_trade "{\"success\":0,\"error\":\"invalid sign\"}"
+
+
+2019-03-17 23:48:53 Debug: yobit_make_trade "{\"success\":0,\"error\":\"invalid sign\"}"
+
+
+2019-03-17 23:49:03 Debug: yobit_make_trade "{\"success\":0,\"error\":\"invalid sign\"}"
+
+
+2019-03-17 23:49:09 Debug: yobit_ActiveOrders_List "{\"success\":0,\"error\":\"invalid sign\"}"
+
+
+2019-03-17 23:49:12 Debug: yobit_ActiveOrders_List "{\"success\":0,\"error\":\"invalid sign\"}"
+
+2019-03-17 23:49:13 Debug: amount   "0.00033837" "62156"
+
+
+2019-03-17 23:49:16 Debug: yobit_make_trade "{\"success\":0,\"error\":\"invalid sign\"}"
+
+
+2019-03-17 23:49:19 Debug: yobit_make_trade "{\"success\":0,\"error\":\"invalid sign\"}"
+
+
+2019-03-17 23:49:20 Debug: yobit_make_trade "{\"success\":0,\"error\":\"invalid sign\"}"
+
+
+2019-03-17 23:49:21 Debug: yobit_make_trade "{\"success\":0,\"error\":\"invalid sign\"}"
+
+
+2019-03-17 23:49:24 Debug: yobit_ActiveOrders_List "{\"success\":0,\"error\":\"invalid sign\"}"
+
+2019-03-17 23:49:28 Debug: amount   "0.00033834" "62156"
+
+
+2019-03-17 23:49:31 Debug: yobit_make_trade "{\"success\":0,\"error\":\"invalid sign\"}"
+
+
+2019-03-17 23:49:37 Debug: yobit_ActiveOrders_List "{\"success\":0,\"error\":\"invalid sign\"}"
+
+
+2019-03-17 23:49:46 Debug: yobit_make_trade "{\"success\":0,\"error\":\"invalid sign\"}"
+
+2019-03-17 23:49:46 Debug: amount   "0.00033829" "62156"
+
+
+2019-03-17 23:49:48 Debug: yobit_make_trade "{\"success\":0,\"error\":\"invalid sign\"}"
+
+
+2019-03-17 23:49:50 Debug: yobit_make_trade "{\"success\":0,\"error\":\"invalid sign\"}"
+
+
+2019-03-17 23:50:05 Debug: yobit_make_trade "{\"success\":0,\"error\":\"invalid sign\"}"
+
+
+2019-03-17 23:50:11 Debug: yobit_make_trade "{\"success\":0,\"error\":\"invalid sign\"}"
+
+
+2019-03-17 23:50:14 Debug: yobit_ActiveOrders_List "{\"success\":0,\"error\":\"invalid sign\"}"
+
+2019-03-17 23:50:14 Debug: amount   "0.00033825" "62156"
+
+
+2019-03-17 23:50:16 Debug: yobit_make_trade "{\"success\":0,\"error\":\"invalid sign\"}"
+
+
+2019-03-17 23:50:18 Debug: yobit_make_trade "{\"success\":0,\"error\":\"invalid sign\"}"
+
+
+2019-03-17 23:50:19 Debug: yobit_make_trade "{\"success\":0,\"error\":\"invalid sign\"}"
+
+
+2019-03-17 23:50:20 Debug: yobit_make_trade "{\"success\":0,\"error\":\"invalid sign\"}"
+
+
+2019-03-17 23:50:21 Debug: yobit_ActiveOrders_List "{\"success\":0,\"error\":\"invalid sign\"}"
+
+2019-03-17 23:50:22 Debug: amount   "0.00033825" "62156"
+
+
+2019-03-17 23:50:23 Debug: yobit_make_trade "{\"success\":0,\"error\":\"invalid sign\"}"
+
+
+2019-03-17 23:50:26 Debug: yobit_make_trade "{\"success\":0,\"error\":\"invalid sign\"}"
+
+
+2019-03-17 23:50:30 Debug: yobit_make_trade "{\"success\":0,\"error\":\"invalid sign\"}"
+
+
+2019-03-17 23:50:37 Debug: yobit_make_trade "{\"success\":0,\"error\":\"invalid sign\"}"
+
+
+2019-03-17 23:50:43 Debug: yobit_ActiveOrders_List "{\"success\":0,\"error\":\"invalid sign\"}"
+
+2019-03-17 23:50:44 Debug: amount   "0.00033820" "62156"
+
+
+2019-03-17 23:50:49 Debug: yobit_make_trade "{\"success\":0,\"error\":\"invalid sign\"}"
+
+
+2019-03-17 23:50:53 Debug: yobit_make_trade "{\"success\":0,\"error\":\"invalid sign\"}"
+
+
+2019-03-17 23:50:59 Debug: yobit_make_trade "{\"success\":0,\"error\":\"invalid sign\"}"
+
+
+2019-03-17 23:51:06 Debug: yobit_make_trade "{\"success\":0,\"error\":\"invalid sign\"}"
+
+
+2019-03-17 23:51:06 Debug: yobit_ActiveOrders_List "{\"success\":0,\"error\":\"invalid sign\"}"
+
+2019-03-17 23:51:08 Debug: amount   "0.00033820" "62156"
+
+
+2019-03-17 23:51:19 Debug: yobit_make_trade "{\"success\":0,\"error\":\"invalid sign\"}"
+
+
+2019-03-17 23:51:20 Debug: yobit_make_trade "{\"success\":0,\"error\":\"invalid sign\"}"
+
+
+2019-03-17 23:51:21 Debug: yobit_make_trade "{\"success\":0,\"error\":\"invalid sign\"}"
+
+
+2019-03-17 23:51:26 Debug: yobit_make_trade "{\"success\":0,\"error\":\"invalid sign\"}"
+
+
+2019-03-17 23:51:31 Debug: yobit_ActiveOrders_List "{\"success\":0,\"error\":\"invalid sign\"}"
+
+
+2019-03-17 23:51:34 Debug: yobit_make_trade "{\"success\":0,\"error\":\"invalid sign\"}"
+
+2019-03-17 23:51:34 Debug: amount   "0.00033759" "62156"
+
+
+2019-03-17 23:51:36 Debug: yobit_make_trade "{\"success\":0,\"error\":\"invalid sign\"}"
+
+
+2019-03-17 23:52:04 Debug: yobit_make_trade "{\"success\":0,\"error\":\"invalid sign\"}"
+
+
+2019-03-17 23:52:06 Debug: yobit_make_trade "{\"success\":0,\"error\":\"invalid sign\"}"
+
+
+2019-03-17 23:52:07 Debug: yobit_make_trade "{\"success\":0,\"error\":\"invalid sign\"}"
+
+
+2019-03-17 23:52:08 Debug: yobit_ActiveOrders_List "{\"success\":0,\"error\":\"invalid sign\"}"
+
+2019-03-17 23:52:09 Debug: amount   "0.00033759" "62156"
+
+
+2019-03-17 23:52:10 Debug: yobit_make_trade "{\"success\":0,\"error\":\"invalid sign\"}"
+
+
+2019-03-17 23:52:10 Debug: yobit_make_trade "{\"success\":0,\"error\":\"invalid sign\"}"
+
+
+2019-03-17 23:52:12 Debug: yobit_make_trade "{\"success\":0,\"error\":\"invalid sign\"}"
+
+
+2019-03-17 23:52:16 Debug: yobit_make_trade "{\"success\":0,\"error\":\"invalid sign\"}"
+
+
+2019-03-17 23:52:17 Debug: yobit_ActiveOrders_List "{\"success\":0,\"error\":\"invalid sign\"}"
+
+2019-03-17 23:52:18 Debug: amount   "0.00033759" "62156"
+
+
+2019-03-17 23:52:21 Debug: yobit_make_trade "{\"success\":0,\"error\":\"invalid sign\"}"
+
+
+2019-03-17 23:52:26 Debug: yobit_make_trade "{\"success\":0,\"error\":\"invalid sign\"}"
+
+
+2019-03-17 23:52:28 Debug: yobit_make_trade "{\"success\":0,\"error\":\"invalid sign\"}"
+
+
+2019-03-17 23:52:29 Debug: yobit_make_trade "{\"success\":0,\"error\":\"invalid sign\"}"
+
+
+2019-03-17 23:52:30 Debug: yobit_ActiveOrders_List "{\"success\":0,\"error\":\"invalid sign\"}"
+
+2019-03-17 23:52:34 Debug: amount   "0.00033651" "62156"
+
+
+2019-03-17 23:52:37 Debug: yobit_make_trade "{\"success\":0,\"error\":\"invalid sign\"}"
+
+
+2019-03-17 23:52:41 Debug: yobit_make_trade "{\"success\":0,\"error\":\"invalid sign\"}"
+
+
+2019-03-17 23:52:43 Debug: yobit_make_trade "{\"success\":0,\"error\":\"invalid sign\"}"
+
+
+2019-03-17 23:52:44 Debug: yobit_make_trade "{\"success\":0,\"error\":\"invalid sign\"}"
+
+
+2019-03-17 23:52:45 Debug: yobit_ActiveOrders_List "{\"success\":0,\"error\":\"invalid sign\"}"
+

@@ -26,17 +26,20 @@ public:
 	QString yobit_CancelOrder(const QString  & order);
 	QString yobit_CreateYobicode(const QString  & a);
 
-	
+	QString yobit_getInfo();	
 	QString yobit_depth();
 	QString yobit_trades();
 	
 	int GetPriceInt(const QString & source);
-	QString GetBalance(const QString & bal,int price);
+	void GetBalance();
 	void doTransfer();
-	void doCancle(QString st="",int type =0);
-	int doCancleAll(bool b = false);
 
-	void checkFirst();
+	void CancleSmall();
+	int doCancleAll(bool b = false);
+	void doCancle(QString st = "", int type = 0);
+	//int doCancleAll(bool b = false);
+
+	
 
 	void CreateOrderPos(int);
 	int zitamakeOrder(const QStringList& buy_list);
@@ -58,6 +61,7 @@ public:
 	int premakeOrder(const QStringList& buy_list, int pos);
 
 
+	int checkOrder();
 	int setTextOrder(const QStringList& buy_list);
 	int getText(const QStringList& buy_list);
 	int delTextOrder();

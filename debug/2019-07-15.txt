@@ -1,0 +1,386 @@
+2019-07-15 09:39:28 Debug: QBizManager() 1
+
+
+
+
+2019-07-15 09:39:41 Debug: GetMaxOrder total_amount - m_doge_balance_include -60486.2 "0.00003449,576141889.29202115"
+
+2019-07-15 09:45:52 Debug: QBizManager() 1
+
+
+
+
+2019-07-15 09:45:57 Debug: GetMaxOrder total_amount - m_doge_balance_include 129442 "0.00003449,576141889.29202115"
+
+
+2019-07-15 09:46:03 Debug: GetMaxOrder total_amount - m_doge_balance_include 129442 "0.00003449,576141889.29202115"
+
+
+
+
+2019-07-15 09:46:08 Debug: GetMaxOrder total_amount - m_doge_balance_include 129456 "0.00003449,576141889.29202115"
+
+
+
+
+2019-07-15 09:46:33 Debug: GetMaxOrder total_amount - m_doge_balance_include 130644 "0.00003449,576141889.29202115"
+
+
+2019-07-15 09:46:40 Debug: QBizManager() 1
+
+
+
+
+2019-07-15 09:47:16 Debug: QBizManager() 1
+
+
+
+
+
+
+2019-07-15 09:47:27 Debug: GetMaxOrder total_amount - m_doge_balance_include -11890.7 "0.00003449,576141889.29202115"
+
+
+2019-07-15 09:47:30 Debug: GetMaxOrder total_amount - m_doge_balance_include -11890.7 "0.00003449,576141889.29202115"
+
+
+
+
+2019-07-15 09:47:44 Debug: GetMaxOrder total_amount - m_doge_balance_include -11913.2 "0.00003449,576141889.29202115"
+
+
+2019-07-15 09:48:35 Debug: QBizManager() 1
+
+
+
+
+
+2019-07-15 09:48:52 Debug: GetMaxOrder total_amount - m_doge_balance_include -11862.2 "0.00003449,576141889.29202115"
+
+
+2019-07-15 09:48:56 Debug: GetMaxOrder total_amount - m_doge_balance_include -11862.2 "0.00003449,576141889.29202115"
+
+
+
+
+2019-07-15 09:49:03 Debug: GetMaxOrder total_amount - m_doge_balance_include -11861.2 "0.00003449,576141889.29202115"
+
+
+
+
+2019-07-15 09:50:34 Debug: QBizManager() 1
+
+
+
+
+2019-07-15 09:50:44 Debug: GetMaxOrder total_amount - m_doge_balance_include -11887 "0.00003449,576141889.29202115"
+
+
+2019-07-15 09:51:43 Debug: QBizManager() 1
+
+
+
+
+
+
+2019-07-15 09:51:58 Debug: GetMaxOrder total_amount - m_doge_balance_include -11698.2 "0.00003449,576141889.29202115"
+
+
+2019-07-15 09:52:29 Debug: QBizManager() 1
+
+
+
+
+
+
+2019-07-15 09:52:43 Debug: GetMaxOrder total_amount - m_doge_balance_include 127167 "0.00003449,576141889.29202115"
+
+
+
+
+
+
+
+2019-07-15 09:52:51 Debug: GetMaxOrder total_amount - m_doge_balance_include 127167 "0.00003449,576141889.29202115"
+
+
+
+
+
+
+
+2019-07-15 09:53:01 Debug: GetMaxOrder total_amount - m_doge_balance_include -15505.7 "0.00003449,576141889.29202115"
+
+
+
+
+
+
+
+2019-07-15 09:53:11 Debug: GetMaxOrder total_amount - m_doge_balance_include -15505.5 "0.00003449,576141889.29202115"
+
+
+
+2019-07-15 09:54:03 Debug: QBizManager() 1
+
+
+
+
+
+
+
+
+
+2019-07-15 09:54:17 Debug: QBizManager() 1
+
+
+
+
+
+2019-07-15 09:54:23 Debug: GetMaxOrder total_amount - m_doge_balance_include -15658.6 "0.00003449,576141889.29202115"
+
+
+
+
+
+
+2019-07-15 09:54:29 Debug: GetMaxOrder total_amount - m_doge_balance_include -15658.6 "0.00003449,576141889.29202115"
+
+
+
+
+2019-07-15 09:54:33 Debug: GetMaxOrder total_amount - m_doge_balance_include -15669.4 "0.00003449,576141889.29202115"
+
+
+
+2019-07-15 09:54:44 Debug: doBuyAll  "0.00003475,127574126.49700272" m_doge_balance[ "142783.31297011" ]total_amount 143168 "{\"success\":0,\"error\":\"Insufficient funds in wallet of the second currency of the pair\"}"
+
+2019-07-15 09:55:15 Debug: QBizManager() 1
+
+
+
+
+2019-07-15 09:55:21 Debug: GetMaxOrder total_amount - m_doge_balance_include -16952.6 "0.00003449,576141889.29202115"
+
+
+
+2019-07-15 09:55:29 Debug: doBuyAll  "0.00003475,127574126.49700272" m_doge_balance[ "142801.29612601" ]total_amount 141884 "{\"success\":1,\"return\":{\"received\":0,\"remains\":4079438898.907078,\"order_id\":1077552117965776,\"funds\":{\"btc\":0,\"doge\":142824.91529301,\"eth\":0,\"tvt\":12661674011.38969912,\"yo\":0},\"funds_incl_orders\":{\"btc\":0,\"doge\":142824.91529301,\"eth\":0,\"tvt\":12661674011.38969912,\"yo\":0},\"server_time\":1563155725}}"
+
+2019-07-15 09:59:52 Debug: QBizManager() 1
+
+
+
+
+
+
+
+
+
+2019-07-15 10:00:04 Debug: GetMaxOrder total_amount - m_doge_balance_include 139812 "0.000038,541616059.3893724"
+
+
+2019-07-15 10:00:13 Debug: QBizManager() 1
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+2019-07-15 10:00:35 Debug: GetMaxOrder total_amount - m_doge_balance_include 136255 "0.000038,541616059.3893724"
+
+2019-07-15 10:27:34 Debug: QBizManager() 1
+
+
+
+
+2019-07-15 10:27:40 Debug: GetMaxOrder total_amount - m_doge_balance_include 75399.6 "0.000038,541616059.3893724"
+
+2019-07-15 11:36:05 Debug: QBizManager() 1
+
+
+
+2019-07-15 11:36:14 Debug: QBizManager() 1
+
+
+
+
+
+
+
+2019-07-15 11:37:04 Debug: QBizManager() 1
+
+
+
+
+
+
+
+
+
+2019-07-15 11:37:32 Debug: GetMaxOrder total_amount - m_doge_balance_include 90964.6 "0.000038,541616059.3893724"
+
+2019-07-15 17:03:35 Debug: QBizManager() 1
+
+
+
+
+2019-07-15 17:04:01 Debug: GetMaxOrder total_amount - m_doge_balance_include 171820 "0.000038,541616059.3893724"
+
+2019-07-15 17:09:55 Debug: QBizManager() 1
+
+
+
+
+2019-07-15 17:10:05 Debug: GetMaxOrder total_amount - m_doge_balance_include 64112.5 "0.00003767,425026934.61991787"
+
+2019-07-15 17:12:17 Debug: QBizManager() 1
+
+
+
+
+
+
+
+
+
+2019-07-15 17:12:39 Debug: QBizManager() 1
+
+
+
+
+
+
+2019-07-15 17:12:48 Debug: GetMaxOrder total_amount - m_doge_balance_include 38897.8 "0.000037,414802371.6864353"
+
+2019-07-15 17:14:06 Debug: QBizManager() 1
+
+
+
+
+
+
+
+
+
+2019-07-15 17:14:20 Debug: GetMaxOrder total_amount - m_doge_balance_include 38945.8 "0.000038,541616059.3893724"
+
+2019-07-15 17:17:33 Debug: QBizManager() 1
+
+
+
+
+2019-07-15 17:17:46 Debug: GetMaxOrder total_amount - m_doge_balance_include 39966.5 "0.00003801,29654560.43661538"
+
+2019-07-15 19:00:53 Debug: QBizManager() 1
+
+
+
+
+2019-07-15 19:01:02 Debug: GetMaxOrder total_amount - m_doge_balance_include 46257.8 "0.00003796,700000"
+
+2019-07-15 19:01:51 Debug: QBizManager() 1
+
+
+
+
+2019-07-15 19:01:58 Debug: GetMaxOrder total_amount - m_doge_balance_include 47586.6 "0.00003795,124749723.20321321"
+
+2019-07-15 19:02:16 Debug: QBizManager() 1
+
+
+
+
+2019-07-15 19:02:21 Debug: GetMaxOrder total_amount - m_doge_balance_include 47586.8 "0.00003796,700000"
+
+2019-07-15 19:02:43 Debug: QBizManager() 1
+
+
+
+
+
+2019-07-15 19:02:53 Debug: QBizManager() 1
+
+
+
+
+2019-07-15 19:03:28 Debug: QBizManager() 1
+
+
+
+
+
+2019-07-15 19:03:37 Debug: GetMaxOrder total_amount - m_doge_balance_include 112305 "0.00003788,2805395.37101761"
+
+2019-07-15 19:04:33 Debug: QBizManager() 1
+
+
+
+
+
+
+
+2019-07-15 19:04:43 Debug: GetMaxOrder total_amount - m_doge_balance_include 112515 "0.000038,541616059.3893724"
+
+2019-07-15 19:09:38 Debug: QBizManager() 1
+
+
+
+
+
+
+2019-07-15 19:09:47 Debug: GetMaxOrder total_amount - m_doge_balance_include 117096 "0.000038,541616059.3893724"
+
+2019-07-15 19:13:33 Debug: QBizManager() 1
+
+
+
+
+
+2019-07-15 19:13:40 Debug: GetMaxOrder total_amount - m_doge_balance_include 105792 "0.000038,541616059.3893724"
+
+2019-07-15 19:14:40 Debug: QBizManager() 1
+
+
+
+
+2019-07-15 19:14:46 Debug: GetMaxOrder total_amount - m_doge_balance_include 101090 "0.000038,541616059.3893724"
+
+2019-07-15 22:03:28 Debug: QBizManager() 1
+
+
+
+
+
+2019-07-15 22:03:37 Debug: GetMaxOrder total_amount - m_doge_balance_include 110103 "0.000038,541616059.3893724"
+
+2019-07-15 22:08:39 Debug: QBizManager() 1
+
+
+
+
+
+
+2019-07-15 22:08:49 Debug: GetMaxOrder total_amount - m_doge_balance_include 227545 "0.000038,541616059.3893724"
+
+2019-07-15 22:10:16 Debug: QBizManager() 1
+
+
+
+
+2019-07-15 22:10:25 Debug: QBizManager() 1
+
+
+
+
+2019-07-15 22:10:35 Debug: GetMaxOrder total_amount - m_doge_balance_include 90117.4 "0.000038,541616059.3893724"
+

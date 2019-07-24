@@ -1,0 +1,14 @@
+2019-07-11 08:08:46 Debug: doCancleAll invalid nonce
+
+2019-07-11 08:08:47 Debug: doCancleAll invalid nonce
+
+2019-07-11 08:12:40 Debug: QBizManager() 2
+
+2019-07-11 08:12:47 Debug: doBuyAll  "0.00003077,8526963.14713691" m_doge_balance[ "425.54973266" ]total_amount 576.934 "{\"success\":1,\"return\":{\"received\":0,\"remains\":10576664.478882,\"order_id\":1077552103600625,\"funds\":{\"doge\":119.53295155,\"eth\":0,\"tvt\":1100828418.70328244},\"funds_incl_orders\":{\"doge\":445.73378366,\"eth\":0,\"tvt\":1100828418.70328244},\"server_time\":1562832767}}"
+
+2019-07-11 08:12:47 Debug: doBuyAll  exit
+
+2019-07-11 08:12:47 Debug: doBuyAll WriteOnly 
+
+2019-07-11 08:12:50 Debug: QBizManager() 1
+

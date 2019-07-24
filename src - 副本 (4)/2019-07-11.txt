@@ -1,0 +1,208 @@
+2019-07-11 04:25:14 Debug: QBizManager() 1
+
+2019-07-11 04:28:15 Debug: GetMaxOrder m_doge_balance_include exit "453.3214638" total_amount 325.653 str "0.00003115,8000000"
+
+2019-07-11 04:28:16 Debug: QBizManager() 2
+
+2019-07-11 04:28:19 Debug: GetMaxOrder m_doge_balance_include exit "430.50362201" total_amount 311.954 str "0.00003115,8000000"
+
+2019-07-11 04:28:21 Debug: QBizManager() 2
+
+2019-07-11 04:28:27 Debug: doCancleAll invalid nonce
+
+2019-07-11 04:29:22 Debug: doCancleAll invalid nonce
+
+2019-07-11 04:29:35 Debug: doCancleAll invalid nonce
+
+2019-07-11 04:29:49 Debug: doBuyAll  "0.00003115,8000000" m_doge_balance[ "189.46283761" ]total_amount 308.12 "{\"success\":1,\"return\":{\"received\":0,\"remains\":2871079.512516,\"order_id\":1077552103065440,\"funds\":{\"doge\":99.72071876,\"eth\":0,\"tvt\":1122417257.60556375},\"funds_incl_orders\":{\"doge\":528.29487196,\"eth\":0,\"tvt\":1123250515.96031953},\"server_time\":1562819389}}"
+
+2019-07-11 04:29:49 Debug: doBuyAll  exit
+
+2019-07-11 04:29:49 Debug: doBuyAll WriteOnly 
+
+2019-07-11 04:29:50 Debug: QBizManager() 1
+
+2019-07-11 04:29:52 Debug: GetMaxOrder m_doge_balance_include exit "438.72405903" total_amount 308.12 str "0.00003115,8000000"
+
+2019-07-11 04:29:53 Debug: QBizManager() 2
+
+2019-07-11 04:29:55 Debug: GetMaxOrder m_doge_balance_include exit "413.923805" total_amount 308.12 str "0.00003115,8000000"
+
+2019-07-11 04:29:56 Debug: QBizManager() 2
+
+2019-07-11 04:30:13 Debug: doCancleAll invalid nonce
+
+2019-07-11 04:30:16 Debug: doCancleAll invalid nonce
+
+2019-07-11 04:30:19 Debug: doCancleAll invalid nonce
+
+2019-07-11 04:30:59 Debug: doCancleAll invalid nonce
+
+2019-07-11 04:32:00 Debug: doCancleAll invalid nonce
+
+2019-07-11 04:32:10 Debug: doCancleAll invalid nonce
+
+2019-07-11 04:32:25 Debug: doCancleAll invalid nonce
+
+2019-07-11 04:33:05 Debug: GetMaxOrder m_doge_balance_include exit "381.68945045" total_amount 244.253 str "0.00003114,7843713.6182373"
+
+2019-07-11 04:33:06 Debug: QBizManager() 2
+
+2019-07-11 04:33:08 Debug: GetMaxOrder m_doge_balance_include exit "381.26354011" total_amount 244.253 str "0.00003114,7843713.6182373"
+
+2019-07-11 04:33:09 Debug: QBizManager() 2
+
+2019-07-11 04:33:46 Debug: doCancleAll invalid nonce
+
+2019-07-11 04:35:23 Debug: doCancleAll invalid nonce
+
+2019-07-11 04:35:49 Debug: GetMaxOrder m_doge_balance_include exit "388.11614004" total_amount 277.213 str "0.00003113,8450338.30337325"
+
+2019-07-11 04:35:51 Debug: QBizManager() 2
+
+2019-07-11 04:40:35 Debug: QBizManager() 2
+
+2019-07-11 04:40:42 Debug: GetMaxOrder m_doge_balance_include exit "391.05430993" total_amount 164.819 str "0.00003099,5318468.69696305"
+
+2019-07-11 04:40:45 Debug: QBizManager() 2
+
+2019-07-11 04:40:49 Debug: GetMaxOrder m_doge_balance_include exit "370.23876525" total_amount 219.889 str "0.00003095,3820567.52714915"
+
+2019-07-11 04:40:52 Debug: QBizManager() 2
+
+2019-07-11 04:40:57 Debug: doCancleAll invalid nonce
+
+2019-07-11 04:42:01 Debug: doCancleAll invalid nonce
+
+2019-07-11 04:42:10 Debug: doCancleAll invalid nonce
+
+2019-07-11 04:42:25 Debug: doCancleAll invalid nonce
+
+2019-07-11 04:43:01 Debug: doBuyAll  "0.00003124,2000000" m_doge_balance[ "245.44817654" ]total_amount 184.222 "{\"success\":1,\"return\":{\"received\":0,\"remains\":4654341.649280,\"order_id\":1077552103099637,\"funds\":{\"doge\":144.60084673,\"eth\":0,\"tvt\":1117654054.0380312},\"funds_incl_orders\":{\"doge\":629.27230955,\"eth\":0,\"tvt\":1117815865.94058452},\"server_time\":1562820181}}"
+
+2019-07-11 04:43:01 Debug: doBuyAll  exit
+
+2019-07-11 04:43:01 Debug: doBuyAll WriteOnly 
+
+2019-07-11 04:43:02 Debug: QBizManager() 1
+
+2019-07-11 04:43:05 Debug: GetMaxOrder m_doge_balance_include exit "507.05823266" total_amount 260.958 str "0.00003113,8382852.41015734"
+
+2019-07-11 04:43:07 Debug: QBizManager() 2
+
+2019-07-11 04:43:10 Debug: doBuyAll  "0.00003119,2231028.32189804" m_doge_balance[ "510.3387249" ]total_amount 439.638 "{\"success\":1,\"return\":{\"received\":0,\"remains\":13151882.208333,\"order_id\":1077552103100033,\"funds\":{\"doge\":127.31683477,\"eth\":0,\"tvt\":1119976461.30846122},\"funds_incl_orders\":{\"doge\":538.4762371,\"eth\":0,\"tvt\":1120692685.60152035},\"server_time\":1562820190}}"
+
+2019-07-11 04:43:10 Debug: doBuyAll  exit
+
+2019-07-11 04:43:10 Debug: doBuyAll WriteOnly 
+
+2019-07-11 04:43:12 Debug: QBizManager() 1
+
+2019-07-11 04:48:04 Debug: GetMaxOrder m_doge_balance_include exit "328.35907225" total_amount 115.378 str "0.00003117,1660189.81996629"
+
+2019-07-11 04:48:05 Debug: QBizManager() 2
+
+2019-07-11 04:48:07 Debug: doBuyAll  "0.00003125,55323665.71045888" m_doge_balance[ "299.52439309" ]total_amount 1916.6 "{\"success\":1,\"return\":{\"received\":0,\"remains\":6382738.102687,\"order_id\":1077552103112657,\"funds\":{\"doge\":104.42478932,\"eth\":0,\"tvt\":1126015017.16118026},\"funds_incl_orders\":{\"doge\":304.34823118,\"eth\":0,\"tvt\":1126784506.82526295},\"server_time\":1562820487}}"
+
+2019-07-11 04:48:07 Debug: doBuyAll  exit
+
+2019-07-11 04:48:07 Debug: doBuyAll WriteOnly 
+
+2019-07-11 04:48:08 Debug: QBizManager() 1
+
+2019-07-11 04:55:25 Debug: QBizManager() 1
+
+2019-07-11 05:00:46 Debug: GetMaxOrder m_doge_balance_include exit "253.55939494" total_amount 141.529 str "0.0000311,4215307.78882789"
+
+2019-07-11 05:00:47 Debug: QBizManager() 2
+
+2019-07-11 05:00:57 Debug: doCancleAll invalid nonce
+
+2019-07-11 05:01:04 Debug: doCancleAll invalid nonce
+
+2019-07-11 05:01:11 Debug: doCancleAll invalid nonce
+
+2019-07-11 05:01:15 Debug: doCancleAll invalid nonce
+
+2019-07-11 05:02:44 Debug: doCancleAll invalid nonce
+
+2019-07-11 05:02:45 Debug: doCancleAll invalid nonce
+
+2019-07-11 05:02:48 Debug: doCancleAll invalid nonce
+
+2019-07-11 05:02:49 Debug: doCancleAll invalid nonce
+
+2019-07-11 05:02:50 Debug: doCancleAll invalid nonce
+
+2019-07-11 05:02:51 Debug: doCancleAll invalid nonce
+
+2019-07-11 05:03:11 Debug: doCancleAll invalid nonce
+
+2019-07-11 05:03:25 Debug: doCancleAll invalid nonce
+
+2019-07-11 05:04:07 Debug: doCancleAll invalid nonce
+
+2019-07-11 05:04:08 Debug: doCancleAll invalid nonce
+
+2019-07-11 05:04:18 Debug: doCancleAll invalid nonce
+
+2019-07-11 05:04:22 Debug: doCancleAll invalid nonce
+
+2019-07-11 05:04:27 Debug: doCancleAll invalid nonce
+
+2019-07-11 05:04:42 Debug: doCancleAll invalid nonce
+
+2019-07-11 05:05:18 Debug: doCancleAll invalid nonce
+
+2019-07-11 05:05:19 Debug: doCancleAll invalid nonce
+
+2019-07-11 05:05:20 Debug: doCancleAll invalid nonce
+
+2019-07-11 05:05:22 Debug: doCancleAll invalid nonce
+
+2019-07-11 05:05:23 Debug: doCancleAll invalid nonce
+
+2019-07-11 05:05:34 Debug: doCancleAll invalid nonce
+
+2019-07-11 05:05:43 Debug: doCancleAll invalid nonce
+
+2019-07-11 05:06:17 Debug: doCancleAll invalid nonce
+
+2019-07-11 05:06:19 Debug: doCancleAll invalid nonce
+
+2019-07-11 05:06:20 Debug: doCancleAll invalid nonce
+
+2019-07-11 05:10:15 Debug: QBizManager() 2
+
+2019-07-11 05:11:43 Debug: doCancleAll invalid nonce
+
+2019-07-11 05:11:49 Debug: doCancleAll invalid nonce
+
+2019-07-11 05:12:12 Debug: doCancleAll invalid nonce
+
+2019-07-11 05:13:28 Debug: doCancleAll invalid nonce
+
+2019-07-11 05:14:19 Debug: doCancleAll invalid nonce
+
+2019-07-11 05:14:59 Debug: doCancleAll invalid nonce
+
+2019-07-11 05:15:26 Debug: doCancleAll invalid nonce
+
+2019-07-11 05:15:48 Debug: doCancleAll invalid nonce
+
+2019-07-11 05:15:49 Debug: doCancleAll invalid nonce
+
+2019-07-11 05:16:19 Debug: doCancleAll invalid nonce
+
+2019-07-11 05:16:44 Debug: doCancleAll invalid nonce
+
+2019-07-11 05:16:48 Debug: doCancleAll invalid nonce
+
+2019-07-11 05:16:52 Debug: doBuyAll  "0.00003042,2653880.97820068" m_doge_balance[ "137.60111441" ]total_amount 96.5386 "{\"success\":1,\"return\":{\"received\":0,\"remains\":1235659.362800,\"order_id\":1077552103180602,\"funds\":{\"doge\":137.60111441,\"eth\":0,\"tvt\":1116510606.22945059},\"funds_incl_orders\":{\"doge\":500.31977899,\"eth\":0,\"tvt\":1116510606.22945059},\"server_time\":1562822212}}"
+
+2019-07-11 05:16:52 Debug: doBuyAll  exit
+
+2019-07-11 05:16:52 Debug: doBuyAll WriteOnly 
+
+2019-07-11 05:16:53 Debug: QBizManager() 1
+

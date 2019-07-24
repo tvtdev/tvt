@@ -1,0 +1,50 @@
+2019-07-09 14:28:58 Debug: yobit_ActiveOrders_List 0 "{\"success\":1}"
+
+2019-07-09 14:29:03 Debug: yobit_ActiveOrders_List 0 "{\"success\":1}"
+
+2019-07-09 14:29:08 Debug: yobit_ActiveOrders_List 0 "{\"success\":1,\"return\":{\"1077552097051776\":{\"pair\":\"tvt_doge\",\"type\":\"buy\",\"amount\":64478.48537005,\"rate\":0.00002905,\"timestamp_created\":\"1562682544\",\"status\":0}}}"
+
+2019-07-09 14:29:13 Debug: yobit_ActiveOrders_List 0 "{\"success\":1}"
+
+2019-07-09 14:29:19 Debug: yobit_ActiveOrders_List 0 "{\"success\":1}"
+
+2019-07-09 14:29:24 Debug: yobit_ActiveOrders_List 0 "{\"success\":1,\"return\":{\"2077552097052595\":{\"pair\":\"tvt_doge\",\"type\":\"sell\",\"amount\":1053483.49381018,\"rate\":0.00002908,\"timestamp_created\":\"1562682559\",\"status\":0}}}"
+
+2019-07-09 14:29:29 Debug: yobit_ActiveOrders_List 0 "{\"success\":1}"
+
+2019-07-09 14:29:35 Debug: yobit_ActiveOrders_List 0 "{\"success\":1}"
+
+2019-07-09 14:29:40 Debug: yobit_ActiveOrders_List 0 "{\"success\":1}"
+
+2019-07-09 14:29:45 Debug: yobit_ActiveOrders_List 0 "{\"success\":1}"
+
+2019-07-09 14:29:50 Debug: yobit_ActiveOrders_List 0 "{\"success\":1}"
+
+2019-07-09 14:29:56 Debug: yobit_ActiveOrders_List 0 "{\"success\":1}"
+
+2019-07-09 14:30:01 Debug: yobit_ActiveOrders_List 0 "{\"success\":1,\"return\":{\"2077552097054351\":{\"pair\":\"tvt_doge\",\"type\":\"sell\",\"amount\":731041.95323246,\"rate\":0.00002908,\"timestamp_created\":\"1562682596\",\"status\":0}}}"
+
+2019-07-09 14:30:06 Debug: yobit_ActiveOrders_List 0 "{\"success\":1}"
+
+2019-07-09 14:30:11 Debug: yobit_ActiveOrders_List 0 "{\"success\":1,\"return\":{\"2077552097054842\":{\"pair\":\"tvt_doge\",\"type\":\"sell\",\"amount\":761279.66976264,\"rate\":0.00002907,\"timestamp_created\":\"1562682607\",\"status\":0}}}"
+
+2019-07-09 14:30:17 Debug: yobit_ActiveOrders_List 0 "{\"success\":1}"
+
+2019-07-09 14:30:23 Debug: yobit_ActiveOrders_List 0 "{\"success\":1}"
+
+2019-07-09 14:30:28 Debug: yobit_ActiveOrders_List 0 "{\"success\":1}"
+
+2019-07-09 14:30:33 Debug: yobit_ActiveOrders_List 0 "{\"success\":1}"
+
+2019-07-09 14:30:38 Debug: yobit_ActiveOrders_List 0 "{\"success\":1}"
+
+2019-07-09 14:30:43 Debug: yobit_ActiveOrders_List 0 "{\"success\":1}"
+
+2019-07-09 14:30:48 Debug: yobit_ActiveOrders_List 0 "{\"success\":1}"
+
+2019-07-09 14:30:54 Debug: yobit_ActiveOrders_List 0 "{\"success\":1,\"return\":{\"1077552097056866\":{\"pair\":\"tvt_doge\",\"type\":\"buy\",\"amount\":813153.37001376,\"rate\":0.00002897,\"timestamp_created\":\"1562682649\",\"status\":0}}}"
+
+2019-07-09 14:30:59 Debug: yobit_ActiveOrders_List 0 "{\"success\":1}"
+
+2019-07-09 14:31:06 Debug: yobit_ActiveOrders_List 0 "{\"success\":1,\"return\":{\"2077552097057390\":{\"pair\":\"tvt_doge\",\"type\":\"sell\",\"amount\":850780.60522696,\"rate\":0.00002908,\"timestamp_created\":\"1562682660\",\"status\":0}}}"
+

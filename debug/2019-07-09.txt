@@ -1,0 +1,256 @@
+
+
+
+2019-07-09 10:12:39 Debug: yobit_ActiveOrders_List 0 "{\"success\":1,\"return\":{\"2077552094898479\":{\"pair\":\"tvt_doge\",\"type\":\"sell\",\"amount\":850618.8466948,\"rate\":0.00002844,\"timestamp_created\":\"1562638354\",\"status\":0}}}"
+
+
+
+
+
+
+
+
+
+2019-07-09 11:47:02 Debug: yobit_ActiveOrders_List 0 "{\"success\":1,\"return\":{\"1077552095184125\":{\"pair\":\"tvt_doge\",\"type\":\"buy\",\"amount\":878447.07520891,\"rate\":0.00002872,\"timestamp_created\":\"1562643977\",\"status\":0}}}"
+
+
+
+
+
+
+2019-07-09 11:48:08 Debug: doTransfer m_cancleAll [ 2 ]m_doge_balance "77.96566042"
+
+2019-07-09 11:48:09 Debug: doTransfer 2
+
+
+2019-07-09 11:48:15 Debug: yobit_ActiveOrders_List 1 "{\"success\":1}"
+
+2019-07-09 11:48:15 Debug: doCancleAll  "{\"success\":1}"
+
+
+2019-07-09 14:35:56 Debug: yobit_ActiveOrders_List 0 "{\"success\":0,\"error\":\"invalid nonce (has already been used)\"}"
+
+
+2019-07-09 14:36:23 Debug: yobit_ActiveOrders_List 0 "{\"success\":1,\"return\":{\"1077552095689479\":{\"pair\":\"tvt_doge\",\"type\":\"buy\",\"amount\":81092.21109574,\"rate\":0.00002866,\"timestamp_created\":\"1562654178\",\"status\":0},\"1077552095689460\":{\"pair\":\"tvt_doge\",\"type\":\"buy\",\"amount\":783979.05759162,\"rate\":0.00002864,\"timestamp_created\":\"1562654177\",\"status\":0}}}"
+
+
+
+
+
+
+
+
+
+2019-07-09 14:37:42 Debug: yobit_ActiveOrders_List 0 "{\"success\":0,\"error\":\"invalid nonce (has already been used)\"}"
+
+
+2019-07-09 14:37:56 Debug: yobit_ActiveOrders_List 0 "{\"success\":1}"
+
+
+
+2019-07-09 14:38:20 Debug: doTransfer m_cancleAll [ 2 ]m_doge_balance ""
+
+2019-07-09 14:38:21 Debug: doTransfer 2
+
+
+2019-07-09 14:38:31 Debug: yobit_ActiveOrders_List 1 "{\"success\":0,\"error\":\"invalid nonce (has already been used)\"}"
+
+2019-07-09 14:38:36 Debug: doCancleAll  "{\"success\":0,\"error\":\"invalid nonce (has already been used)\"}"
+
+2019-07-09 14:38:39 Debug: doCancleAll invalid nonce
+
+2019-07-09 14:38:41 Debug: doTransfer 3 2
+
+
+2019-07-09 14:38:52 Debug: yobit_ActiveOrders_List 1 "{\"success\":0,\"error\":\"invalid nonce (has already been used)\"}"
+
+2019-07-09 14:38:57 Debug: doCancleAll  "{\"success\":0,\"error\":\"invalid nonce (has already been used)\"}"
+
+2019-07-09 14:38:57 Debug: doCancleAll invalid nonce
+
+
+2019-07-09 14:39:01 Debug: yobit_ActiveOrders_List 0 "{\"success\":0,\"error\":\"invalid nonce (has already been used)\"}"
+
+
+2019-07-09 14:39:30 Debug: yobit_ActiveOrders_List 0 "{\"success\":0,\"error\":\"invalid nonce (has already been used)\"}"
+
+
+
+2019-07-09 14:39:50 Debug: doTransfer m_cancleAll [ 2 ]m_doge_balance ""
+
+2019-07-09 14:39:50 Debug: doTransfer 2
+
+
+2019-07-09 14:39:52 Debug: yobit_ActiveOrders_List 1 "{\"success\":1}"
+
+2019-07-09 14:39:52 Debug: doCancleAll  "{\"success\":1}"
+
+2019-07-09 14:39:52 Debug: doTransfer 3 2
+
+
+2019-07-09 14:39:56 Debug: yobit_ActiveOrders_List 1 "{\"success\":0,\"error\":\"invalid nonce (has already been used)\"}"
+
+2019-07-09 14:39:56 Debug: doCancleAll  "{\"success\":0,\"error\":\"invalid nonce (has already been used)\"}"
+
+2019-07-09 14:39:56 Debug: doCancleAll invalid nonce
+
+
+2019-07-09 14:40:04 Debug: yobit_ActiveOrders_List 0 "{\"success\":0,\"error\":\"invalid nonce (has already been used)\"}"
+
+
+2019-07-09 14:40:21 Debug: yobit_ActiveOrders_List 0 "{\"success\":0,\"error\":\"invalid nonce (has already been used)\"}"
+
+
+2019-07-09 14:42:00 Debug: yobit_ActiveOrders_List 0 "{\"success\":0,\"error\":\"invalid nonce (has already been used)\"}"
+
+
+
+2019-07-09 14:42:57 Debug: doTransfer m_cancleAll [ 2 ]m_doge_balance ""
+
+2019-07-09 14:42:58 Debug: doTransfer 2
+
+
+2019-07-09 14:43:01 Debug: yobit_ActiveOrders_List 1 "{\"success\":1}"
+
+2019-07-09 14:43:16 Debug: doCancleAll  "{\"success\":1}"
+
+2019-07-09 14:43:58 Debug: doTransfer 3 2
+
+
+2019-07-09 14:44:09 Debug: yobit_ActiveOrders_List 1 "{\"success\":0,\"error\":\"invalid nonce (has already been used)\"}"
+
+2019-07-09 14:44:11 Debug: doCancleAll  "{\"success\":0,\"error\":\"invalid nonce (has already been used)\"}"
+
+2019-07-09 14:44:11 Debug: doCancleAll invalid nonce
+
+
+2019-07-09 14:44:17 Debug: yobit_ActiveOrders_List 0 "{\"success\":1}"
+
+
+
+2019-07-09 14:44:44 Debug: doTransfer m_cancleAll [ 2 ]m_doge_balance ""
+
+2019-07-09 14:44:47 Debug: doTransfer 2
+
+
+2019-07-09 14:44:52 Debug: yobit_ActiveOrders_List 1 "{\"success\":0,\"error\":\"invalid nonce (has already been used)\"}"
+
+2019-07-09 14:45:01 Debug: doCancleAll  "{\"success\":0,\"error\":\"invalid nonce (has already been used)\"}"
+
+2019-07-09 14:45:01 Debug: doCancleAll invalid nonce
+
+2019-07-09 14:45:01 Debug: doTransfer 3 2
+
+
+2019-07-09 14:45:10 Debug: yobit_ActiveOrders_List 0 "{\"success\":1}"
+
+
+
+2019-07-09 14:45:45 Debug: doTransfer m_cancleAll [ 2 ]m_doge_balance ""
+
+2019-07-09 14:45:45 Debug: doTransfer 2
+
+
+2019-07-09 14:45:54 Debug: yobit_ActiveOrders_List 1 "{\"success\":0,\"error\":\"invalid nonce (has already been used)\"}"
+
+2019-07-09 14:46:05 Debug: doCancleAll  "{\"success\":0,\"error\":\"invalid nonce (has already been used)\"}"
+
+2019-07-09 14:46:05 Debug: doCancleAll invalid nonce
+
+2019-07-09 14:46:05 Debug: doTransfer 3 2
+
+
+2019-07-09 14:46:12 Debug: yobit_ActiveOrders_List 0 "{\"success\":0,\"error\":\"invalid nonce (has already been used)\"}"
+
+
+
+2019-07-09 14:47:07 Debug: doTransfer m_cancleAll [ 2 ]m_doge_balance ""
+
+2019-07-09 14:47:07 Debug: doTransfer 2
+
+
+2019-07-09 14:47:13 Debug: yobit_ActiveOrders_List 1 "{\"success\":1}"
+
+2019-07-09 14:47:13 Debug: doCancleAll  "{\"success\":1}"
+
+2019-07-09 14:47:20 Debug: doTransfer 3 2
+
+
+2019-07-09 14:47:23 Debug: yobit_ActiveOrders_List 0 "{\"success\":1,\"return\":{\"2077552095721996\":{\"pair\":\"tvt_doge\",\"type\":\"sell\",\"amount\":12340.10411094,\"rate\":0.00002878,\"timestamp_created\":\"1562654839\",\"status\":0}}}"
+
+
+
+
+
+
+
+
+
+2019-07-09 14:48:49 Debug: doTransfer m_cancleAll [ 2 ]m_doge_balance ""
+
+2019-07-09 14:48:49 Debug: doTransfer 2
+
+
+2019-07-09 14:48:51 Debug: yobit_ActiveOrders_List 1 "{\"success\":1}"
+
+2019-07-09 14:48:51 Debug: doCancleAll  "{\"success\":1}"
+
+2019-07-09 14:48:51 Debug: doTransfer 3 2
+
+
+2019-07-09 14:48:53 Debug: yobit_ActiveOrders_List 0 "{\"success\":1}"
+
+
+
+
+2019-07-09 17:36:24 Debug: yobit_ActiveOrders_List 0 "{\"success\":1}"
+
+
+
+2019-07-09 17:36:47 Debug: doTransfer m_cancleAll [ 2 ]m_doge_balance "514.32109511"
+
+2019-07-09 17:36:47 Debug: doTransfer 2
+
+
+2019-07-09 17:36:50 Debug: yobit_ActiveOrders_List 1 "{\"success\":1}"
+
+2019-07-09 17:36:50 Debug: doCancleAll  "{\"success\":1}"
+
+
+2019-07-09 17:36:54 Debug: doBuyAll  "0.00002855,8862081.98823376" m_doge_balance[ "514.32109511" ]total_amount 555.068 "{\"success\":1,\"return\":{\"received\":0,\"remains\":14507041.145308,\"order_id\":1077552096213805,\"funds\":{\"doge\":182.09504827,\"eth\":0,\"tvt\":1241794063.70540071},\"funds_incl_orders\":{\"doge\":620.44208754,\"eth\":0,\"tvt\":1241794063.70540071},\"server_time\":1562665011}}"
+
+
+2019-07-09 17:48:23 Debug: yobit_ActiveOrders_List 0 "{\"success\":1}"
+
+
+
+2019-07-09 17:48:38 Debug: doTransfer m_cancleAll [ 2 ]m_doge_balance "170.34212098"
+
+2019-07-09 17:48:38 Debug: doTransfer 2
+
+
+2019-07-09 17:48:41 Debug: yobit_ActiveOrders_List 0 "{\"success\":1}"
+
+
+2019-07-09 17:49:14 Debug: yobit_ActiveOrders_List 0 "{\"success\":0,\"error\":\"invalid nonce (has already been used)\"}"
+
+
+2019-07-09 17:49:45 Debug: yobit_ActiveOrders_List 0 "{\"success\":0,\"error\":\"invalid nonce (has already been used)\"}"
+
+
+2019-07-09 17:50:15 Debug: yobit_ActiveOrders_List 0 "{\"success\":0,\"error\":\"invalid nonce (has already been used)\"}"
+
+
+2019-07-09 17:51:15 Debug: yobit_ActiveOrders_List 0 "{\"success\":0,\"error\":\"invalid nonce (has already been used)\"}"
+
+
+2019-07-09 18:12:00 Debug: yobit_ActiveOrders_List 0 "{\"success\":0,\"error\":\"invalid nonce (has already been used)\"}"
+
+
+
+
+2019-07-09 18:12:19 Debug: yobit_ActiveOrders_List 1 "{\"success\":1,\"return\":{\"2010782096320157\":{\"pair\":\"doge_eth\",\"type\":\"sell\",\"amount\":50,\"rate\":0.001,\"timestamp_created\":\"1562667119\",\"status\":0},\"2010782096320061\":{\"pair\":\"doge_eth\",\"type\":\"sell\",\"amount\":69.64897711,\"rate\":0.001,\"timestamp_created\":\"1562667117\",\"status\":0}}}"
+
+
+
+

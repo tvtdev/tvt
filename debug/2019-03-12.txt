@@ -1,0 +1,809 @@
+
+2019-03-12 21:33:34 Debug: yobit_ActiveOrders_List "{\"success\":0,\"error\":\"invalid nonce (has already been used)\"}" 6501
+
+
+2019-03-12 21:33:36 Debug: yobit_ActiveOrders_List "{\"success\":0,\"error\":\"invalid nonce (has already been used)\"}" 6502
+
+
+2019-03-12 21:33:38 Debug: yobit_ActiveOrders_List "{\"success\":0,\"error\":\"invalid nonce (has already been used)\"}" 6503
+
+
+2019-03-12 21:33:40 Debug: yobit_ActiveOrders_List "{\"success\":0,\"error\":\"invalid nonce (has already been used)\"}" 6504
+
+
+2019-03-12 21:33:47 Debug: yobit_ActiveOrders_List "{\"success\":0,\"error\":\"invalid nonce (has already been used)\"}" 6505
+
+
+2019-03-12 21:33:50 Debug: yobit_ActiveOrders_List "{\"success\":0,\"error\":\"invalid nonce (has already been used)\"}" 6506
+
+
+2019-03-12 21:33:52 Debug: yobit_ActiveOrders_List "{\"success\":0,\"error\":\"invalid nonce (has already been used)\"}" 6507
+
+
+2019-03-12 21:33:54 Debug: yobit_ActiveOrders_List "{\"success\":0,\"error\":\"invalid nonce (has already been used)\"}" 6508
+
+
+2019-03-12 21:35:08 Debug: yobit_ActiveOrders_List "{\"success\":1}" 8501
+
+
+2019-03-12 21:35:23 Debug: yobit_ActiveOrders_List "{\"success\":0,\"error\":\"invalid nonce (has already been used)\"}" 8501
+
+
+2019-03-12 21:35:40 Debug: yobit_ActiveOrders_List "{\"success\":0,\"error\":\"invalid nonce (has already been used)\"}" 8501
+
+
+2019-03-12 21:36:16 Debug: yobit_ActiveOrders_List "{\"success\":0,\"error\":\"invalid nonce (has already been used)\"}" 8501
+
+
+2019-03-12 21:36:34 Debug: yobit_ActiveOrders_List "{\"success\":0,\"error\":\"invalid nonce (has already been used)\"}" 8501
+
+
+2019-03-12 21:37:32 Debug: yobit_ActiveOrders_List "{\"success\":1}" 8501
+
+
+2019-03-12 21:38:45 Debug: yobit_ActiveOrders_List "{\"success\":1}" 8501
+
+
+2019-03-12 21:40:51 Debug: yobit_ActiveOrders_List "{\"success\":1}"
+
+
+2019-03-12 21:42:00 Debug: yobit_ActiveOrders_List "{\"success\":1}"
+
+
+2019-03-12 21:43:40 Debug: yobit_ActiveOrders_List "{\"success\":1}"
+
+
+2019-03-12 21:44:15 Debug: yobit_ActiveOrders_List "{\"success\":1}"
+
+
+2019-03-12 21:49:33 Debug: yobit_ActiveOrders_List "{\"success\":1}"
+
+
+2019-03-12 21:51:37 Debug: yobit_ActiveOrders_List "{\"success\":1}"
+
+
+2019-03-12 21:54:50 Debug: yobit_ActiveOrders_List "{\"success\":1}"
+
+
+2019-03-12 21:56:28 Debug: yobit_ActiveOrders_List "{\"success\":1}"
+
+
+2019-03-12 21:57:35 Debug: yobit_ActiveOrders_List "{\"success\":1}"
+
+
+2019-03-12 21:58:11 Debug: yobit_ActiveOrders_List "{\"success\":1}"
+
+
+2019-03-12 22:00:35 Debug: yobit_ActiveOrders_List "{\"success\":1}"
+
+
+2019-03-12 22:00:58 Debug: yobit_ActiveOrders_List "{\"success\":1}"
+
+
+2019-03-12 22:02:45 Debug: yobit_ActiveOrders_List "{\"success\":1}"
+
+
+2019-03-12 22:03:29 Debug: yobit_ActiveOrders_List "{\"success\":1}"
+
+
+2019-03-12 22:03:36 Debug: yobit_ActiveOrders_List "{\"success\":1}"
+
+
+2019-03-12 22:03:42 Debug: yobit_ActiveOrders_List "{\"success\":1}"
+
+2019-03-12 22:03:44 Debug: amount   "0.00028799" "38102"
+
+
+2019-03-12 22:04:02 Debug: yobit_make_trade "{\"success\":1,\"return\":{\"received\":0,\"remains\":38102,\"order_id\":2077551718246333,\"funds\":{\"doge\":232.91596835,\"tvt\":17118685.43136247},\"funds_incl_orders\":{\"doge\":232.91596835,\"tvt\":17156787.43136247},\"server_time\":1552399386}}"
+
+
+2019-03-12 22:04:09 Debug: yobit_make_trade "{\"success\":1,\"return\":{\"received\":0,\"remains\":38102,\"order_id\":1077551718246803,\"funds\":{\"doge\":221.92102739,\"tvt\":17118685.43136247},\"funds_incl_orders\":{\"doge\":232.91596835,\"tvt\":17156787.43136247},\"server_time\":1552399404}}"
+
+
+2019-03-12 22:04:11 Debug: yobit_ActiveOrders_List "{\"success\":1}"
+
+2019-03-12 22:04:13 Debug: amount   "0.00028799" "38102"
+
+
+2019-03-12 22:04:18 Debug: yobit_make_trade "{\"success\":1,\"return\":{\"received\":0,\"remains\":38102,\"order_id\":2077551718247131,\"funds\":{\"doge\":232.87207639,\"tvt\":17118685.43136247},\"funds_incl_orders\":{\"doge\":232.87207639,\"tvt\":17156787.43136247},\"server_time\":1552399416}}"
+
+
+2019-03-12 22:04:20 Debug: yobit_make_trade "{\"success\":1,\"return\":{\"received\":0,\"remains\":38102,\"order_id\":1077551718247182,\"funds\":{\"doge\":221.87713543,\"tvt\":17118685.43136247},\"funds_incl_orders\":{\"doge\":232.87207639,\"tvt\":17156787.43136247},\"server_time\":1552399418}}"
+
+
+2019-03-12 22:04:22 Debug: yobit_ActiveOrders_List "{\"success\":1}"
+
+2019-03-12 22:04:27 Debug: amount   "0.00028799" "38102"
+
+
+2019-03-12 22:04:30 Debug: yobit_make_trade "{\"success\":1,\"return\":{\"received\":0,\"remains\":38102,\"order_id\":2077551718247405,\"funds\":{\"doge\":232.82818443,\"tvt\":17118685.43136247},\"funds_incl_orders\":{\"doge\":232.82818443,\"tvt\":17156787.43136247},\"server_time\":1552399428}}"
+
+
+2019-03-12 22:04:32 Debug: yobit_make_trade "{\"success\":1,\"return\":{\"received\":0,\"remains\":38102,\"order_id\":1077551718247442,\"funds\":{\"doge\":221.83324347,\"tvt\":17118685.43136247},\"funds_incl_orders\":{\"doge\":232.82818443,\"tvt\":17156787.43136247},\"server_time\":1552399430}}"
+
+
+2019-03-12 22:04:34 Debug: yobit_ActiveOrders_List "{\"success\":1}"
+
+2019-03-12 22:04:36 Debug: amount   "0.00028799" "38102"
+
+
+2019-03-12 22:04:40 Debug: yobit_make_trade "{\"success\":1,\"return\":{\"received\":0,\"remains\":38102,\"order_id\":2077551718247656,\"funds\":{\"doge\":232.78429247,\"tvt\":17118685.43136247},\"funds_incl_orders\":{\"doge\":232.78429247,\"tvt\":17156787.43136247},\"server_time\":1552399439}}"
+
+
+2019-03-12 22:04:42 Debug: yobit_make_trade "{\"success\":1,\"return\":{\"received\":0,\"remains\":38102,\"order_id\":1077551718247717,\"funds\":{\"doge\":221.78935151,\"tvt\":17118685.43136247},\"funds_incl_orders\":{\"doge\":232.78429247,\"tvt\":17156787.43136247},\"server_time\":1552399441}}"
+
+
+2019-03-12 22:04:48 Debug: yobit_ActiveOrders_List "{\"success\":1}"
+
+2019-03-12 22:04:50 Debug: amount   "0.00028799" "38102"
+
+
+2019-03-12 22:04:53 Debug: yobit_make_trade "{\"success\":1,\"return\":{\"received\":0,\"remains\":38102,\"order_id\":2077551718247959,\"funds\":{\"doge\":232.74040051,\"tvt\":17118685.43136247},\"funds_incl_orders\":{\"doge\":232.74040051,\"tvt\":17156787.43136247},\"server_time\":1552399451}}"
+
+
+2019-03-12 22:04:55 Debug: yobit_make_trade "{\"success\":1,\"return\":{\"received\":0,\"remains\":38102,\"order_id\":1077551718248031,\"funds\":{\"doge\":221.74545955,\"tvt\":17118685.43136247},\"funds_incl_orders\":{\"doge\":232.74040051,\"tvt\":17156787.43136247},\"server_time\":1552399453}}"
+
+
+2019-03-12 22:05:00 Debug: yobit_ActiveOrders_List "{\"success\":1}"
+
+2019-03-12 22:05:02 Debug: amount   "0.00028799" "38102"
+
+
+2019-03-12 22:05:04 Debug: yobit_make_trade "{\"success\":1,\"return\":{\"received\":0,\"remains\":38102,\"order_id\":2077551718248286,\"funds\":{\"doge\":232.69650855,\"tvt\":17118685.43136247},\"funds_incl_orders\":{\"doge\":232.69650855,\"tvt\":17156787.43136247},\"server_time\":1552399463}}"
+
+
+2019-03-12 22:05:06 Debug: yobit_make_trade "{\"success\":1,\"return\":{\"received\":0,\"remains\":38102,\"order_id\":1077551718248331,\"funds\":{\"doge\":221.70156759,\"tvt\":17118685.43136247},\"funds_incl_orders\":{\"doge\":232.69650855,\"tvt\":17156787.43136247},\"server_time\":1552399465}}"
+
+
+2019-03-12 22:05:08 Debug: yobit_ActiveOrders_List "{\"success\":1}"
+
+2019-03-12 22:05:10 Debug: amount   "0.00028799" "38102"
+
+
+2019-03-12 22:05:12 Debug: yobit_make_trade "{\"success\":1,\"return\":{\"received\":0,\"remains\":38102,\"order_id\":2077551718248472,\"funds\":{\"doge\":232.65261659,\"tvt\":17118685.43136247},\"funds_incl_orders\":{\"doge\":232.65261659,\"tvt\":17156787.43136247},\"server_time\":1552399471}}"
+
+
+2019-03-12 22:05:15 Debug: yobit_make_trade "{\"success\":1,\"return\":{\"received\":0,\"remains\":38102,\"order_id\":1077551718248543,\"funds\":{\"doge\":232.65261659,\"tvt\":17118685.43136247},\"funds_incl_orders\":{\"doge\":232.65261659,\"tvt\":17156787.43136247},\"server_time\":1552399473}}"
+
+
+2019-03-12 22:05:16 Debug: yobit_ActiveOrders_List "{\"success\":1}"
+
+2019-03-12 22:05:18 Debug: amount   "0.00028799" "38102"
+
+
+2019-03-12 22:05:20 Debug: yobit_make_trade "{\"success\":1,\"return\":{\"received\":0,\"remains\":38102,\"order_id\":2077551718248678,\"funds\":{\"doge\":232.60872463,\"tvt\":17118685.43136247},\"funds_incl_orders\":{\"doge\":232.60872463,\"tvt\":17156787.43136247},\"server_time\":1552399479}}"
+
+
+2019-03-12 22:05:22 Debug: yobit_make_trade "{\"success\":1,\"return\":{\"received\":0,\"remains\":38102,\"order_id\":1077551718248746,\"funds\":{\"doge\":232.60872463,\"tvt\":17118685.43136247},\"funds_incl_orders\":{\"doge\":232.60872463,\"tvt\":17156787.43136247},\"server_time\":1552399481}}"
+
+
+2019-03-12 22:05:26 Debug: yobit_ActiveOrders_List "{\"success\":1}"
+
+2019-03-12 22:05:28 Debug: amount   "0.00028799" "38102"
+
+
+2019-03-12 22:05:30 Debug: yobit_make_trade "{\"success\":1,\"return\":{\"received\":0,\"remains\":38102,\"order_id\":2077551718248932,\"funds\":{\"doge\":232.56483267,\"tvt\":17118685.43136247},\"funds_incl_orders\":{\"doge\":232.56483267,\"tvt\":17156787.43136247},\"server_time\":1552399488}}"
+
+
+2019-03-12 22:05:32 Debug: yobit_make_trade "{\"success\":1,\"return\":{\"received\":0,\"remains\":38102,\"order_id\":1077551718248982,\"funds\":{\"doge\":221.56989171,\"tvt\":17118685.43136247},\"funds_incl_orders\":{\"doge\":232.56483267,\"tvt\":17156787.43136247},\"server_time\":1552399490}}"
+
+
+2019-03-12 22:05:34 Debug: yobit_ActiveOrders_List "{\"success\":1}"
+
+2019-03-12 22:05:36 Debug: amount   "0.00028799" "38102"
+
+
+2019-03-12 22:05:38 Debug: yobit_make_trade "{\"success\":1,\"return\":{\"received\":0,\"remains\":38102,\"order_id\":2077551718249133,\"funds\":{\"doge\":232.52094071,\"tvt\":17118685.43136247},\"funds_incl_orders\":{\"doge\":232.52094071,\"tvt\":17156787.43136247},\"server_time\":1552399496}}"
+
+
+2019-03-12 22:05:40 Debug: yobit_make_trade "{\"success\":1,\"return\":{\"received\":0,\"remains\":38102,\"order_id\":1077551718249177,\"funds\":{\"doge\":221.52599975,\"tvt\":17118685.43136247},\"funds_incl_orders\":{\"doge\":232.52094071,\"tvt\":17156787.43136247},\"server_time\":1552399498}}"
+
+
+2019-03-12 22:05:41 Debug: yobit_ActiveOrders_List "{\"success\":1}"
+
+2019-03-12 22:05:43 Debug: amount   "0.00028799" "38102"
+
+
+2019-03-12 22:05:46 Debug: yobit_make_trade "{\"success\":1,\"return\":{\"received\":0,\"remains\":38102,\"order_id\":2077551718249322,\"funds\":{\"doge\":232.47704875,\"tvt\":17118685.43136247},\"funds_incl_orders\":{\"doge\":232.47704875,\"tvt\":17156787.43136247},\"server_time\":1552399504}}"
+
+
+2019-03-12 22:05:48 Debug: yobit_make_trade "{\"success\":1,\"return\":{\"received\":0,\"remains\":38102,\"order_id\":1077551718249390,\"funds\":{\"doge\":221.48210779,\"tvt\":17118685.43136247},\"funds_incl_orders\":{\"doge\":232.47704875,\"tvt\":17156787.43136247},\"server_time\":1552399506}}"
+
+
+2019-03-12 22:05:50 Debug: yobit_ActiveOrders_List "{\"success\":1}"
+
+2019-03-12 22:05:53 Debug: amount   "0.00028799" "38102"
+
+
+2019-03-12 22:05:55 Debug: yobit_make_trade "{\"success\":1,\"return\":{\"received\":0,\"remains\":38102,\"order_id\":2077551718249608,\"funds\":{\"doge\":232.43315679,\"tvt\":17118685.43136247},\"funds_incl_orders\":{\"doge\":232.43315679,\"tvt\":17156787.43136247},\"server_time\":1552399514}}"
+
+
+2019-03-12 22:05:59 Debug: yobit_make_trade "{\"success\":1,\"return\":{\"received\":0,\"remains\":38102,\"order_id\":1077551718249703,\"funds\":{\"doge\":221.43821583,\"tvt\":17118685.43136247},\"funds_incl_orders\":{\"doge\":232.43315679,\"tvt\":17156787.43136247},\"server_time\":1552399517}}"
+
+
+2019-03-12 22:06:01 Debug: yobit_ActiveOrders_List "{\"success\":1}"
+
+2019-03-12 22:06:02 Debug: amount   "0.00028799" "38102"
+
+
+2019-03-12 22:06:04 Debug: yobit_make_trade "{\"success\":1,\"return\":{\"received\":0,\"remains\":38102,\"order_id\":2077551718249835,\"funds\":{\"doge\":232.38926483,\"tvt\":17118685.43136247},\"funds_incl_orders\":{\"doge\":232.38926483,\"tvt\":17156787.43136247},\"server_time\":1552399523}}"
+
+
+2019-03-12 22:06:09 Debug: yobit_make_trade "{\"success\":1,\"return\":{\"received\":0,\"remains\":38102,\"order_id\":1077551718249914,\"funds\":{\"doge\":221.39432387,\"tvt\":17118685.43136247},\"funds_incl_orders\":{\"doge\":232.38926483,\"tvt\":17156787.43136247},\"server_time\":1552399527}}"
+
+
+2019-03-12 22:06:10 Debug: yobit_ActiveOrders_List "{\"success\":1}"
+
+2019-03-12 22:06:14 Debug: amount   "0.00028799" "38102"
+
+
+2019-03-12 22:06:16 Debug: yobit_make_trade "{\"success\":1,\"return\":{\"received\":0,\"remains\":38102,\"order_id\":2077551718250082,\"funds\":{\"doge\":232.34537287,\"tvt\":17118685.43136247},\"funds_incl_orders\":{\"doge\":232.34537287,\"tvt\":17156787.43136247},\"server_time\":1552399535}}"
+
+
+2019-03-12 22:06:24 Debug: yobit_ActiveOrders_List "{\"success\":1}"
+
+2019-03-12 22:06:26 Debug: amount   "0.00028799" "78102"
+
+
+2019-03-12 22:06:28 Debug: yobit_make_trade "{\"success\":1,\"return\":{\"received\":0,\"remains\":78102,\"order_id\":2077551718250390,\"funds\":{\"doge\":232.30148091,\"tvt\":17078685.43136247},\"funds_incl_orders\":{\"doge\":232.30148091,\"tvt\":17156787.43136247},\"server_time\":1552399546}}"
+
+
+2019-03-12 22:06:30 Debug: yobit_make_trade "{\"success\":1,\"return\":{\"received\":0,\"remains\":78102,\"order_id\":1077551718250429,\"funds\":{\"doge\":209.76390075,\"tvt\":17078685.43136247},\"funds_incl_orders\":{\"doge\":232.30148091,\"tvt\":17156787.43136247},\"server_time\":1552399548}}"
+
+
+2019-03-12 22:06:32 Debug: yobit_ActiveOrders_List "{\"success\":1}"
+
+2019-03-12 22:06:35 Debug: amount   "0.00028799" "78102"
+
+
+2019-03-12 22:06:37 Debug: yobit_make_trade "{\"success\":1,\"return\":{\"received\":0,\"remains\":78102,\"order_id\":2077551718250566,\"funds\":{\"doge\":232.21151055,\"tvt\":17078685.43136247},\"funds_incl_orders\":{\"doge\":232.21151055,\"tvt\":17156787.43136247},\"server_time\":1552399556}}"
+
+
+2019-03-12 22:06:39 Debug: yobit_make_trade "{\"success\":1,\"return\":{\"received\":0,\"remains\":78102,\"order_id\":1077551718250617,\"funds\":{\"doge\":209.67393039,\"tvt\":17078685.43136247},\"funds_incl_orders\":{\"doge\":232.21151055,\"tvt\":17156787.43136247},\"server_time\":1552399557}}"
+
+
+2019-03-12 22:06:41 Debug: yobit_ActiveOrders_List "{\"success\":1}"
+
+2019-03-12 22:06:43 Debug: amount   "0.00028799" "78102"
+
+
+2019-03-12 22:06:45 Debug: yobit_make_trade "{\"success\":1,\"return\":{\"received\":0,\"remains\":78102,\"order_id\":2077551718250749,\"funds\":{\"doge\":232.12154019,\"tvt\":17078685.43136247},\"funds_incl_orders\":{\"doge\":232.12154019,\"tvt\":17156787.43136247},\"server_time\":1552399564}}"
+
+
+2019-03-12 22:06:48 Debug: yobit_make_trade "{\"success\":1,\"return\":{\"received\":0,\"remains\":78102,\"order_id\":1077551718250810,\"funds\":{\"doge\":232.12154019,\"tvt\":17078685.43136247},\"funds_incl_orders\":{\"doge\":232.12154019,\"tvt\":17156787.43136247},\"server_time\":1552399566}}"
+
+
+2019-03-12 22:06:50 Debug: yobit_ActiveOrders_List "{\"success\":1}"
+
+2019-03-12 22:06:52 Debug: amount   "0.00028799" "78102"
+
+
+2019-03-12 22:06:54 Debug: yobit_make_trade "{\"success\":1,\"return\":{\"received\":0,\"remains\":78102,\"order_id\":2077551718250984,\"funds\":{\"doge\":232.03156983,\"tvt\":17156787.43136247},\"funds_incl_orders\":{\"doge\":232.03156983,\"tvt\":17156787.43136247},\"server_time\":1552399572}}"
+
+
+2019-03-12 22:06:56 Debug: yobit_make_trade "{\"success\":1,\"return\":{\"received\":0,\"remains\":78102,\"order_id\":1077551718251033,\"funds\":{\"doge\":209.49398967,\"tvt\":17078685.43136247},\"funds_incl_orders\":{\"doge\":232.03156983,\"tvt\":17156787.43136247},\"server_time\":1552399574}}"
+
+
+2019-03-12 22:06:58 Debug: yobit_ActiveOrders_List "{\"success\":1}"
+
+2019-03-12 22:07:00 Debug: amount   "0.00028799" "78102"
+
+
+2019-03-12 22:07:03 Debug: yobit_make_trade "{\"success\":1,\"return\":{\"received\":0,\"remains\":78102,\"order_id\":2077551718251210,\"funds\":{\"doge\":231.94159947,\"tvt\":17078685.43136247},\"funds_incl_orders\":{\"doge\":231.94159947,\"tvt\":17156787.43136247},\"server_time\":1552399581}}"
+
+
+2019-03-12 22:07:05 Debug: yobit_make_trade "{\"success\":1,\"return\":{\"received\":0,\"remains\":78102,\"order_id\":1077551718251261,\"funds\":{\"doge\":209.40401931,\"tvt\":17078685.43136247},\"funds_incl_orders\":{\"doge\":231.94159947,\"tvt\":17156787.43136247},\"server_time\":1552399583}}"
+
+
+2019-03-12 22:07:20 Debug: yobit_ActiveOrders_List "{\"success\":1}"
+
+2019-03-12 22:07:22 Debug: amount   "0.00028799" "78102"
+
+
+2019-03-12 22:07:24 Debug: yobit_make_trade "{\"success\":1,\"return\":{\"received\":0,\"remains\":78102,\"order_id\":2077551718251730,\"funds\":{\"doge\":231.85162911,\"tvt\":17078685.43136247},\"funds_incl_orders\":{\"doge\":231.85162911,\"tvt\":17156787.43136247},\"server_time\":1552399603}}"
+
+
+2019-03-12 22:07:27 Debug: yobit_make_trade "{\"success\":1,\"return\":{\"received\":0,\"remains\":78102,\"order_id\":1077551718251805,\"funds\":{\"doge\":209.31404895,\"tvt\":17078685.43136247},\"funds_incl_orders\":{\"doge\":231.85162911,\"tvt\":17156787.43136247},\"server_time\":1552399606}}"
+
+
+2019-03-12 22:07:29 Debug: yobit_ActiveOrders_List "{\"success\":1}"
+
+2019-03-12 22:07:31 Debug: amount   "0.00028799" "78102"
+
+
+2019-03-12 22:07:33 Debug: yobit_make_trade "{\"success\":1,\"return\":{\"received\":0,\"remains\":78102,\"order_id\":2077551718251937,\"funds\":{\"doge\":231.76165875,\"tvt\":17078685.43136247},\"funds_incl_orders\":{\"doge\":231.76165875,\"tvt\":17156787.43136247},\"server_time\":1552399611}}"
+
+
+2019-03-12 22:07:35 Debug: yobit_make_trade "{\"success\":1,\"return\":{\"received\":0,\"remains\":78102,\"order_id\":1077551718251981,\"funds\":{\"doge\":209.22407859,\"tvt\":17078685.43136247},\"funds_incl_orders\":{\"doge\":231.76165875,\"tvt\":17156787.43136247},\"server_time\":1552399614}}"
+
+
+2019-03-12 22:07:37 Debug: yobit_ActiveOrders_List "{\"success\":1}"
+
+2019-03-12 22:07:39 Debug: amount   "0.00028799" "78102"
+
+
+2019-03-12 22:07:41 Debug: yobit_make_trade "{\"success\":1,\"return\":{\"received\":0,\"remains\":78102,\"order_id\":2077551718252095,\"funds\":{\"doge\":231.67168839,\"tvt\":17078685.43136247},\"funds_incl_orders\":{\"doge\":231.67168839,\"tvt\":17156787.43136247},\"server_time\":1552399619}}"
+
+
+2019-03-12 22:07:43 Debug: yobit_make_trade "{\"success\":1,\"return\":{\"received\":0,\"remains\":78102,\"order_id\":1077551718252163,\"funds\":{\"doge\":209.13410823,\"tvt\":17078685.43136247},\"funds_incl_orders\":{\"doge\":231.67168839,\"tvt\":17156787.43136247},\"server_time\":1552399622}}"
+
+
+2019-03-12 22:07:45 Debug: yobit_ActiveOrders_List "{\"success\":1}"
+
+2019-03-12 22:07:47 Debug: amount   "0.00028799" "78102"
+
+
+2019-03-12 22:07:51 Debug: yobit_make_trade "{\"success\":1,\"return\":{\"received\":0,\"remains\":78102,\"order_id\":2077551718252315,\"funds\":{\"doge\":231.58171803,\"tvt\":17078685.43136247},\"funds_incl_orders\":{\"doge\":231.58171803,\"tvt\":17156787.43136247},\"server_time\":1552399629}}"
+
+
+2019-03-12 22:07:53 Debug: yobit_make_trade "{\"success\":1,\"return\":{\"received\":0,\"remains\":78102,\"order_id\":1077551718252375,\"funds\":{\"doge\":209.04413787,\"tvt\":17078685.43136247},\"funds_incl_orders\":{\"doge\":231.58171803,\"tvt\":17156787.43136247},\"server_time\":1552399631}}"
+
+
+2019-03-12 22:07:57 Debug: yobit_ActiveOrders_List "{\"success\":1}"
+
+2019-03-12 22:07:59 Debug: amount   "0.00028799" "78102"
+
+
+2019-03-12 22:08:01 Debug: yobit_make_trade "{\"success\":1,\"return\":{\"received\":0,\"remains\":78102,\"order_id\":2077551718252586,\"funds\":{\"doge\":231.49174767,\"tvt\":17078685.43136247},\"funds_incl_orders\":{\"doge\":231.49174767,\"tvt\":17156787.43136247},\"server_time\":1552399639}}"
+
+
+2019-03-12 22:08:03 Debug: yobit_make_trade "{\"success\":1,\"return\":{\"received\":0,\"remains\":78102,\"order_id\":1077551718252642,\"funds\":{\"doge\":208.95416751,\"tvt\":17078685.43136247},\"funds_incl_orders\":{\"doge\":231.49174767,\"tvt\":17156787.43136247},\"server_time\":1552399641}}"
+
+
+2019-03-12 22:08:05 Debug: yobit_ActiveOrders_List "{\"success\":1}"
+
+2019-03-12 22:08:07 Debug: amount   "0.00028799" "78102"
+
+
+2019-03-12 22:08:09 Debug: yobit_make_trade "{\"success\":1,\"return\":{\"received\":0,\"remains\":78102,\"order_id\":2077551718252755,\"funds\":{\"doge\":231.40177731,\"tvt\":17078685.43136247},\"funds_incl_orders\":{\"doge\":231.40177731,\"tvt\":17156787.43136247},\"server_time\":1552399648}}"
+
+
+2019-03-12 22:08:11 Debug: yobit_make_trade "{\"success\":1,\"return\":{\"received\":0,\"remains\":78102,\"order_id\":1077551718252803,\"funds\":{\"doge\":208.86419715,\"tvt\":17078685.43136247},\"funds_incl_orders\":{\"doge\":231.40177731,\"tvt\":17156787.43136247},\"server_time\":1552399650}}"
+
+
+2019-03-12 22:08:13 Debug: yobit_ActiveOrders_List "{\"success\":1}"
+
+2019-03-12 22:08:15 Debug: amount   "0.00028799" "78102"
+
+
+2019-03-12 22:29:28 Debug: yobit_ActiveOrders_List "{\"success\":0,\"error\":\"invalid nonce (has already been used)\"}"
+
+
+2019-03-12 22:29:30 Debug: yobit_ActiveOrders_List "{\"success\":0,\"error\":\"invalid nonce (has already been used)\"}"
+
+
+2019-03-12 22:29:32 Debug: yobit_ActiveOrders_List "{\"success\":0,\"error\":\"invalid nonce (has already been used)\"}"
+
+
+2019-03-12 22:29:34 Debug: yobit_ActiveOrders_List "{\"success\":0,\"error\":\"invalid nonce (has already been used)\"}"
+
+
+2019-03-12 22:29:37 Debug: yobit_ActiveOrders_List "{\"success\":0,\"error\":\"invalid nonce (has already been used)\"}"
+
+
+2019-03-12 22:30:37 Debug: yobit_ActiveOrders_List "{\"success\":0,\"error\":\"invalid nonce (max 2147483646), please generate new key\"}"
+
+
+2019-03-12 22:32:31 Debug: yobit_ActiveOrders_List "{\"success\":1}"
+
+
+2019-03-12 22:32:55 Debug: yobit_ActiveOrders_List "{\"success\":1}"
+
+2019-03-12 22:33:13 Debug: amount   "0.00028849" "78102"
+
+
+
+2019-03-12 22:36:06 Debug: yobit_ActiveOrders_List "{\"success\":1,\"return\":{\"2077551718289036\":{\"pair\":\"tvt_doge\",\"type\":\"sell\",\"amount\":18111.18880809,\"rate\":0.00028849,\"timestamp_created\":\"1552401153\",\"status\":0}}}"
+
+
+2019-03-12 22:36:29 Debug: yobit_CancelOrder "{\"success\":1,\"return\":{\"order_id\":2077551718289036,\"funds\":{\"doge\":256.63173316,\"tvt\":17018694.62017056},\"funds_incl_orders\":{\"doge\":256.63173316,\"tvt\":17018694.62017056},\"server_time\":1552401347}}"
+
+
+2019-03-12 22:36:31 Debug: yobit_CancelOrder "{\"success\":0,\"error\":\"invalid order id\"}"
+
+2019-03-12 22:36:33 Debug: amount   "0.00028849" "78102"
+
+
+
+2019-03-12 22:37:03 Debug: yobit_ActiveOrders_List "{\"success\":1,\"return\":{\"2077551718293635\":{\"pair\":\"tvt_doge\",\"type\":\"sell\",\"amount\":78102,\"rate\":0.00028849,\"timestamp_created\":\"1552401353\",\"status\":0}}}"
+
+
+2019-03-12 22:37:06 Debug: yobit_CancelOrder "{\"success\":1,\"return\":{\"order_id\":2077551718293635,\"funds\":{\"doge\":256.63173316,\"tvt\":17018694.62017056},\"funds_incl_orders\":{\"doge\":256.63173316,\"tvt\":17018694.62017056},\"server_time\":1552401385}}"
+
+
+2019-03-12 22:37:09 Debug: yobit_CancelOrder "{\"success\":0,\"error\":\"invalid order id\"}"
+
+2019-03-12 22:37:12 Debug: amount   "0.00028849" "78102"
+
+
+
+2019-03-12 22:37:48 Debug: yobit_ActiveOrders_List "{\"success\":1,\"return\":{\"2077551718294550\":{\"pair\":\"tvt_doge\",\"type\":\"sell\",\"amount\":78102,\"rate\":0.00028849,\"timestamp_created\":\"1552401394\",\"status\":0}}}"
+
+
+2019-03-12 22:37:50 Debug: yobit_CancelOrder "{\"success\":1,\"return\":{\"order_id\":2077551718294550,\"funds\":{\"doge\":256.63173316,\"tvt\":17018694.62017056},\"funds_incl_orders\":{\"doge\":256.63173316,\"tvt\":17018694.62017056},\"server_time\":1552401429}}"
+
+
+2019-03-12 22:37:52 Debug: yobit_CancelOrder "{\"success\":0,\"error\":\"invalid order id\"}"
+
+2019-03-12 22:37:55 Debug: amount   "0.00028849" "78102"
+
+
+
+2019-03-12 22:39:54 Debug: yobit_ActiveOrders_List "{\"success\":1,\"return\":{\"2077551718295690\":{\"pair\":\"tvt_doge\",\"type\":\"sell\",\"amount\":78102,\"rate\":0.00028849,\"timestamp_created\":\"1552401436\",\"status\":0}}}"
+
+
+2019-03-12 22:39:57 Debug: yobit_CancelOrder "{\"success\":1,\"return\":{\"order_id\":2077551718295690,\"funds\":{\"doge\":256.63173316,\"tvt\":17018694.62017056},\"funds_incl_orders\":{\"doge\":256.63173316,\"tvt\":17018694.62017056},\"server_time\":1552401555}}"
+
+
+2019-03-12 22:39:59 Debug: yobit_CancelOrder "{\"success\":0,\"error\":\"invalid order id\"}"
+
+2019-03-12 22:40:01 Debug: amount   "0.00028849" "78102"
+
+
+2019-03-12 22:40:04 Debug: yobit_make_trade "{\"success\":1,\"return\":{\"received\":0,\"remains\":78102,\"order_id\":2077551718298686,\"funds\":{\"doge\":256.63173316,\"tvt\":16940592.62017056},\"funds_incl_orders\":{\"doge\":256.63173316,\"tvt\":17018694.62017056},\"server_time\":1552401563}}"
+
+
+2019-03-12 22:40:06 Debug: yobit_make_trade "{\"success\":1,\"return\":{\"received\":0,\"remains\":78102,\"order_id\":1077551718298737,\"funds\":{\"doge\":234.05502389,\"tvt\":16940592.62017056},\"funds_incl_orders\":{\"doge\":256.63173316,\"tvt\":17018694.62017056},\"server_time\":1552401564}}"
+
+
+2019-03-12 22:43:18 Debug: yobit_ActiveOrders_List "{\"success\":1}"
+
+
+2019-03-12 22:43:26 Debug: yobit_ActiveOrders_List "{\"success\":1}"
+
+2019-03-12 22:43:29 Debug: amount   "0.00028849" "78102"
+
+
+2019-03-12 22:43:33 Debug: yobit_make_trade "{\"success\":1,\"return\":{\"received\":0,\"remains\":78102,\"order_id\":2077551718303594,\"funds\":{\"doge\":256.54160658,\"tvt\":16940592.62017056},\"funds_incl_orders\":{\"doge\":256.54160658,\"tvt\":17018694.62017056},\"server_time\":1552401771}}"
+
+2019-03-12 22:43:35 Debug: yobit_make_trade "{\"success\":1,\"return\":{\"received\":0,\"remains\":78102,\"order_id\":1077551718303660,\"funds\":{\"doge\":233.96489731,\"tvt\":16940592.62017056},\"funds_incl_orders\":{\"doge\":256.54160658,\"tvt\":17018694.62017056},\"server_time\":1552401773}}"
+
+
+2019-03-12 22:43:37 Debug: yobit_make_trade "{\"success\":1,\"return\":{\"received\":0,\"remains\":80000,\"order_id\":2077551718303705,\"funds\":{\"doge\":256.45148,\"tvt\":16938694.62017056},\"funds_incl_orders\":{\"doge\":256.45148,\"tvt\":17018694.62017056},\"server_time\":1552401775}}"
+
+
+2019-03-12 22:43:38 Debug: yobit_make_trade "{\"success\":1,\"return\":{\"received\":0,\"remains\":80000,\"order_id\":2077551718303756,\"funds\":{\"doge\":256.45148,\"tvt\":16858694.62017056},\"funds_incl_orders\":{\"doge\":256.45148,\"tvt\":17018694.62017056},\"server_time\":1552401777}}"
+
+
+2019-03-12 22:43:41 Debug: yobit_make_trade "{\"success\":1,\"return\":{\"received\":0,\"remains\":80000,\"order_id\":2077551718303807,\"funds\":{\"doge\":256.45148,\"tvt\":16778694.62017056},\"funds_incl_orders\":{\"doge\":256.45148,\"tvt\":17018694.62017056},\"server_time\":1552401779}}"
+
+
+2019-03-12 22:43:43 Debug: yobit_make_trade "{\"success\":1,\"return\":{\"received\":0,\"remains\":80000,\"order_id\":2077551718303854,\"funds\":{\"doge\":256.45148,\"tvt\":16698694.62017056},\"funds_incl_orders\":{\"doge\":256.45148,\"tvt\":17018694.62017056},\"server_time\":1552401782}}"
+
+
+2019-03-12 22:43:48 Debug: yobit_ActiveOrders_List "{\"success\":1,\"return\":{\"2077551718303854\":{\"pair\":\"tvt_doge\",\"type\":\"sell\",\"amount\":80000,\"rate\":28749,\"timestamp_created\":\"1552401782\",\"status\":0},\"2077551718303807\":{\"pair\":\"tvt_doge\",\"type\":\"sell\",\"amount\":80000,\"rate\":28749,\"timestamp_created\":\"1552401779\",\"status\":0},\"2077551718303756\":{\"pair\":\"tvt_doge\",\"type\":\"sell\",\"amount\":80000,\"rate\":28749,\"timestamp_created\":\"1552401777\",\"status\":0},\"2077551718303705\":{\"pair\":\"tvt_doge\",\"type\":\"sell\",\"amount\":80000,\"rate\":28749,\"timestamp_created\":\"1552401775\",\"status\":0}}}"
+
+
+2019-03-12 22:43:51 Debug: yobit_CancelOrder "{\"success\":1,\"return\":{\"order_id\":2077551718303854,\"funds\":{\"doge\":256.45148,\"tvt\":16778694.62017056},\"funds_incl_orders\":{\"doge\":256.45148,\"tvt\":17018694.62017056},\"server_time\":1552401790}}"
+
+
+2019-03-12 22:43:53 Debug: yobit_CancelOrder "{\"success\":1,\"return\":{\"order_id\":2077551718303807,\"funds\":{\"doge\":256.45148,\"tvt\":16858694.62017056},\"funds_incl_orders\":{\"doge\":256.45148,\"tvt\":17018694.62017056},\"server_time\":1552401792}}"
+
+
+2019-03-12 22:43:55 Debug: yobit_CancelOrder "{\"success\":1,\"return\":{\"order_id\":2077551718303756,\"funds\":{\"doge\":256.45148,\"tvt\":16938694.62017056},\"funds_incl_orders\":{\"doge\":256.45148,\"tvt\":17018694.62017056},\"server_time\":1552401794}}"
+
+
+2019-03-12 22:43:58 Debug: yobit_CancelOrder "{\"success\":1,\"return\":{\"order_id\":2077551718303705,\"funds\":{\"doge\":256.45148,\"tvt\":17018694.62017056},\"funds_incl_orders\":{\"doge\":256.45148,\"tvt\":17018694.62017056},\"server_time\":1552401796}}"
+
+
+2019-03-12 22:44:00 Debug: yobit_CancelOrder "{\"success\":0,\"error\":\"invalid order id\"}"
+
+2019-03-12 22:44:02 Debug: amount   "0.00028849" "78102"
+
+
+2019-03-12 22:44:05 Debug: yobit_make_trade "{\"success\":1,\"return\":{\"received\":0,\"remains\":78102,\"order_id\":2077551718304387,\"funds\":{\"doge\":256.45148,\"tvt\":16940592.62017056},\"funds_incl_orders\":{\"doge\":256.45148,\"tvt\":17018694.62017056},\"server_time\":1552401803}}"
+
+
+2019-03-12 22:44:11 Debug: yobit_make_trade "{\"success\":1,\"return\":{\"received\":0,\"remains\":78102,\"order_id\":1077551718304521,\"funds\":{\"doge\":233.87477073,\"tvt\":16940592.62017056},\"funds_incl_orders\":{\"doge\":256.45148,\"tvt\":17018694.62017056},\"server_time\":1552401809}}"
+
+
+2019-03-12 22:44:13 Debug: yobit_make_trade "{\"success\":1,\"return\":{\"received\":0,\"remains\":80000,\"order_id\":2077551718304594,\"funds\":{\"doge\":256.36135342,\"tvt\":16938694.62017056},\"funds_incl_orders\":{\"doge\":256.36135342,\"tvt\":17018694.62017056},\"server_time\":1552401811}}"
+
+
+2019-03-12 22:44:16 Debug: yobit_make_trade "{\"success\":1,\"return\":{\"received\":0,\"remains\":80000,\"order_id\":2077551718304660,\"funds\":{\"doge\":256.36135342,\"tvt\":16858694.62017056},\"funds_incl_orders\":{\"doge\":256.36135342,\"tvt\":17018694.62017056},\"server_time\":1552401814}}"
+
+
+2019-03-12 22:44:17 Debug: yobit_make_trade "{\"success\":1,\"return\":{\"received\":0,\"remains\":80000,\"order_id\":2077551718304704,\"funds\":{\"doge\":256.36135342,\"tvt\":16778694.62017056},\"funds_incl_orders\":{\"doge\":256.36135342,\"tvt\":17018694.62017056},\"server_time\":1552401816}}"
+
+
+2019-03-12 22:44:19 Debug: yobit_make_trade "{\"success\":1,\"return\":{\"received\":0,\"remains\":80000,\"order_id\":2077551718304756,\"funds\":{\"doge\":256.36135342,\"tvt\":16698694.62017056},\"funds_incl_orders\":{\"doge\":256.36135342,\"tvt\":17018694.62017056},\"server_time\":1552401818}}"
+
+
+2019-03-12 22:44:24 Debug: yobit_make_trade "{\"success\":1,\"return\":{\"received\":0,\"remains\":80000,\"order_id\":2077551718304893,\"funds\":{\"doge\":256.36135342,\"tvt\":16618694.62017056},\"funds_incl_orders\":{\"doge\":256.36135342,\"tvt\":17018694.62017056},\"server_time\":1552401823}}"
+
+
+2019-03-12 22:44:26 Debug: yobit_make_trade "{\"success\":1,\"return\":{\"received\":0,\"remains\":80000,\"order_id\":2077551718304952,\"funds\":{\"doge\":256.36135342,\"tvt\":16538694.62017056},\"funds_incl_orders\":{\"doge\":256.36135342,\"tvt\":17018694.62017056},\"server_time\":1552401825}}"
+
+
+2019-03-12 22:44:28 Debug: yobit_make_trade "{\"success\":1,\"return\":{\"received\":0,\"remains\":80000,\"order_id\":2077551718305013,\"funds\":{\"doge\":256.36135342,\"tvt\":16538694.62017056},\"funds_incl_orders\":{\"doge\":256.36135342,\"tvt\":17018694.62017056},\"server_time\":1552401827}}"
+
+
+2019-03-12 22:44:32 Debug: yobit_make_trade "{\"success\":1,\"return\":{\"received\":0,\"remains\":80000,\"order_id\":2077551718305128,\"funds\":{\"doge\":256.36135342,\"tvt\":16378694.62017056},\"funds_incl_orders\":{\"doge\":256.36135342,\"tvt\":17018694.62017056},\"server_time\":1552401830}}"
+
+
+2019-03-12 22:44:34 Debug: yobit_make_trade "{\"success\":1,\"return\":{\"received\":0,\"remains\":80000,\"order_id\":2077551718305173,\"funds\":{\"doge\":256.36135342,\"tvt\":16298694.62017056},\"funds_incl_orders\":{\"doge\":256.36135342,\"tvt\":17018694.62017056},\"server_time\":1552401832}}"
+
+
+2019-03-12 22:45:15 Debug: yobit_ActiveOrders_List "{\"success\":1,\"return\":{\"2077551718305128\":{\"pair\":\"tvt_doge\",\"type\":\"sell\",\"amount\":80000,\"rate\":28749,\"timestamp_created\":\"1552401830\",\"status\":0},\"2077551718305013\":{\"pair\":\"tvt_doge\",\"type\":\"sell\",\"amount\":80000,\"rate\":28749,\"timestamp_created\":\"1552401827\",\"status\":0},\"2077551718304952\":{\"pair\":\"tvt_doge\",\"type\":\"sell\",\"amount\":80000,\"rate\":28749,\"timestamp_created\":\"1552401825\",\"status\":0},\"2077551718304893\":{\"pair\":\"tvt_doge\",\"type\":\"sell\",\"amount\":80000,\"rate\":28749,\"timestamp_created\":\"1552401823\",\"status\":0},\"2077551718304756\":{\"pair\":\"tvt_doge\",\"type\":\"sell\",\"amount\":80000,\"rate\":28749,\"timestamp_created\":\"1552401818\",\"status\":0},\"2077551718304704\":{\"pair\":\"tvt_doge\",\"type\":\"sell\",\"amount\":80000,\"rate\":28749,\"timestamp_created\":\"1552401816\",\"status\":0},\"2077551718304660\":{\"pair\":\"tvt_doge\",\"type\":\"sell\",\"amount\":80000,\"rate\":28749,\"timestamp_created\":\"1552401814\",\"status\":0},\"2077551718304594\":{\"pair\":\"tvt_doge\",\"type\":\"sell\",\"amount\":80000,\"rate\":28749,\"timestamp_created\":\"1552401811\",\"status\":0}}}"
+
+
+2019-03-12 22:45:17 Debug: yobit_CancelOrder "{\"success\":1,\"return\":{\"order_id\":2077551718305128,\"funds\":{\"doge\":256.36135342,\"tvt\":16458694.62017056},\"funds_incl_orders\":{\"doge\":256.36135342,\"tvt\":17018694.62017056},\"server_time\":1552401876}}"
+
+
+2019-03-12 22:45:19 Debug: yobit_CancelOrder "{\"success\":1,\"return\":{\"order_id\":2077551718305013,\"funds\":{\"doge\":256.36135342,\"tvt\":16538694.62017056},\"funds_incl_orders\":{\"doge\":256.36135342,\"tvt\":17018694.62017056},\"server_time\":1552401878}}"
+
+
+2019-03-12 22:45:21 Debug: yobit_CancelOrder "{\"success\":1,\"return\":{\"order_id\":2077551718304952,\"funds\":{\"doge\":256.36135342,\"tvt\":16618694.62017056},\"funds_incl_orders\":{\"doge\":256.36135342,\"tvt\":17018694.62017056},\"server_time\":1552401880}}"
+
+
+2019-03-12 22:45:23 Debug: yobit_CancelOrder "{\"success\":1,\"return\":{\"order_id\":2077551718304893,\"funds\":{\"doge\":256.36135342,\"tvt\":16698694.62017056},\"funds_incl_orders\":{\"doge\":256.36135342,\"tvt\":17018694.62017056},\"server_time\":1552401882}}"
+
+
+2019-03-12 22:45:26 Debug: yobit_CancelOrder "{\"success\":1,\"return\":{\"order_id\":2077551718304756,\"funds\":{\"doge\":256.36135342,\"tvt\":16778694.62017056},\"funds_incl_orders\":{\"doge\":256.36135342,\"tvt\":17018694.62017056},\"server_time\":1552401884}}"
+
+
+2019-03-12 22:45:29 Debug: yobit_CancelOrder "{\"success\":1,\"return\":{\"order_id\":2077551718304704,\"funds\":{\"doge\":256.36135342,\"tvt\":16778694.62017056},\"funds_incl_orders\":{\"doge\":256.36135342,\"tvt\":17018694.62017056},\"server_time\":1552401887}}"
+
+
+2019-03-12 22:45:31 Debug: yobit_CancelOrder "{\"success\":1,\"return\":{\"order_id\":2077551718304660,\"funds\":{\"doge\":256.36135342,\"tvt\":16938694.62017056},\"funds_incl_orders\":{\"doge\":256.36135342,\"tvt\":17018694.62017056},\"server_time\":1552401889}}"
+
+
+2019-03-12 22:45:35 Debug: yobit_CancelOrder "{\"success\":1,\"return\":{\"order_id\":2077551718304594,\"funds\":{\"doge\":256.36135342,\"tvt\":17018694.62017056},\"funds_incl_orders\":{\"doge\":256.36135342,\"tvt\":17018694.62017056},\"server_time\":1552401893}}"
+
+
+2019-03-12 22:45:37 Debug: yobit_CancelOrder "{\"success\":0,\"error\":\"invalid order id\"}"
+
+2019-03-12 22:45:39 Debug: amount   "0.00028849" "78102"
+
+
+2019-03-12 22:45:43 Debug: yobit_make_trade "{\"success\":1,\"return\":{\"received\":0,\"remains\":78102,\"order_id\":2077551718306839,\"funds\":{\"doge\":256.36135342,\"tvt\":16940592.62017056},\"funds_incl_orders\":{\"doge\":256.36135342,\"tvt\":17018694.62017056},\"server_time\":1552401901}}"
+
+
+2019-03-12 22:45:48 Debug: yobit_make_trade "{\"success\":1,\"return\":{\"received\":0,\"remains\":78102,\"order_id\":1077551718306930,\"funds\":{\"doge\":233.78464415,\"tvt\":17018694.62017056},\"funds_incl_orders\":{\"doge\":256.36135342,\"tvt\":17018694.62017056},\"server_time\":1552401906}}"
+
+
+2019-03-12 22:45:52 Debug: yobit_make_trade "{\"success\":1,\"return\":{\"received\":0,\"remains\":80000,\"order_id\":2077551718307047,\"funds\":{\"doge\":256.27122684,\"tvt\":16938694.62017056},\"funds_incl_orders\":{\"doge\":256.27122684,\"tvt\":17018694.62017056},\"server_time\":1552401910}}"
+
+
+2019-03-12 22:45:59 Debug: yobit_ActiveOrders_List "{\"success\":1,\"return\":{\"2077551718307047\":{\"pair\":\"tvt_doge\",\"type\":\"sell\",\"amount\":80000,\"rate\":28749,\"timestamp_created\":\"1552401910\",\"status\":0}}}"
+
+
+2019-03-12 22:48:00 Debug: yobit_ActiveOrders_List "{\"success\":1,\"return\":{\"2077551718310276\":{\"pair\":\"tvt_doge\",\"type\":\"sell\",\"amount\":80000,\"rate\":28749,\"timestamp_created\":\"1552402038\",\"status\":0},\"2077551718310262\":{\"pair\":\"tvt_doge\",\"type\":\"sell\",\"amount\":80000,\"rate\":28749,\"timestamp_created\":\"1552402037\",\"status\":0},\"2077551718310249\":{\"pair\":\"tvt_doge\",\"type\":\"sell\",\"amount\":80000,\"rate\":28749,\"timestamp_created\":\"1552402037\",\"status\":0},\"2077551718310242\":{\"pair\":\"tvt_doge\",\"type\":\"sell\",\"amount\":80000,\"rate\":28749,\"timestamp_created\":\"1552402036\",\"status\":0},\"2077551718310231\":{\"pair\":\"tvt_doge\",\"type\":\"sell\",\"amount\":80000,\"rate\":28749,\"timestamp_created\":\"1552402036\",\"status\":0},\"2077551718310221\":{\"pair\":\"tvt_doge\",\"type\":\"sell\",\"amount\":80000,\"rate\":28749,\"timestamp_created\":\"1552402035\",\"status\":0},\"2077551718310207\":{\"pair\":\"tvt_doge\",\"type\":\"sell\",\"amount\":80000,\"rate\":28749,\"timestamp_created\":\"1552402035\",\"status\":0},\"2077551718310195\":{\"pair\":\"tvt_doge\",\"type\":\"sell\",\"amount\":80000,\"rate\":28749,\"timestamp_created\":\"1552402034\",\"status\":0},\"2077551718310155\":{\"pair\":\"tvt_doge\",\"type\":\"sell\",\"amount\":80000,\"rate\":28749,\"timestamp_created\":\"1552402033\",\"status\":0}}}"
+
+
+2019-03-12 22:48:14 Debug: yobit_CancelOrder "{\"success\":1,\"return\":{\"order_id\":2077551718310276,\"funds\":{\"doge\":256.09097368,\"tvt\":16378694.62017056},\"funds_incl_orders\":{\"doge\":256.09097368,\"tvt\":17018694.62017056},\"server_time\":1552402052}}"
+
+
+2019-03-12 22:48:23 Debug: yobit_CancelOrder "{\"success\":1,\"return\":{\"order_id\":2077551718310262,\"funds\":{\"doge\":256.09097368,\"tvt\":16458694.62017056},\"funds_incl_orders\":{\"doge\":256.09097368,\"tvt\":17018694.62017056},\"server_time\":1552402062}}"
+
+
+2019-03-12 22:48:48 Debug: yobit_CancelOrder "{\"success\":1,\"return\":{\"order_id\":2077551718310249,\"funds\":{\"doge\":256.09097368,\"tvt\":16538694.62017056},\"funds_incl_orders\":{\"doge\":256.09097368,\"tvt\":17018694.62017056},\"server_time\":1552402086}}"
+
+
+2019-03-12 22:48:50 Debug: yobit_CancelOrder "{\"success\":1,\"return\":{\"order_id\":2077551718310242,\"funds\":{\"doge\":256.09097368,\"tvt\":16618694.62017056},\"funds_incl_orders\":{\"doge\":256.09097368,\"tvt\":17018694.62017056},\"server_time\":1552402089}}"
+
+
+2019-03-12 22:48:52 Debug: yobit_CancelOrder "{\"success\":1,\"return\":{\"order_id\":2077551718310231,\"funds\":{\"doge\":256.09097368,\"tvt\":16698694.62017056},\"funds_incl_orders\":{\"doge\":256.09097368,\"tvt\":17018694.62017056},\"server_time\":1552402091}}"
+
+
+2019-03-12 22:49:06 Debug: yobit_CancelOrder "{\"success\":1,\"return\":{\"order_id\":2077551718310221,\"funds\":{\"doge\":256.09097368,\"tvt\":16778694.62017056},\"funds_incl_orders\":{\"doge\":256.09097368,\"tvt\":17018694.62017056},\"server_time\":1552402104}}"
+
+
+2019-03-12 22:49:09 Debug: yobit_CancelOrder "{\"success\":1,\"return\":{\"order_id\":2077551718310207,\"funds\":{\"doge\":256.09097368,\"tvt\":16858694.62017056},\"funds_incl_orders\":{\"doge\":256.09097368,\"tvt\":17018694.62017056},\"server_time\":1552402107}}"
+
+2019-03-12 22:49:11 Debug: yobit_CancelOrder "{\"success\":1,\"return\":{\"order_id\":2077551718310195,\"funds\":{\"doge\":256.09097368,\"tvt\":16938694.62017056},\"funds_incl_orders\":{\"doge\":256.09097368,\"tvt\":17018694.62017056},\"server_time\":1552402109}}"
+
+
+2019-03-12 22:49:14 Debug: yobit_CancelOrder "{\"success\":1,\"return\":{\"order_id\":2077551718310155,\"funds\":{\"doge\":256.09097368,\"tvt\":17018694.62017056},\"funds_incl_orders\":{\"doge\":256.09097368,\"tvt\":17018694.62017056},\"server_time\":1552402112}}"
+
+
+2019-03-12 22:49:16 Debug: yobit_CancelOrder "{\"success\":0,\"error\":\"invalid order id\"}"
+
+2019-03-12 22:49:22 Debug: amount   "0.00028849" "78102"
+
+
+2019-03-12 22:49:25 Debug: yobit_make_trade "{\"success\":1,\"return\":{\"received\":0,\"remains\":78102,\"order_id\":2077551718312340,\"funds\":{\"doge\":256.09097368,\"tvt\":16940592.62017056},\"funds_incl_orders\":{\"doge\":256.09097368,\"tvt\":17018694.62017056},\"server_time\":1552402123}}"
+
+
+2019-03-12 22:49:27 Debug: yobit_make_trade "{\"success\":1,\"return\":{\"received\":0,\"remains\":78102,\"order_id\":1077551718312400,\"funds\":{\"doge\":233.51426441,\"tvt\":16940592.62017056},\"funds_incl_orders\":{\"doge\":256.09097368,\"tvt\":17018694.62017056},\"server_time\":1552402125}}"
+
+
+2019-03-12 22:49:30 Debug: yobit_make_trade "{\"success\":1,\"return\":{\"received\":0,\"remains\":80000,\"order_id\":2077551718312492,\"funds\":{\"doge\":256.0008471,\"tvt\":16938694.62017056},\"funds_incl_orders\":{\"doge\":256.0008471,\"tvt\":17018694.62017056},\"server_time\":1552402128}}"
+
+
+2019-03-12 22:49:32 Debug: yobit_make_trade "{\"success\":1,\"return\":{\"received\":0,\"remains\":80000,\"order_id\":2077551718312550,\"funds\":{\"doge\":256.0008471,\"tvt\":16858694.62017056},\"funds_incl_orders\":{\"doge\":256.0008471,\"tvt\":17018694.62017056},\"server_time\":1552402131}}"
+
+
+2019-03-12 22:49:35 Debug: yobit_make_trade "{\"success\":1,\"return\":{\"received\":0,\"remains\":80000,\"order_id\":2077551718312623,\"funds\":{\"doge\":256.0008471,\"tvt\":16778694.62017056},\"funds_incl_orders\":{\"doge\":256.0008471,\"tvt\":17018694.62017056},\"server_time\":1552402133}}"
+
+
+2019-03-12 22:49:40 Debug: yobit_make_trade "{\"success\":1,\"return\":{\"received\":0,\"remains\":80000,\"order_id\":2077551718312728,\"funds\":{\"doge\":256.0008471,\"tvt\":16698694.62017056},\"funds_incl_orders\":{\"doge\":256.0008471,\"tvt\":17018694.62017056},\"server_time\":1552402138}}"
+
+
+2019-03-12 22:49:42 Debug: yobit_make_trade "{\"success\":1,\"return\":{\"received\":0,\"remains\":80000,\"order_id\":2077551718312782,\"funds\":{\"doge\":256.0008471,\"tvt\":16618694.62017056},\"funds_incl_orders\":{\"doge\":256.0008471,\"tvt\":17018694.62017056},\"server_time\":1552402141}}"
+
+
+2019-03-12 22:49:46 Debug: yobit_make_trade "{\"success\":1,\"return\":{\"received\":0,\"remains\":80000,\"order_id\":2077551718312838,\"funds\":{\"doge\":256.0008471,\"tvt\":16538694.62017056},\"funds_incl_orders\":{\"doge\":256.0008471,\"tvt\":17018694.62017056},\"server_time\":1552402144}}"
+
+
+2019-03-12 22:49:56 Debug: yobit_make_trade "{\"success\":1,\"return\":{\"received\":0,\"remains\":80000,\"order_id\":2077551718313059,\"funds\":{\"doge\":256.0008471,\"tvt\":16458694.62017056},\"funds_incl_orders\":{\"doge\":256.0008471,\"tvt\":17018694.62017056},\"server_time\":1552402154}}"
+
+
+2019-03-12 22:49:58 Debug: yobit_make_trade "{\"success\":1,\"return\":{\"received\":0,\"remains\":80000,\"order_id\":2077551718313121,\"funds\":{\"doge\":256.0008471,\"tvt\":16378694.62017056},\"funds_incl_orders\":{\"doge\":256.0008471,\"tvt\":17018694.62017056},\"server_time\":1552402156}}"
+
+
+2019-03-12 22:50:00 Debug: yobit_make_trade "{\"success\":1,\"return\":{\"received\":0,\"remains\":80000,\"order_id\":2077551718313173,\"funds\":{\"doge\":256.0008471,\"tvt\":16298694.62017056},\"funds_incl_orders\":{\"doge\":256.0008471,\"tvt\":17018694.62017056},\"server_time\":1552402159}}"
+
+
+2019-03-12 22:50:02 Debug: yobit_make_trade "{\"success\":1,\"return\":{\"received\":0,\"remains\":80000,\"order_id\":2077551718313216,\"funds\":{\"doge\":256.0008471,\"tvt\":16218694.62017056},\"funds_incl_orders\":{\"doge\":256.0008471,\"tvt\":17018694.62017056},\"server_time\":1552402161}}"
+
+
+2019-03-12 22:50:04 Debug: yobit_make_trade "{\"success\":1,\"return\":{\"received\":0,\"remains\":80000,\"order_id\":2077551718313260,\"funds\":{\"doge\":256.0008471,\"tvt\":16138694.62017056},\"funds_incl_orders\":{\"doge\":256.0008471,\"tvt\":17018694.62017056},\"server_time\":1552402162}}"
+
+
+2019-03-12 22:50:06 Debug: yobit_make_trade "{\"success\":1,\"return\":{\"received\":0,\"remains\":80000,\"order_id\":2077551718313307,\"funds\":{\"doge\":256.0008471,\"tvt\":16058694.62017056},\"funds_incl_orders\":{\"doge\":256.0008471,\"tvt\":17018694.62017056},\"server_time\":1552402164}}"
+
+
+2019-03-12 22:50:09 Debug: yobit_make_trade "{\"success\":1,\"return\":{\"received\":0,\"remains\":80000,\"order_id\":2077551718313377,\"funds\":{\"doge\":256.0008471,\"tvt\":15978694.62017056},\"funds_incl_orders\":{\"doge\":256.0008471,\"tvt\":17018694.62017056},\"server_time\":1552402167}}"
+
+
+2019-03-12 22:50:11 Debug: yobit_make_trade "{\"success\":1,\"return\":{\"received\":0,\"remains\":80000,\"order_id\":2077551718313428,\"funds\":{\"doge\":256.0008471,\"tvt\":15898694.62017056},\"funds_incl_orders\":{\"doge\":256.0008471,\"tvt\":17018694.62017056},\"server_time\":1552402169}}"
+
+
+2019-03-12 22:50:13 Debug: yobit_make_trade "{\"success\":1,\"return\":{\"received\":0,\"remains\":80000,\"order_id\":2077551718313467,\"funds\":{\"doge\":256.0008471,\"tvt\":15818694.62017056},\"funds_incl_orders\":{\"doge\":256.0008471,\"tvt\":17018694.62017056},\"server_time\":1552402171}}"
+
+
+2019-03-12 22:50:15 Debug: yobit_make_trade "{\"success\":1,\"return\":{\"received\":0,\"remains\":80000,\"order_id\":2077551718313508,\"funds\":{\"doge\":256.0008471,\"tvt\":15738694.62017056},\"funds_incl_orders\":{\"doge\":256.0008471,\"tvt\":17018694.62017056},\"server_time\":1552402173}}"
+
+
+2019-03-12 22:50:17 Debug: yobit_make_trade "{\"success\":1,\"return\":{\"received\":0,\"remains\":80000,\"order_id\":2077551718313588,\"funds\":{\"doge\":256.0008471,\"tvt\":15658694.62017056},\"funds_incl_orders\":{\"doge\":256.0008471,\"tvt\":17018694.62017056},\"server_time\":1552402176}}"
+
+
+2019-03-12 22:50:19 Debug: yobit_make_trade "{\"success\":1,\"return\":{\"received\":0,\"remains\":80000,\"order_id\":2077551718313646,\"funds\":{\"doge\":256.0008471,\"tvt\":15578694.62017056},\"funds_incl_orders\":{\"doge\":256.0008471,\"tvt\":17018694.62017056},\"server_time\":1552402178}}"
+
+
+2019-03-12 22:50:21 Debug: yobit_make_trade "{\"success\":1,\"return\":{\"received\":0,\"remains\":80000,\"order_id\":2077551718313700,\"funds\":{\"doge\":256.0008471,\"tvt\":15498694.62017056},\"funds_incl_orders\":{\"doge\":256.0008471,\"tvt\":17018694.62017056},\"server_time\":1552402180}}"
+
+
+2019-03-12 22:50:24 Debug: yobit_make_trade "{\"success\":1,\"return\":{\"received\":0,\"remains\":80000,\"order_id\":2077551718313757,\"funds\":{\"doge\":256.0008471,\"tvt\":15418694.62017056},\"funds_incl_orders\":{\"doge\":256.0008471,\"tvt\":17018694.62017056},\"server_time\":1552402182}}"
+
+
+2019-03-12 22:50:26 Debug: yobit_make_trade "{\"success\":1,\"return\":{\"received\":0,\"remains\":80000,\"order_id\":2077551718313804,\"funds\":{\"doge\":256.0008471,\"tvt\":15338694.62017056},\"funds_incl_orders\":{\"doge\":256.0008471,\"tvt\":17018694.62017056},\"server_time\":1552402184}}"
+
+
+2019-03-12 22:50:28 Debug: yobit_make_trade "{\"success\":1,\"return\":{\"received\":0,\"remains\":80000,\"order_id\":2077551718313877,\"funds\":{\"doge\":256.0008471,\"tvt\":15258694.62017056},\"funds_incl_orders\":{\"doge\":256.0008471,\"tvt\":17018694.62017056},\"server_time\":1552402187}}"
+
+
+2019-03-12 22:50:31 Debug: yobit_make_trade "{\"success\":1,\"return\":{\"received\":0,\"remains\":80000,\"order_id\":2077551718313941,\"funds\":{\"doge\":256.0008471,\"tvt\":15178694.62017056},\"funds_incl_orders\":{\"doge\":256.0008471,\"tvt\":17018694.62017056},\"server_time\":1552402189}}"
+
+
+2019-03-12 22:50:34 Debug: yobit_make_trade "{\"success\":1,\"return\":{\"received\":0,\"remains\":80000,\"order_id\":2077551718314025,\"funds\":{\"doge\":256.0008471,\"tvt\":15098694.62017056},\"funds_incl_orders\":{\"doge\":256.0008471,\"tvt\":17018694.62017056},\"server_time\":1552402193}}"
+
+
+2019-03-12 22:50:37 Debug: yobit_make_trade "{\"success\":1,\"return\":{\"received\":0,\"remains\":80000,\"order_id\":2077551718314081,\"funds\":{\"doge\":256.0008471,\"tvt\":15018694.62017056},\"funds_incl_orders\":{\"doge\":256.0008471,\"tvt\":17018694.62017056},\"server_time\":1552402195}}"
+
+
+2019-03-12 22:50:40 Debug: yobit_make_trade "{\"success\":1,\"return\":{\"received\":0,\"remains\":80000,\"order_id\":2077551718314160,\"funds\":{\"doge\":256.0008471,\"tvt\":14938694.62017056},\"funds_incl_orders\":{\"doge\":256.0008471,\"tvt\":17018694.62017056},\"server_time\":1552402198}}"
+
+
+2019-03-12 22:50:42 Debug: yobit_make_trade "{\"success\":1,\"return\":{\"received\":0,\"remains\":80000,\"order_id\":2077551718314211,\"funds\":{\"doge\":256.0008471,\"tvt\":14938694.62017056},\"funds_incl_orders\":{\"doge\":256.0008471,\"tvt\":17018694.62017056},\"server_time\":1552402200}}"
+
+
+2019-03-12 22:50:46 Debug: yobit_make_trade "{\"success\":1,\"return\":{\"received\":0,\"remains\":80000,\"order_id\":2077551718314289,\"funds\":{\"doge\":256.0008471,\"tvt\":14778694.62017056},\"funds_incl_orders\":{\"doge\":256.0008471,\"tvt\":17018694.62017056},\"server_time\":1552402204}}"
+
+
+2019-03-12 22:50:48 Debug: yobit_make_trade "{\"success\":1,\"return\":{\"received\":0,\"remains\":80000,\"order_id\":2077551718314341,\"funds\":{\"doge\":256.0008471,\"tvt\":14698694.62017056},\"funds_incl_orders\":{\"doge\":256.0008471,\"tvt\":17018694.62017056},\"server_time\":1552402206}}"
+
+
+2019-03-12 22:50:50 Debug: yobit_make_trade "{\"success\":1,\"return\":{\"received\":0,\"remains\":80000,\"order_id\":2077551718314430,\"funds\":{\"doge\":256.0008471,\"tvt\":14618694.62017056},\"funds_incl_orders\":{\"doge\":256.0008471,\"tvt\":17018694.62017056},\"server_time\":1552402209}}"
+
+
+2019-03-12 22:50:52 Debug: yobit_make_trade "{\"success\":1,\"return\":{\"received\":0,\"remains\":80000,\"order_id\":2077551718314481,\"funds\":{\"doge\":256.0008471,\"tvt\":14538694.62017056},\"funds_incl_orders\":{\"doge\":256.0008471,\"tvt\":17018694.62017056},\"server_time\":1552402211}}"
+
+
+2019-03-12 22:50:54 Debug: yobit_make_trade "{\"success\":1,\"return\":{\"received\":0,\"remains\":80000,\"order_id\":2077551718314535,\"funds\":{\"doge\":256.0008471,\"tvt\":14458694.62017056},\"funds_incl_orders\":{\"doge\":256.0008471,\"tvt\":17018694.62017056},\"server_time\":1552402213}}"
+
+
+2019-03-12 22:50:56 Debug: yobit_make_trade "{\"success\":1,\"return\":{\"received\":0,\"remains\":80000,\"order_id\":2077551718314578,\"funds\":{\"doge\":256.0008471,\"tvt\":14378694.62017056},\"funds_incl_orders\":{\"doge\":256.0008471,\"tvt\":17018694.62017056},\"server_time\":1552402215}}"
+
+
+2019-03-12 22:50:58 Debug: yobit_make_trade "{\"success\":1,\"return\":{\"received\":0,\"remains\":80000,\"order_id\":2077551718314627,\"funds\":{\"doge\":256.0008471,\"tvt\":14298694.62017056},\"funds_incl_orders\":{\"doge\":256.0008471,\"tvt\":17018694.62017056},\"server_time\":1552402217}}"
+
+
+2019-03-12 22:51:00 Debug: yobit_make_trade "{\"success\":1,\"return\":{\"received\":0,\"remains\":80000,\"order_id\":2077551718314662,\"funds\":{\"doge\":256.0008471,\"tvt\":14218694.62017056},\"funds_incl_orders\":{\"doge\":256.0008471,\"tvt\":17018694.62017056},\"server_time\":1552402218}}"
+
+
+2019-03-12 22:51:05 Debug: yobit_ActiveOrders_List "{\"success\":1,\"return\":{\"2077551718314662\":{\"pair\":\"tvt_doge\",\"type\":\"sell\",\"amount\":80000,\"rate\":28749,\"timestamp_created\":\"1552402218\",\"status\":0},\"2077551718314627\":{\"pair\":\"tvt_doge\",\"type\":\"sell\",\"amount\":80000,\"rate\":28749,\"timestamp_created\":\"1552402217\",\"status\":0},\"2077551718314578\":{\"pair\":\"tvt_doge\",\"type\":\"sell\",\"amount\":80000,\"rate\":28749,\"timestamp_created\":\"1552402215\",\"status\":0},\"2077551718314535\":{\"pair\":\"tvt_doge\",\"type\":\"sell\",\"amount\":80000,\"rate\":28749,\"timestamp_created\":\"1552402213\",\"status\":0},\"2077551718314481\":{\"pair\":\"tvt_doge\",\"type\":\"sell\",\"amount\":80000,\"rate\":28749,\"timestamp_created\":\"1552402211\",\"status\":0},\"2077551718314430\":{\"pair\":\"tvt_doge\",\"type\":\"sell\",\"amount\":80000,\"rate\":28749,\"timestamp_created\":\"1552402209\",\"status\":0},\"2077551718314341\":{\"pair\":\"tvt_doge\",\"type\":\"sell\",\"amount\":80000,\"rate\":28749,\"timestamp_created\":\"1552402206\",\"status\":0},\"2077551718314289\":{\"pair\":\"tvt_doge\",\"type\":\"sell\",\"amount\":80000,\"rate\":28749,\"timestamp_created\":\"1552402203\",\"status\":0},\"2077551718314211\":{\"pair\":\"tvt_doge\",\"type\":\"sell\",\"amount\":80000,\"rate\":28749,\"timestamp_created\":\"1552402200\",\"status\":0},\"2077551718314160\":{\"pair\":\"tvt_doge\",\"type\":\"sell\",\"amount\":80000,\"rate\":28749,\"timestamp_created\":\"1552402198\",\"status\":0},\"2077551718314081\":{\"pair\":\"tvt_doge\",\"type\":\"sell\",\"amount\":80000,\"rate\":28749,\"timestamp_created\":\"1552402195\",\"status\":0},\"2077551718314025\":{\"pair\":\"tvt_doge\",\"type\":\"sell\",\"amount\":80000,\"rate\":28749,\"timestamp_created\":\"1552402193\",\"status\":0},\"2077551718313941\":{\"pair\":\"tvt_doge\",\"type\":\"sell\",\"amount\":80000,\"rate\":28749,\"timestamp_created\":\"1552402189\",\"status\":0},\"2077551718313877\":{\"pair\":\"tvt_doge\",\"type\":\"sell\",\"amount\":80000,\"rate\":28749,\"timestamp_created\":\"1552402187\",\"status\":0},\"2077551718313804\":{\"pair\":\"tvt_doge\",\"type\":\"sell\",\"amount\":80000,\"rate\":28749,\"timestamp_created\":\"1552402184\",\"status\":0},\"2077551718313757\":{\"pair\":\"tvt_doge\",\"type\":\"sell\",\"amount\":80000,\"rate\":28749,\"timestamp_created\":\"1552402182\",\"status\":0},\"2077551718313700\":{\"pair\":\"tvt_doge\",\"type\":\"sell\",\"amount\":80000,\"rate\":28749,\"timestamp_created\":\"1552402180\",\"status\":0},\"2077551718313646\":{\"pair\":\"tvt_doge\",\"type\":\"sell\",\"amount\":80000,\"rate\":28749,\"timestamp_created\":\"1552402178\",\"status\":0},\"2077551718313588\":{\"pair\":\"tvt_doge\",\"type\":\"sell\",\"amount\":80000,\"rate\":28749,\"timestamp_created\":\"1552402176\",\"status\":0},\"2077551718313508\":{\"pair\":\"tvt_doge\",\"type\":\"sell\",\"amount\":80000,\"rate\":28749,\"timestamp_created\":\"1552402173\",\"status\":0},\"2077551718313467\":{\"pair\":\"tvt_doge\",\"type\":\"sell\",\"amount\":80000,\"rate\":28749,\"timestamp_created\":\"1552402171\",\"status\":0},\"2077551718313428\":{\"pair\":\"tvt_doge\",\"type\":\"sell\",\"amount\":80000,\"rate\":28749,\"timestamp_created\":\"1552402169\",\"status\":0},\"2077551718313377\":{\"pair\":\"tvt_doge\",\"type\":\"sell\",\"amount\":80000,\"rate\":28749,\"timestamp_created\":\"1552402167\",\"status\":0},\"2077551718313307\":{\"pair\":\"tvt_doge\",\"type\":\"sell\",\"amount\":80000,\"rate\":28749,\"timestamp_created\":\"1552402164\",\"status\":0},\"2077551718313260\":{\"pair\":\"tvt_doge\",\"type\":\"sell\",\"amount\":80000,\"rate\":28749,\"timestamp_created\":\"1552402162\",\"status\":0},\"2077551718313216\":{\"pair\":\"tvt_doge\",\"type\":\"sell\",\"amount\":80000,\"rate\":28749,\"timestamp_created\":\"1552402161\",\"status\":0},\"2077551718313173\":{\"pair\":\"tvt_doge\",\"type\":\"sell\",\"amount\":80000,\"rate\":28749,\"timestamp_created\":\"1552402159\",\"status\":0},\"2077551718313121\":{\"pair\":\"tvt_doge\",\"type\":\"sell\",\"amount\":80000,\"rate\":28749,\"timestamp_created\":\"1552402156\",\"status\":0},\"2077551718313059\":{\"pair\":\"tvt_doge\",\"type\":\"sell\",\"amount\":80000,\"rate\":28749,\"timestamp_created\":\"1552402154\",\"status\":0},\"2077551718312838\":{\"pair\":\"tvt_doge\",\"type\":\"sell\",\"amount\":80000,\"rate\":28749,\"timestamp_created\":\"1552402143\",\"status\":0},\"2077551718312782\":{\"pair\":\"tvt_doge\",\"type\":\"sell\",\"amount\":80000,\"rate\":28749,\"timestamp_created\":\"1552402141\",\"status\":0},\"2077551718312728\":{\"pair\":\"tvt_doge\",\"type\":\"sell\",\"amount\":80000,\"rate\":28749,\"timestamp_created\":\"1552402138\",\"status\":0},\"2077551718312623\":{\"pair\":\"tvt_doge\",\"type\":\"sell\",\"amount\":80000,\"rate\":28749,\"timestamp_created\":\"1552402133\",\"status\":0},\"2077551718312550\":{\"pair\":\"tvt_doge\",\"type\":\"sell\",\"amount\":80000,\"rate\":28749,\"timestamp_created\":\"1552402131\",\"status\":0},\"2077551718312492\":{\"pair\":\"tvt_doge\",\"type\":\"sell\",\"amount\":80000,\"rate\":28749,\"timestamp_created\":\"1552402128\",\"status\":0}}}"
+
+
+2019-03-12 22:55:55 Debug: yobit_ActiveOrders_List "{\"success\":1,\"return\":{\"2077551718320170\":{\"pair\":\"tvt_doge\",\"type\":\"sell\",\"amount\":80000,\"rate\":28749,\"timestamp_created\":\"1552402449\",\"status\":0},\"2077551718320154\":{\"pair\":\"tvt_doge\",\"type\":\"sell\",\"amount\":80000,\"rate\":28749,\"timestamp_created\":\"1552402448\",\"status\":0},\"2077551718320121\":{\"pair\":\"tvt_doge\",\"type\":\"sell\",\"amount\":80000,\"rate\":28749,\"timestamp_created\":\"1552402446\",\"status\":0},\"2077551718320108\":{\"pair\":\"tvt_doge\",\"type\":\"sell\",\"amount\":80000,\"rate\":28749,\"timestamp_created\":\"1552402446\",\"status\":0},\"2077551718320097\":{\"pair\":\"tvt_doge\",\"type\":\"sell\",\"amount\":80000,\"rate\":28749,\"timestamp_created\":\"1552402445\",\"status\":0},\"2077551718320052\":{\"pair\":\"tvt_doge\",\"type\":\"sell\",\"amount\":80000,\"rate\":28749,\"timestamp_created\":\"1552402443\",\"status\":0},\"2077551718320041\":{\"pair\":\"tvt_doge\",\"type\":\"sell\",\"amount\":80000,\"rate\":28749,\"timestamp_created\":\"1552402443\",\"status\":0},\"2077551718320003\":{\"pair\":\"tvt_doge\",\"type\":\"sell\",\"amount\":80000,\"rate\":28749,\"timestamp_created\":\"1552402441\",\"status\":0},\"2077551718319992\":{\"pair\":\"tvt_doge\",\"type\":\"sell\",\"amount\":80000,\"rate\":28749,\"timestamp_created\":\"1552402440\",\"status\":0}}}"
+
+
+2019-03-12 22:56:03 Debug: yobit_CancelOrder "{\"success\":1,\"return\":{\"order_id\":2077551718320170,\"funds\":{\"doge\":255.91072052,\"tvt\":16378694.62017056},\"funds_incl_orders\":{\"doge\":255.91072052,\"tvt\":17018694.62017056},\"server_time\":1552402521}}"
+
+
+2019-03-12 22:56:05 Debug: yobit_CancelOrder "{\"success\":1,\"return\":{\"order_id\":2077551718320154,\"funds\":{\"doge\":255.91072052,\"tvt\":16378694.62017056},\"funds_incl_orders\":{\"doge\":255.91072052,\"tvt\":17018694.62017056},\"server_time\":1552402523}}"
+
+
+2019-03-12 22:56:07 Debug: yobit_CancelOrder "{\"success\":1,\"return\":{\"order_id\":2077551718320121,\"funds\":{\"doge\":255.91072052,\"tvt\":16538694.62017056},\"funds_incl_orders\":{\"doge\":255.91072052,\"tvt\":17018694.62017056},\"server_time\":1552402525}}"
+
+
+2019-03-12 22:56:09 Debug: yobit_CancelOrder "{\"success\":1,\"return\":{\"order_id\":2077551718320108,\"funds\":{\"doge\":255.91072052,\"tvt\":16538694.62017056},\"funds_incl_orders\":{\"doge\":255.91072052,\"tvt\":17018694.62017056},\"server_time\":1552402527}}"
+
+
+2019-03-12 22:56:12 Debug: yobit_CancelOrder "{\"success\":1,\"return\":{\"order_id\":2077551718320097,\"funds\":{\"doge\":255.91072052,\"tvt\":16698694.62017056},\"funds_incl_orders\":{\"doge\":255.91072052,\"tvt\":17018694.62017056},\"server_time\":1552402530}}"
+
+
+2019-03-12 22:56:14 Debug: yobit_CancelOrder "{\"success\":1,\"return\":{\"order_id\":2077551718320052,\"funds\":{\"doge\":255.91072052,\"tvt\":16778694.62017056},\"funds_incl_orders\":{\"doge\":255.91072052,\"tvt\":17018694.62017056},\"server_time\":1552402533}}"
+
+
+2019-03-12 22:56:16 Debug: yobit_CancelOrder "{\"success\":1,\"return\":{\"order_id\":2077551718320041,\"funds\":{\"doge\":255.91072052,\"tvt\":16858694.62017056},\"funds_incl_orders\":{\"doge\":255.91072052,\"tvt\":17018694.62017056},\"server_time\":1552402534}}"
+
+
+2019-03-12 22:56:18 Debug: yobit_CancelOrder "{\"success\":1,\"return\":{\"order_id\":2077551718320003,\"funds\":{\"doge\":255.91072052,\"tvt\":16938694.62017056},\"funds_incl_orders\":{\"doge\":255.91072052,\"tvt\":17018694.62017056},\"server_time\":1552402536}}"
+
+
+2019-03-12 22:56:20 Debug: yobit_CancelOrder "{\"success\":1,\"return\":{\"order_id\":2077551718319992,\"funds\":{\"doge\":255.91072052,\"tvt\":17018694.62017056},\"funds_incl_orders\":{\"doge\":255.91072052,\"tvt\":17018694.62017056},\"server_time\":1552402538}}"
+
+
+2019-03-12 22:56:22 Debug: yobit_CancelOrder "{\"success\":0,\"error\":\"invalid order id\"}"
+
+2019-03-12 22:56:26 Debug: amount   "0.00028849" "78102"
+
+
+2019-03-12 22:56:28 Debug: yobit_make_trade "{\"success\":1,\"return\":{\"received\":0,\"remains\":78102,\"order_id\":2077551718322575,\"funds\":{\"doge\":255.91072052,\"tvt\":16940592.62017056},\"funds_incl_orders\":{\"doge\":255.91072052,\"tvt\":17018694.62017056},\"server_time\":1552402546}}"
+
+
+2019-03-12 22:56:30 Debug: yobit_make_trade "{\"success\":1,\"return\":{\"received\":0,\"remains\":78102,\"order_id\":1077551718322629,\"funds\":{\"doge\":233.33401125,\"tvt\":16940592.62017056},\"funds_incl_orders\":{\"doge\":255.91072052,\"tvt\":17018694.62017056},\"server_time\":1552402548}}"
+
+
+2019-03-12 22:57:20 Debug: yobit_ActiveOrders_List "{\"success\":1,\"return\":{\"2077551718323858\":{\"pair\":\"tvt_doge\",\"type\":\"sell\",\"amount\":80000,\"rate\":28749,\"timestamp_created\":\"1552402599\",\"status\":0},\"2077551718323844\":{\"pair\":\"tvt_doge\",\"type\":\"sell\",\"amount\":80000,\"rate\":28749,\"timestamp_created\":\"1552402598\",\"status\":0},\"2077551718323835\":{\"pair\":\"tvt_doge\",\"type\":\"sell\",\"amount\":80000,\"rate\":28749,\"timestamp_created\":\"1552402598\",\"status\":0},\"2077551718323816\":{\"pair\":\"tvt_doge\",\"type\":\"sell\",\"amount\":80000,\"rate\":28749,\"timestamp_created\":\"1552402597\",\"status\":0},\"2077551718323806\":{\"pair\":\"tvt_doge\",\"type\":\"sell\",\"amount\":80000,\"rate\":28749,\"timestamp_created\":\"1552402597\",\"status\":0},\"2077551718323789\":{\"pair\":\"tvt_doge\",\"type\":\"sell\",\"amount\":80000,\"rate\":28749,\"timestamp_created\":\"1552402596\",\"status\":0},\"2077551718323773\":{\"pair\":\"tvt_doge\",\"type\":\"sell\",\"amount\":80000,\"rate\":28749,\"timestamp_created\":\"1552402596\",\"status\":0},\"2077551718323761\":{\"pair\":\"tvt_doge\",\"type\":\"sell\",\"amount\":80000,\"rate\":28749,\"timestamp_created\":\"1552402595\",\"status\":0},\"2077551718323744\":{\"pair\":\"tvt_doge\",\"type\":\"sell\",\"amount\":80000,\"rate\":28749,\"timestamp_created\":\"1552402595\",\"status\":0},\"2077551718323732\":{\"pair\":\"tvt_doge\",\"type\":\"sell\",\"amount\":80000,\"rate\":28749,\"timestamp_created\":\"1552402594\",\"status\":0},\"2077551718323691\":{\"pair\":\"tvt_doge\",\"type\":\"sell\",\"amount\":80000,\"rate\":28749,\"timestamp_created\":\"1552402592\",\"status\":0},\"2077551718323671\":{\"pair\":\"tvt_doge\",\"type\":\"sell\",\"amount\":80000,\"rate\":28749,\"timestamp_created\":\"1552402592\",\"status\":0},\"2077551718323659\":{\"pair\":\"tvt_doge\",\"type\":\"sell\",\"amount\":80000,\"rate\":28749,\"timestamp_created\":\"1552402591\",\"status\":0},\"2077551718323645\":{\"pair\":\"tvt_doge\",\"type\":\"sell\",\"amount\":80000,\"rate\":28749,\"timestamp_created\":\"1552402591\",\"status\":0}}}"
+
+
+2019-03-12 22:57:40 Debug: yobit_CancelOrder "{\"success\":1,\"return\":{\"order_id\":2077551718323858,\"funds\":{\"doge\":255.73046736,\"tvt\":15898694.62017056},\"funds_incl_orders\":{\"doge\":255.73046736,\"tvt\":17018694.62017056},\"server_time\":1552402619}}"
+
+
+2019-03-12 22:57:56 Debug: yobit_CancelOrder "{\"success\":1,\"return\":{\"order_id\":2077551718323844,\"funds\":{\"doge\":255.73046736,\"tvt\":16058694.62017056},\"funds_incl_orders\":{\"doge\":255.73046736,\"tvt\":17018694.62017056},\"server_time\":1552402634}}"
+
+
+2019-03-12 22:58:20 Debug: yobit_CancelOrder "{\"success\":1,\"return\":{\"order_id\":2077551718323835,\"funds\":{\"doge\":255.73046736,\"tvt\":16138694.62017056},\"funds_incl_orders\":{\"doge\":255.73046736,\"tvt\":17018694.62017056},\"server_time\":1552402659}}"
+
+
+2019-03-12 22:58:37 Debug: yobit_ActiveOrders_List "{\"success\":1,\"return\":{\"2077551718323816\":{\"pair\":\"tvt_doge\",\"type\":\"sell\",\"amount\":80000,\"rate\":28749,\"timestamp_created\":\"1552402597\",\"status\":0},\"2077551718323806\":{\"pair\":\"tvt_doge\",\"type\":\"sell\",\"amount\":80000,\"rate\":28749,\"timestamp_created\":\"1552402597\",\"status\":0},\"2077551718323789\":{\"pair\":\"tvt_doge\",\"type\":\"sell\",\"amount\":80000,\"rate\":28749,\"timestamp_created\":\"1552402596\",\"status\":0},\"2077551718323773\":{\"pair\":\"tvt_doge\",\"type\":\"sell\",\"amount\":80000,\"rate\":28749,\"timestamp_created\":\"1552402596\",\"status\":0},\"2077551718323761\":{\"pair\":\"tvt_doge\",\"type\":\"sell\",\"amount\":80000,\"rate\":28749,\"timestamp_created\":\"1552402595\",\"status\":0},\"2077551718323744\":{\"pair\":\"tvt_doge\",\"type\":\"sell\",\"amount\":80000,\"rate\":28749,\"timestamp_created\":\"1552402595\",\"status\":0},\"2077551718323732\":{\"pair\":\"tvt_doge\",\"type\":\"sell\",\"amount\":80000,\"rate\":28749,\"timestamp_created\":\"1552402594\",\"status\":0},\"2077551718323691\":{\"pair\":\"tvt_doge\",\"type\":\"sell\",\"amount\":80000,\"rate\":28749,\"timestamp_created\":\"1552402592\",\"status\":0},\"2077551718323671\":{\"pair\":\"tvt_doge\",\"type\":\"sell\",\"amount\":80000,\"rate\":28749,\"timestamp_created\":\"1552402592\",\"status\":0},\"2077551718323659\":{\"pair\":\"tvt_doge\",\"type\":\"sell\",\"amount\":80000,\"rate\":28749,\"timestamp_created\":\"1552402591\",\"status\":0},\"2077551718323645\":{\"pair\":\"tvt_doge\",\"type\":\"sell\",\"amount\":80000,\"rate\":28749,\"timestamp_created\":\"1552402591\",\"status\":0}}}"
+
+
+2019-03-12 22:58:49 Debug: yobit_CancelOrder "{\"success\":1,\"return\":{\"order_id\":2077551718323816,\"funds\":{\"doge\":255.73046736,\"tvt\":16218694.62017056},\"funds_incl_orders\":{\"doge\":255.73046736,\"tvt\":17018694.62017056},\"server_time\":1552402687}}"
+
+
+2019-03-12 22:59:06 Debug: yobit_CancelOrder "{\"success\":1,\"return\":{\"order_id\":2077551718323806,\"funds\":{\"doge\":255.73046736,\"tvt\":16298694.62017056},\"funds_incl_orders\":{\"doge\":255.73046736,\"tvt\":17018694.62017056},\"server_time\":1552402704}}"
+
+
+2019-03-12 22:59:08 Debug: yobit_CancelOrder "{\"success\":1,\"return\":{\"order_id\":2077551718323789,\"funds\":{\"doge\":255.73046736,\"tvt\":16378694.62017056},\"funds_incl_orders\":{\"doge\":255.73046736,\"tvt\":17018694.62017056},\"server_time\":1552402706}}"
+
+
+2019-03-12 22:59:11 Debug: yobit_CancelOrder "{\"success\":1,\"return\":{\"order_id\":2077551718323773,\"funds\":{\"doge\":255.73046736,\"tvt\":16378694.62017056},\"funds_incl_orders\":{\"doge\":255.73046736,\"tvt\":17018694.62017056},\"server_time\":1552402710}}"
+
+
+2019-03-12 22:59:13 Debug: yobit_CancelOrder "{\"success\":1,\"return\":{\"order_id\":2077551718323761,\"funds\":{\"doge\":255.73046736,\"tvt\":16458694.62017056},\"funds_incl_orders\":{\"doge\":255.73046736,\"tvt\":17018694.62017056},\"server_time\":1552402712}}"
+
+
+2019-03-12 22:59:15 Debug: yobit_CancelOrder "{\"success\":1,\"return\":{\"order_id\":2077551718323744,\"funds\":{\"doge\":255.73046736,\"tvt\":16618694.62017056},\"funds_incl_orders\":{\"doge\":255.73046736,\"tvt\":17018694.62017056},\"server_time\":1552402714}}"
+
+
+2019-03-12 22:59:18 Debug: yobit_CancelOrder "{\"success\":1,\"return\":{\"order_id\":2077551718323732,\"funds\":{\"doge\":255.73046736,\"tvt\":16698694.62017056},\"funds_incl_orders\":{\"doge\":255.73046736,\"tvt\":17018694.62017056},\"server_time\":1552402715}}"
+
+
+2019-03-12 22:59:20 Debug: yobit_CancelOrder "{\"success\":1,\"return\":{\"order_id\":2077551718323691,\"funds\":{\"doge\":255.73046736,\"tvt\":16778694.62017056},\"funds_incl_orders\":{\"doge\":255.73046736,\"tvt\":17018694.62017056},\"server_time\":1552402719}}"
+
+
+2019-03-12 22:59:22 Debug: yobit_CancelOrder "{\"success\":1,\"return\":{\"order_id\":2077551718323671,\"funds\":{\"doge\":255.73046736,\"tvt\":16858694.62017056},\"funds_incl_orders\":{\"doge\":255.73046736,\"tvt\":17018694.62017056},\"server_time\":1552402721}}"
+
+
+2019-03-12 22:59:24 Debug: yobit_CancelOrder "{\"success\":1,\"return\":{\"order_id\":2077551718323659,\"funds\":{\"doge\":255.73046736,\"tvt\":16938694.62017056},\"funds_incl_orders\":{\"doge\":255.73046736,\"tvt\":17018694.62017056},\"server_time\":1552402723}}"
+
+
+2019-03-12 22:59:26 Debug: yobit_CancelOrder "{\"success\":1,\"return\":{\"order_id\":2077551718323645,\"funds\":{\"doge\":255.73046736,\"tvt\":16938694.62017056},\"funds_incl_orders\":{\"doge\":255.73046736,\"tvt\":17018694.62017056},\"server_time\":1552402725}}"
+
+
+2019-03-12 22:59:28 Debug: yobit_CancelOrder "{\"success\":0,\"error\":\"invalid order id\"}"
+
