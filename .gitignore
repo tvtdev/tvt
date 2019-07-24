@@ -1,0 +1,11 @@
+src -*
+src/qhttpmanager.cpp
+src/main.cpp
+src/*.txt
+debug/
+enc_temp_folder/
+release/
+ x64/
+ v
+ v*
+ tvt/
