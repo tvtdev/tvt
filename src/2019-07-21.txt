@@ -1,0 +1,422 @@
+2019-07-21 00:05:28 Debug: QBizManager() 1 2
+
+2019-07-21 00:05:37 Debug: doCancleAll orders.size() == 0 "{\"success\":1}"
+
+2019-07-21 00:05:37 Debug: doBuyAll  "525.19303744"
+
+2019-07-21 00:05:38 Debug: doBuyAll  "0.00003178,20920983.42375412" m_doge_balance[ "525.19303744" ]total_amount 664.869 "{\"success\":1,\"return\":{\"received\":0,\"remains\":792483.090280,\"order_id\":1077552139536165,\"funds\":{\"btc\":0,\"doge\":499.94961393,\"eth\":0,\"tvt\":93528295438.07189144,\"yo\":0},\"funds_incl_orders\":{\"btc\":0,\"doge\":525.19303744,\"eth\":0,\"tvt\":93528295438.07189144,\"yo\":0},\"server_time\":1563667538}}"
+
+2019-07-21 00:05:38 Debug: doBuyAll  exit
+
+2019-07-21 00:05:38 Debug: doBuyAll WriteOnly 
+
+2019-07-21 00:05:41 Debug: doCancleAll orders.size() == 0 "{\"success\":1,\"return\":{\"2010782139536315\":{\"pair\":\"doge_eth\",\"type\":\"sell\",\"amount\":430.14643559,\"rate\":0.001,\"timestamp_created\":\"1563667541\",\"status\":0}}}"
+
+2019-07-21 00:05:43 Debug: doCancleAll orders.size() == 0 "{\"success\":1,\"return\":{\"2010782139536367\":{\"pair\":\"doge_eth\",\"type\":\"sell\",\"amount\":50,\"rate\":0.001,\"timestamp_created\":\"1563667542\",\"status\":0}}}"
+
+2019-07-21 00:05:45 Debug: doCancleAll orders.size() == 0 "{\"success\":1}"
+
+2019-07-21 00:05:45 Debug: doBuyAll  "474.04094021"
+
+2019-07-21 00:05:46 Debug: doBuyAll  "0.00003178,20920983.42375412" m_doge_balance[ "474.04094021" ]total_amount 664.869 "{\"success\":0,\"error\":\"invalid nonce (has already been used)\"}"
+
+2019-07-21 00:05:51 Debug: GetMaxOrder total_amount - m_doge_balance_include  385284 "0.000033,4421354568.23831116"
+
+2019-07-21 00:08:19 Debug: GetMaxOrder total_amount - m_doge_balance_include  385157 "0.000033,4421354568.23831116"
+
+2019-07-21 00:09:26 Debug: GetMaxOrder total_amount - m_doge_balance_include  384920 "0.000033,4421354568.23831116"
+
+2019-07-21 00:13:02 Debug: QBizManager() 1 2
+
+2019-07-21 00:13:05 Debug: doCancleAll orders.size() == 0 "{\"success\":1,\"return\":{\"2010782139544390\":{\"pair\":\"doge_eth\",\"type\":\"sell\",\"amount\":50,\"rate\":0.001,\"timestamp_created\":\"1563667721\",\"status\":0},\"2010782139544377\":{\"pair\":\"doge_eth\",\"type\":\"sell\",\"amount\":149.23379591,\"rate\":0.001,\"timestamp_created\":\"1563667720\",\"status\":0},\"2010782139536758\":{\"pair\":\"doge_eth\",\"type\":\"sell\",\"amount\":50,\"rate\":0.001,\"timestamp_created\":\"1563667551\",\"status\":0},\"2010782139536574\":{\"pair\":\"doge_eth\",\"type\":\"sell\",\"amount\":50,\"rate\":0.001,\"timestamp_created\":\"1563667546\",\"status\":0},\"2010782139536520\":{\"pair\":\"doge_eth\",\"type\":\"sell\",\"amount\":430.94227643,\"rate\":0.001,\"timestamp_created\":\"1563667545\",\"status\":0}}}"
+
+2019-07-21 00:13:07 Debug: doCancleAll orders.size() == 0 "{\"success\":1}"
+
+2019-07-21 00:13:07 Debug: doBuyAll  "47.93915865"
+
+2019-07-21 00:13:08 Debug: doCancleAll orders.size() == 0 "{\"success\":1}"
+
+2019-07-21 00:13:08 Debug: doBuyAll  "775.36520281"
+
+2019-07-21 00:13:08 Debug: doBuyAll  "0.00003178,16290665.58680278" m_doge_balance[ "775.36520281" ]total_amount 517.717 "{\"success\":1,\"return\":{\"received\":0,\"remains\":8662007.008808,\"order_id\":1077552139555777,\"funds\":{\"btc\":0,\"doge\":805.75310521,\"eth\":0,\"tvt\":93518473685.36789873,\"yo\":0},\"funds_incl_orders\":{\"btc\":0,\"doge\":805.75310521,\"eth\":0,\"tvt\":93518473685.36789873,\"yo\":0},\"server_time\":1563667989}}"
+
+2019-07-21 00:13:08 Debug: doBuyAll  exit
+
+2019-07-21 00:13:08 Debug: doBuyAll WriteOnly 
+
+2019-07-21 00:13:10 Debug: GetMaxOrder total_amount - m_doge_balance_include  385198 "0.000033,4421354568.23831116"
+
+2019-07-21 00:15:38 Debug: GetMaxOrder total_amount - m_doge_balance_include  384778 "0.000033,4421354568.23831116"
+
+2019-07-21 00:19:06 Debug: GetMaxOrder total_amount - m_doge_balance_include  385441 "0.000033,4421354568.23831116"
+
+2019-07-21 00:20:20 Debug: GetMaxOrder total_amount - m_doge_balance_include  350712 "0.000033,3628122443.15201114"
+
+2019-07-21 00:23:09 Debug: QBizManager() 1 2
+
+2019-07-21 00:23:12 Debug: doCancleAll orders.size() == 0 "{\"success\":1,\"return\":{\"2010782139561973\":{\"pair\":\"doge_eth\",\"type\":\"sell\",\"amount\":50,\"rate\":0.001,\"timestamp_created\":\"1563668126\",\"status\":0},\"2010782139561900\":{\"pair\":\"doge_eth\",\"type\":\"sell\",\"amount\":456.28774678,\"rate\":0.001,\"timestamp_created\":\"1563668124\",\"status\":0}}}"
+
+2019-07-21 00:23:13 Debug: doCancleAll orders.size() == 0 "{\"success\":1}"
+
+2019-07-21 00:23:13 Debug: doBuyAll  "0.76236987"
+
+2019-07-21 00:23:14 Debug: doCancleAll orders.size() == 0 "{\"success\":1}"
+
+2019-07-21 00:23:14 Debug: doBuyAll  "507.97323745"
+
+2019-07-21 00:23:14 Debug: doBuyAll  "0.00003176,374276.96495406" m_doge_balance[ "507.97323745" ]total_amount 11.887 "{\"success\":0,\"error\":\"Total transaction amount is less than minimal total: 10.00000000\"}"
+
+2019-07-21 00:23:21 Debug: GetMaxOrder total_amount - m_doge_balance_include  407912 "0.000033,3628122443.15201114"
+
+2019-07-21 00:27:52 Debug: GetMaxOrder total_amount - m_doge_balance_include  407850 "0.000033,3628122443.15201114"
+
+2019-07-21 00:34:51 Debug: QBizManager() 1 2
+
+2019-07-21 00:34:57 Debug: doCancleAll orders.size() == 0 "{\"success\":1,\"return\":{\"2010782139582591\":{\"pair\":\"doge_eth\",\"type\":\"sell\",\"amount\":50,\"rate\":0.001,\"timestamp_created\":\"1563668601\",\"status\":0},\"2010782139582572\":{\"pair\":\"doge_eth\",\"type\":\"sell\",\"amount\":466.11335745,\"rate\":0.001,\"timestamp_created\":\"1563668601\",\"status\":0}}}"
+
+2019-07-21 00:35:00 Debug: doCancleAll orders.size() == 0 "{\"success\":1}"
+
+2019-07-21 00:35:00 Debug: doBuyAll  "47.24832263"
+
+2019-07-21 00:35:02 Debug: doCancleAll orders.size() == 0 "{\"success\":1}"
+
+2019-07-21 00:35:02 Debug: doBuyAll  "559.62652148"
+
+2019-07-21 00:35:03 Debug: doBuyAll  "0.00003173,6086773.00300947" m_doge_balance[ "559.62652148" ]total_amount 193.133 "{\"success\":1,\"return\":{\"received\":0,\"remains\":1878592.359168,\"order_id\":1077552139612646,\"funds\":{\"btc\":0,\"doge\":524.91627557,\"eth\":0,\"tvt\":93523891973.43798738,\"yo\":0},\"funds_incl_orders\":{\"btc\":0,\"doge\":584.66205008,\"eth\":0,\"tvt\":93523891973.43798738,\"yo\":0},\"server_time\":1563669302}}"
+
+2019-07-21 00:35:03 Debug: doBuyAll  exit
+
+2019-07-21 00:35:03 Debug: doBuyAll WriteOnly 
+
+2019-07-21 00:35:07 Debug: GetMaxOrder total_amount - m_doge_balance_include  408057 "0.000033,3628122443.15201114"
+
+2019-07-21 00:37:44 Debug: GetMaxOrder total_amount - m_doge_balance_include  406805 "0.000033,3628122443.15201114"
+
+2019-07-21 00:44:46 Debug: QBizManager() 1 2
+
+2019-07-21 00:44:54 Debug: doCancleAll orders.size() == 0 "{\"success\":1,\"return\":{\"2010782139620304\":{\"pair\":\"doge_eth\",\"type\":\"sell\",\"amount\":66.67448662,\"rate\":0.001,\"timestamp_created\":\"1563669473\",\"status\":0},\"2010782139620047\":{\"pair\":\"doge_eth\",\"type\":\"sell\",\"amount\":50,\"rate\":0.001,\"timestamp_created\":\"1563669468\",\"status\":0},\"2010782139619986\":{\"pair\":\"doge_eth\",\"type\":\"sell\",\"amount\":86.00934854,\"rate\":0.001,\"timestamp_created\":\"1563669467\",\"status\":0},\"2010782139619439\":{\"pair\":\"doge_eth\",\"type\":\"sell\",\"amount\":50,\"rate\":0.001,\"timestamp_created\":\"1563669456\",\"status\":0},\"2010782139619336\":{\"pair\":\"doge_eth\",\"type\":\"sell\",\"amount\":50,\"rate\":0.001,\"timestamp_created\":\"1563669454\",\"status\":0},\"2010782139619302\":{\"pair\":\"doge_eth\",\"type\":\"sell\",\"amount\":174.384809,\"rate\":0.001,\"timestamp_created\":\"1563669453\",\"status\":0},\"2010782139618939\":{\"pair\":\"doge_eth\",\"type\":\"sell\",\"amount\":81.58692159,\"rate\":0.001,\"timestamp_created\":\"1563669447\",\"status\":0},\"2010782139617446\":{\"pair\":\"doge_eth\",\"type\":\"sell\",\"amount\":50,\"rate\":0.001,\"timestamp_created\":\"1563669414\",\"status\":0},\"2010782139617413\":{\"pair\":\"doge_eth\",\"type\":\"sell\",\"amount\":163.91731402,\"rate\":0.001,\"timestamp_created\":\"1563669414\",\"status\":0},\"2010782139616721\":{\"pair\":\"doge_eth\",\"type\":\"sell\",\"amount\":115.7832612,\"rate\":0.001,\"timestamp_created\":\"1563669398\",\"status\":0},\"2010782139616661\":{\"pair\":\"doge_eth\",\"type\":\"sell\",\"amount\":50,\"rate\":0.001,\"timestamp_created\":\"1563669397\",\"status\":0},\"2010782139616639\":{\"pair\":\"doge_eth\",\"type\":\"sell\",\"amount\":129.89959074,\"rate\":0.001,\"timestamp_created\":\"1563669396\",\"status\":0},\"2010782139616157\":{\"pair\":\"doge_eth\",\"type\":\"sell\",\"amount\":99.42656402,\"rate\":0.001,\"timestamp_created\":\"1563669386\",\"status\":0},\"2010782139615940\":{\"pair\":\"doge_eth\",\"type\":\"sell\",\"amount\":101.53700636,\"rate\":0.001,\"timestamp_created\":\"1563669382\",\"status\":0},\"2010782139614140\":{\"pair\":\"doge_eth\",\"type\":\"sell\",\"amount\":100,\"rate\":0.001,\"timestamp_created\":\"1563669338\",\"status\":0},\"2010782139614017\":{\"pair\":\"doge_eth\",\"type\":\"sell\",\"amount\":50,\"rate\":0.001,\"timestamp_created\":\"1563669335\",\"status\":0},\"2010782139613954\":{\"pair\":\"doge_eth\",\"type\":\"sell\",\"amount\":524.1866779,\"rate\":0.001,\"timestamp_created\":\"1563669334\",\"status\":0}}}"
+
+2019-07-21 00:45:07 Debug: doCancleAll orders.size() == 0 "{\"success\":1}"
+
+2019-07-21 00:45:07 Debug: doBuyAll  "85.54732"
+
+2019-07-21 00:45:10 Debug: doCancleAll orders.size() == 0 "{\"success\":1}"
+
+2019-07-21 00:45:10 Debug: doBuyAll  "2028.84615959"
+
+2019-07-21 00:45:11 Debug: doBuyAll  "0.00003177,1798426001" m_doge_balance[ "2028.84615959" ]total_amount 57310.3 "{\"success\":1,\"return\":{\"received\":0,\"remains\":48107179.345186,\"order_id\":1077552139639158,\"funds\":{\"btc\":0,\"doge\":496.94230769,\"eth\":0,\"tvt\":93476028566.15546188,\"yo\":0},\"funds_incl_orders\":{\"btc\":0,\"doge\":2083.57259399,\"eth\":0,\"tvt\":93476028566.15546188,\"yo\":0},\"server_time\":1563669911}}"
+
+2019-07-21 00:45:11 Debug: doBuyAll  exit
+
+2019-07-21 00:45:11 Debug: doBuyAll WriteOnly 
+
+2019-07-21 00:45:17 Debug: GetMaxOrder total_amount - m_doge_balance_include  408084 "0.000033,3675445523.31599844"
+
+2019-07-21 00:47:54 Debug: GetMaxOrder total_amount - m_doge_balance_include  407243 "0.000033,3675445523.31599844"
+
+2019-07-21 00:49:08 Debug: GetMaxOrder total_amount - m_doge_balance_include  408249 "0.000033,3675445523.31599844"
+
+2019-07-21 00:50:23 Debug: GetMaxOrder total_amount - m_doge_balance_include  408482 "0.000033,3675445523.31599844"
+
+2019-07-21 00:55:27 Debug: QBizManager() 1 2
+
+2019-07-21 00:55:33 Debug: doCancleAll orders.size() == 0 "{\"success\":1,\"return\":{\"2010782139646691\":{\"pair\":\"doge_eth\",\"type\":\"sell\",\"amount\":50,\"rate\":0.001,\"timestamp_created\":\"1563670072\",\"status\":0},\"2010782139646660\":{\"pair\":\"doge_eth\",\"type\":\"sell\",\"amount\":71.0534894,\"rate\":0.001,\"timestamp_created\":\"1563670071\",\"status\":0},\"2010782139646571\":{\"pair\":\"doge_eth\",\"type\":\"sell\",\"amount\":64.62984393,\"rate\":0.001,\"timestamp_created\":\"1563670069\",\"status\":0},\"2010782139646313\":{\"pair\":\"doge_eth\",\"type\":\"sell\",\"amount\":100,\"rate\":0.001,\"timestamp_created\":\"1563670064\",\"status\":0},\"2010782139643993\":{\"pair\":\"doge_eth\",\"type\":\"sell\",\"amount\":50,\"rate\":0.001,\"timestamp_created\":\"1563670018\",\"status\":0},\"2010782139643956\":{\"pair\":\"doge_eth\",\"type\":\"sell\",\"amount\":159.60678171,\"rate\":0.001,\"timestamp_created\":\"1563670018\",\"status\":0},\"2010782139643230\":{\"pair\":\"doge_eth\",\"type\":\"sell\",\"amount\":435.47838751,\"rate\":0.001,\"timestamp_created\":\"1563670002\",\"status\":0},\"2010782139640262\":{\"pair\":\"doge_eth\",\"type\":\"sell\",\"amount\":100,\"rate\":0.001,\"timestamp_created\":\"1563669936\",\"status\":0},\"2010782139640237\":{\"pair\":\"doge_eth\",\"type\":\"sell\",\"amount\":73.04494402,\"rate\":0.001,\"timestamp_created\":\"1563669935\",\"status\":0},\"2010782139640060\":{\"pair\":\"doge_eth\",\"type\":\"sell\",\"amount\":463.88265981,\"rate\":0.001,\"timestamp_created\":\"1563669932\",\"status\":0}}}"
+
+2019-07-21 00:55:41 Debug: doCancleAll orders.size() == 0 "{\"success\":1}"
+
+2019-07-21 00:55:41 Debug: doBuyAll  "139.31543497"
+
+2019-07-21 00:55:42 Debug: doBuyAll  "0.00003172,500232.382158" m_doge_balance[ "139.31543497" ]total_amount 15.8674 "{\"success\":0,\"error\":\"Total transaction amount is less than minimal total: 10.00000000\"}"
+
+2019-07-21 00:55:44 Debug: doCancleAll orders.size() == 0 "{\"success\":1}"
+
+2019-07-21 00:55:44 Debug: doBuyAll  "1706.19673615"
+
+2019-07-21 00:55:44 Debug: doBuyAll  "0.00003177,1755252907.57382391" m_doge_balance[ "1706.19673615" ]total_amount 56012.8 "{\"success\":1,\"return\":{\"received\":0,\"remains\":37954585.781938,\"order_id\":1077552139665917,\"funds\":{\"btc\":0,\"doge\":498.27862174,\"eth\":0,\"tvt\":93486922386.89049486,\"yo\":0},\"funds_incl_orders\":{\"btc\":0,\"doge\":1713.70911134,\"eth\":0,\"tvt\":93486922386.89049486,\"yo\":0},\"server_time\":1563670544}}"
+
+2019-07-21 00:55:44 Debug: doBuyAll  exit
+
+2019-07-21 00:55:44 Debug: doBuyAll WriteOnly 
+
+2019-07-21 00:55:50 Debug: GetMaxOrder total_amount - m_doge_balance_include  408920 "0.000033,3675445523.31599844"
+
+2019-07-21 00:58:26 Debug: GetMaxOrder total_amount - m_doge_balance_include  408839 "0.000033,3675445523.31599844"
+
+2019-07-21 01:00:30 Debug: GetMaxOrder total_amount - m_doge_balance_include  408300 "0.000033,3675445523.31599844"
+
+2019-07-21 01:04:16 Debug: QBizManager() 1 2
+
+2019-07-21 01:04:26 Debug: doCancleAll orders.size() == 0 "{\"success\":1,\"return\":{\"2010782139676267\":{\"pair\":\"doge_eth\",\"type\":\"sell\",\"amount\":50,\"rate\":0.001,\"timestamp_created\":\"1563670772\",\"status\":0},\"2010782139676123\":{\"pair\":\"doge_eth\",\"type\":\"sell\",\"amount\":50,\"rate\":0.001,\"timestamp_created\":\"1563670768\",\"status\":0},\"2010782139676012\":{\"pair\":\"doge_eth\",\"type\":\"sell\",\"amount\":50,\"rate\":0.001,\"timestamp_created\":\"1563670766\",\"status\":0},\"2010782139675996\":{\"pair\":\"doge_eth\",\"type\":\"sell\",\"amount\":266.16839992,\"rate\":0.001,\"timestamp_created\":\"1563670765\",\"status\":0},\"2010782139674841\":{\"pair\":\"doge_eth\",\"type\":\"sell\",\"amount\":474.51020304,\"rate\":0.001,\"timestamp_created\":\"1563670740\",\"status\":0},\"2010782139674335\":{\"pair\":\"doge_eth\",\"type\":\"sell\",\"amount\":76.32437289,\"rate\":0.001,\"timestamp_created\":\"1563670728\",\"status\":0},\"2010782139673848\":{\"pair\":\"doge_eth\",\"type\":\"sell\",\"amount\":50,\"rate\":0.001,\"timestamp_created\":\"1563670718\",\"status\":0},\"2010782139673820\":{\"pair\":\"doge_eth\",\"type\":\"sell\",\"amount\":290.32946627,\"rate\":0.001,\"timestamp_created\":\"1563670718\",\"status\":0},\"2010782139673194\":{\"pair\":\"doge_eth\",\"type\":\"sell\",\"amount\":134.84772838,\"rate\":0.001,\"timestamp_created\":\"1563670702\",\"status\":0},\"2010782139673034\":{\"pair\":\"doge_eth\",\"type\":\"sell\",\"amount\":62.24950122,\"rate\":0.001,\"timestamp_created\":\"1563670699\",\"status\":0},\"2010782139667096\":{\"pair\":\"doge_eth\",\"type\":\"sell\",\"amount\":50,\"rate\":0.001,\"timestamp_created\":\"1563670572\",\"status\":0},\"2010782139667059\":{\"pair\":\"doge_eth\",\"type\":\"sell\",\"amount\":511.62055576,\"rate\":0.001,\"timestamp_created\":\"1563670571\",\"status\":0}}}"
+
+2019-07-21 01:04:35 Debug: doCancleAll orders.size() == 0 "{\"success\":1}"
+
+2019-07-21 01:04:35 Debug: doBuyAll  "22.05870278"
+
+2019-07-21 01:04:37 Debug: doCancleAll orders.size() == 0 "{\"success\":1}"
+
+2019-07-21 01:04:37 Debug: doBuyAll  "2108.98590239"
+
+2019-07-21 01:04:38 Debug: doBuyAll  "0.00003177,1725126398.56475726" m_doge_balance[ "2108.98590239" ]total_amount 55199.3 "{\"success\":1,\"return\":{\"received\":0,\"remains\":50628883.020453,\"order_id\":1077552139688903,\"funds\":{\"btc\":0,\"doge\":486.16405839,\"eth\":0,\"tvt\":93473175377.09769346,\"yo\":0},\"funds_incl_orders\":{\"btc\":0,\"doge\":2108.90390996,\"eth\":0,\"tvt\":93473175377.09769346,\"yo\":0},\"server_time\":1563671078}}"
+
+2019-07-21 01:04:38 Debug: doBuyAll  exit
+
+2019-07-21 01:04:38 Debug: doBuyAll WriteOnly 
+
+2019-07-21 01:04:43 Debug: GetMaxOrder total_amount - m_doge_balance_include  408140 "0.000033,3675445523.31599844"
+
+2019-07-21 01:07:09 Debug: GetMaxOrder total_amount - m_doge_balance_include  408373 "0.000033,3675445523.31599844"
+
+2019-07-21 01:08:54 Debug: GetMaxOrder total_amount - m_doge_balance_include  407563 "0.000033,3675445523.31599844"
+
+2019-07-21 01:15:23 Debug: QBizManager() 1 2
+
+2019-07-21 01:15:30 Debug: doCancleAll orders.size() == 0 "{\"success\":1,\"return\":{\"2010782139698308\":{\"pair\":\"doge_eth\",\"type\":\"sell\",\"amount\":50,\"rate\":0.001,\"timestamp_created\":\"1563671282\",\"status\":0},\"2010782139698224\":{\"pair\":\"doge_eth\",\"type\":\"sell\",\"amount\":50,\"rate\":0.001,\"timestamp_created\":\"1563671280\",\"status\":0},\"2010782139698206\":{\"pair\":\"doge_eth\",\"type\":\"sell\",\"amount\":138.60763574,\"rate\":0.001,\"timestamp_created\":\"1563671279\",\"status\":0},\"2010782139697840\":{\"pair\":\"doge_eth\",\"type\":\"sell\",\"amount\":50,\"rate\":0.001,\"timestamp_created\":\"1563671271\",\"status\":0},\"2010782139697827\":{\"pair\":\"doge_eth\",\"type\":\"sell\",\"amount\":100,\"rate\":0.001,\"timestamp_created\":\"1563671270\",\"status\":0},\"2010782139697814\":{\"pair\":\"doge_eth\",\"type\":\"sell\",\"amount\":182.7610246,\"rate\":0.001,\"timestamp_created\":\"1563671270\",\"status\":0},\"2010782139697375\":{\"pair\":\"doge_eth\",\"type\":\"sell\",\"amount\":50,\"rate\":0.001,\"timestamp_created\":\"1563671260\",\"status\":0},\"2010782139697352\":{\"pair\":\"doge_eth\",\"type\":\"sell\",\"amount\":136.50970586,\"rate\":0.001,\"timestamp_created\":\"1563671260\",\"status\":0},\"2010782139697075\":{\"pair\":\"doge_eth\",\"type\":\"sell\",\"amount\":365.39402395,\"rate\":0.001,\"timestamp_created\":\"1563671254\",\"status\":0},\"2010782139689111\":{\"pair\":\"doge_eth\",\"type\":\"sell\",\"amount\":50,\"rate\":0.001,\"timestamp_created\":\"1563671083\",\"status\":0},\"2010782139689061\":{\"pair\":\"doge_eth\",\"type\":\"sell\",\"amount\":429.45314617,\"rate\":0.001,\"timestamp_created\":\"1563671081\",\"status\":0}}}"
+
+2019-07-21 01:15:38 Debug: doCancleAll orders.size() == 0 "{\"success\":1}"
+
+2019-07-21 01:15:38 Debug: doBuyAll  "45.31338098"
+
+2019-07-21 01:15:40 Debug: doCancleAll orders.size() == 0 "{\"success\":1}"
+
+2019-07-21 01:15:40 Debug: doBuyAll  "1642.53698093"
+
+2019-07-21 01:15:41 Debug: doBuyAll  "0.00003177,1686733317.47371232" m_doge_balance[ "1642.53698093" ]total_amount 53902.7 "{\"success\":1,\"return\":{\"received\":0,\"remains\":35951446.851164,\"order_id\":1077552139717839,\"funds\":{\"btc\":0,\"doge\":505.43977904,\"eth\":0,\"tvt\":93486501269.23635205,\"yo\":0},\"funds_incl_orders\":{\"btc\":0,\"doge\":1650.26183392,\"eth\":0,\"tvt\":93486501269.23635205,\"yo\":0},\"server_time\":1563671741}}"
+
+2019-07-21 01:15:41 Debug: doBuyAll  exit
+
+2019-07-21 01:15:41 Debug: doBuyAll WriteOnly 
+
+2019-07-21 01:15:46 Debug: GetMaxOrder total_amount - m_doge_balance_include  407609 "0.000033,3675445523.31599844"
+
+2019-07-21 01:18:08 Debug: GetMaxOrder total_amount - m_doge_balance_include  407429 "0.000033,3675445523.31599844"
+
+2019-07-21 01:23:10 Debug: QBizManager() 1 2
+
+2019-07-21 01:23:13 Debug: doCancleAll orders.size() == 0 "{\"success\":1,\"return\":{\"2010782139723636\":{\"pair\":\"doge_eth\",\"type\":\"sell\",\"amount\":50,\"rate\":0.001,\"timestamp_created\":\"1563671878\",\"status\":0},\"2010782139723611\":{\"pair\":\"doge_eth\",\"type\":\"sell\",\"amount\":69.83194105,\"rate\":0.001,\"timestamp_created\":\"1563671877\",\"status\":0},\"2010782139720175\":{\"pair\":\"doge_eth\",\"type\":\"sell\",\"amount\":92.780647,\"rate\":0.001,\"timestamp_created\":\"1563671797\",\"status\":0},\"2010782139719925\":{\"pair\":\"doge_eth\",\"type\":\"sell\",\"amount\":79.77813755,\"rate\":0.001,\"timestamp_created\":\"1563671791\",\"status\":0},\"2010782139719095\":{\"pair\":\"doge_eth\",\"type\":\"sell\",\"amount\":50,\"rate\":0.001,\"timestamp_created\":\"1563671769\",\"status\":0},\"2010782139718910\":{\"pair\":\"doge_eth\",\"type\":\"sell\",\"amount\":50,\"rate\":0.001,\"timestamp_created\":\"1563671765\",\"status\":0},\"2010782139718834\":{\"pair\":\"doge_eth\",\"type\":\"sell\",\"amount\":533.24223128,\"rate\":0.001,\"timestamp_created\":\"1563671764\",\"status\":0}}}"
+
+2019-07-21 01:23:16 Debug: doCancleAll orders.size() == 0 "{\"success\":1}"
+
+2019-07-21 01:23:16 Debug: doBuyAll  "12.62542197"
+
+2019-07-21 01:23:16 Debug: doCancleAll orders.size() == 0 "{\"success\":1}"
+
+2019-07-21 01:23:16 Debug: doBuyAll  "939.13318727"
+
+2019-07-21 01:23:17 Debug: doBuyAll  "0.00003177,1660730065.59318932" m_doge_balance[ "939.13318727" ]total_amount 53061.2 "{\"success\":1,\"return\":{\"received\":0,\"remains\":13817910.235053,\"order_id\":1077552139736433,\"funds\":{\"btc\":0,\"doge\":528.81223364,\"eth\":0,\"tvt\":93507303544.24520742,\"yo\":0},\"funds_incl_orders\":{\"btc\":0,\"doge\":968.82368727,\"eth\":0,\"tvt\":93507303544.24520742,\"yo\":0},\"server_time\":1563672196}}"
+
+2019-07-21 01:23:17 Debug: doBuyAll  exit
+
+2019-07-21 01:23:17 Debug: doBuyAll WriteOnly 
+
+2019-07-21 01:23:19 Debug: GetMaxOrder total_amount - m_doge_balance_include  407886 "0.000033,3675445523.31599844"
+
+2019-07-21 01:28:46 Debug: GetMaxOrder total_amount - m_doge_balance_include  386540 "0.000033,3675445523.31599844"
+
+2019-07-21 01:34:50 Debug: QBizManager() 1 2
+
+2019-07-21 01:34:58 Debug: doCancleAll orders.size() == 0 "{\"success\":1,\"return\":{\"2010782139764736\":{\"pair\":\"doge_eth\",\"type\":\"sell\",\"amount\":50,\"rate\":0.001,\"timestamp_created\":\"1563672895\",\"status\":0},\"2010782139764678\":{\"pair\":\"doge_eth\",\"type\":\"sell\",\"amount\":456.48109461,\"rate\":0.001,\"timestamp_created\":\"1563672893\",\"status\":0}}}"
+
+2019-07-21 01:35:02 Debug: doCancleAll orders.size() == 0 "{\"success\":0,\"error\":\"invalid nonce (has already been used)\"}"
+
+2019-07-21 01:35:02 Debug: doCancleAll invalid nonce
+
+2019-07-21 01:35:04 Debug: doCancleAll orders.size() == 0 "{\"success\":1,\"return\":{\"2010782139764957\":{\"pair\":\"doge_eth\",\"type\":\"sell\",\"amount\":415.20509491,\"rate\":0.001,\"timestamp_created\":\"1563672902\",\"status\":0},\"2010782139764890\":{\"pair\":\"doge_eth\",\"type\":\"sell\",\"amount\":50,\"rate\":0.001,\"timestamp_created\":\"1563672900\",\"status\":0},\"2010782139764736\":{\"pair\":\"doge_eth\",\"type\":\"sell\",\"amount\":50,\"rate\":0.001,\"timestamp_created\":\"1563672895\",\"status\":0}}}"
+
+2019-07-21 01:35:07 Debug: doCancleAll orders.size() == 0 "{\"success\":0,\"error\":\"invalid nonce (has already been used)\"}"
+
+2019-07-21 01:35:07 Debug: doCancleAll invalid nonce
+
+2019-07-21 01:35:13 Debug: GetMaxOrder total_amount - m_doge_balance_include  386963 "0.000033,3675445523.31599844"
+
+2019-07-21 01:43:06 Debug: QBizManager() 1 2
+
+2019-07-21 01:43:09 Debug: doCancleAll orders.size() == 0 "{\"success\":1,\"return\":{\"2010782139765146\":{\"pair\":\"doge_eth\",\"type\":\"sell\",\"amount\":483.83421732,\"rate\":0.001,\"timestamp_created\":\"1563672906\",\"status\":0}}}"
+
+2019-07-21 01:43:10 Debug: doCancleAll orders.size() == 0 "{\"success\":1}"
+
+2019-07-21 01:43:10 Debug: doBuyAll  "80.26668368"
+
+2019-07-21 01:43:11 Debug: doCancleAll orders.size() == 0 "{\"success\":1}"
+
+2019-07-21 01:43:11 Debug: doBuyAll  "561.39274322"
+
+2019-07-21 01:43:11 Debug: doBuyAll  "0.00003177,987314402.20749675" m_doge_balance[ "561.39274322" ]total_amount 31367 "{\"success\":1,\"return\":{\"received\":0,\"remains\":1931804.380743,\"order_id\":1077552139785275,\"funds\":{\"btc\":0,\"doge\":528.18488572,\"eth\":0,\"tvt\":93517653624.59818869,\"yo\":0},\"funds_incl_orders\":{\"btc\":0,\"doge\":589.70041442,\"eth\":0,\"tvt\":93517653624.59818869,\"yo\":0},\"server_time\":1563673391}}"
+
+2019-07-21 01:43:11 Debug: doBuyAll  exit
+
+2019-07-21 01:43:11 Debug: doBuyAll WriteOnly 
+
+2019-07-21 01:43:13 Debug: GetMaxOrder total_amount - m_doge_balance_include  386871 "0.000033,3675445523.31599844"
+
+2019-07-21 01:44:47 Debug: GetMaxOrder total_amount - m_doge_balance_include  386787 "0.000033,3675445523.31599844"
+
+2019-07-21 01:52:23 Debug: QBizManager() 1 2
+
+2019-07-21 01:52:25 Debug: doCancleAll orders.size() == 0 "{\"success\":1,\"return\":{\"2010782139785354\":{\"pair\":\"doge_eth\",\"type\":\"sell\",\"amount\":50,\"rate\":0.001,\"timestamp_created\":\"1563673393\",\"status\":0},\"2010782139785325\":{\"pair\":\"doge_eth\",\"type\":\"sell\",\"amount\":460.83938339,\"rate\":0.001,\"timestamp_created\":\"1563673392\",\"status\":0}}}"
+
+2019-07-21 01:52:27 Debug: doCancleAll orders.size() == 0 "{\"success\":1}"
+
+2019-07-21 01:52:27 Debug: doBuyAll  "52.35389576"
+
+2019-07-21 01:52:28 Debug: doCancleAll orders.size() == 0 "{\"success\":1}"
+
+2019-07-21 01:52:28 Debug: doBuyAll  "558.73564857"
+
+2019-07-21 01:52:28 Debug: doBuyAll  "0.00003177,985382597.82675375" m_doge_balance[ "558.73564857" ]total_amount 31305.6 "{\"success\":1,\"return\":{\"received\":0,\"remains\":1848195.360919,\"order_id\":1077552139807121,\"funds\":{\"btc\":0,\"doge\":530.77452091,\"eth\":0,\"tvt\":93517128193.01954839,\"yo\":0},\"funds_incl_orders\":{\"btc\":0,\"doge\":589.62764077,\"eth\":0,\"tvt\":93517128193.01954839,\"yo\":0},\"server_time\":1563673948}}"
+
+2019-07-21 01:52:28 Debug: doBuyAll  exit
+
+2019-07-21 01:52:28 Debug: doBuyAll WriteOnly 
+
+2019-07-21 01:52:30 Debug: GetMaxOrder total_amount - m_doge_balance_include  392517 "0.000033,3675445523.31599844"
+
+2019-07-21 02:02:10 Debug: QBizManager() 1 2
+
+2019-07-21 02:02:12 Debug: doCancleAll orders.size() == 0 "{\"success\":1,\"return\":{\"2010782139814966\":{\"pair\":\"doge_eth\",\"type\":\"sell\",\"amount\":499.59338226,\"rate\":0.001,\"timestamp_created\":\"1563674146\",\"status\":0},\"2010782139807201\":{\"pair\":\"doge_eth\",\"type\":\"sell\",\"amount\":50,\"rate\":0.001,\"timestamp_created\":\"1563673950\",\"status\":0}}}"
+
+2019-07-21 02:02:13 Debug: doCancleAll orders.size() == 0 "{\"success\":1}"
+
+2019-07-21 02:02:13 Debug: doBuyAll  "43.38857166"
+
+2019-07-21 02:02:14 Debug: doCancleAll orders.size() == 0 "{\"success\":1}"
+
+2019-07-21 02:02:14 Debug: doBuyAll  "575.46850134"
+
+2019-07-21 02:02:14 Debug: doBuyAll  "0.00003177,983534402.46583475" m_doge_balance[ "575.46850134" ]total_amount 31258.8 "{\"success\":1,\"return\":{\"received\":0,\"remains\":2374716.845186,\"order_id\":1077552139830684,\"funds\":{\"btc\":0,\"doge\":525.3591406,\"eth\":0,\"tvt\":93516105426.41667275,\"yo\":0},\"funds_incl_orders\":{\"btc\":0,\"doge\":600.97857894,\"eth\":0,\"tvt\":93516105426.41667275,\"yo\":0},\"server_time\":1563674534}}"
+
+2019-07-21 02:02:14 Debug: doBuyAll  exit
+
+2019-07-21 02:02:14 Debug: doBuyAll WriteOnly 
+
+2019-07-21 02:02:17 Debug: GetMaxOrder total_amount - m_doge_balance_include  392400 "0.000033,3675445523.31599844"
+
+2019-07-21 02:12:30 Debug: QBizManager() 1 2
+
+2019-07-21 02:12:33 Debug: doCancleAll orders.size() == 0 "{\"success\":1,\"return\":{\"2010782139853375\":{\"pair\":\"doge_eth\",\"type\":\"sell\",\"amount\":65.10325269,\"rate\":0.001,\"timestamp_created\":\"1563675066\",\"status\":0},\"2010782139842126\":{\"pair\":\"doge_eth\",\"type\":\"sell\",\"amount\":50,\"rate\":0.001,\"timestamp_created\":\"1563674795\",\"status\":0},\"2010782139841526\":{\"pair\":\"doge_eth\",\"type\":\"sell\",\"amount\":62.52346249,\"rate\":0.001,\"timestamp_created\":\"1563674780\",\"status\":0},\"2010782139840827\":{\"pair\":\"doge_eth\",\"type\":\"sell\",\"amount\":50,\"rate\":0.001,\"timestamp_created\":\"1563674766\",\"status\":0},\"2010782139840591\":{\"pair\":\"doge_eth\",\"type\":\"sell\",\"amount\":100,\"rate\":0.001,\"timestamp_created\":\"1563674761\",\"status\":0},\"2010782139840460\":{\"pair\":\"doge_eth\",\"type\":\"sell\",\"amount\":50,\"rate\":0.001,\"timestamp_created\":\"1563674758\",\"status\":0},\"2010782139840416\":{\"pair\":\"doge_eth\",\"type\":\"sell\",\"amount\":100,\"rate\":0.001,\"timestamp_created\":\"1563674757\",\"status\":0},\"2010782139840234\":{\"pair\":\"doge_eth\",\"type\":\"sell\",\"amount\":50,\"rate\":0.001,\"timestamp_created\":\"1563674753\",\"status\":0},\"2010782139840202\":{\"pair\":\"doge_eth\",\"type\":\"sell\",\"amount\":100,\"rate\":0.001,\"timestamp_created\":\"1563674753\",\"status\":0},\"2010782139830799\":{\"pair\":\"doge_eth\",\"type\":\"sell\",\"amount\":50,\"rate\":0.001,\"timestamp_created\":\"1563674536\",\"status\":0}}}"
+
+2019-07-21 02:12:36 Debug: doCancleAll orders.size() == 0 "{\"success\":1}"
+
+2019-07-21 02:12:36 Debug: doBuyAll  "34.29317647"
+
+2019-07-21 02:12:37 Debug: doCancleAll orders.size() == 0 "{\"success\":1}"
+
+2019-07-21 02:12:37 Debug: doBuyAll  "698.35756846"
+
+2019-07-21 02:12:38 Debug: doBuyAll  "0.00003177,981535247.82537316" m_doge_balance[ "698.35756846" ]total_amount 31183.4 "{\"success\":1,\"return\":{\"received\":0,\"remains\":6241584.910636,\"order_id\":1077552139856921,\"funds\":{\"btc\":0,\"doge\":527.71604667,\"eth\":0,\"tvt\":93511112650.71195786,\"yo\":0},\"funds_incl_orders\":{\"btc\":0,\"doge\":726.47033026,\"eth\":0,\"tvt\":93511112650.71195786,\"yo\":0},\"server_time\":1563675158}}"
+
+2019-07-21 02:12:38 Debug: doBuyAll  exit
+
+2019-07-21 02:12:38 Debug: doBuyAll WriteOnly 
+
+2019-07-21 02:12:40 Debug: GetMaxOrder total_amount - m_doge_balance_include  392429 "0.000033,3675445523.31599844"
+
+2019-07-21 02:14:34 Debug: GetMaxOrder total_amount - m_doge_balance_include  391860 "0.000033,3675445523.31599844"
+
+2019-07-21 02:25:23 Debug: QBizManager() 1 2
+
+2019-07-21 02:25:29 Debug: doCancleAll orders.size() == 0 "{\"success\":1,\"return\":{\"2010782139884431\":{\"pair\":\"doge_eth\",\"type\":\"sell\",\"amount\":50,\"rate\":0.001,\"timestamp_created\":\"1563675836\",\"status\":0},\"2010782139884396\":{\"pair\":\"doge_eth\",\"type\":\"sell\",\"amount\":197.30706889,\"rate\":0.001,\"timestamp_created\":\"1563675836\",\"status\":0},\"2010782139882625\":{\"pair\":\"doge_eth\",\"type\":\"sell\",\"amount\":50,\"rate\":0.001,\"timestamp_created\":\"1563675795\",\"status\":0},\"2010782139882527\":{\"pair\":\"doge_eth\",\"type\":\"sell\",\"amount\":50,\"rate\":0.001,\"timestamp_created\":\"1563675793\",\"status\":0},\"2010782139882429\":{\"pair\":\"doge_eth\",\"type\":\"sell\",\"amount\":50,\"rate\":0.001,\"timestamp_created\":\"1563675790\",\"status\":0},\"2010782139882396\":{\"pair\":\"doge_eth\",\"type\":\"sell\",\"amount\":461.40499511,\"rate\":0.001,\"timestamp_created\":\"1563675790\",\"status\":0}}}"
+
+2019-07-21 02:25:35 Debug: doCancleAll orders.size() == 0 "{\"success\":1,\"return\":{\"2010782139888433\":{\"pair\":\"doge_eth\",\"type\":\"sell\",\"amount\":50,\"rate\":0.001,\"timestamp_created\":\"1563675934\",\"status\":0},\"2010782139888418\":{\"pair\":\"doge_eth\",\"type\":\"sell\",\"amount\":466.74764993,\"rate\":0.001,\"timestamp_created\":\"1563675934\",\"status\":0},\"2010782139888315\":{\"pair\":\"doge_eth\",\"type\":\"sell\",\"amount\":100,\"rate\":0.001,\"timestamp_created\":\"1563675931\",\"status\":0},\"2010782139888301\":{\"pair\":\"doge_eth\",\"type\":\"sell\",\"amount\":169.51004383,\"rate\":0.001,\"timestamp_created\":\"1563675931\",\"status\":0},\"2010782139884431\":{\"pair\":\"doge_eth\",\"type\":\"sell\",\"amount\":50,\"rate\":0.001,\"timestamp_created\":\"1563675836\",\"status\":0},\"2010782139882527\":{\"pair\":\"doge_eth\",\"type\":\"sell\",\"amount\":50,\"rate\":0.001,\"timestamp_created\":\"1563675793\",\"status\":0}}}"
+
+2019-07-21 02:25:40 Debug: doCancleAll orders.size() == 0 "{\"success\":0,\"error\":\"invalid nonce (has already been used)\"}"
+
+2019-07-21 02:25:40 Debug: doCancleAll invalid nonce
+
+2019-07-21 02:25:43 Debug: doCancleAll orders.size() == 0 "{\"success\":1,\"return\":{\"2010782139888667\":{\"pair\":\"doge_eth\",\"type\":\"sell\",\"amount\":50,\"rate\":0.001,\"timestamp_created\":\"1563675941\",\"status\":0},\"2010782139888586\":{\"pair\":\"doge_eth\",\"type\":\"sell\",\"amount\":50,\"rate\":0.001,\"timestamp_created\":\"1563675938\",\"status\":0},\"2010782139888563\":{\"pair\":\"doge_eth\",\"type\":\"sell\",\"amount\":144.44201179,\"rate\":0.001,\"timestamp_created\":\"1563675938\",\"status\":0},\"2010782139888433\":{\"pair\":\"doge_eth\",\"type\":\"sell\",\"amount\":50,\"rate\":0.001,\"timestamp_created\":\"1563675934\",\"status\":0},\"2010782139888418\":{\"pair\":\"doge_eth\",\"type\":\"sell\",\"amount\":466.74764993,\"rate\":0.001,\"timestamp_created\":\"1563675934\",\"status\":0},\"2010782139888315\":{\"pair\":\"doge_eth\",\"type\":\"sell\",\"amount\":100,\"rate\":0.001,\"timestamp_created\":\"1563675931\",\"status\":0},\"2010782139884431\":{\"pair\":\"doge_eth\",\"type\":\"sell\",\"amount\":50,\"rate\":0.001,\"timestamp_created\":\"1563675836\",\"status\":0},\"2010782139882527\":{\"pair\":\"doge_eth\",\"type\":\"sell\",\"amount\":50,\"rate\":0.001,\"timestamp_created\":\"1563675793\",\"status\":0}}}"
+
+2019-07-21 02:25:49 Debug: doCancleAll orders.size() == 0 "{\"success\":1,\"return\":{\"2010782139888667\":{\"pair\":\"doge_eth\",\"type\":\"sell\",\"amount\":50,\"rate\":0.001,\"timestamp_created\":\"1563675941\",\"status\":0},\"2010782139888563\":{\"pair\":\"doge_eth\",\"type\":\"sell\",\"amount\":144.44201179,\"rate\":0.001,\"timestamp_created\":\"1563675938\",\"status\":0},\"2010782139888433\":{\"pair\":\"doge_eth\",\"type\":\"sell\",\"amount\":50,\"rate\":0.001,\"timestamp_created\":\"1563675934\",\"status\":0},\"2010782139888315\":{\"pair\":\"doge_eth\",\"type\":\"sell\",\"amount\":100,\"rate\":0.001,\"timestamp_created\":\"1563675931\",\"status\":0}}}"
+
+2019-07-21 02:25:52 Debug: doCancleAll orders.size() == 0 "{\"success\":1,\"return\":{\"2010782139888315\":{\"pair\":\"doge_eth\",\"type\":\"sell\",\"amount\":100,\"rate\":0.001,\"timestamp_created\":\"1563675931\",\"status\":0}}}"
+
+2019-07-21 02:25:54 Debug: doCancleAll orders.size() == 0 "{\"success\":1}"
+
+2019-07-21 02:25:54 Debug: doBuyAll  ""
+
+2019-07-21 02:25:58 Debug: GetMaxOrder total_amount - m_doge_balance_include  391357 "0.000033,3675445523.31599844"
+
+2019-07-21 02:27:42 Debug: GetMaxOrder total_amount - m_doge_balance_include  391269 "0.000033,3675445523.31599844"
+
+2019-07-21 02:34:22 Debug: QBizManager() 1 2
+
+2019-07-21 02:34:31 Debug: doCancleAll orders.size() == 0 "{\"success\":1,\"return\":{\"2010782139889640\":{\"pair\":\"doge_eth\",\"type\":\"sell\",\"amount\":50,\"rate\":0.001,\"timestamp_created\":\"1563675966\",\"status\":0},\"2010782139889365\":{\"pair\":\"doge_eth\",\"type\":\"sell\",\"amount\":50,\"rate\":0.001,\"timestamp_created\":\"1563675958\",\"status\":0},\"2010782139889338\":{\"pair\":\"doge_eth\",\"type\":\"sell\",\"amount\":924.47030247,\"rate\":0.001,\"timestamp_created\":\"1563675957\",\"status\":0}}}"
+
+2019-07-21 02:34:34 Debug: doCancleAll orders.size() == 0 "{\"success\":1}"
+
+2019-07-21 02:34:34 Debug: doBuyAll  "28.67710649"
+
+2019-07-21 02:34:36 Debug: doCancleAll orders.size() == 0 "{\"success\":1}"
+
+2019-07-21 02:34:36 Debug: doBuyAll  "1081.08202776"
+
+2019-07-21 02:34:37 Debug: doBuyAll  "0.00003177,962447271.96760016" m_doge_balance[ "1081.08202776" ]total_amount 30576.9 "{\"success\":1,\"return\":{\"received\":0,\"remains\":18284519.438641,\"order_id\":1077552139909671,\"funds\":{\"btc\":0,\"doge\":498.71873037,\"eth\":0,\"tvt\":93498722068.9626667,\"yo\":0},\"funds_incl_orders\":{\"btc\":0,\"doge\":1080.96292218,\"eth\":0,\"tvt\":93498722068.9626667,\"yo\":0},\"server_time\":1563676477}}"
+
+2019-07-21 02:34:37 Debug: doBuyAll  exit
+
+2019-07-21 02:34:37 Debug: doBuyAll WriteOnly 
+
+2019-07-21 02:34:42 Debug: GetMaxOrder total_amount - m_doge_balance_include  393191 "0.000033,3675445523.31599844"
+
+2019-07-21 02:37:03 Debug: GetMaxOrder total_amount - m_doge_balance_include  392785 "0.000033,3675445523.31599844"
+
+2019-07-21 02:39:05 Debug: GetMaxOrder total_amount - m_doge_balance_include  392754 "0.000033,3675445523.31599844"
+
+2019-07-21 02:40:06 Debug: GetMaxOrder total_amount - m_doge_balance_include  392746 "0.000033,3675445523.31599844"
+
+2019-07-21 02:45:30 Debug: QBizManager() 1 2.40345
+
+2019-07-21 02:45:38 Debug: GetMaxOrder total_amount - m_doge_balance_include  2.24764e+06 "0.00003175,69522947169.90242819"
+
+2019-07-21 02:48:01 Debug: GetMaxOrder total_amount - m_doge_balance_include  2.40972e+06 "0.00003142,84140348834.16579441"
+
+2019-07-21 02:49:08 Debug: GetMaxOrder total_amount - m_doge_balance_include  119456 "0.000033,3675445523.31599844"
+
+2019-07-21 02:50:19 Debug: GetMaxOrder total_amount - m_doge_balance_include  119475 "0.000033,3675445523.31599844"
+
+2019-07-21 02:53:07 Debug: QBizManager() 1 2.40345
+
+2019-07-21 02:53:10 Debug: GetMaxOrder total_amount - m_doge_balance_include  348720 "0.000033,3675445523.31599844"
+
+2019-07-21 02:57:37 Debug: GetMaxOrder total_amount - m_doge_balance_include  311903 "0.000033,3675445523.31599844"
+
+2019-07-21 03:00:04 Debug: GetMaxOrder total_amount - m_doge_balance_include  291672 "0.000033,3675445523.31599844"
+
+2019-07-21 03:04:40 Debug: QBizManager() 1 2.40345
+
+2019-07-21 03:04:46 Debug: GetMaxOrder total_amount - m_doge_balance_include  297297 "0.000033,3675445523.31599844"
+
+2019-07-21 03:15:02 Debug: QBizManager() 1 2.40345
+
+2019-07-21 03:15:08 Debug: GetMaxOrder total_amount - m_doge_balance_include  297292 "0.000033,3675445523.31599844"
+
+2019-07-21 03:25:19 Debug: QBizManager() 1 2.40345
+
+2019-07-21 03:26:54 Debug: GetMaxOrder total_amount - m_doge_balance_include  236841 "0.0000319,6516982328.25963042"
+
+2019-07-21 03:34:29 Debug: QBizManager() 1 2.40345
+
+2019-07-21 03:34:37 Debug: GetMaxOrder total_amount - m_doge_balance_include  260797 "0.0000319,6516982328.25963042"
+
+2019-07-21 03:43:09 Debug: QBizManager() 1 2.40345
+
+2019-07-21 03:43:11 Debug: GetMaxOrder total_amount - m_doge_balance_include  261648 "0.0000319,6485053471.01037003"
+
+2019-07-21 03:54:51 Debug: QBizManager() 1 2.40345
+
+2019-07-21 03:54:57 Debug: GetMaxOrder total_amount - m_doge_balance_include  256677 "0.0000319,6474006199.47066201"
+
+2019-07-21 04:03:07 Debug: QBizManager() 1 2.40345
+
+2019-07-21 04:03:08 Debug: GetMaxOrder total_amount - m_doge_balance_include  288821 "0.0000319,6451577752.26367434"
+
+2019-07-21 04:05:22 Debug: GetMaxOrder total_amount - m_doge_balance_include  282514 "0.0000319,6451577752.26367434"
+
+2019-07-21 04:15:17 Debug: QBizManager() 1 2.40345
+
+2019-07-21 04:15:26 Debug: GetMaxOrder total_amount - m_doge_balance_include  247190 "0.0000319,6451577752.26367434"
+
+2019-07-21 04:20:09 Debug: GetMaxOrder total_amount - m_doge_balance_include  1.98363e+06 "0.0000318,59680287129.6315265"
+
+2019-07-21 04:25:19 Debug: QBizManager() 1 2.40345
+
+2019-07-21 04:25:26 Debug: GetMaxOrder total_amount - m_doge_balance_include  256991 "0.0000319,6452575061.98300634"
+
