@@ -27,7 +27,7 @@ public:
 	QString yobit_CreateYobicode(const QString  & a);
 
 	
-	QString yobit_depth();
+	bool yobit_depth(QString & source);
 	QString yobit_trades();
 	
 	int GetPriceInt(const QString & source);
@@ -36,10 +36,13 @@ public:
 	void doCancle(int type =0);
 	int doCancleAll(bool b= false);
 
+	
 
 	int GetPrice(const QString & source,  QStringList& buy_list, QStringList& sell_list);
 	double GenAmount();
 	int GetMaxOrder(const QStringList& buy_list);
+
+	int GetSellAmout(const QStringList& buy_list);
 
 	int doBuyMax(const QStringList& buy_list, const QStringList& sell_list);
 	int GetMaxOrderBuy(const QStringList& buy_list);
@@ -53,6 +56,8 @@ public:
 	//void doSell(const QStringList& buy_list);
 	void AddTradeVolume(const QStringList& buy_list, const  QStringList& sell_list,int vol=1);
 
+	void  newbuyOrder(const QStringList& buy_list, const  QStringList& sell_list, QString amount);
+	void doCancleman(const QStringList& buy_list, const  QStringList& sell_list);
 private:
 	QString secret ;
 	QString m_doge_balance;
