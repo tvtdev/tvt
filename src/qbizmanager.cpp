@@ -194,7 +194,6 @@ int QBizManager::GetSellAmout(const QStringList& sell_list)
 	if (total_amount <= 500)
 		total_amount =  500;
 
-//	m_oenoen = total_amount / 100 + 1;
 
 	return total_amount;
 }
