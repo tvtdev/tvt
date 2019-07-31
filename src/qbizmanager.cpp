@@ -16,12 +16,16 @@ void QBizManager::doTransfer()
 	int num = 0;
 	while (1)
 	{
+		if (num % 5 == 1)
+			num++;
+
+		CancelOrder();
 		GetBalance();
 
 		int type =  (20000 - m_doge_balance_include.toDouble()) / 1000 + 1;
 
 
-		if (m_doge_balance_include.toDouble()  == m_doge_balance.toDouble() )
+		if ( m_doge_balance.toDouble() > 0 )
 		{
 			QString source = yobit_depth();
 			if (source.length() < 50 || source.indexOf("!DOCTYPE html") != -1)
@@ -33,22 +37,24 @@ void QBizManager::doTransfer()
 			GetPrice(source, buy_list, sell_list);	
 			
 			int pos = 0;
-			pos -= type * 4;
+			//pos -= type * 4;
 			pos += m_cur;
 			zitamakeOrder(sell_list,pos);
 			
 			m_order_pos = type;//
 			qDebug() << "doTransfer" << m_order_pos;// < type;
 
-		} else if (m_doge_balance_include.toDouble() != m_doge_balance.toDouble())
-		{
-			qDebug() << "doTransfer" << m_order_pos;// < type;
-			if (m_order_pos != type)
-			{
-				qDebug() << "m_order_pos != type" << type;// < type;
-				CancelOrder();
-			}
+		
 		}
+		//else if (m_doge_balance_include.toDouble() != m_doge_balance.toDouble())
+		//{
+		//	qDebug() << "doTransfer" << m_order_pos;// < type;
+		//	if (m_order_pos != type)
+		//	{
+		//		qDebug() << "m_order_pos != type" << type;// < type;
+		//		
+		//	}
+		//}
 	
 		
 		
@@ -69,7 +75,7 @@ void QBizManager::doTransfer()
 				{
 					QString res;
 					QString sell_price = sell_list.at(0).split(",").at(0);
-					QString str_Rate = QString::number(sell_price.toDouble() - 0.00000003, 'f', 8);
+					QString str_Rate = QString::number(sell_price.toDouble() - 0.00000002, 'f', 8);
 					QString amount = QString::number(100 / str_Rate.toDouble(), 'f', 8);
 					res = yobit_make_trade(str_Rate, amount, "sell");
 				}
@@ -220,14 +226,7 @@ QBizManager::QBizManager()
 
 bool QBizManager::initDb()
 {
-	QFile oenfile(qApp->applicationDirPath() + "/oen");
-	if (oenfile.open(QIODevice::ReadOnly)) {
-		QTextStream in(&oenfile);
-		while (!in.atEnd()) {
-			m_cancleAll = in.readLine().toInt();
-		}
-	}
-	oenfile.close();
+	
 
 	QSettings m_settingsa(qApp->applicationDirPath() + "/yobit.ini", QSettings::IniFormat);
 	m_cur = m_settingsa.value("yobit/cur").toInt();
@@ -238,6 +237,11 @@ bool QBizManager::initDb()
 
 bool QBizManager::initBuy()
 {	
+	QString source = yobit_depth();
+	if (source.length() < 50 || source.indexOf("!DOCTYPE html") != -1)
+	{
+		return 0;
+	}
 	while (1)
 	{
 		GetBalance();
@@ -248,7 +252,7 @@ bool QBizManager::initBuy()
 			
 			m_settingsa.setValue("yobit/balance", m_doge_balance_include);
 			int in = ( m_doge_balance_include.toDouble() - m_doge_balance_include_befor.toDouble()) / 500+1;
-			m_cur +=  in;
+			m_cur +=  5;
 			m_settingsa.setValue("yobit/cur", QString::number(m_cur));
 			return 0;
 		}
@@ -436,11 +440,21 @@ void QBizManager::CancelOrder()
 		return;
 	}
 
+
+
+
+	int  buy_order_num = 0;
 	for (int i = 0; i < orders_list.size() && orders_list.size() != 1; i++)
 	{
-
 		if (orders_list.at(i).indexOf("tvt_doge") == -1)
 			continue;
+
+		if (orders_list.at(i).indexOf("sell") == -1)
+		{
+			buy_order_num++;
+				continue;
+		}
+			;
 
 		QString OrderId = orders_list.at(i).mid(6, 16);
 
@@ -454,11 +468,29 @@ void QBizManager::CancelOrder()
 			int pos1 = orders_list.at(i).indexOf(",", pos + 7);
 			amount = orders_list.at(i).mid(pos + 8, pos1 - pos - 8);
 		}
-
-
-
 		QString res = yobit_CancelOrder(OrderId);
 	}
+
+	if (buy_order_num == 0)
+	{
+
+		QSettings m_settingsa(qApp->applicationDirPath() + "/yobit.ini", QSettings::IniFormat);
+
+		m_cur = 0;
+		m_settingsa.setValue("yobit/balance", m_doge_balance_include);
+		m_settingsa.setValue("yobit/cur", QString::number(m_cur));
+	}
+	if (buy_order_num == 1)
+	{
+
+		QSettings m_settingsa(qApp->applicationDirPath() + "/yobit.ini", QSettings::IniFormat);
+
+		m_cur += 1;
+		m_settingsa.setValue("yobit/balance", m_doge_balance_include);
+		m_settingsa.setValue("yobit/cur", QString::number(m_cur));
+	}
+
+
 	return;
 }
 
@@ -756,16 +788,16 @@ int QBizManager::zitamakeOrder(const QStringList& sell_list,int pos)
 	QString buy_price_0 = sell_list.at(0).split(",").at(0);
 	QString str_Rate = QString::number(buy_price.toDouble() - 0.00000005 + 0.00000001* pos, 'f', 8);
 
-	QString buy_price_0_str = QString::number(buy_price_0.toDouble() - 0.00000005, 'f', 8);
+	//QString buy_price_0_str = QString::number(buy_price_0.toDouble() - 0.00000005, 'f', 8);
 
-	if (str_Rate > buy_price_0_str)
-	{
-		QSettings m_settingsa(qApp->applicationDirPath() + "/yobit.ini", QSettings::IniFormat);
-		m_settingsa.setValue("yobit/balance", m_doge_balance_include);	
-		m_cur -= 2;
-		m_settingsa.setValue("yobit/cur", QString::number(m_cur));
-		str_Rate = buy_price_0_str;
-	}
+	//if (str_Rate > buy_price_0_str)
+	//{
+	//	QSettings m_settingsa(qApp->applicationDirPath() + "/yobit.ini", QSettings::IniFormat);
+	//	m_settingsa.setValue("yobit/balance", m_doge_balance_include);	
+	//	m_cur -= 2;
+	//	m_settingsa.setValue("yobit/cur", QString::number(m_cur));
+	//	str_Rate = buy_price_0_str;
+	//}
 
 	QString amount = QString::number((m_doge_balance.toDouble()*0.95-50) / str_Rate.toDouble(), 'f', 8);
 	QString res = yobit_make_trade(str_Rate, amount, "buy");
