@@ -70,21 +70,12 @@ private:
 	QString secret ;
 	QString m_doge_balance;
 	QString m_doge_balance_include;
-
-	QString m_doge_balance_include_befor;
-
-	QStringList m_buyList;
-    
+	
 	double m_oenoen;
-	int   m_cancleAll;
-
-	QSettings m_settings;
 
 	int m_cur;
+	double m_my_amount;
 
-	int m_order_pos;
-
-	int m_order_amount;
 };
 
 
