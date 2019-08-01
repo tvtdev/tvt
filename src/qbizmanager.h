@@ -6,7 +6,7 @@
 #include <QMap>
 #include <QHash>
 #include <QSet>
-#include <QSettings>
+
 
 
 
@@ -26,50 +26,49 @@ public:
 	QString yobit_CancelOrder(const QString  & order);
 	QString yobit_CreateYobicode(const QString  & a);
 
-	QString yobit_getInfo();	
+	
 	bool yobit_depth(QString & source);
 	QString yobit_trades();
 	
 	int GetPriceInt(const QString & source);
-	void GetBalance();
+	QString GetBalance(const QString & bal,int price);
 	void doTransfer();
-
-	void CancelOrder();
-	void CancleSmall();
-	int doCancleAll(bool b = false);
-	void doCancle(QString st = "", int type = 0);
-	//int doCancleAll(bool b = false);
-	int GetBuyNumCancelOrder();
-	
-
-	void CreateOrderPos(int);
-	int BuyOrder(const QStringList& buy_list);
+	void doCancle(int type =0);
+	int doCancleAll(bool b= false);
 
 	
+
 	int GetPrice(const QString & source,  QStringList& buy_list, QStringList& sell_list);
 	double GenAmount();
+	int GetMaxOrder(const QStringList& buy_list);
 
+	int GetSellAmout(const QStringList& buy_list);
 
+	int doBuyMax(const QStringList& buy_list, const QStringList& sell_list);
+	int GetMaxOrderBuy(const QStringList& buy_list);
+	double GetBuyMaxOrder(const QStringList& buy_list);
+	
 
+	int doBuy(const QStringList& buy_list,double );
+	int doBuyAll(const QStringList& buy_list);
+	void makeBuyOrder(const QString& buy_list);
 
+	//void doSell(const QStringList& buy_list);
 	void AddTradeVolume(const QStringList& buy_list, const  QStringList& sell_list,int vol=1);
 
-	int makeOrder(const QStringList& buy_list, int pos);
-	int premakeOrder(const QStringList& buy_list, int pos);
-
-
+	void  newbuyOrder(const QStringList& buy_list, const  QStringList& sell_list, QString amount);
+	void doCancleman(const QStringList& buy_list, const  QStringList& sell_list);
 private:
 	QString secret ;
 	QString m_doge_balance;
 	QString m_doge_balance_include;
-
-
+	QStringList m_buyList;
+    
 	double m_oenoen;
+	int   m_cancleAll;
 
+	double m_dogeea;
 
-	int m_cur;
-
-	int m_my_amount;
 };
 
 
