@@ -27,7 +27,7 @@ public:
 	QString yobit_CreateYobicode(const QString  & a);
 
 	QString yobit_getInfo();	
-	QString yobit_depth();
+	bool yobit_depth(QString & source);
 	QString yobit_trades();
 	
 	int GetPriceInt(const QString & source);
@@ -39,7 +39,7 @@ public:
 	int doCancleAll(bool b = false);
 	void doCancle(QString st = "", int type = 0);
 	//int doCancleAll(bool b = false);
-
+	int GetBuyNumCancelOrder();
 	
 
 	void CreateOrderPos(int);
@@ -70,13 +70,17 @@ private:
 	QString secret ;
 	QString m_doge_balance;
 	QString m_doge_balance_include;
-	
+
+	QString m_doge_balance_include_befor;
+
+	QStringList m_buyList;
+    
 	double m_oenoen;
 
-	int m_cur;
-	double m_my_amount;
-	int m_my_order_num;
 
+	int m_cur;
+
+	int m_my_amount;
 };
 
 
