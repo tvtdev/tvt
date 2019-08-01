@@ -27,8 +27,11 @@ void QBizManager::doTransfer()
 		QStringList sell_list;
 		GetPrice(source, buy_list, sell_list);
 
-		if ( m_doge_balance.toDouble() > m_my_amount)
-			BuyOrder(buy_list);	
+		if (m_doge_balance.toDouble() > m_my_amount)
+		{
+			qDebug() << "m_doge_balance.toDouble() > m_my_amount " << m_my_amount;
+			BuyOrder(buy_list);
+		}
 
 		if (buynum == 0)
 		{
