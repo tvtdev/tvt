@@ -75,6 +75,7 @@ private:
 
 	int m_cur;
 	double m_my_amount;
+	int m_my_order_num;
 
 };
 
