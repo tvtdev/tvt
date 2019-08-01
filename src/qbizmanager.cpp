@@ -192,10 +192,6 @@ bool QBizManager::initDb()
 	m_cur = m_settingsa.value("yobit/cur").toInt();
 	m_doge_balance_include_befor = m_settingsa.value("yobit/balance").toString();
 	m_my_amount = m_settingsa.value("yobit/my_amount").toDouble();
-
-
-	//m_order_amount = m_settingsa.value("yobit/amount").toInt();
-
     return true;
 }
 
