@@ -45,36 +45,25 @@ public:
 	void CreateOrderPos(int);
 	int BuyOrder(const QStringList& buy_list);
 
-	//int signalOrder(const QStringList& buy_list);
-	//int readsignal(const QStringList& buy_list);
-
+	
 	int GetPrice(const QString & source,  QStringList& buy_list, QStringList& sell_list);
 	double GenAmount();
 
-	int GetMaxOrder(const QStringList& buy_list);
-	int GetMaxOrderBuy(const QStringList& sell_list);
 
 
-	int doBuyAll(const QStringList& buy_list);
+
 	void AddTradeVolume(const QStringList& buy_list, const  QStringList& sell_list,int vol=1);
 
 	int makeOrder(const QStringList& buy_list, int pos);
 	int premakeOrder(const QStringList& buy_list, int pos);
 
 
-	int checkOrder();
-	int setTextOrder(const QStringList& buy_list);
-	int getText(const QStringList& buy_list);
-	int delTextOrder();
 private:
 	QString secret ;
 	QString m_doge_balance;
 	QString m_doge_balance_include;
 
-	QString m_doge_balance_include_befor;
 
-	QStringList m_buyList;
-    
 	double m_oenoen;
 
 
