@@ -27,14 +27,16 @@ void QBizManager::doTransfer()
 		GetPrice(source, buy_list, sell_list);
 		AddTradeVolume(buy_list, sell_list);
 
-		if (m_doge_balance.toDouble() > GenAmount() * m_oenoen*2.2)
+	
+
+	/*	if (m_doge_balance.toDouble() > GenAmount() * m_oenoen*2.2)
 		{
 			qDebug() << "doTransfer newbuyOrder " << m_doge_balance;
 			QString amount = QString::number(m_doge_balance.toDouble() - 50, 'f', 8);
 			newbuyOrder(buy_list, sell_list, amount);
 			newbuyOrder(buy_list, sell_list, "100");
 			newbuyOrder(buy_list, sell_list, "50");
-		}
+		}*/
 
 	}
 	return;
@@ -223,17 +225,15 @@ bool QBizManager::initBuy()
 	QSettings m_settingsa(qApp->applicationDirPath() + "/yobit.ini", QSettings::IniFormat);
 	m_oenoen = m_settingsa.value("yobit/cur").toDouble();
 	
-	if (m_oenoen >= 8000)
-		m_oenoen = 2;
+	if (m_oenoen >= 2000)
+		m_oenoen = 20;
 
 	if (m_oenoen <= 1)
 		m_oenoen = 1;
 
-	m_oenoen = m_oenoen*1.011;
+	m_oenoen = m_oenoen*1.1211;
 
 	m_settingsa.setValue("yobit/cur", QString::number(m_oenoen));
-
-	qDebug() << "QBizManager() initBuy" << m_oenoen;
 	return true;
 }
 
@@ -434,10 +434,13 @@ void  QBizManager::AddTradeVolume(const QStringList& buy_list, const  QStringLis
 	QString buy_price = buy_list.at(0).split(",").at(0);
 	QString sell_price = sell_list.at(0).split(",").at(0);
 
+	QString buy_str_Rate = QString::number(sell_price.toDouble() +  0.00000002, 'f', 8);
+	QString buy_str_Rate_1 = QString::number(sell_price.toDouble() - 0.00000008, 'f', 8);
 	QString str_Rate = QString::number(sell_price.toDouble() - 0.00000001, 'f', 8);
 	QString amount = QString::number(GenAmount() * m_oenoen / str_Rate.toDouble(), 'f', 8);
 	res = yobit_make_trade(str_Rate, amount, "sell");
-	res = yobit_make_trade(str_Rate, amount, "buy");
+	res = yobit_make_trade(buy_str_Rate, amount, "buy");
+	res = yobit_make_trade(buy_str_Rate_1, amount, "buy");
 	qDebug() << res.mid(0, 100);
 
 	if (res.indexOf("error") != -1)
@@ -445,7 +448,7 @@ void  QBizManager::AddTradeVolume(const QStringList& buy_list, const  QStringLis
 		if (res.indexOf("Insufficient funds") != -1)
 		{
 			str_Rate = QString::number(buy_price.toDouble() - 0.00000009, 'f', 8);
-			amount = QString::number(GenAmount() * m_oenoen*1.2 / str_Rate.toDouble(), 'f', 6);
+			amount = QString::number(GenAmount() * m_oenoen*3.2 / str_Rate.toDouble(), 'f', 6);
 			yobit_make_trade(str_Rate, amount, "sell");
 		}
 		return;
@@ -470,10 +473,10 @@ void  QBizManager::AddTradeVolume(const QStringList& buy_list, const  QStringLis
 			m_doge_balance_include = res.mid(p + 6, p1 - p - 6);
 
 		}
-		if (m_doge_balance.toDouble() < GenAmount() * m_oenoen*1.2 &&m_doge_balance.toDouble()>1)
+		if (m_doge_balance.toDouble() < GenAmount() * m_oenoen*3.2 &&m_doge_balance.toDouble()>1)
 		{
 			str_Rate = QString::number(buy_price.toDouble() - 0.00000009, 'f', 8);
-			amount = QString::number(GenAmount() * m_oenoen*1.2 / str_Rate.toDouble(), 'f', 6);
+			amount = QString::number(GenAmount() * m_oenoen*3.2 / str_Rate.toDouble(), 'f', 6);
 		}
 	}
 }
