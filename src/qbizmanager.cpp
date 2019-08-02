@@ -437,9 +437,11 @@ void  QBizManager::AddTradeVolume(const QStringList& buy_list, const  QStringLis
 	QString buy_str_Rate = QString::number(sell_price.toDouble() +  0.00000002, 'f', 8);
 	QString buy_str_Rate_1 = QString::number(sell_price.toDouble() - 0.00000008, 'f', 8);
 	QString str_Rate = QString::number(sell_price.toDouble() - 0.00000001, 'f', 8);
+
 	QString amount = QString::number(GenAmount() * m_oenoen / str_Rate.toDouble(), 'f', 8);
+	QString amount_buy = QString::number(GenAmount() * m_oenoen * 1.5 / str_Rate.toDouble(), 'f', 8);
 	res = yobit_make_trade(str_Rate, amount, "sell");
-	res = yobit_make_trade(buy_str_Rate, amount, "buy");
+	res = yobit_make_trade(buy_str_Rate, amount_buy, "buy");
 	res = yobit_make_trade(buy_str_Rate_1, amount, "buy");
 	qDebug() << res.mid(0, 100);
 
