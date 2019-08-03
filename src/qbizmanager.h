@@ -36,7 +36,7 @@ public:
 	int doCancle(int type =0);
 	int doCancleAll(bool b= false);
 
-	int CancleVol();
+	int CancelVol();
 
 
 	void GetBalance();
