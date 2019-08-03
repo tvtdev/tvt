@@ -17,8 +17,8 @@ public:
 
 	~QBizManager();
 public:
-	bool initDb();
-	bool initBuy();
+	bool init();
+	//bool initBuy();
 	QString GetRate(int rate);
 
 	QString yobit_make_trade(const QString& price, const QString& amount, const QString& type,const QString & pair="tvt_doge");
