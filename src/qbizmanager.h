@@ -26,16 +26,20 @@ public:
 	QString yobit_CancelOrder(const QString  & order);
 	QString yobit_CreateYobicode(const QString  & a);
 
-	
+	QString yobit_getInfo();
 	bool yobit_depth(QString & source);
 	QString yobit_trades();
 	
 	int GetPriceInt(const QString & source);
 	QString GetBalance(const QString & bal,int price);
 	void doTransfer();
-	void doCancle(int type =0);
+	int doCancle(int type =0);
 	int doCancleAll(bool b= false);
 
+	int CancleVol();
+
+
+	void GetBalance();
 
 	int GetPrice(const QString & source,  QStringList& buy_list, QStringList& sell_list);
 	double GenAmount();
@@ -53,6 +57,7 @@ public:
 	//void doSell(const QStringList& buy_list);
 	void AddTradeVolume(const QStringList& buy_list, const  QStringList& sell_list,int vol=1);
 
+	void AddTradeVolume_make(const QStringList& buy_list, const  QStringList& sell_list);
 private:
 	QString secret ;
 	QString m_doge_balance;
