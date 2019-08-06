@@ -17,52 +17,64 @@ void QBizManager::doTransfer()
 
 		QString price_sell = sell_list.at(2).split(",").at(4).split(":").at(1);
 		QString amount_sell = sell_list.at(2).split(",").at(3).split(":").at(1);
-
 		QString price_buy = buy_list.at(1).split(",").at(4).split(":").at(1);
 		QString amount_buy = buy_list.at(1).split(",").at(3).split(":").at(1);
 
-		if (amount_buy.toDouble() >= amount_sell.toDouble() * 20&& amount_buy.length()>=7&& amount_sell.length() <= 5 && m_price_buy.length() == 0)
-		{
-			qDebug() << price_buy << m_price_buy<< sell_list.at(2) << buy_list.at(1);
-			m_price_buy = price_buy;
-			continue;
-		}
 
-		if(price_buy >m_price_buy&& m_price_buy.length() != 0)
+		if (price_buy > m_price_buy&& m_price_buy.length() != 0)
 		{
-			qDebug() << price_buy << m_price_buy << sell_list.at(2) << buy_list.at(1);
-			QUrlQuery param;
-			param.addQueryItem("symbol", "XBTUSD");
-			param.addQueryItem("orderQty", "1");
-			param.addQueryItem("side", "Buy");
-			param.addQueryItem("ordType", "Market");
-			createOrder(param);
-		}
-		else
-		{
-			m_price_buy = "";
-		}
+			double af = price_buy.toDouble();
+			double afdaf = m_price_buy.toDouble();
+			int faf = price_buy.toDouble() - m_price_buy.toDouble();
+			m_price_amount_buy += 0.1 * (price_buy.toDouble() - m_price_buy.toDouble());
 
-		if (amount_sell.toDouble() >= amount_buy.toDouble() * 20 && amount_sell.length() >= 7 && amount_buy.length() <= 5 && m_price_sell.length() == 0)
-		{
-			m_price_sell = price_sell;
-			continue;
+
+			//qDebug() << price_buy << m_price_buy << m_price_amount_buy << buy_list.at(1);
+
+			if (m_price_amount_buy >= 1)
+			{
+			//	qDebug() << price_buy << m_price_buy << sell_list.at(2) << buy_list.at(1);
+				int amount_int = m_price_amount_buy;
+				m_price_amount_buy -= amount_int;
+				QString amount = QString::number(amount_int);
+				QUrlQuery param;
+				param.addQueryItem("symbol", "XBTUSD");
+				param.addQueryItem("orderQty", amount);
+				param.addQueryItem("side", "Buy");
+				param.addQueryItem("ordType", "Market");
+				createOrder(param);
+			}
 		}
+		else if( m_price_buy.toDouble()- price_buy.toDouble()>=13)
+			m_price_amount_buy = 0;
+		m_price_buy = price_buy;
+		
 		
 		if(price_sell < m_price_sell&& m_price_sell.length() != 0)
 		{
-			QUrlQuery param;
-			param.addQueryItem("symbol", "XBTUSD");
-			param.addQueryItem("orderQty", "1");
-			param.addQueryItem("side", "Sell");
-			param.addQueryItem("ordType", "Market");
-			createOrder(param);
-		}
-		else
-		{
-			m_price_sell = "";
-		}
+			//qDebug() << price_sell << m_price_buy << sell_list.at(2) << buy_list.at(1);
 
+			m_price_amount_sell += 0.1 * (m_price_sell.toDouble() - price_sell.toDouble()) ;
+
+			if (m_price_amount_sell >= 1)
+			{
+				int amount_int = m_price_amount_sell;
+				m_price_amount_sell -= amount_int;
+				QString amount = QString::number(amount_int);
+				QUrlQuery param;
+				param.addQueryItem("symbol", "XBTUSD");
+				param.addQueryItem("orderQty", amount);
+				param.addQueryItem("side", "Sell");
+				param.addQueryItem("ordType", "Market");
+				createOrder(param);
+			}
+		}
+		else if (price_sell.toDouble() - m_price_sell.toDouble() >= 13) 
+			m_price_amount_sell = 0;
+		
+		m_price_sell = price_sell;
+	
+		qDebug() << price_sell << price_buy << m_price_amount_buy << m_price_amount_sell;
 	
 	}
 	
@@ -89,6 +101,8 @@ QBizManager::QBizManager()
     //});
 	 m_price_buy = "";
 	 m_price_sell = "";
+	 m_price_amount_buy = 0;
+	 m_price_amount_sell = 0;
 }
 
 QBizManager::~QBizManager()
@@ -151,7 +165,7 @@ bool QBizManager::bitmex_depth(QString & source, QString coinType, QString depth
 		return  0;
 	}
 	QEventLoop loop;
-	QTimer::singleShot(900, &loop, SLOT(quit()));
+	QTimer::singleShot(1500, &loop, SLOT(quit()));
 	loop.exec();
 	return  1;
 }
@@ -163,8 +177,10 @@ int QBizManager::GetPrice(const QString & source, QStringList& buy_list, QString
 	int p2 = source.indexOf("bids", p + 10);
 	QString sell_price_str = source.mid(1, p-46);
 	QString buy_price_str = source.mid(p-44);
+	buy_price_str = buy_price_str.replace("}", "");
 	buy_list = buy_price_str.split("{");
 	sell_list = sell_price_str.split("{");
+
 	return 0;
 }
 
