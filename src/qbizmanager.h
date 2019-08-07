@@ -36,7 +36,7 @@ public:
 	int doCancle(int type =0);
 	int doCancleAll(bool b= false);
 
-	int CancelVol();
+	int CancelVol(const QStringList& sell_list);
 	int CancelOrder_My(const QStringList& buy_list );
 
 
