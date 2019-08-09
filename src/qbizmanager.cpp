@@ -3,71 +3,63 @@
 
 void QBizManager::doTransfer(const QString & source)
 {
+
+	QStringList buy_list;
+	QStringList sell_list;
+	GetPrice(source, buy_list, sell_list);
+
+
+	QString price_sell = sell_list.at(0).split(",").at(0);
+	QString amount_sell = sell_list.at(0).split(",").at(1);;
+
+	QString price_buy = buy_list.at(0).split(",").at(0);
+	QString amount_buy = buy_list.at(0).split(",").at(1);
 	if (my_postion.currentQty.toDouble() >= 0)
 	{
-		if (my_postion.unrealisedRoePcnt.toDouble() <= -0.02)
+		if (amount_buy.toDouble() >= amount_sell.toDouble() * 10 && amount_buy.length() >= 6 && amount_sell.length() <= 5 && m_price_buy.length() == 0)
 		{
-			//qDebug() << "doTransfer 1";
-			//if (my_postion.currentQty.toInt() == 1)
-			//{
-			//	QUrlQuery param;
-			//	param.addQueryItem("symbol", "XBTUSD");
-			//	param.addQueryItem("orderQty", "1");
-			//	param.addQueryItem("side", "Sell");
-			//	param.addQueryItem("ordType", "Market");
-			//	createOrder(param);
-
-			//	my_postion.currentQty = "0";
-			//	my_postion.unrealisedRoePcnt = "0";
-			//	return;
-			//}
-
-			qDebug() << "doTransfer 1";
-			QString amount =  QString::number(my_postion.currentQty.toDouble()*0.5,'g',0);
+			m_price_buy = price_buy;
+			return;
+		}
+		if (price_buy >m_price_buy && price_buy.toDouble() - m_price_buy.toDouble() <= 2 && m_price_buy.length() != 0)
+		{
 			QUrlQuery param;
 			param.addQueryItem("symbol", "XBTUSD");
-			param.addQueryItem("orderQty", amount);
-			param.addQueryItem("side", "Sell");
-			param.addQueryItem("ordType", "Market");	
+			param.addQueryItem("orderQty", "1");
+			param.addQueryItem("side", "Buy");
+			param.addQueryItem("ordType", "Market");
 			createOrder(param);
-
-			my_postion.currentQty = "0";
-			my_postion.unrealisedRoePcnt = "0";
+			m_price_buy = "";
 
 		}
+		else
+		{
+			m_price_buy = "";
+		}
+
 
 	}
 	else if (my_postion.currentQty.toDouble() <= 0)
 	{
-		if (my_postion.unrealisedRoePcnt.toDouble() <= -0.02)
+		if (amount_sell.toDouble() >= amount_buy.toDouble() * 10 && amount_sell.length() >= 6 && amount_buy.length() <= 5 && m_price_sell.length() == 0)
 		{
-		/*	qDebug() << "doTransfer 2";
-			if (my_postion.currentQty.toInt() == -1)
-			{
-				qDebug() << "doTransfer 3";
-				QUrlQuery param;
-				param.addQueryItem("symbol", "XBTUSD");
-				param.addQueryItem("orderQty", "1");
-				param.addQueryItem("side", "Buy");
-				param.addQueryItem("ordType", "Market");
-				createOrder(param);
+			m_price_sell = price_sell;
+			return;
+		}
+		if (price_sell < m_price_sell && m_price_sell.toDouble() - price_sell.toDouble() <= 12 && m_price_sell.length() != 0)
+		{
 
-				my_postion.currentQty = "0";
-				my_postion.unrealisedRoePcnt = "0";
-				return;
-			}*/
-			qDebug() << "doTransfer 2";
-			QString amount = QString::number(my_postion.currentQty.toDouble()*0.5, 'g', 0);
-			amount = QString::number(qAbs(amount.toInt()));
 			QUrlQuery param;
 			param.addQueryItem("symbol", "XBTUSD");
-			param.addQueryItem("orderQty", amount);
-			param.addQueryItem("side", "Buy");
+			param.addQueryItem("orderQty", "1");
+			param.addQueryItem("side", "Sell");
 			param.addQueryItem("ordType", "Market");
 			createOrder(param);
-
-			my_postion.currentQty = "0";
-			my_postion.unrealisedRoePcnt = "0";
+			m_price_sell = "";
+		}
+		else
+		{
+			m_price_sell = "";
 		}
 	}
 }
@@ -87,10 +79,15 @@ QBizManager::QBizManager()
 		//m_webSocket.open(QUrl(m_websocketHost));
     });
     m_webSocket.open(QUrl(m_websocketHost));
-    //m_maxRequestsTimer.setInterval(1000 * 60);
-    //connect(&m_maxRequestsTimer,&QTimer::timeout,this,[&](){
-    //    m_currentTotalRequests = 0;
-    //});
+   	m_pingTimer.setInterval(1000 * 5);
+	connect(&m_pingTimer, &QTimer::timeout, this, [&]() {
+		if (m_webSocket.state() == QAbstractSocket::ConnectedState) {
+			m_webSocket.ping("ping");
+		}
+		else {
+			qDebug() << "Websocket is closed?please check.";
+		}
+	});
 	 m_price_buy = "";
 	 m_price_sell = "";
 	 m_price_amount_buy = 0;
@@ -130,7 +127,8 @@ void QBizManager::textMessageReceived(const QString &message)
 			if (rObj.contains("op")) {
 				auto op = rObj["op"].toString();
 				if (op == WEBSOCKET_OP_AUTH) {
-					//、、m_webSocket.sendTextMessage(QString(R"({"op": "subscribe", "args": ["orderBook10:XBTUSD"]})"));
+					m_pingTimer.start();
+					m_webSocket.sendTextMessage(QString(R"({"op": "subscribe", "args": ["orderBook10:XBTUSD"]})"));
 					m_webSocket.sendTextMessage(QString(R"({"op": "subscribe", "args": ["position"]})"));
 				}
 			}
@@ -140,6 +138,10 @@ void QBizManager::textMessageReceived(const QString &message)
 			if (message.indexOf("position") != -1)
 			{
 				GetPostion(message);
+				
+			}
+			if (message.indexOf("orderBook10") != -1)
+			{
 				doTransfer(message);
 			}
 		}

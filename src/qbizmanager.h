@@ -112,7 +112,7 @@ private:
 	double m_price_amount_sell;
 	postion my_postion;
 
-	QString m_apiId = "1q1qnuAx-nFFPCpmCyJP50K7";
+	QString m_apiId = "a-eJ9WVKgS7eaJ19qox7KW3W";
 	//QString amount_1;
 
 	//QString price_2;
@@ -141,7 +141,7 @@ private:
 
 	//QString price_10;
 	//QString amount_10;
-
+	QTimer m_pingTimer;
 	int numm = 0;
 };
 
