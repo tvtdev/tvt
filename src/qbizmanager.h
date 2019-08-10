@@ -1,148 +1,80 @@
 ﻿#ifndef QBIZMANAGER_H
 #define QBIZMANAGER_H
-
 #include <QObject>
-#include <QDebug>
-#include <QMessageAuthenticationCode>
-#include <QNetworkAccessManager>
-#include <QNetworkReply>
-#include <QNetworkRequest>
+#include "qhttpmanager.h"
 #include <QTimer>
-#include <QDateTime>
-#include <QUrlQuery>
-#include <QEventLoop>
-#include <QtWebSockets/QWebSocket>
-#define FUNCTION_WALLET "/user/wallet"
-#define FUNCTION_CREATE_ORDER "/order"
-#define FUNCTION_QUERY_ORDER "/order"
-#define FUNCTION_CANCEL_ORDER "/order"
-#define FUNCTION_ORDER_BOOK "/orderBook/L2"
-#define FUNCTION_QUERY_POSITION "/position"
-#define FUNCTION_ISOLATE_POSITION "/position/isolate"
-#define FUNCTION_LEVERAGE_POSITION "/position/leverage"
-#define FUNCTION_RISKLIMIT_POSITION "/position/riskLimit"
-#define FUNCTION_TRANSFERMARGIN_POSITION "/position/transferMargin"
-#define WEBSOCKET_OP_AUTH "authKeyExpires"
+#include <QMap>
+#include <QHash>
+#include <QSet>
+
+
+
+
 class QBizManager : public QObject
 {
-    Q_OBJECT
 public:
-    QBizManager();
+	QBizManager();
+
 	~QBizManager();
-    //enum RequestType {
-    //    REQUEST_WALLET,
-    //    REQUEST_CREATE_ORDER,
-    //    REQUEST_QUERY_ORDER,
-    //    REQUEST_CANCEL_ORDER,
-    //    REQUEST_ORDER_BOOK,
-    //};
-    //Q_ENUM(RequestType)
-
-	struct price_amount
-	{
-		QString price;
-		QString amount;
-
-	};
-
-	struct postion
-	{
-		QString currentQty;
-		QString unrealisedRoePcnt;
-		QString lastPrice;
-	};
-
-
 public:
-	void doTransfer(const QString & source);
-	void GetPostion(const QString & source);
+	bool init();
+	//bool initBuy();
+	QString GetRate(int rate);
 
-private:
-	int Sell_Amount_Up();
-	int Sell_Amount_Down();
-	int Buy_Amount_Up();
-	int Buy_Amount_Down();
+	QString yobit_make_trade(const QString& price, const QString& amount, const QString& type,const QString & pair="tvt_doge");
+	QString yobit_ActiveOrders_List(int pair=0);
+	QString yobit_CancelOrder(const QString  & order);
+	QString yobit_CreateYobicode(const QString  & a);
 
-signals:
-    void walletInfoResult(QByteArray data);
-    void orderCreateResult(QByteArray data);
-    void allOrderQueryResult(QByteArray data);
-    void orderCancelResult(QByteArray data);
-    void orderBookResult(QByteArray data);
-public slots:
-    void connected();
-    void closed();
-    void textMessageReceived(const QString &message);
-    void queryWalletInfo(QString coinType = "XBt");
-    void createOrder(QUrlQuery param);
-    void queryAllOrder(QUrlQuery param);
-    void cancelOrder(QString orderId,QString clOrderId,QString comment);
+	QString yobit_getInfo();
+	bool yobit_depth(QString & source);
+	QString yobit_trades();
 	
-	bool bitmex_depth(QString &,QString coinType = "XBT", QString depth = "2");
+	int GetPriceInt(const QString & source);
+	QString GetBalance(const QString & bal,int price);
+	void doTransfer();
+	int doCancle(int type =0);
+	int doCancleAll(bool b= false);
 
+	int CancelVol(const QStringList& sell_list);
+	int CancelOrder_My(const QStringList& buy_list );
+	int CancelOrder_Mytwp(const QStringList& buy_list);
 
-	int GetPrice(const QString & source, QStringList& buy_list, QStringList& sell_list);
+	void GetBalance();
 
-	//void oneAmount();
-	//void queryAllPosition(QUrlQuery param);
-	void isolatePosition(QUrlQuery param);
-	void leveragePosition(QUrlQuery param);
-	void riskLimitPosition(QUrlQuery param);
-	void transferMarginPosition(QUrlQuery param);
+	int GetPrice(const QString & source,  QStringList& buy_list, QStringList& sell_list);
+	double GenAmount();
+	int GetMaxOrder(const QStringList& buy_list);
+
+	int doBuyMax(const QStringList& buy_list, const QStringList& sell_list);
+	int GetMaxOrderBuy(const QStringList& buy_list);
+	double GetBuyMaxOrder(const QStringList& buy_list);
+	
+
+	int doBuy(const QStringList& buy_list,double );
+	int doBuyAll(const QStringList& buy_list);
+	void makeBuyOrder(const QString& buy_list);
+
+	//void doSell(const QStringList& buy_list);
+	void AddTradeVolume(const QStringList& buy_list, const  QStringList& sell_list,int vol=1);
+
+	void AddTradeVolume_make(const QStringList& buy_list, const  QStringList& sell_list);
+
+	void AddTradeVolume_make_my(const QStringList& buy_list, const  QStringList& sell_list);
 private:
-	bool m_signed;// = false;
-	int m_currentTotalRequests;// = 0;
-	int m_maxRequests;// = 60;
-    QTimer m_maxRequestsTimer;
-	QString m_websocketHost;// = "wss://testnet.bitmex.com/realtime";
+	QString secret ;
+	QString m_doge_balance;
+	QString m_doge_balance_include;
+	QStringList m_buyList;
+    
+	double m_oenoen;
+	int   m_cancleAll;
 
-    QWebSocket m_webSocket;
-    //QNetworkAccessManager m_manager;
+	double m_dogeea;
 
-	QList<price_amount> price_amount_list_buy;
-
-	QList<price_amount> price_amount_list_sell;
-
-	QList<price_amount> price_amount_list_temp;
-
-	QString m_price_buy;
-	QString m_price_sell;
-
-	double m_price_amount_buy;
-	double m_price_amount_sell;
-	postion my_postion;
-
-	QString m_apiId = "a-eJ9WVKgS7eaJ19qox7KW3W";
-	//QString amount_1;
-
-	//QString price_2;
-	//QString amount_2;
-
-	//QString price_3;
-	//QString amount_3;
-
-	//QString price_4;
-	//QString amount_4;
-
-	//QString price_5;
-	//QString amount_5;
-
-	//QString price_6;
-	//QString amount_6;
-
-	//QString price_7;
-	//QString amount_7;
-
-	//QString price_8;
-	//QString amount_8;
-
-	//QString price_9;
-	//QString amount_9;
-
-	//QString price_10;
-	//QString amount_10;
-	QTimer m_pingTimer;
-	int numm = 0;
 };
 
-#endif // BITMEXWEBSOCKETCLIENT_H
+
+
+#endif // QBIZMANAGER_H
+
