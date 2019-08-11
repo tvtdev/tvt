@@ -269,8 +269,6 @@ int QBizManager::GetPrice(const QString & source, QStringList& buy_list, QString
 
 int QBizManager::Sell_Amount_Up()
 {
-
-	as
 	int size = price_amount_list_sell.size();
 	int avg_size = size / 3;
 
