@@ -9,5 +9,6 @@ release/
 x64/
 v
 v.*
+bitmex.*
 tvt/*
 .vs
