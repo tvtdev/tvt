@@ -12,3 +12,4 @@ v.*
 bitmex.*
 tvt/*
 .vs
+.qmake.stash
