@@ -52,18 +52,11 @@ public:
 		QString lastPrice;
 	};
 
-	struct trade
-	{
-		QString volume;
-		QString open;
-		QString close;		
-	};
 
-	
 public:
 	void doTransfer(const QString & source);
 	void GetPostion(const QString & source);
-	void GetVolume(const QString & source);
+
 private:
 	int Sell_Amount_Up();
 	int Sell_Amount_Down();
@@ -120,8 +113,6 @@ private:
 	postion my_postion;
 
 	QString m_apiId = "a-eJ9WVKgS7eaJ19qox7KW3W";
-
-	//QString m_apiId = "a-eJ9WVKgS7eaJ19qox7KW3W";
 	//QString amount_1;
 
 	//QString price_2;
@@ -152,9 +143,6 @@ private:
 	//QString amount_10;
 	QTimer m_pingTimer;
 	int numm = 0;
-
-	QString m_volume;
-	
 };
 
 #endif // BITMEXWEBSOCKETCLIENT_H

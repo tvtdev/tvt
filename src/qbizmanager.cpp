@@ -3,75 +3,66 @@
 
 void QBizManager::doTransfer(const QString & source)
 {
-	qDebug() << "doTransfer."<< m_volume.toDouble()<< my_postion.currentQty;
-	if (m_volume.toDouble() >= 11000000)
+	qDebug() << "doTransfer.";
+	QStringList buy_list;
+	QStringList sell_list;
+	GetPrice(source, buy_list, sell_list);
+
+
+	QString price_sell = sell_list.at(0).split(",").at(0);
+	QString amount_sell = sell_list.at(0).split(",").at(1);;
+
+	QString price_buy = buy_list.at(0).split(",").at(0);
+	QString amount_buy = buy_list.at(0).split(",").at(1);
+	//if (my_postion.currentQty.toDouble() >= 0&& my_postion.unrealisedRoePcnt.toDouble()> 0.01)
 	{
-		if (my_postion.currentQty.toDouble() >= 0)
+		if (amount_buy.toDouble() >= amount_sell.toDouble() * 10 && amount_buy.length() >= 6 && amount_sell.length() <= 5 && m_price_buy.length() == 0)
 		{
-			if (my_postion.unrealisedRoePcnt.toDouble() >= 0.01)
-			{
-				if (my_postion.currentQty.toInt() == 1)
-				{
-					QUrlQuery param;
-					param.addQueryItem("symbol", "XBTUSD");
-					param.addQueryItem("orderQty", "1");
-					param.addQueryItem("side", "Sell");
-					param.addQueryItem("ordType", "Market");
-					createOrder(param);
-					param.addQueryItem("text", "withdrawal");
-					my_postion.currentQty = "0";
-					my_postion.unrealisedRoePcnt = "0";
-					return;
-				}
-				QString amount = QString::number(my_postion.currentQty.toDouble()*0.35+1, 'f', 0);
-				QUrlQuery param;
-				param.addQueryItem("symbol", "XBTUSD");
-				param.addQueryItem("orderQty", amount);
-				param.addQueryItem("side", "Sell");
-				param.addQueryItem("ordType", "Market");
-				param.addQueryItem("text", "withdrawal");
-				createOrder(param);
-
-				my_postion.currentQty = "0";
-				my_postion.unrealisedRoePcnt = "0";
-
-			}
+			qDebug() << "doTransfer 1.";
+			m_price_buy = price_buy;
+			return;
+		}
+		if (price_buy >m_price_buy && price_buy.toDouble() - m_price_buy.toDouble() <= 2 && m_price_buy.length() != 0)
+		{
+			QUrlQuery param;
+			param.addQueryItem("symbol", "XBTUSD");
+			param.addQueryItem("orderQty", "1");
+			param.addQueryItem("side", "Buy");
+			param.addQueryItem("ordType", "Market");
+			createOrder(param);
+			m_price_buy = "";
 
 		}
-		else if (my_postion.currentQty.toDouble() <= 0)
+		else
 		{
-			qDebug() << "doTransfer.  <= 0" << m_volume.toDouble()<< my_postion.unrealisedRoePcnt;
-			if (my_postion.unrealisedRoePcnt.toDouble() >= 0.01)
-			{
-				if (qAbs(my_postion.currentQty.toInt()) == 1)
-				{
-					QUrlQuery param;
-					param.addQueryItem("symbol", "XBTUSD");
-					param.addQueryItem("orderQty", "1");
-					param.addQueryItem("side", "Buy");
-					param.addQueryItem("ordType", "Market");
-					param.addQueryItem("text", "withdrawal");
-					createOrder(param);
+			m_price_buy = "";
+		}
 
-					my_postion.currentQty = "0";
-					my_postion.unrealisedRoePcnt = "0";
-					return;
-				}
-				QString amount = QString::number(qAbs(my_postion.currentQty.toDouble())*0.35+1, 'f', 0);		
-				QUrlQuery param;
-				param.addQueryItem("symbol", "XBTUSD");
-				param.addQueryItem("orderQty", amount);
-				param.addQueryItem("side", "Buy");
-				param.addQueryItem("ordType", "Market");
-				param.addQueryItem("text", "withdrawal");
-				createOrder(param);
 
-				my_postion.currentQty = "0";
-				my_postion.unrealisedRoePcnt = "0";
-			}
+	}
+	//else if (my_postion.currentQty.toDouble() <= 0 && my_postion.unrealisedRoePcnt.toDouble()>0.01)
+	{
+		if (amount_sell.toDouble() >= amount_buy.toDouble() * 10 && amount_sell.length() >= 6 && amount_buy.length() <= 5 && m_price_sell.length() == 0)
+		{
+			m_price_sell = price_sell;
+			return;
+		}
+		if (price_sell < m_price_sell && m_price_sell.toDouble() - price_sell.toDouble() <= 12 && m_price_sell.length() != 0)
+		{
+			qDebug() << "doTransfer 21.";
+			QUrlQuery param;
+			param.addQueryItem("symbol", "XBTUSD");
+			param.addQueryItem("orderQty", "1");
+			param.addQueryItem("side", "Sell");
+			param.addQueryItem("ordType", "Market");
+			createOrder(param);
+			m_price_sell = "";
+		}
+		else
+		{
+			m_price_sell = "";
 		}
 	}
-	
 }
 
 QBizManager::QBizManager()
@@ -138,23 +129,22 @@ void QBizManager::textMessageReceived(const QString &message)
 				auto op = rObj["op"].toString();
 				if (op == WEBSOCKET_OP_AUTH) {
 					m_pingTimer.start();
+					m_webSocket.sendTextMessage(QString(R"({"op": "subscribe", "args": ["orderBook10:XBTUSD"]})"));
 					m_webSocket.sendTextMessage(QString(R"({"op": "subscribe", "args": ["position"]})"));
-					m_webSocket.sendTextMessage(QString(R"({"op": "subscribe", "args": ["tradeBin1m:XBTUSD"]})"));					
 				}
 			}
 		}
-		else if (jObj.contains("table")) {	
-			
+		else if (jObj.contains("table")) {			
+			//m_webSocket.sendTextMessage(QString(R"({"op": "subscribe", "args": ["position"]})"));
 			if (message.indexOf("position") != -1)
 			{
 				GetPostion(message);
 				
 			}
-			if (message.indexOf("tradeBin1m") != -1)
+			if (message.indexOf("orderBook10") != -1)
 			{
-				GetVolume(message);
+				doTransfer(message);
 			}
-			doTransfer(message);
 		}
 	}
 }
@@ -265,43 +255,6 @@ void QBizManager::GetPostion(const QString & source )
 	qDebug() << "Postion." << my_postion.currentQty<<" "<< my_postion.unrealisedRoePcnt;
 }
 
-
-
-void QBizManager::GetVolume(const QString & source)
-{
-	if (source.length() >= 600)
-	{
-		int p = source.indexOf("volume");
-		p = source.indexOf("volume", p + 2);
-		int	p1 = source.indexOf(",", p + 2);
-		m_volume = source.mid(p + 8, p1 - p - 8);
-
-	}
-	else	if (source.length() <= 600 && source.length() >= 399)
-	{
-		int p = source.indexOf("currentQty");
-		int	p1 = source.indexOf(",", p + 2);
-		my_postion.currentQty = source.mid(p + 12, p1 - p - 12);
-
-		p = source.indexOf("unrealisedRoePcnt");
-		if (p != -1)
-		{
-			p1 = source.indexOf(",", p + 2);
-			my_postion.unrealisedRoePcnt = source.mid(p + 19, p1 - p - 19);
-		}
-	}
-	else	if (source.length() <= 300)
-	{
-		int p = source.indexOf("currentQty");
-		int	p1 = source.indexOf(",", p + 2);
-		my_postion.currentQty = source.mid(p + 12, p1 - p - 12);
-
-		if (my_postion.currentQty.toDouble() == 0)
-			my_postion.unrealisedRoePcnt = "0";
-
-	}
-	qDebug() << "Postion." << my_postion.currentQty << " " << my_postion.unrealisedRoePcnt;
-}
 int QBizManager::GetPrice(const QString & source, QStringList& buy_list, QStringList& sell_list)
 {
 	int pp = source.indexOf("data"); 
@@ -316,6 +269,8 @@ int QBizManager::GetPrice(const QString & source, QStringList& buy_list, QString
 
 int QBizManager::Sell_Amount_Up()
 {
+
+	as
 	int size = price_amount_list_sell.size();
 	int avg_size = size / 3;
 
