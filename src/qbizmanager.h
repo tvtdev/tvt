@@ -14,6 +14,7 @@
 #include <QtWebSockets/QWebSocket>
 #define FUNCTION_WALLET "/user/wallet"
 #define FUNCTION_CREATE_ORDER "/order"
+#define FUNCTION_closePosition_ORDER "/order/closePosition"
 #define FUNCTION_QUERY_ORDER "/order"
 #define FUNCTION_CANCEL_ORDER "/order"
 #define FUNCTION_ORDER_BOOK "/orderBook/L2"
@@ -74,7 +75,8 @@ public slots:
     void closed();
     void textMessageReceived(const QString &message);
     void queryWalletInfo(QString coinType = "XBt");
-    void createOrder(QUrlQuery param);
+	void createOrder(QUrlQuery param);
+	void closePosition(QUrlQuery param);
     void queryAllOrder(QUrlQuery param);
     void cancelOrder(QString orderId,QString clOrderId,QString comment);
 	
@@ -112,7 +114,7 @@ private:
 	double m_price_amount_sell;
 	postion my_postion;
 
-	QString m_apiId = "a-eJ9WVKgS7eaJ19qox7KW3W";
+	QString m_apiId = "1q1qnuAx-nFFPCpmCyJP50K7";
 	//QString amount_1;
 
 	//QString price_2;

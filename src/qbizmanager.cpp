@@ -1,66 +1,33 @@
 ﻿#include "qbizmanager.h"
 #include "qhttpmanager.h"
 
+
 void QBizManager::doTransfer(const QString & source)
 {
-	qDebug() << "doTransfer.";
-	QStringList buy_list;
-	QStringList sell_list;
-	GetPrice(source, buy_list, sell_list);
-
-
-	QString price_sell = sell_list.at(0).split(",").at(0);
-	QString amount_sell = sell_list.at(0).split(",").at(1);;
-
-	QString price_buy = buy_list.at(0).split(",").at(0);
-	QString amount_buy = buy_list.at(0).split(",").at(1);
-	//if (my_postion.currentQty.toDouble() >= 0&& my_postion.unrealisedRoePcnt.toDouble()> 0.01)
+	if (my_postion.currentQty.toDouble() >= 0)
 	{
-		if (amount_buy.toDouble() >= amount_sell.toDouble() * 10 && amount_buy.length() >= 6 && amount_sell.length() <= 5 && m_price_buy.length() == 0)
-		{
-			qDebug() << "doTransfer 1.";
-			m_price_buy = price_buy;
-			return;
-		}
-		if (price_buy >m_price_buy && price_buy.toDouble() - m_price_buy.toDouble() <= 2 && m_price_buy.length() != 0)
+		if (my_postion.unrealisedRoePcnt.toDouble() <= -0.03)
 		{
 			QUrlQuery param;
 			param.addQueryItem("symbol", "XBTUSD");
-			param.addQueryItem("orderQty", "1");
-			param.addQueryItem("side", "Buy");
-			param.addQueryItem("ordType", "Market");
-			createOrder(param);
-			m_price_buy = "";
+			param.addQueryItem("text", "stop");
+			closePosition(param);
 
+			my_postion.currentQty = "0";
+			my_postion.unrealisedRoePcnt = "0";
 		}
-		else
-		{
-			m_price_buy = "";
-		}
-
-
 	}
-	//else if (my_postion.currentQty.toDouble() <= 0 && my_postion.unrealisedRoePcnt.toDouble()>0.01)
+	else if (my_postion.currentQty.toDouble() <= 0)
 	{
-		if (amount_sell.toDouble() >= amount_buy.toDouble() * 10 && amount_sell.length() >= 6 && amount_buy.length() <= 5 && m_price_sell.length() == 0)
+		if (my_postion.unrealisedRoePcnt.toDouble() <= -0.03)
 		{
-			m_price_sell = price_sell;
-			return;
-		}
-		if (price_sell < m_price_sell && m_price_sell.toDouble() - price_sell.toDouble() <= 12 && m_price_sell.length() != 0)
-		{
-			qDebug() << "doTransfer 21.";
 			QUrlQuery param;
 			param.addQueryItem("symbol", "XBTUSD");
-			param.addQueryItem("orderQty", "1");
-			param.addQueryItem("side", "Sell");
-			param.addQueryItem("ordType", "Market");
-			createOrder(param);
-			m_price_sell = "";
-		}
-		else
-		{
-			m_price_sell = "";
+			param.addQueryItem("text", "stop");
+			closePosition(param);
+
+			my_postion.currentQty = "0";
+			my_postion.unrealisedRoePcnt = "0";
 		}
 	}
 }
@@ -129,7 +96,7 @@ void QBizManager::textMessageReceived(const QString &message)
 				auto op = rObj["op"].toString();
 				if (op == WEBSOCKET_OP_AUTH) {
 					m_pingTimer.start();
-					m_webSocket.sendTextMessage(QString(R"({"op": "subscribe", "args": ["orderBook10:XBTUSD"]})"));
+					//、、m_webSocket.sendTextMessage(QString(R"({"op": "subscribe", "args": ["orderBook10:XBTUSD"]})"));
 					m_webSocket.sendTextMessage(QString(R"({"op": "subscribe", "args": ["position"]})"));
 				}
 			}
@@ -139,10 +106,6 @@ void QBizManager::textMessageReceived(const QString &message)
 			if (message.indexOf("position") != -1)
 			{
 				GetPostion(message);
-				
-			}
-			if (message.indexOf("orderBook10") != -1)
-			{
 				doTransfer(message);
 			}
 		}
@@ -156,12 +119,15 @@ void QBizManager::queryWalletInfo(QString coinType)
     q.addQueryItem("currency",coinType);
 	QHttpManager::GetInstance().query("GET",FUNCTION_WALLET,q,REQUEST_WALLET,true);
 }
-
 void QBizManager::createOrder(QUrlQuery param)
 {
-	QHttpManager::GetInstance().query("POST",FUNCTION_CREATE_ORDER,param,REQUEST_CREATE_ORDER,true);
+	QHttpManager::GetInstance().query("POST", FUNCTION_CREATE_ORDER, param, REQUEST_CREATE_ORDER, true);
 }
 
+void QBizManager::closePosition(QUrlQuery param)
+{
+	QHttpManager::GetInstance().query("POST", FUNCTION_closePosition_ORDER, param, REQUEST_TRANSFERMARGIN_POSITION, true);
+}
 void QBizManager::queryAllOrder(QUrlQuery param)
 {
 	QHttpManager::GetInstance().query("GET",FUNCTION_QUERY_ORDER,param,REQUEST_QUERY_ORDER,true);
