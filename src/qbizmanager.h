@@ -14,6 +14,7 @@
 #include <QtWebSockets/QWebSocket>
 #define FUNCTION_WALLET "/user/wallet"
 #define FUNCTION_CREATE_ORDER "/order"
+#define FUNCTION_closePosition_ORDER "/order/closePosition"
 #define FUNCTION_QUERY_ORDER "/order"
 #define FUNCTION_CANCEL_ORDER "/order"
 #define FUNCTION_ORDER_BOOK "/orderBook/L2"
@@ -52,11 +53,18 @@ public:
 		QString lastPrice;
 	};
 
+	struct trade
+	{
+		QString volume;
+		QString open;
+		QString close;		
+	};
 
+	
 public:
 	void doTransfer(const QString & source);
 	void GetPostion(const QString & source);
-
+	void GetVolume(const QString & source);
 private:
 	int Sell_Amount_Up();
 	int Sell_Amount_Down();
@@ -75,6 +83,7 @@ public slots:
     void textMessageReceived(const QString &message);
     void queryWalletInfo(QString coinType = "XBt");
     void createOrder(QUrlQuery param);
+	void closePosition(QUrlQuery param);
     void queryAllOrder(QUrlQuery param);
     void cancelOrder(QString orderId,QString clOrderId,QString comment);
 	
@@ -88,7 +97,7 @@ public slots:
 	void isolatePosition(QUrlQuery param);
 	void leveragePosition(QUrlQuery param);
 	void riskLimitPosition(QUrlQuery param);
-	void transferMarginPosition(QUrlQuery param);
+	
 private:
 	bool m_signed;// = false;
 	int m_currentTotalRequests;// = 0;
@@ -113,6 +122,8 @@ private:
 	postion my_postion;
 
 	QString m_apiId = "a-eJ9WVKgS7eaJ19qox7KW3W";
+
+	//QString m_apiId = "a-eJ9WVKgS7eaJ19qox7KW3W";
 	//QString amount_1;
 
 	//QString price_2;
@@ -143,6 +154,9 @@ private:
 	//QString amount_10;
 	QTimer m_pingTimer;
 	int numm = 0;
+
+	QString m_volume;
+	
 };
 
 #endif // BITMEXWEBSOCKETCLIENT_H
