@@ -16,7 +16,7 @@ void QBizManager::doTransfer(const QString & source)
 			my_postion.unrealisedRoePcnt = "0";
 			m_trade.volume = "0";
 		}
-		else if (my_postion.currentQty.toDouble() < 0 && my_postion.unrealisedRoePcnt.toDouble() >= 0.01)
+		else if (my_postion.currentQty.toDouble() < 0 && my_postion.unrealisedRoePcnt.toDouble() >= 0.02)
 		{			
 			qDebug() << "doTransfer. 2.  " << m_trade.volume << my_postion.currentQty << my_postion.unrealisedRoePcnt;
 			QUrlQuery param;
