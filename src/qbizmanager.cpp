@@ -3,29 +3,29 @@
 
 void QBizManager::doTransfer(const QString & source)
 {
-	if (m_volume.toDouble() >= 2100000 && my_postion.unrealisedRoePcnt.toDouble() >= 0.00001)
+	if (m_trade.volume.toDouble() >= 2100000 )
 	{
-		if (my_postion.currentQty.toDouble() >= 0)
+		if (my_postion.currentQty.toDouble() > 0 && my_postion.unrealisedRoePcnt.toDouble() >= 0.00001)
 		{
-			qDebug() << "doTransfer. 1.  " << m_volume << my_postion.currentQty<< my_postion.unrealisedRoePcnt;		
+			qDebug() << "doTransfer. 1.  " << m_trade.volume << my_postion.currentQty<< my_postion.unrealisedRoePcnt;
 			QUrlQuery param;
 			param.addQueryItem("symbol", "XBTUSD");
 			closePosition(param);
 
 			my_postion.currentQty = "0";
 			my_postion.unrealisedRoePcnt = "0";
-			m_volume = "0";
+			m_trade.volume = "0";
 		}
-		else if (my_postion.currentQty.toDouble() <= 0)
+		else if (my_postion.currentQty.toDouble() < 0 && my_postion.unrealisedRoePcnt.toDouble() >= 0.01)
 		{			
-			qDebug() << "doTransfer. 2.  " << m_volume << my_postion.currentQty << my_postion.unrealisedRoePcnt;
+			qDebug() << "doTransfer. 2.  " << m_trade.volume << my_postion.currentQty << my_postion.unrealisedRoePcnt;
 			QUrlQuery param;
 			param.addQueryItem("symbol", "XBTUSD");
 			closePosition(param);
 
 			my_postion.currentQty = "0";
 			my_postion.unrealisedRoePcnt = "0";
-			m_volume = "0";
+			m_trade.volume = "0";
 			
 		}
 	}
@@ -186,7 +186,19 @@ bool QBizManager::bitmex_depth(QString & source, QString coinType, QString depth
 
 void QBizManager::GetPostion(const QString & source )
 {
-	if (source.length () >=600)
+	{
+		QJsonDocument jDoc = QJsonDocument::fromJson(source.toUtf8());
+		QJsonObject jObj = jDoc.object();
+		if (!jObj.isEmpty())
+		{
+			auto jObjmap = jObj.toVariantMap();
+			auto data = jObjmap["data"].toList();
+			auto dataMap = data.at(0);
+			my_postion.currentQty = dataMap.toMap().value("currentQty").toString();
+			my_postion.unrealisedRoePcnt = dataMap.toMap().value("unrealisedRoePcnt").toString();
+		}
+	}
+	/*if (source.length () >=600)
 	{
 		int p = source.indexOf("currentQty");
 		if (p == -1)
@@ -227,7 +239,7 @@ void QBizManager::GetPostion(const QString & source )
 
 		if(my_postion.currentQty.toDouble() ==0)	
 			my_postion.unrealisedRoePcnt = "0";
-	}
+	}*/
 }
 
 
@@ -241,35 +253,14 @@ void QBizManager::GetVolume(const QString & source)
 		auto jObjmap = jObj.toVariantMap();
 		auto data = jObjmap["data"].toList();
 		auto dataMap = data.at(0);
-		m_volume = dataMap.toMap().value("volume").toString();
+		m_trade.volume = dataMap.toMap().value("volume").toString();
+		m_trade.close = dataMap.toMap().value("close").toString();
+		m_trade.high = dataMap.toMap().value("high").toString();
+		m_trade.low = dataMap.toMap().value("low").toString();
 	}
-	//if (source.length() > 660)
-	//{
-	//	int p = source.indexOf("volume");
-	//	if (p == -1)
-	//		return;
-	//	p = source.indexOf("volume", p + 2);
-	//	int	p1 = source.indexOf(",", p + 2);
-	//	m_volume = source.mid(p + 8, p1 - p - 8);
-
-	//	if (m_volume.indexOf("tradeBin1m") != -1)
-	//		return;
-	//}else
-	//	if (source.length() > 260)
-	//	{
-	//		int p = source.indexOf("volume");
-	//		if (p==-1)
-	//			return;
-	//		p = source.indexOf("volume", p + 2);
-	//		int	p1 = source.indexOf(",", p + 2);
-	//		m_volume = source.mid(p + 8, p1 - p - 8);
-
-	//		if (m_volume.indexOf("tradeBin1m") != -1)
-	//			return;
-	//	}
-
 	
-	qDebug() << "volume." << my_postion.currentQty << " " << my_postion.unrealisedRoePcnt << m_volume;
+	
+	qDebug() << "volume." << my_postion.currentQty << " " << my_postion.unrealisedRoePcnt << m_trade.volume;
 }
 int QBizManager::GetPrice(const QString & source, QStringList& buy_list, QStringList& sell_list)
 {

@@ -44,6 +44,7 @@ public:
 		QString price;
 		QString amount;
 
+
 	};
 
 	struct postion
@@ -53,11 +54,12 @@ public:
 		QString lastPrice;
 	};
 
-	struct trade
+	struct struct_trade
 	{
+		QString high;
+		QString low;
+		QString close;
 		QString volume;
-		QString open;
-		QString close;		
 	};
 
 	
@@ -155,7 +157,9 @@ private:
 	QTimer m_pingTimer;
 	int numm = 0;
 
-	QString m_volume;
+
+
+	struct_trade m_trade;
 	
 };
 
