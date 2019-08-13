@@ -52,7 +52,13 @@ public:
 		QString lastPrice;
 	};
 
-
+	struct struct_trade
+	{
+		QString high;
+		QString low;
+		QString close;
+		QString volume;
+	};
 public:
 	void doTransfer(const QString & source);
 	void GetPostion(const QString & source);
@@ -74,13 +80,17 @@ public slots:
     void closed();
     void textMessageReceived(const QString &message);
     void queryWalletInfo(QString coinType = "XBt");
+
+	void trade();
+private:
     void createOrder(QUrlQuery param);
     void queryAllOrder(QUrlQuery param);
     void cancelOrder(QString orderId,QString clOrderId,QString comment);
 	
 	bool bitmex_depth(QString &,QString coinType = "XBT", QString depth = "2");
+	bool bitmex_bucketed(QString &);
 
-
+	bool parse_bucketed(const QString & source, QStringList& trade_list);	
 	int GetPrice(const QString & source, QStringList& buy_list, QStringList& sell_list);
 
 	//void oneAmount();
@@ -96,6 +106,7 @@ private:
     QTimer m_maxRequestsTimer;
 	QString m_websocketHost;// = "wss://testnet.bitmex.com/realtime";
 
+	QTimer m_TradeTimer;
     QWebSocket m_webSocket;
     //QNetworkAccessManager m_manager;
 
@@ -113,36 +124,11 @@ private:
 	postion my_postion;
 
 	QString m_apiId = "a-eJ9WVKgS7eaJ19qox7KW3W";
-	//QString amount_1;
-
-	//QString price_2;
-	//QString amount_2;
-
-	//QString price_3;
-	//QString amount_3;
-
-	//QString price_4;
-	//QString amount_4;
-
-	//QString price_5;
-	//QString amount_5;
-
-	//QString price_6;
-	//QString amount_6;
-
-	//QString price_7;
-	//QString amount_7;
-
-	//QString price_8;
-	//QString amount_8;
-
-	//QString price_9;
-	//QString amount_9;
-
-	//QString price_10;
-	//QString amount_10;
+	
 	QTimer m_pingTimer;
 	int numm = 0;
+
+	struct_trade my_trade;
 };
 
 #endif // BITMEXWEBSOCKETCLIENT_H
