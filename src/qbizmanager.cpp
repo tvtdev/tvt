@@ -13,7 +13,7 @@ void QBizManager::doTransfer(const QString & source)
 	QString amount_buy = buy_list.at(0).split(",").at(1);
 
 
-	if (price_buy.toDouble() <= my_trade.low.toDouble())
+	if (price_buy.toDouble() >= my_trade.low.toDouble())
 	{
 		qDebug() << "doTransfer 1.";
 		if (amount_buy.toDouble() >= amount_sell.toDouble() * 1.1  && m_price_buy.length() == 0)
