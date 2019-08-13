@@ -13,9 +13,9 @@ void QBizManager::doTransfer(const QString & source)
 
 	if (m_trade.volume.toDouble() >= 2100000 )
 	{
-		if (my_postion.currentQty.toDouble() > 0 && my_postion.unrealisedRoePcnt.toDouble() >= 0.00001)
+		if (my_postion.currentQty.toDouble() > 0 && my_postion.unrealisedRoePcnt.toDouble()  >= 0.012205)
 		{
-			if (price_buy.toDouble() < m_trade.high.toDouble())
+			if (price_buy.toDouble() > m_trade.high.toDouble()-1)
 			{
 				qDebug() << "doTransfer. bao zhang 1.";
 				return;
@@ -30,7 +30,7 @@ void QBizManager::doTransfer(const QString & source)
 			my_postion.unrealisedRoePcnt = "0";
 			m_trade.volume = "0";
 		}
-		else if (my_postion.currentQty.toDouble() < 0 && my_postion.unrealisedRoePcnt.toDouble() >= 0.00002)
+		else if (my_postion.currentQty.toDouble() < 0 && my_postion.unrealisedRoePcnt.toDouble() >= 0.03)
 		{	
 			if (m_trade.volume.toDouble() <= 10100000)
 				return;
