@@ -11,7 +11,7 @@ void QBizManager::doTransfer(const QString & source)
 	QString price_buy = buy_list.at(0).split(",").at(0);
 	QString amount_buy = buy_list.at(0).split(",").at(1);
 
-	if (m_trade.volume.toDouble() >= 12100000 )
+	if (m_trade.volume.toDouble() >= 2100000 )
 	{
 		if (my_postion.currentQty.toDouble() > 0 && my_postion.unrealisedRoePcnt.toDouble() >= 0.00001)
 		{
@@ -31,7 +31,10 @@ void QBizManager::doTransfer(const QString & source)
 			m_trade.volume = "0";
 		}
 		else if (my_postion.currentQty.toDouble() < 0 && my_postion.unrealisedRoePcnt.toDouble() >= 0.00002)
-		{		
+		{	
+			if (m_trade.volume.toDouble() <= 10100000)
+				return;
+
 			if (price_sell.toDouble() < m_trade.low.toDouble())
 			{
 				qDebug() << "doTransfer. bao die 1.";
