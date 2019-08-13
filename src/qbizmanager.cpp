@@ -15,10 +15,10 @@ void QBizManager::doTransfer(const QString & source)
 
 	if (price_buy.toDouble() <= my_trade.low.toDouble())
 	{
-		qDebug() << "doTransfer 11.";
+		qDebug() << "doTransfer 1.";
 		if (amount_buy.toDouble() >= amount_sell.toDouble() * 1.1  && m_price_buy.length() == 0)
 		{
-			qDebug() << "doTransfer 1.";
+			qDebug() << "doTransfer 1..";
 			m_price_buy = price_buy;
 			return;
 		}
@@ -31,7 +31,7 @@ void QBizManager::doTransfer(const QString & source)
 
 		if (price_buy >m_price_buy && price_buy.toDouble() - m_price_buy.toDouble() <= 2 && m_price_buy.length() != 0)
 		{
-			qDebug() << "doTransfer 1..";
+			qDebug() << "doTransfer 1...";
 			QUrlQuery param;
 			param.addQueryItem("symbol", "XBTUSD");
 			param.addQueryItem("orderQty", "1");
@@ -39,7 +39,6 @@ void QBizManager::doTransfer(const QString & source)
 			param.addQueryItem("ordType", "Market");
 			createOrder(param);
 			m_price_buy = "";
-
 		}
 		else
 		{
@@ -48,27 +47,23 @@ void QBizManager::doTransfer(const QString & source)
 	}
 
 
-
 	if (price_sell.toDouble() <= my_trade.high.toDouble())
 	{
-		qDebug() << "doTransfer 22.";
+		qDebug() << "doTransfer 2.";
 		if (amount_sell.toDouble() >= amount_buy.toDouble()*1.1    && m_price_sell.length() == 0)
 		{
-			qDebug() << "doTransfer 2.";
+			qDebug() << "doTransfer 2..";
 			m_price_sell = price_sell;
 			return;
 		}
-
 		if (amount_sell.toDouble() <= amount_buy.toDouble() && m_price_sell == price_sell && m_price_sell.length() >= 1)
 		{
 			m_price_sell = "";
 			return;
 		}
-
-
 		if (price_sell < m_price_sell && m_price_sell.toDouble() - price_sell.toDouble() <= 12 && m_price_sell.length() != 0)
 		{
-			qDebug() << "doTransfer 2..";
+			qDebug() << "doTransfer 2...";
 			QUrlQuery param;
 			param.addQueryItem("symbol", "XBTUSD");
 			param.addQueryItem("orderQty", "1");
