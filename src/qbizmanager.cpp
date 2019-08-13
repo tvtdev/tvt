@@ -317,6 +317,7 @@ void QBizManager::trade()
 			trade_str = trade_list.at(i);
 			my_trade.high = trade_str.split(",").at(3).split(":").at(1);
 			my_trade.low = trade_str.split(",").at(4).split(":").at(1);
+			return;
 		}
 	}
 }
