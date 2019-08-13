@@ -3,10 +3,26 @@
 
 void QBizManager::doTransfer(const QString & source)
 {
+	QStringList buy_list;
+	QStringList sell_list;
+	GetPrice(source, buy_list, sell_list);
+	QString price_sell = sell_list.at(0).split(",").at(0);
+	QString amount_sell = sell_list.at(0).split(",").at(1);;
+	QString price_buy = buy_list.at(0).split(",").at(0);
+	QString amount_buy = buy_list.at(0).split(",").at(1);
+
 	if (m_trade.volume.toDouble() >= 2100000 )
 	{
+
+
 		if (my_postion.currentQty.toDouble() > 0 && my_postion.unrealisedRoePcnt.toDouble() >= 0.00001)
 		{
+			if (price_buy.toDouble() < m_trade.high.toDouble())
+			{
+				qDebug() << "doTransfer. bao zhang 1.";
+				return;
+			}
+
 			qDebug() << "doTransfer. 1.  " << m_trade.volume << my_postion.currentQty<< my_postion.unrealisedRoePcnt;
 			QUrlQuery param;
 			param.addQueryItem("symbol", "XBTUSD");
@@ -17,7 +33,13 @@ void QBizManager::doTransfer(const QString & source)
 			m_trade.volume = "0";
 		}
 		else if (my_postion.currentQty.toDouble() < 0 && my_postion.unrealisedRoePcnt.toDouble() >= 0.00002)
-		{			
+		{		
+			if (price_sell.toDouble() < m_trade.low.toDouble())
+			{
+				qDebug() << "doTransfer. bao die 1.";
+				return;
+			}
+
 			qDebug() << "doTransfer. 2.  " << m_trade.volume << my_postion.currentQty << my_postion.unrealisedRoePcnt;
 			QUrlQuery param;
 			param.addQueryItem("symbol", "XBTUSD");
@@ -25,11 +47,9 @@ void QBizManager::doTransfer(const QString & source)
 
 			my_postion.currentQty = "0";
 			my_postion.unrealisedRoePcnt = "0";
-			m_trade.volume = "0";
-			
+			m_trade.volume = "0";			
 		}
-	}
-	
+	}	
 }
 
 QBizManager::QBizManager()
@@ -96,6 +116,7 @@ void QBizManager::textMessageReceived(const QString &message)
 				auto op = rObj["op"].toString();
 				if (op == WEBSOCKET_OP_AUTH) {
 					m_pingTimer.start();
+					m_webSocket.sendTextMessage(QString(R"({"op": "subscribe", "args": ["orderBook10:XBTUSD"]})"));
 					m_webSocket.sendTextMessage(QString(R"({"op": "subscribe", "args": ["position"]})"));
 					m_webSocket.sendTextMessage(QString(R"({"op": "subscribe", "args": ["tradeBin1m:XBTUSD"]})"));					
 				}
@@ -111,6 +132,10 @@ void QBizManager::textMessageReceived(const QString &message)
 			if (message.indexOf("tradeBin1m") != -1)
 			{
 				GetVolume(message);
+			}
+			if (message.indexOf("orderBook10") != -1)
+			{
+				doTransfer(message);
 			}
 			doTransfer(message);
 		}
@@ -264,11 +289,15 @@ void QBizManager::GetVolume(const QString & source)
 }
 int QBizManager::GetPrice(const QString & source, QStringList& buy_list, QStringList& sell_list)
 {
-	int pp = source.indexOf("data"); 
-	int p = source.indexOf("bids",pp);
+	int pp = source.indexOf("data");
+	int p = source.indexOf("bids", pp);
 	int p2 = source.indexOf("asks", p + 10);
-	QString buy_price_str = source.mid(p + 8, p2 - p-7);
+	QString buy_price_str = source.mid(p + 8, p2 - p - 7);
 	QString sell_price_str = source.mid(p2 + 8);
+	if (p2 == -1)
+	{
+		sell_price_str = source.mid(pp + 35);
+	}
 	buy_list = buy_price_str.split("],[");
 	sell_list = sell_price_str.split("],[");
 	return 0;
