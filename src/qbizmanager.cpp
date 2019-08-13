@@ -11,10 +11,8 @@ void QBizManager::doTransfer(const QString & source)
 	QString price_buy = buy_list.at(0).split(",").at(0);
 	QString amount_buy = buy_list.at(0).split(",").at(1);
 
-	if (m_trade.volume.toDouble() >= 2100000 )
+	if (m_trade.volume.toDouble() >= 12100000 )
 	{
-
-
 		if (my_postion.currentQty.toDouble() > 0 && my_postion.unrealisedRoePcnt.toDouble() >= 0.00001)
 		{
 			if (price_buy.toDouble() < m_trade.high.toDouble())
@@ -23,7 +21,7 @@ void QBizManager::doTransfer(const QString & source)
 				return;
 			}
 
-			qDebug() << "doTransfer. 1.  " << m_trade.volume << my_postion.currentQty<< my_postion.unrealisedRoePcnt;
+			qDebug() << "doTransfer. 1.  " << m_trade.volume << my_postion.currentQty << my_postion.unrealisedRoePcnt << price_buy << m_trade.high;
 			QUrlQuery param;
 			param.addQueryItem("symbol", "XBTUSD");
 			closePosition(param);
@@ -40,7 +38,7 @@ void QBizManager::doTransfer(const QString & source)
 				return;
 			}
 
-			qDebug() << "doTransfer. 2.  " << m_trade.volume << my_postion.currentQty << my_postion.unrealisedRoePcnt;
+			qDebug() << "doTransfer 2  " << m_trade.volume << my_postion.currentQty << my_postion.unrealisedRoePcnt<< price_sell<< m_trade.low;
 			QUrlQuery param;
 			param.addQueryItem("symbol", "XBTUSD");
 			closePosition(param);
