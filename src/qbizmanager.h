@@ -61,7 +61,6 @@ public:
 		QString close;
 		QString volume;
 	};
-
 	
 public:
 	void doTransfer(const QString & source);
