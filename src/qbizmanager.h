@@ -58,6 +58,7 @@ public:
 		QString low;
 		QString close;
 		QString volume;
+		QString time;
 	};
 public:
 	void doTransfer(const QString & source);

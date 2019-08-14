@@ -3,7 +3,10 @@
 
 void QBizManager::doTransfer(const QString & source)
 {
-	qDebug() << ".";
+	if (my_trade.low.size() == 0)
+		return;
+
+	//qDebug() << ".";
 	QStringList buy_list;
 	QStringList sell_list;
 	GetPrice(source, buy_list, sell_list);
@@ -12,18 +15,32 @@ void QBizManager::doTransfer(const QString & source)
 	QString price_buy = buy_list.at(0).split(",").at(0);
 	QString amount_buy = buy_list.at(0).split(",").at(1);
 
-
-	if (price_buy.toDouble() >= my_trade.low.toDouble())
+	QDateTime _QDateTime = QDateTime::fromString(my_trade.time,"yyyy-MM-ddTHH:mm:ss.sssZ");
+	QString time_str = QDateTime::fromMSecsSinceEpoch(QDateTime::currentDateTime().toMSecsSinceEpoch() - _QDateTime.toMSecsSinceEpoch()).toUTC().toString("mm");
+	qDebug() << "span" << time_str;
+	if (price_buy.toDouble() >= my_trade.high.toDouble())
 	{
-		qDebug() << "doTransfer 1.";
-		if (amount_buy.toDouble() >= amount_sell.toDouble() * 1.1  && m_price_buy.length() == 0)
+		if (time_str >= "09")
+			return;
+
+		if (m_price_buy.length() == 0)
 		{
-			qDebug() << "doTransfer 1..";
 			m_price_buy = price_buy;
 			return;
 		}
 
-		if (amount_buy.toDouble() <= amount_sell.toDouble() && m_price_buy == price_buy && m_price_buy.length() >= 1)
+		
+
+		qDebug() << "doTransfer 1.";
+
+
+		if (price_buy.toDouble() <= m_price_buy.toDouble() && m_price_buy.length() >= 1)
+		{
+			m_price_buy = "";
+			return;
+		}
+
+		if (price_buy.toDouble() == m_price_buy.toDouble() && m_price_buy.length() >= 1)
 		{
 			m_price_buy = "";
 			return;
@@ -34,7 +51,7 @@ void QBizManager::doTransfer(const QString & source)
 			qDebug() << "doTransfer 1...";
 			QUrlQuery param;
 			param.addQueryItem("symbol", "XBTUSD");
-			param.addQueryItem("orderQty", "1");
+			param.addQueryItem("orderQty", "2");
 			param.addQueryItem("side", "Buy");
 			param.addQueryItem("ordType", "Market");
 			createOrder(param);
@@ -47,26 +64,34 @@ void QBizManager::doTransfer(const QString & source)
 	}
 
 
-	if (price_sell.toDouble() <= my_trade.high.toDouble())
+	if (price_sell.toDouble() <= my_trade.low.toDouble())
 	{
-		qDebug() << "doTransfer 2.";
-		if (amount_sell.toDouble() >= amount_buy.toDouble()*1.1    && m_price_sell.length() == 0)
+		if (time_str >= "09")
+			return;
+
+		if ( m_price_sell.length() == 0)
 		{
-			qDebug() << "doTransfer 2..";
 			m_price_sell = price_sell;
 			return;
 		}
-		if (amount_sell.toDouble() <= amount_buy.toDouble() && m_price_sell == price_sell && m_price_sell.length() >= 1)
+		if (price_sell.toDouble() >= m_price_sell.toDouble()  && m_price_sell.length() >= 1)
 		{
 			m_price_sell = "";
 			return;
 		}
+		if ( m_price_sell == price_sell && m_price_sell.length() >= 1)
+		{
+			m_price_sell = "";
+			return;
+		}
+
+
 		if (price_sell < m_price_sell && m_price_sell.toDouble() - price_sell.toDouble() <= 12 && m_price_sell.length() != 0)
 		{
 			qDebug() << "doTransfer 2...";
 			QUrlQuery param;
 			param.addQueryItem("symbol", "XBTUSD");
-			param.addQueryItem("orderQty", "1");
+			param.addQueryItem("orderQty", "2");
 			param.addQueryItem("side", "Sell");
 			param.addQueryItem("ordType", "Market");
 			createOrder(param);
@@ -301,12 +326,13 @@ void QBizManager::trade()
 		QString  trade_str = trade_list.at(i);
 		QString  volume = trade_str.split(",").at(7).split(":").at(1);
 
-		if (volume.toDouble() >= 4500000)
+		if (volume.toDouble() >= 6100000)
 		{
 			qDebug() << "trade." << trade_str;
 			trade_str = trade_list.at(i);
 			my_trade.high = trade_str.split(",").at(3).split(":").at(1);
 			my_trade.low = trade_str.split(",").at(4).split(":").at(1);
+			my_trade.time = trade_str.mid(3, 24);
 			return;
 		}
 	}
