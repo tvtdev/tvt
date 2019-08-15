@@ -60,6 +60,7 @@ public:
 		QString low;
 		QString close;
 		QString volume;
+		QString time;
 	};
 	
 public:
@@ -82,6 +83,9 @@ public slots:
     void connected();
     void closed();
     void textMessageReceived(const QString &message);
+	void trade();
+
+private:
     void queryWalletInfo(QString coinType = "XBt");
     void createOrder(QUrlQuery param);
 	void closePosition(QUrlQuery param);
@@ -89,7 +93,9 @@ public slots:
     void cancelOrder(QString orderId,QString clOrderId,QString comment);
 	
 	bool bitmex_depth(QString &,QString coinType = "XBT", QString depth = "2");
+	bool bitmex_bucketed(QString &);
 
+	bool parse_bucketed(const QString & source, QStringList& trade_list);
 
 	int GetPrice(const QString & source, QStringList& buy_list, QStringList& sell_list);
 
@@ -157,9 +163,9 @@ private:
 	int numm = 0;
 
 
-
+	QTimer m_TradeTimer;
 	struct_trade m_trade;
-	
+	struct_trade my_trade;
 };
 
 #endif // BITMEXWEBSOCKETCLIENT_H

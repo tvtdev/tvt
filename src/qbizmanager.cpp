@@ -3,6 +3,8 @@
 
 void QBizManager::doTransfer(const QString & source)
 {
+	if (my_trade.high.isEmpty())
+		return;
 	QStringList buy_list;
 	QStringList sell_list;
 	GetPrice(source, buy_list, sell_list);
@@ -11,8 +13,9 @@ void QBizManager::doTransfer(const QString & source)
 	QString price_buy = buy_list.at(0).split(",").at(0);
 	QString amount_buy = buy_list.at(0).split(",").at(1);
 
-	if (m_trade.volume.toDouble() >= 2100000 )
+	if (my_trade.volume.toDouble() >= 2100000 )
 	{
+
 		if (my_postion.currentQty.toDouble() > 0 && my_postion.unrealisedRoePcnt.toDouble()  >= 0.012205)
 		{
 			if (price_buy.toDouble() > m_trade.high.toDouble()-1)
@@ -30,9 +33,9 @@ void QBizManager::doTransfer(const QString & source)
 			my_postion.unrealisedRoePcnt = "0";
 			m_trade.volume = "0";
 		}
-		else if (my_postion.currentQty.toDouble() < 0 && my_postion.unrealisedRoePcnt.toDouble() >= 0.03)
+		else if (my_postion.currentQty.toDouble() < 0 && my_postion.unrealisedRoePcnt.toDouble() >= 0.0305163)
 		{	
-			if (m_trade.volume.toDouble() <= 10100000)
+			if (m_trade.volume.toDouble() <= 2100000)
 				return;
 
 			if (price_sell.toDouble() < m_trade.low.toDouble())
@@ -50,6 +53,8 @@ void QBizManager::doTransfer(const QString & source)
 			my_postion.unrealisedRoePcnt = "0";
 			m_trade.volume = "0";			
 		}
+
+	
 	}	
 }
 
@@ -77,6 +82,12 @@ QBizManager::QBizManager()
 			qDebug() << "Websocket is closed?please check.";
 		}
 	});
+
+	m_TradeTimer.setInterval(1000 * 5);
+	connect(&m_TradeTimer, &QTimer::timeout, this, &QBizManager::trade);
+	m_TradeTimer.start();
+
+
 	 m_price_buy = "";
 	 m_price_sell = "";
 	 m_price_amount_buy = 0;
@@ -210,6 +221,21 @@ bool QBizManager::bitmex_depth(QString & source, QString coinType, QString depth
 	return  1;
 }
 
+
+bool QBizManager::bitmex_bucketed(QString & source)
+{
+	QHttpManager::GetInstance().HttpGet("https://www.bitmex.com/api/v1/trade/bucketed?binSize=1m&partial=false&symbol=XBTUSD&count=100&reverse=true", source);
+	if (source.length() < 50 || source.indexOf("!DOCTYPE html") != -1 || source.indexOf("<!DOCTYPE HTML") != -1 || source.indexOf("error") != -1 || source.indexOf("html>") != -1)
+	{
+		qDebug() << "bitmex_bucketed" << source.mid(0, 10);
+		return  0;
+	}
+	QEventLoop loop;
+	QTimer::singleShot(1500, &loop, SLOT(quit()));
+	loop.exec();
+	return  1;
+}
+
 void QBizManager::GetPostion(const QString & source )
 {
 	{
@@ -224,48 +250,6 @@ void QBizManager::GetPostion(const QString & source )
 			my_postion.unrealisedRoePcnt = dataMap.toMap().value("unrealisedRoePcnt").toString();
 		}
 	}
-	/*if (source.length () >=600)
-	{
-		int p = source.indexOf("currentQty");
-		if (p == -1)
-			return;
-		p = source.indexOf("currentQty", p + 2);
-		int	p1 = source.indexOf(",", p + 2);
-		my_postion.currentQty = source.mid(p+12, p1-p-12);
-
-		p = source.indexOf("unrealisedRoePcnt");
-		p = source.indexOf("unrealisedRoePcnt", p + 2);
-		if (p != -1)
-		{
-			p1 = source.indexOf(",", p + 2);
-			my_postion.unrealisedRoePcnt = source.mid(p + 19, p1 - p - 19);
-		}
-	}else	if (source.length() <= 600&& source.length() >= 399)
-	{
-		int p = source.indexOf("currentQty");
-		if (p == -1)
-			return;
-		int	p1 = source.indexOf(",", p + 2);
-		my_postion.currentQty = source.mid(p + 12, p1 - p - 12);
-
-		p = source.indexOf("unrealisedRoePcnt");
-		if (p != -1)
-		{
-			p1 = source.indexOf(",", p + 2);
-			my_postion.unrealisedRoePcnt = source.mid(p + 19, p1 - p - 19);
-		}
-	}
-	else	if (source.length() <= 300)
-	{
-		int p = source.indexOf("currentQty");
-		if (p == -1)
-			return;
-		int	p1 = source.indexOf(",", p + 2);
-		my_postion.currentQty = source.mid(p + 12, p1 - p - 12);
-
-		if(my_postion.currentQty.toDouble() ==0)	
-			my_postion.unrealisedRoePcnt = "0";
-	}*/
 }
 
 
@@ -288,6 +272,19 @@ void QBizManager::GetVolume(const QString & source)
 	
 	qDebug() << "volume." << my_postion.currentQty << " " << my_postion.unrealisedRoePcnt << m_trade.volume;
 }
+
+
+bool QBizManager::parse_bucketed(const QString & source, QStringList& trade_list)
+{
+	int pp = source.indexOf("data");
+	int p = source.indexOf("bids", pp);
+	int p2 = source.indexOf("asks", p + 10);
+	QString buy_price_str = source.mid(3);
+	trade_list = buy_price_str.split("timestamp");
+	trade_list.removeFirst();
+	return 0;
+}
+
 int QBizManager::GetPrice(const QString & source, QStringList& buy_list, QStringList& sell_list)
 {
 	int pp = source.indexOf("data");
@@ -302,5 +299,34 @@ int QBizManager::GetPrice(const QString & source, QStringList& buy_list, QString
 	buy_list = buy_price_str.split("],[");
 	sell_list = sell_price_str.split("],[");
 	return 0;
+}
+
+
+void QBizManager::trade()
+{
+	QDateTime now = QDateTime::currentDateTime();
+	QStringList  trade_list;
+	QString  soure;
+	bitmex_bucketed(soure);
+	parse_bucketed(soure, trade_list);
+
+	for (int i = 0; i < trade_list.size(); i++)
+	{
+		QString  trade_str = trade_list.at(i);
+		QString  volume = trade_str.split(",").at(7).split(":").at(1);
+		my_trade.time = trade_str.mid(3, 24);
+		if (volume.toDouble() >= 16100000)
+		{
+			QDateTime _QDateTime = QDateTime::fromString(my_trade.time, "yyyy-MM-ddTHH:mm:ss.sssZ");
+			QString time_str = QDateTime::fromMSecsSinceEpoch(now.toMSecsSinceEpoch() - _QDateTime.toMSecsSinceEpoch()).toUTC().toString("mm");
+			if (time_str >= "30")
+					return;
+			trade_str = trade_list.at(i);
+			my_trade.high = trade_str.split(",").at(3).split(":").at(1);
+			my_trade.low = trade_str.split(",").at(4).split(":").at(1);
+			
+			return;
+		}
+	}
 }
 
