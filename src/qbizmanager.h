@@ -67,11 +67,16 @@ public:
 	void doTransfer(const QString & source);
 	void GetPostion(const QString & source);
 	void GetVolume(const QString & source);
+
 private:
 	int Sell_Amount_Up();
 	int Sell_Amount_Down();
 	int Buy_Amount_Up();
 	int Buy_Amount_Down();
+
+private:
+	int Up_Fan();
+	int Down_Fan();
 
 signals:
     void walletInfoResult(QByteArray data);
@@ -166,6 +171,9 @@ private:
 	QTimer m_TradeTimer;
 	struct_trade m_trade;
 	struct_trade my_trade;
+	QStringList  trade_list;
+
+	QDateTime dfaf;
 };
 
 #endif // BITMEXWEBSOCKETCLIENT_H

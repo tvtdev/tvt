@@ -5,6 +5,7 @@ void QBizManager::doTransfer(const QString & source)
 {
 	if (my_trade.high.isEmpty())
 		return;
+
 	QStringList buy_list;
 	QStringList sell_list;
 	GetPrice(source, buy_list, sell_list);
@@ -13,12 +14,14 @@ void QBizManager::doTransfer(const QString & source)
 	QString price_buy = buy_list.at(0).split(",").at(0);
 	QString amount_buy = buy_list.at(0).split(",").at(1);
 
-	if (my_trade.volume.toDouble() >= 2100000 )
-	{
+	Up_Fan();
+	Down_Fan();
 
-		if (my_postion.currentQty.toDouble() > 0 && my_postion.unrealisedRoePcnt.toDouble()  >= 0.012205)
+	//if (my_trade.volume.toDouble() >= 2100000 )
+	{
+		if (my_postion.currentQty.toDouble() > 0 )
 		{
-			if (price_buy.toDouble() > m_trade.high.toDouble()-1)
+			if (price_buy.toDouble() > m_trade.low.toDouble()-1)
 			{
 				qDebug() << "doTransfer. bao zhang 1.";
 				return;
@@ -33,16 +36,24 @@ void QBizManager::doTransfer(const QString & source)
 			my_postion.unrealisedRoePcnt = "0";
 			m_trade.volume = "0";
 		}
-		else if (my_postion.currentQty.toDouble() < 0 && my_postion.unrealisedRoePcnt.toDouble() >= 0.0305163)
+		else if (my_postion.currentQty.toDouble() < 0 )
 		{	
-			if (m_trade.volume.toDouble() <= 2100000)
-				return;
+			/*if (m_trade.volume.toDouble() <= 2100000)
+				return;*/
 
-			if (price_sell.toDouble() < m_trade.low.toDouble())
+			if (price_sell.toDouble() < m_trade.high.toDouble())
 			{
 				qDebug() << "doTransfer. bao die 1.";
+				//dfaf = QDateTime::currentDateTime();
 				return;
 			}
+
+		/*	if (price_sell.toDouble() < m_trade.high.toDouble())
+			{
+				qDebug() << "doTransfer. bao die 1.";
+				dfaf = QDateTime::currentDateTime();
+				return;
+			}*/
 
 			qDebug() << "doTransfer 2  " << m_trade.volume << my_postion.currentQty << my_postion.unrealisedRoePcnt<< price_sell<< m_trade.low;
 			QUrlQuery param;
@@ -83,7 +94,7 @@ QBizManager::QBizManager()
 		}
 	});
 
-	m_TradeTimer.setInterval(1000 * 5);
+	m_TradeTimer.setInterval(10000 * 2);
 	connect(&m_TradeTimer, &QTimer::timeout, this, &QBizManager::trade);
 	m_TradeTimer.start();
 
@@ -305,7 +316,7 @@ int QBizManager::GetPrice(const QString & source, QStringList& buy_list, QString
 void QBizManager::trade()
 {
 	QDateTime now = QDateTime::currentDateTime();
-	QStringList  trade_list;
+	
 	QString  soure;
 	bitmex_bucketed(soure);
 	parse_bucketed(soure, trade_list);
@@ -330,3 +341,52 @@ void QBizManager::trade()
 	}
 }
 
+
+int QBizManager::Up_Fan()
+{
+	QString low3 = trade_list.at(2).split(",").at(4).split(":").at(1);
+	QString low2 = trade_list.at(1).split(",").at(4).split(":").at(1);
+	QString low1 = trade_list.at(0).split(",").at(4).split(":").at(1);
+
+	QString volume3 = trade_list.at(2).split(",").at(7).split(":").at(1);
+	QString volume2 = trade_list.at(1).split(",").at(7).split(":").at(1);
+	QString volume1 = trade_list.at(0).split(",").at(7).split(":").at(1);
+
+	if (low1.toDouble() >= low2.toDouble())
+		if (low2.toDouble() >= low3.toDouble())
+		{
+			if (volume3.toDouble() == 9000000 || volume2.toDouble() == 90000000 || volume1.toDouble() == 90000000)
+			{
+				my_trade.high = low1;
+			}
+		}
+
+
+	return 0;
+
+	return 0;
+}
+
+int QBizManager::Down_Fan()
+{
+	
+	QString high3 = trade_list.at(2).split(",").at(3).split(":").at(1);
+	QString high2 = trade_list.at(1).split(",").at(3).split(":").at(1);
+	QString high1 = trade_list.at(0).split(",").at(3).split(":").at(1);
+	
+	QString volume3 = trade_list.at(2).split(",").at(7).split(":").at(1);
+	QString volume2 = trade_list.at(1).split(",").at(7).split(":").at(1);
+	QString volume1 = trade_list.at(0).split(",").at(7).split(":").at(1);
+
+	if (high3.toDouble() >= high2.toDouble())
+		if (high1.toDouble() >= high1.toDouble())
+		{
+			if (volume3.toDouble() == 9000000 || volume2.toDouble() == 90000000 || volume1.toDouble() == 90000000)
+			{
+				my_trade.high = high1;
+			}
+		}
+
+	
+	return 0;
+}
