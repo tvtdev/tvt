@@ -75,8 +75,8 @@ private:
 	int Buy_Amount_Down();
 
 private:
-	int Up_Fan();
-	int Down_Fan();
+	int Up_Fan(QString p);
+	int Down_Fan(QString p);
 
 signals:
     void walletInfoResult(QByteArray data);
@@ -133,7 +133,7 @@ private:
 	double m_price_amount_sell;
 	postion my_postion;
 
-	QString m_apiId = "a-eJ9WVKgS7eaJ19qox7KW3W";
+	QString m_apiId = "dUQ0H4eqzj-2GpLEa7iZIvlv";
 
 	//QString m_apiId = "a-eJ9WVKgS7eaJ19qox7KW3W";
 	//QString amount_1;
@@ -174,6 +174,8 @@ private:
 	QStringList  trade_list;
 
 	QDateTime dfaf;
+
+	int oneord;
 };
 
 #endif // BITMEXWEBSOCKETCLIENT_H

@@ -3,8 +3,8 @@
 
 void QBizManager::doTransfer(const QString & source)
 {
-	if (my_trade.high.isEmpty())
-		return;
+	if (trade_list.size() == 0)
+		return ;
 
 	QStringList buy_list;
 	QStringList sell_list;
@@ -14,20 +14,100 @@ void QBizManager::doTransfer(const QString & source)
 	QString price_buy = buy_list.at(0).split(",").at(0);
 	QString amount_buy = buy_list.at(0).split(",").at(1);
 
-	Up_Fan();
-	Down_Fan();
+	int ret_up =Up_Fan(price_sell);
+	int ret_down = Down_Fan(price_sell);
 
-	//if (my_trade.volume.toDouble() >= 2100000 )
+	if (ret_up == 2)
+	{
+		if (my_postion.currentQty.toDouble() > 0)
+		{
+			QUrlQuery param;
+			param.addQueryItem("symbol", "XBTUSD");
+			closePosition(param);
+
+			return;
+		}	
+	}
+
+	if (ret_down == 2)
+	{
+		if (my_postion.currentQty.toDouble() < 0)
+		{
+			QUrlQuery param;
+			param.addQueryItem("symbol", "XBTUSD");
+			closePosition(param);
+			return;
+		}
+	}
+
+
+	if (ret_up == 2)
+	{
+		if (my_postion.currentQty.toDouble() == 0)
+		{
+			if (oneord == 1)
+				return;
+
+			qDebug() << "Sell  1";//
+			QUrlQuery param;
+			param.addQueryItem("symbol", "XBTUSD");
+			param.addQueryItem("orderQty", "1");
+			param.addQueryItem("side", "Sell");
+			param.addQueryItem("ordType", "Market");
+			createOrder(param);
+			m_price_buy = "";
+
+			oneord = 1;
+		/*	QEventLoop loop;
+			QTimer::singleShot(800, &loop, SLOT(quit()));
+			loop.exec();
+			QCoreApplication::exit(0);
+			QCoreApplication::quit();*/
+			return;
+		}
+
+
+	}
+
+	if (ret_down == 2)
+	{
+			if (my_postion.currentQty.toDouble() == 0)
+			{
+				if (oneord == 1)
+					return;
+
+				qDebug() << "buy  1";//
+				QUrlQuery param;
+				param.addQueryItem("symbol", "XBTUSD");
+				param.addQueryItem("orderQty", "1");
+				param.addQueryItem("side", "Buy");
+				param.addQueryItem("ordType", "Market");
+				createOrder(param);
+				m_price_buy = "";
+
+				oneord = 1;
+				/*QEventLoop loop;
+				QTimer::singleShot(800, &loop, SLOT(quit()));
+				loop.exec();
+				QCoreApplication::exit(0);
+				QCoreApplication::quit();*/
+				return;
+			}
+		}
+
+	
+
+	return;
 	{
 		if (my_postion.currentQty.toDouble() > 0 )
 		{
 			if (price_buy.toDouble() > m_trade.low.toDouble()-1)
 			{
-				qDebug() << "doTransfer. bao zhang 1.";
+				//qDebug() << "doTransfer. bao zhang 1.";
 				return;
 			}
 
-			qDebug() << "doTransfer. 1.  " << m_trade.volume << my_postion.currentQty << my_postion.unrealisedRoePcnt << price_buy << m_trade.high;
+			//qDebug() << "doTransfer. 1.  " << m_trade.volume << my_postion.currentQty << my_postion.unrealisedRoePcnt << price_buy << m_trade.high;
 			QUrlQuery param;
 			param.addQueryItem("symbol", "XBTUSD");
 			closePosition(param);
@@ -43,7 +123,7 @@ void QBizManager::doTransfer(const QString & source)
 
 			if (price_sell.toDouble() < m_trade.high.toDouble())
 			{
-				qDebug() << "doTransfer. bao die 1.";
+				//qDebug() << "doTransfer. bao die 1.";
 				//dfaf = QDateTime::currentDateTime();
 				return;
 			}
@@ -55,7 +135,7 @@ void QBizManager::doTransfer(const QString & source)
 				return;
 			}*/
 
-			qDebug() << "doTransfer 2  " << m_trade.volume << my_postion.currentQty << my_postion.unrealisedRoePcnt<< price_sell<< m_trade.low;
+			//qDebug() << "doTransfer 2  " << m_trade.volume << my_postion.currentQty << my_postion.unrealisedRoePcnt<< price_sell<< m_trade.low;
 			QUrlQuery param;
 			param.addQueryItem("symbol", "XBTUSD");
 			closePosition(param);
@@ -107,7 +187,7 @@ QBizManager::QBizManager()
 	 //amount = QString::number(amount.toInt());
 	 QString amount = QString::number(amouant.toDouble()*0.5,'g',0);
 
-
+	 oneord = 0;
 }
 
 QBizManager::~QBizManager()
@@ -223,7 +303,7 @@ bool QBizManager::bitmex_depth(QString & source, QString coinType, QString depth
 	source = QHttpManager::GetInstance().query("GET", FUNCTION_ORDER_BOOK, q, REQUEST_ORDER_BOOK, true);
 	if (source.length() < 50 || source.indexOf("!DOCTYPE html") != -1 || source.indexOf("<!DOCTYPE HTML") != -1 || source.indexOf("error") != -1 || source.indexOf("html>") != -1)
 	{
-		qDebug() << "bitmex_depth" << source.mid(0, 10);
+		//qDebug() << "bitmex_depth" << source.mid(0, 10);
 		return  0;
 	}
 	QEventLoop loop;
@@ -238,7 +318,7 @@ bool QBizManager::bitmex_bucketed(QString & source)
 	QHttpManager::GetInstance().HttpGet("https://www.bitmex.com/api/v1/trade/bucketed?binSize=1m&partial=false&symbol=XBTUSD&count=100&reverse=true", source);
 	if (source.length() < 50 || source.indexOf("!DOCTYPE html") != -1 || source.indexOf("<!DOCTYPE HTML") != -1 || source.indexOf("error") != -1 || source.indexOf("html>") != -1)
 	{
-		qDebug() << "bitmex_bucketed" << source.mid(0, 10);
+		//qDebug() << "bitmex_bucketed" << source.mid(0, 10);
 		return  0;
 	}
 	QEventLoop loop;
@@ -281,7 +361,7 @@ void QBizManager::GetVolume(const QString & source)
 	}
 	
 	
-	qDebug() << "volume." << my_postion.currentQty << " " << my_postion.unrealisedRoePcnt << m_trade.volume;
+	//qDebug() << "volume." << my_postion.currentQty << " " << my_postion.unrealisedRoePcnt << m_trade.volume;
 }
 
 
@@ -315,35 +395,40 @@ int QBizManager::GetPrice(const QString & source, QStringList& buy_list, QString
 
 void QBizManager::trade()
 {
-	QDateTime now = QDateTime::currentDateTime();
+	oneord = 3;
+	//QDateTime now = QDateTime::currentDateTime();
 	
 	QString  soure;
 	bitmex_bucketed(soure);
 	parse_bucketed(soure, trade_list);
 
-	for (int i = 0; i < trade_list.size(); i++)
-	{
-		QString  trade_str = trade_list.at(i);
-		QString  volume = trade_str.split(",").at(7).split(":").at(1);
-		my_trade.time = trade_str.mid(3, 24);
-		if (volume.toDouble() >= 16100000)
-		{
-			QDateTime _QDateTime = QDateTime::fromString(my_trade.time, "yyyy-MM-ddTHH:mm:ss.sssZ");
-			QString time_str = QDateTime::fromMSecsSinceEpoch(now.toMSecsSinceEpoch() - _QDateTime.toMSecsSinceEpoch()).toUTC().toString("mm");
-			if (time_str >= "30")
-					return;
-			trade_str = trade_list.at(i);
-			my_trade.high = trade_str.split(",").at(3).split(":").at(1);
-			my_trade.low = trade_str.split(",").at(4).split(":").at(1);
-			
-			return;
-		}
-	}
+	//for (int i = 0; i < trade_list.size(); i++)
+	//{
+	//	QString  trade_str = trade_list.at(i);
+	//	QString  volume = trade_str.split(",").at(7).split(":").at(1);
+	//	my_trade.time = trade_str.mid(3, 24);
+	//	if (volume.toDouble() >= 16100000)
+	//	{
+	//		QDateTime _QDateTime = QDateTime::fromString(my_trade.time, "yyyy-MM-ddTHH:mm:ss.sssZ");
+	//		QString time_str = QDateTime::fromMSecsSinceEpoch(now.toMSecsSinceEpoch() - _QDateTime.toMSecsSinceEpoch()).toUTC().toString("mm");
+	//		if (time_str >= "30")
+	//				return;
+	//		trade_str = trade_list.at(i);
+	//		my_trade.high = trade_str.split(",").at(3).split(":").at(1);
+	//		my_trade.low = trade_str.split(",").at(4).split(":").at(1);
+	//		
+	//		return;
+	//	}
+	//}
 }
 
 
-int QBizManager::Up_Fan()
+int QBizManager::Up_Fan(QString p)
 {
+	if (trade_list.size() == 0)
+		return 0;
+	my_trade.low = "";
+
 	QString low3 = trade_list.at(2).split(",").at(4).split(":").at(1);
 	QString low2 = trade_list.at(1).split(",").at(4).split(":").at(1);
 	QString low1 = trade_list.at(0).split(",").at(4).split(":").at(1);
@@ -355,20 +440,30 @@ int QBizManager::Up_Fan()
 	if (low1.toDouble() >= low2.toDouble())
 		if (low2.toDouble() >= low3.toDouble())
 		{
-			if (volume3.toDouble() == 9000000 || volume2.toDouble() == 90000000 || volume1.toDouble() == 90000000)
+			//if (volume3.toDouble() == 9000000 || volume2.toDouble() == 90000000 || volume1.toDouble() == 90000000)
 			{
-				my_trade.high = low1;
+				
+				my_trade.low = low1;
 			}
 		}
 
 
-	return 0;
+	if (p < my_trade.low && !my_trade.low.isEmpty())
+	{
+		qDebug() << "Up_Fan  1" << low1 << low2 << low3;
+		return 2;
+	}//else
+		
+
 
 	return 0;
 }
 
-int QBizManager::Down_Fan()
+int QBizManager::Down_Fan(QString p)
 {
+	if (trade_list.size() == 0)
+		return 0;
+	my_trade.high = "";
 	
 	QString high3 = trade_list.at(2).split(",").at(3).split(":").at(1);
 	QString high2 = trade_list.at(1).split(",").at(3).split(":").at(1);
@@ -379,13 +474,22 @@ int QBizManager::Down_Fan()
 	QString volume1 = trade_list.at(0).split(",").at(7).split(":").at(1);
 
 	if (high3.toDouble() >= high2.toDouble())
-		if (high1.toDouble() >= high1.toDouble())
+		if (high2.toDouble() >= high1.toDouble())
 		{
-			if (volume3.toDouble() == 9000000 || volume2.toDouble() == 90000000 || volume1.toDouble() == 90000000)
+			//if (volume3.toDouble() == 9000000 || volume2.toDouble() == 90000000 || volume1.toDouble() == 90000000)
 			{
+				//qDebug() << "Down_Fan 1"<< high3<< high2<< high1;
 				my_trade.high = high1;
 			}
 		}
+
+	if (p > my_trade.high&&!my_trade.high.isEmpty())
+	{
+		qDebug() << "Down_Fan  1" << high1 << high2 << high3;
+		return 2;
+	}
+	//else
+		//oneord = 3;
 
 	
 	return 0;
