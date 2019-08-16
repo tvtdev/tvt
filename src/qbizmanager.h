@@ -177,6 +177,8 @@ private:
 
 	int oneord;
 	int oneordfdsf;
+
+	int numdddd = 0;
 };
 
 #endif // BITMEXWEBSOCKETCLIENT_H

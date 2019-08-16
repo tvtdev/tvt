@@ -18,8 +18,9 @@ void QBizManager::doTransfer(const QString & source)
 	int ret_up =  Up_Fan(price_sell);
 	int ret_down = Down_Fan(price_sell);
 
-	if (ret_up == 2)
+	if (ret_up == 2&& numdddd>=30)
 	{
+		numdddd = 0;
 		if (my_postion.currentQty.toDouble() > 0)
 		{
 			if (oneordfdsf == 1)
@@ -34,8 +35,9 @@ void QBizManager::doTransfer(const QString & source)
 		}	
 	}
 
-	if (ret_down == 2)
+	if (ret_down == 2 && numdddd >= 30)
 	{
+		numdddd = 0;
 		if (my_postion.currentQty.toDouble() < 0)
 		{
 			if (oneordfdsf == 1)
@@ -225,22 +227,22 @@ void QBizManager::textMessageReceived(const QString &message)
 				}
 			}
 		}
-		else if (jObj.contains("table")) {	
-			
+		else if (jObj.contains("table")) {				
 			if (message.indexOf("position") != -1)
 			{
 				GetPostion(message);
+				doTransfer("");
 				
 			}else 
 			if (message.indexOf("tradeBin1m") != -1)
 			{
 				GetVolume(message);
-			}
+				doTransfer("");
+			}	else
 			if (message.indexOf("orderBook10") != -1)
 			{
 				doTransfer(message);
 			}
-			doTransfer(message);
 		}
 	}
 }
@@ -459,6 +461,7 @@ int QBizManager::Up_Fan(QString p)
 
 	if (p.toDouble() < my_trade.low.toDouble()  && !my_trade.low.isEmpty())
 	{
+		numdddd++;
 		return 2;
 	}
 
@@ -487,6 +490,7 @@ int QBizManager::Down_Fan(QString p)
 
 			if (p.toDouble() > my_trade.high.toDouble() && !my_trade.high.isEmpty())
 			{
+				numdddd++;
 				return 2;
 			}
 		}
@@ -498,26 +502,44 @@ int QBizManager::Down_Fan(QString p)
 
 			if (p.toDouble() > my_trade.high.toDouble() && !my_trade.high.isEmpty())
 			{
+				numdddd++;
 				return 2;
 			}
 		}
 
-
+	//第3个缺口
 	if (high2.toDouble() >= high1.toDouble())
 	{
 		if (high3.toDouble() < high2.toDouble())
 		{
 			if (high4.toDouble() >= high3.toDouble())
-				my_trade.high = high1;
+				if (high4.toDouble() >= high2.toDouble())
+					my_trade.high = high1;
 
 			if (p.toDouble() > my_trade.high.toDouble() && !my_trade.high.isEmpty())
 			{
+				numdddd++;
 				return 2;
 			}
 		}
 	}
 		
+	//第2个缺口
+	if (high3.toDouble() >= high1.toDouble())
+	{
+		if (high3.toDouble() > high2.toDouble())
+		{
+			if (high4.toDouble() >= high3.toDouble())
+				if (high4.toDouble() >= high2.toDouble())
+					my_trade.high = high1;
 
+			if (p.toDouble() > my_trade.high.toDouble() && !my_trade.high.isEmpty())
+			{
+				numdddd++;
+				return 2;
+			}
+		}
+	}
 
 	
 	return 0;
