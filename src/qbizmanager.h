@@ -176,6 +176,7 @@ private:
 	QDateTime dfaf;
 
 	int oneord;
+	int oneordfdsf;
 };
 
 #endif // BITMEXWEBSOCKETCLIENT_H

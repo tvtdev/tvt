@@ -8,19 +8,24 @@ void QBizManager::doTransfer(const QString & source)
 
 	QStringList buy_list;
 	QStringList sell_list;
-	GetPrice(source, buy_list, sell_list);
+	if (!GetPrice(source, buy_list, sell_list))
+		return;
 	QString price_sell = sell_list.at(0).split(",").at(0);
 	QString amount_sell = sell_list.at(0).split(",").at(1);;
 	QString price_buy = buy_list.at(0).split(",").at(0);
 	QString amount_buy = buy_list.at(0).split(",").at(1);
 
-	int ret_up =Up_Fan(price_sell);
+	int ret_up =  Up_Fan(price_sell);
 	int ret_down = Down_Fan(price_sell);
 
 	if (ret_up == 2)
 	{
 		if (my_postion.currentQty.toDouble() > 0)
 		{
+			if (oneordfdsf == 1)
+				return;
+
+			oneordfdsf = 1;
 			QUrlQuery param;
 			param.addQueryItem("symbol", "XBTUSD");
 			closePosition(param);
@@ -33,6 +38,11 @@ void QBizManager::doTransfer(const QString & source)
 	{
 		if (my_postion.currentQty.toDouble() < 0)
 		{
+			if (oneordfdsf == 1)
+				return;
+
+			oneordfdsf = 1;
+
 			QUrlQuery param;
 			param.addQueryItem("symbol", "XBTUSD");
 			closePosition(param);
@@ -48,7 +58,7 @@ void QBizManager::doTransfer(const QString & source)
 			if (oneord == 1)
 				return;
 
-			qDebug() << "Sell  1";//
+			qDebug() << "Sell  1";
 			QUrlQuery param;
 			param.addQueryItem("symbol", "XBTUSD");
 			param.addQueryItem("orderQty", "1");
@@ -58,15 +68,8 @@ void QBizManager::doTransfer(const QString & source)
 			m_price_buy = "";
 
 			oneord = 1;
-		/*	QEventLoop loop;
-			QTimer::singleShot(800, &loop, SLOT(quit()));
-			loop.exec();
-			QCoreApplication::exit(0);
-			QCoreApplication::quit();*/
 			return;
 		}
-
-
 	}
 
 	if (ret_down == 2)
@@ -76,7 +79,7 @@ void QBizManager::doTransfer(const QString & source)
 				if (oneord == 1)
 					return;
 
-				qDebug() << "buy  1";//
+				qDebug() << "buy  1";
 				QUrlQuery param;
 				param.addQueryItem("symbol", "XBTUSD");
 				param.addQueryItem("orderQty", "1");
@@ -86,11 +89,6 @@ void QBizManager::doTransfer(const QString & source)
 				m_price_buy = "";
 
 				oneord = 1;
-				/*QEventLoop loop;
-				QTimer::singleShot(800, &loop, SLOT(quit()));
-				loop.exec();
-				QCoreApplication::exit(0);
-				QCoreApplication::quit();*/
 				return;
 			}
 		}
@@ -174,7 +172,7 @@ QBizManager::QBizManager()
 		}
 	});
 
-	m_TradeTimer.setInterval(10000 * 2);
+	m_TradeTimer.setInterval(10000 * 3);
 	connect(&m_TradeTimer, &QTimer::timeout, this, &QBizManager::trade);
 	m_TradeTimer.start();
 
@@ -188,6 +186,8 @@ QBizManager::QBizManager()
 	 QString amount = QString::number(amouant.toDouble()*0.5,'g',0);
 
 	 oneord = 0;
+	 oneordfdsf = 0;
+	 
 }
 
 QBizManager::~QBizManager()
@@ -380,6 +380,8 @@ int QBizManager::GetPrice(const QString & source, QStringList& buy_list, QString
 {
 	int pp = source.indexOf("data");
 	int p = source.indexOf("bids", pp);
+	if (p == -1)
+		return 0;
 	int p2 = source.indexOf("asks", p + 10);
 	QString buy_price_str = source.mid(p + 8, p2 - p - 7);
 	QString sell_price_str = source.mid(p2 + 8);
@@ -389,13 +391,14 @@ int QBizManager::GetPrice(const QString & source, QStringList& buy_list, QString
 	}
 	buy_list = buy_price_str.split("],[");
 	sell_list = sell_price_str.split("],[");
-	return 0;
+	return 1;
 }
 
 
 void QBizManager::trade()
 {
 	oneord = 3;
+	oneordfdsf = 3;
 	//QDateTime now = QDateTime::currentDateTime();
 	
 	QString  soure;
@@ -429,31 +432,37 @@ int QBizManager::Up_Fan(QString p)
 		return 0;
 	my_trade.low = "";
 
+	QString low5 = trade_list.at(4).split(",").at(4).split(":").at(1);
+	QString low4 = trade_list.at(3).split(",").at(4).split(":").at(1);
 	QString low3 = trade_list.at(2).split(",").at(4).split(":").at(1);
 	QString low2 = trade_list.at(1).split(",").at(4).split(":").at(1);
 	QString low1 = trade_list.at(0).split(",").at(4).split(":").at(1);
 
-	QString volume3 = trade_list.at(2).split(",").at(7).split(":").at(1);
-	QString volume2 = trade_list.at(1).split(",").at(7).split(":").at(1);
-	QString volume1 = trade_list.at(0).split(",").at(7).split(":").at(1);
 
 	if (low1.toDouble() >= low2.toDouble())
 		if (low2.toDouble() >= low3.toDouble())
 		{
-			//if (volume3.toDouble() == 9000000 || volume2.toDouble() == 90000000 || volume1.toDouble() == 90000000)
+			if (Down_Fan(p) == 2) //三角符合  看前面
 			{
-				
-				my_trade.low = low1;
+				if (low4.toDouble() >= low3.toDouble())
+					return 0;
 			}
+			my_trade.low = low1;
 		}
 
+	if (low1.toDouble() >= low2.toDouble())
+		if (low1.toDouble() >= low3.toDouble())
+		{
+			if (low1.toDouble() >= low3.toDouble())
+				my_trade.low = low1;
+		}
 
-	if (p < my_trade.low && !my_trade.low.isEmpty())
+	if (p.toDouble() < my_trade.low.toDouble()  && !my_trade.low.isEmpty())
 	{
-		qDebug() << "Up_Fan  1" << low1 << low2 << low3;
 		return 2;
-	}//else
-		
+	}
+
+
 
 
 	return 0;
@@ -465,31 +474,50 @@ int QBizManager::Down_Fan(QString p)
 		return 0;
 	my_trade.high = "";
 	
+	QString high4 = trade_list.at(2).split(",").at(3).split(":").at(1);
 	QString high3 = trade_list.at(2).split(",").at(3).split(":").at(1);
 	QString high2 = trade_list.at(1).split(",").at(3).split(":").at(1);
 	QString high1 = trade_list.at(0).split(",").at(3).split(":").at(1);
 	
-	QString volume3 = trade_list.at(2).split(",").at(7).split(":").at(1);
-	QString volume2 = trade_list.at(1).split(",").at(7).split(":").at(1);
-	QString volume1 = trade_list.at(0).split(",").at(7).split(":").at(1);
 
 	if (high3.toDouble() >= high2.toDouble())
 		if (high2.toDouble() >= high1.toDouble())
 		{
-			//if (volume3.toDouble() == 9000000 || volume2.toDouble() == 90000000 || volume1.toDouble() == 90000000)
+			my_trade.high = high1;
+
+			if (p.toDouble() > my_trade.high.toDouble() && !my_trade.high.isEmpty())
 			{
-				//qDebug() << "Down_Fan 1"<< high3<< high2<< high1;
-				my_trade.high = high1;
+				return 2;
 			}
 		}
 
-	if (p > my_trade.high&&!my_trade.high.isEmpty())
+	if (high3.toDouble() >= high2.toDouble())
+		if (high3.toDouble() >= high1.toDouble())
+		{
+			my_trade.high = high1;
+
+			if (p.toDouble() > my_trade.high.toDouble() && !my_trade.high.isEmpty())
+			{
+				return 2;
+			}
+		}
+
+
+	if (high2.toDouble() >= high1.toDouble())
 	{
-		qDebug() << "Down_Fan  1" << high1 << high2 << high3;
-		return 2;
+		if (high3.toDouble() < high2.toDouble())
+		{
+			if (high4.toDouble() >= high3.toDouble())
+				my_trade.high = high1;
+
+			if (p.toDouble() > my_trade.high.toDouble() && !my_trade.high.isEmpty())
+			{
+				return 2;
+			}
+		}
 	}
-	//else
-		//oneord = 3;
+		
+
 
 	
 	return 0;
