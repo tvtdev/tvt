@@ -75,7 +75,11 @@ private:
 	int Buy_Amount_Down();
 
 private:
-	bool Up_Fan1();
+	bool Down_Check();
+	bool Down_Check_Red();
+	bool Down_Check_Green_Front();
+	bool Up_Check();
+	bool Up_Check_Red();
 	int Up_Fan(QString p);
 	int Down_Fan(QString p);
 
