@@ -42,6 +42,7 @@ void QBizManager::doTransfer(const QString & source)
 			m_price_buy = "";
 
 			oneord = 1;
+			m_TradeTimer_order.start();
 			return;
 		}
 		if (my_postion.currentQty.toDouble() < 0)
@@ -65,6 +66,7 @@ void QBizManager::doTransfer(const QString & source)
 			m_price_buy = "";
 
 			oneord = 1;
+			m_TradeTimer_order.start();
 			return;
 		}
 	}
@@ -93,6 +95,7 @@ void QBizManager::doTransfer(const QString & source)
 				m_price_buy = "";
 
 				oneord = 1;
+				m_TradeTimer_order.start();
 				return;
 			}
 			if (my_postion.currentQty.toDouble() < 0)
@@ -117,6 +120,7 @@ void QBizManager::doTransfer(const QString & source)
 				m_price_buy = "";
 
 				oneord = 1;
+				m_TradeTimer_order.start();
 				return;
 			}
 		}
@@ -203,6 +207,10 @@ QBizManager::QBizManager()
 	m_TradeTimer.setInterval(10000 * 3);
 	connect(&m_TradeTimer, &QTimer::timeout, this, &QBizManager::trade);
 	m_TradeTimer.start();
+
+	
+	m_TradeTimer_order.setInterval(10000 * 6);
+	connect(&m_TradeTimer_order, &QTimer::timeout, this, &QBizManager::trade_ordre);
 
 
 	 m_price_buy = "";
@@ -425,13 +433,54 @@ int QBizManager::GetPrice(const QString & source, QStringList& buy_list, QString
 
 void QBizManager::trade()
 {
-	oneord = 3;
+	
 	oneordfdsf = 3;
 	//QDateTime now = QDateTime::currentDateTime();
 	
 	QString  soure;
 	bitmex_bucketed(soure);
 	parse_bucketed(soure, trade_list);
+}
+
+
+void QBizManager::trade_ordre()
+{
+	oneord = 3;
+	oneordfdsf = 3;
+	m_TradeTimer_order.stop();
+}
+
+
+
+bool QBizManager::Up_Low_Check()
+{
+	QString low5 = trade_list.at(4).split(",").at(4).split(":").at(1);
+	QString low4 = trade_list.at(3).split(",").at(4).split(":").at(1);
+	QString low3 = trade_list.at(2).split(",").at(4).split(":").at(1);
+	QString low2 = trade_list.at(1).split(",").at(4).split(":").at(1);
+	QString low1 = trade_list.at(0).split(",").at(4).split(":").at(1);
+
+	if (low3.toDouble() + 2 < low2.toDouble())
+		if (low2.toDouble() + 2 < low1.toDouble())
+			return 1;
+
+	if (low2.toDouble() + 2 < low1.toDouble())	
+		if (low2.toDouble() == low3.toDouble()) //第2和3底部是平的
+		{
+			if (low4.toDouble() + 2 < low3.toDouble())
+				return 1;
+		}
+
+
+	if (low2.toDouble() + 2 < low1.toDouble())
+		if (low2.toDouble() == low3.toDouble()) //第2和3底部是平的
+		{
+			if (low4.toDouble() == low3.toDouble()) //第2和3底部是平的
+				if (low5.toDouble() + 2 < low4.toDouble())
+				return 1;
+		}
+
+	return 0;
 }
 
 
@@ -524,8 +573,10 @@ int QBizManager::Up_Fan(QString p)
 		}
 
 	//标准梯度上升 ，第1个回调。
-	if (low3.toDouble() + 2 < low2.toDouble())
-		if (low2.toDouble() + 2 < low1.toDouble())
+
+	
+
+		if (Up_Low_Check())
 		{
 			if (Up_Check()) //严格升趋势
 			{
@@ -564,6 +615,40 @@ int QBizManager::Up_Fan(QString p)
 	}
 	return 0;
 }
+
+
+
+bool QBizManager::Down_High_Check()
+{
+	QString high5 = trade_list.at(4).split(",").at(3).split(":").at(1);
+	QString high4 = trade_list.at(3).split(",").at(3).split(":").at(1);
+	QString high3 = trade_list.at(2).split(",").at(3).split(":").at(1);
+	QString high2 = trade_list.at(1).split(",").at(3).split(":").at(1);
+	QString high1 = trade_list.at(0).split(",").at(3).split(":").at(1);
+
+	if (high3.toDouble() > high2.toDouble() +1)
+		if (high2.toDouble()  > high1.toDouble() +1)
+			return 1;
+
+	if (high2.toDouble()  > high1.toDouble() + 1)
+		if (high2.toDouble() == high3.toDouble()) //第2和3底部是平的
+		{
+			if (high4.toDouble()  > high3.toDouble() +2)
+				return 1;
+		}
+
+
+	if (high2.toDouble() + 2  >  high1.toDouble())
+		if (high2.toDouble() == high3.toDouble()) //第2和3底部是平的
+		{
+			if (high4.toDouble() == high3.toDouble()) //第2和3底部是平的
+				if (high5.toDouble() + 2  >  high4.toDouble())
+					return 1;
+		}
+
+	return 0;
+}
+
 
 //严格标准在上方
 bool QBizManager::Down_Check()
@@ -653,12 +738,10 @@ int QBizManager::Down_Fan(QString p)
 	
 //	Down_Check_Red();
 	//标准梯度下降 ，第1个回调。第4，3 ，2红色，第1个绿色
-	if (high3.toDouble() > high2.toDouble() +2)
-		if (high2.toDouble() > high1.toDouble() + 2)
-		{
+	if (Down_High_Check())
+	{
 			if (Down_Check()) //严格升趋势
 			{
-				qDebug() << "Down_Check  1";
 				if (Down_Check_Green_Front()) //绿色
 				{
 					qDebug() << "Down_Check  2";

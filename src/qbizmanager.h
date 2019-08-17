@@ -75,9 +75,12 @@ private:
 	int Buy_Amount_Down();
 
 private:
+	bool Down_High_Check();
 	bool Down_Check();
 	bool Down_Check_Red();
 	bool Down_Check_Green_Front();
+
+	bool Up_Low_Check();
 	bool Up_Check();
 	bool Up_Check_Red();
 	int Up_Fan(QString p);
@@ -94,7 +97,7 @@ public slots:
     void closed();
     void textMessageReceived(const QString &message);
 	void trade();
-
+	void trade_ordre();
 private:
     void queryWalletInfo(QString coinType = "XBt");
     void createOrder(QUrlQuery param);
@@ -175,6 +178,7 @@ private:
 	int numm = 0;
 
 
+	QTimer m_TradeTimer_order;
 	QTimer m_TradeTimer;
 	struct_trade m_trade;
 	struct_trade my_trade;
