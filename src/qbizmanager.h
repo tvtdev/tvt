@@ -14,6 +14,7 @@
 #include <QtWebSockets/QWebSocket>
 #define FUNCTION_WALLET "/user/wallet"
 #define FUNCTION_CREATE_ORDER "/order"
+#define FUNCTION_closePosition_ORDER "/order/closePosition"
 #define FUNCTION_QUERY_ORDER "/order"
 #define FUNCTION_CANCEL_ORDER "/order"
 #define FUNCTION_ORDER_BOOK "/orderBook/L2"
@@ -25,23 +26,24 @@
 #define WEBSOCKET_OP_AUTH "authKeyExpires"
 class QBizManager : public QObject
 {
-	Q_OBJECT
+    Q_OBJECT
 public:
-	QBizManager();
+    QBizManager();
 	~QBizManager();
-	//enum RequestType {
-	//    REQUEST_WALLET,
-	//    REQUEST_CREATE_ORDER,
-	//    REQUEST_QUERY_ORDER,
-	//    REQUEST_CANCEL_ORDER,
-	//    REQUEST_ORDER_BOOK,
-	//};
-	//Q_ENUM(RequestType)
+    //enum RequestType {
+    //    REQUEST_WALLET,
+    //    REQUEST_CREATE_ORDER,
+    //    REQUEST_QUERY_ORDER,
+    //    REQUEST_CANCEL_ORDER,
+    //    REQUEST_ORDER_BOOK,
+    //};
+    //Q_ENUM(RequestType)
 
 	struct price_amount
 	{
 		QString price;
 		QString amount;
+
 
 	};
 
@@ -60,9 +62,11 @@ public:
 		QString volume;
 		QString time;
 	};
+	
 public:
 	void doTransfer(const QString & source);
 	void GetPostion(const QString & source);
+	void GetVolume(const QString & source);
 
 private:
 	int Sell_Amount_Up();
@@ -70,28 +74,45 @@ private:
 	int Buy_Amount_Up();
 	int Buy_Amount_Down();
 
-signals:
-	void walletInfoResult(QByteArray data);
-	void orderCreateResult(QByteArray data);
-	void allOrderQueryResult(QByteArray data);
-	void orderCancelResult(QByteArray data);
-	void orderBookResult(QByteArray data);
-	public slots:
-	void connected();
-	void closed();
-	void textMessageReceived(const QString &message);
-	void queryWalletInfo(QString coinType = "XBt");
-
-	void trade();
 private:
-	void createOrder(QUrlQuery param);
-	void queryAllOrder(QUrlQuery param);
-	void cancelOrder(QString orderId, QString clOrderId, QString comment);
+	bool Down_High_Check();
+	bool Down_Check();
+	bool Down_Check_Red();
+	bool Down_Check_Green_Front();
+	bool Down_High_Same();
 
-	bool bitmex_depth(QString &, QString coinType = "XBT", QString depth = "2");
+
+	bool Up_Low_Check();
+	bool Up_Check();
+	bool Up_Check_Red();
+	bool Up_Check_Red_Front();
+	int Up_Fan(QString p);
+	int Down_Fan(QString p);
+
+signals:
+    void walletInfoResult(QByteArray data);
+    void orderCreateResult(QByteArray data);
+    void allOrderQueryResult(QByteArray data);
+    void orderCancelResult(QByteArray data);
+    void orderBookResult(QByteArray data);
+public slots:
+    void connected();
+    void closed();
+    void textMessageReceived(const QString &message);
+	void trade();
+	void trade_ordre();
+private:
+    void queryWalletInfo(QString coinType = "XBt");
+    void createOrder(QUrlQuery param);
+	void closePosition(QUrlQuery param);
+    void queryAllOrder(QUrlQuery param);
+    void cancelOrder(QString orderId,QString clOrderId,QString comment);
+	
+	bool bitmex_depth(QString &,QString coinType = "XBT", QString depth = "2");
 	bool bitmex_bucketed(QString &);
 
 	bool parse_bucketed(const QString & source, QStringList& trade_list);
+
 	int GetPrice(const QString & source, QStringList& buy_list, QStringList& sell_list);
 
 	//void oneAmount();
@@ -99,17 +120,16 @@ private:
 	void isolatePosition(QUrlQuery param);
 	void leveragePosition(QUrlQuery param);
 	void riskLimitPosition(QUrlQuery param);
-	void transferMarginPosition(QUrlQuery param);
+	
 private:
 	bool m_signed;// = false;
 	int m_currentTotalRequests;// = 0;
 	int m_maxRequests;// = 60;
-	QTimer m_maxRequestsTimer;
+    QTimer m_maxRequestsTimer;
 	QString m_websocketHost;// = "wss://testnet.bitmex.com/realtime";
 
-	QTimer m_TradeTimer;
-	QWebSocket m_webSocket;
-	//QNetworkAccessManager m_manager;
+    QWebSocket m_webSocket;
+    //QNetworkAccessManager m_manager;
 
 	QList<price_amount> price_amount_list_buy;
 
@@ -124,12 +144,26 @@ private:
 	double m_price_amount_sell;
 	postion my_postion;
 
-	QString m_apiId = "a-eJ9WVKgS7eaJ19qox7KW3W";
+	QString m_apiId = "dUQ0H4eqzj-2GpLEa7iZIvlv";
 
+
+	QDateTime my_now;// = QDateTime::currentDateTime();
 	QTimer m_pingTimer;
 	int numm = 0;
 
+
+	QTimer m_TradeTimer_order;
+	QTimer m_TradeTimer;
+	struct_trade m_trade;
 	struct_trade my_trade;
+	QStringList  trade_list;
+
+	QDateTime dfaf;
+
+	int oneord;
+	int oneordfdsf;
+
+	QString text;
 };
 
 #endif // BITMEXWEBSOCKETCLIENT_H
