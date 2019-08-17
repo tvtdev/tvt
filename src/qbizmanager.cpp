@@ -480,6 +480,18 @@ bool QBizManager::Up_Check_Red()
 }
 
 
+//绿色
+bool QBizManager::Up_Check_Red_Front()
+{
+	QString open = trade_list.at(0).split(",").at(2).split(":").at(1);
+	QString high1 = trade_list.at(0).split(",").at(3).split(":").at(1);
+	QString close = trade_list.at(0).split(",").at(5).split(":").at(1);
+	if (open.toDouble() < close.toDouble())
+		return 1;
+	return 0;
+}
+
+
 int QBizManager::Up_Fan(QString p)
 {
 	if (trade_list.size() == 0)
