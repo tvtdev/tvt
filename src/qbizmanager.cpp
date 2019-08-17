@@ -6,7 +6,6 @@ void QBizManager::doTransfer(const QString & source)
 	if (my_trade.low.size() == 0)
 		return;
 
-	//qDebug() << ".";
 	QStringList buy_list;
 	QStringList sell_list;
 	GetPrice(source, buy_list, sell_list);
@@ -20,7 +19,7 @@ void QBizManager::doTransfer(const QString & source)
 	qDebug() << "span" << time_str;
 	if (price_buy.toDouble() >= my_trade.high.toDouble())
 	{
-		if (time_str >= "09")
+		if (time_str >= "05")
 			return;
 
 		if (m_price_buy.length() == 0)
@@ -29,11 +28,7 @@ void QBizManager::doTransfer(const QString & source)
 			return;
 		}
 
-		
-
 		qDebug() << "doTransfer 1.";
-
-
 		if (price_buy.toDouble() <= m_price_buy.toDouble() && m_price_buy.length() >= 1)
 		{
 			m_price_buy = "";
@@ -51,7 +46,7 @@ void QBizManager::doTransfer(const QString & source)
 			qDebug() << "doTransfer 1...";
 			QUrlQuery param;
 			param.addQueryItem("symbol", "XBTUSD");
-			param.addQueryItem("orderQty", "2");
+			param.addQueryItem("orderQty", "3");
 			param.addQueryItem("side", "Buy");
 			param.addQueryItem("ordType", "Market");
 			createOrder(param);
@@ -66,7 +61,7 @@ void QBizManager::doTransfer(const QString & source)
 
 	if (price_sell.toDouble() <= my_trade.low.toDouble())
 	{
-		if (time_str >= "09")
+		if (time_str >= "05")
 			return;
 
 		if ( m_price_sell.length() == 0)
@@ -91,7 +86,7 @@ void QBizManager::doTransfer(const QString & source)
 			qDebug() << "doTransfer 2...";
 			QUrlQuery param;
 			param.addQueryItem("symbol", "XBTUSD");
-			param.addQueryItem("orderQty", "2");
+			param.addQueryItem("orderQty", "3");
 			param.addQueryItem("side", "Sell");
 			param.addQueryItem("ordType", "Market");
 			createOrder(param);
@@ -326,7 +321,7 @@ void QBizManager::trade()
 		QString  trade_str = trade_list.at(i);
 		QString  volume = trade_str.split(",").at(7).split(":").at(1);
 
-		if (volume.toDouble() >= 6100000)
+		if (volume.toDouble() >= 26100000)
 		{
 			qDebug() << "trade." << trade_str;
 			trade_str = trade_list.at(i);
@@ -337,6 +332,7 @@ void QBizManager::trade()
 		}
 	}
 }
+
 
 int QBizManager::Sell_Amount_Up()
 {
