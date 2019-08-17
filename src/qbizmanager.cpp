@@ -10,6 +10,7 @@ void QBizManager::doTransfer(const QString & source)
 	QStringList sell_list;
 	if (!GetPrice(source, buy_list, sell_list))
 		return;
+
 	QString price_sell = sell_list.at(0).split(",").at(0);
 	QString amount_sell = sell_list.at(0).split(",").at(1);;
 	QString price_buy = buy_list.at(0).split(",").at(0);
@@ -17,41 +18,6 @@ void QBizManager::doTransfer(const QString & source)
 
 	int ret_up =  Up_Fan(price_sell);
 	int ret_down = Down_Fan(price_sell);
-
-	if (ret_up == 2&& numdddd>=30)
-	{
-		numdddd = 0;
-		if (my_postion.currentQty.toDouble() > 0)
-		{
-			if (oneordfdsf == 1)
-				return;
-
-			oneordfdsf = 1;
-			QUrlQuery param;
-			param.addQueryItem("symbol", "XBTUSD");
-			closePosition(param);
-
-			return;
-		}	
-	}
-
-	if (ret_down == 2 && numdddd >= 30)
-	{
-		numdddd = 0;
-		if (my_postion.currentQty.toDouble() < 0)
-		{
-			if (oneordfdsf == 1)
-				return;
-
-			oneordfdsf = 1;
-
-			QUrlQuery param;
-			param.addQueryItem("symbol", "XBTUSD");
-			closePosition(param);
-			return;
-		}
-	}
-
 
 	if (ret_up == 2)
 	{
@@ -61,11 +27,40 @@ void QBizManager::doTransfer(const QString & source)
 				return;
 
 			qDebug() << "Sell  1";
+	/*		{
+				QUrlQuery param;
+				param.addQueryItem("symbol", "XBTUSD");
+				closePosition(param);
+			}*/
 			QUrlQuery param;
 			param.addQueryItem("symbol", "XBTUSD");
 			param.addQueryItem("orderQty", "1");
 			param.addQueryItem("side", "Sell");
 			param.addQueryItem("ordType", "Market");
+			param.addQueryItem("text", "Market");
+			createOrder(param);
+			m_price_buy = "";
+
+			oneord = 1;
+			return;
+		}
+		if (my_postion.currentQty.toDouble() < 0)
+		{
+			if (oneord == 1)
+				return;
+
+			qDebug() << "Sell  1";
+			/*		{
+			QUrlQuery param;
+			param.addQueryItem("symbol", "XBTUSD");
+			closePosition(param);
+			}*/
+			QUrlQuery param;
+			param.addQueryItem("symbol", "XBTUSD");
+			param.addQueryItem("orderQty", "2");
+			param.addQueryItem("side", "Sell");
+			param.addQueryItem("ordType", "Market");
+			param.addQueryItem("text", "Market");
 			createOrder(param);
 			m_price_buy = "";
 
@@ -82,11 +77,42 @@ void QBizManager::doTransfer(const QString & source)
 					return;
 
 				qDebug() << "buy  1";
+	/*			{
+					QUrlQuery param;
+					param.addQueryItem("symbol", "XBTUSD");
+					closePosition(param);
+				}*/
+
 				QUrlQuery param;
 				param.addQueryItem("symbol", "XBTUSD");
 				param.addQueryItem("orderQty", "1");
 				param.addQueryItem("side", "Buy");
 				param.addQueryItem("ordType", "Market");
+				param.addQueryItem("text", "Market");
+				createOrder(param);
+				m_price_buy = "";
+
+				oneord = 1;
+				return;
+			}
+			if (my_postion.currentQty.toDouble() < 0)
+			{
+				if (oneord == 1)
+					return;
+
+				qDebug() << "buy  1";
+				/*			{
+				QUrlQuery param;
+				param.addQueryItem("symbol", "XBTUSD");
+				closePosition(param);
+				}*/
+
+				QUrlQuery param;
+				param.addQueryItem("symbol", "XBTUSD");
+				param.addQueryItem("orderQty", "2");
+				param.addQueryItem("side", "Buy");
+				param.addQueryItem("ordType", "Market");
+				param.addQueryItem("text", "Market");
 				createOrder(param);
 				m_price_buy = "";
 
@@ -406,26 +432,38 @@ void QBizManager::trade()
 	QString  soure;
 	bitmex_bucketed(soure);
 	parse_bucketed(soure, trade_list);
-
-	//for (int i = 0; i < trade_list.size(); i++)
-	//{
-	//	QString  trade_str = trade_list.at(i);
-	//	QString  volume = trade_str.split(",").at(7).split(":").at(1);
-	//	my_trade.time = trade_str.mid(3, 24);
-	//	if (volume.toDouble() >= 16100000)
-	//	{
-	//		QDateTime _QDateTime = QDateTime::fromString(my_trade.time, "yyyy-MM-ddTHH:mm:ss.sssZ");
-	//		QString time_str = QDateTime::fromMSecsSinceEpoch(now.toMSecsSinceEpoch() - _QDateTime.toMSecsSinceEpoch()).toUTC().toString("mm");
-	//		if (time_str >= "30")
-	//				return;
-	//		trade_str = trade_list.at(i);
-	//		my_trade.high = trade_str.split(",").at(3).split(":").at(1);
-	//		my_trade.low = trade_str.split(",").at(4).split(":").at(1);
-	//		
-	//		return;
-	//	}
-	//}
 }
+
+
+bool QBizManager::Up_Fan1()
+{
+	if (trade_list.size() == 0)
+		return 0;
+	my_trade.low = "";
+
+	QString low5 = trade_list.at(4).split(",").at(4).split(":").at(1);
+	QString low4 = trade_list.at(3).split(",").at(4).split(":").at(1);
+	QString low3 = trade_list.at(2).split(",").at(4).split(":").at(1);
+	QString low2 = trade_list.at(1).split(",").at(4).split(":").at(1);
+	QString low1 = trade_list.at(0).split(",").at(4).split(":").at(1);
+
+	int num = 0;
+
+	if (low4.toDouble() <= low3.toDouble())
+		num++;
+
+	if (low5.toDouble() <= low3.toDouble())
+		num++;
+
+	if (low5.toDouble() <= low4.toDouble())
+		num++;
+
+	if (num >= 1)
+		return 1;
+	
+	return 0;
+}
+
 
 
 int QBizManager::Up_Fan(QString p)
@@ -441,6 +479,27 @@ int QBizManager::Up_Fan(QString p)
 	QString low1 = trade_list.at(0).split(",").at(4).split(":").at(1);
 
 
+	//第三个底部低于等于第二个底部，第二个上升很快 ，第1个回调。
+	if (low3.toDouble() <= low2.toDouble())
+		if (low1.toDouble() > low2.toDouble())
+		{
+			QString high2 = trade_list.at(1).split(",").at(3).split(":").at(1);
+			if (high2.toDouble() - low2.toDouble() >= 12) //第二个上升很快
+			{
+				if (Up_Fan1()) //严格升趋势
+				{
+					QString low = low1;
+					if (p.toDouble() < low.toDouble() && !my_trade.high.isEmpty())
+					{
+						return 2;
+					}
+				}
+			
+			}
+		}
+
+
+
 	if (low1.toDouble() >= low2.toDouble())
 		if (low2.toDouble() >= low3.toDouble())
 		{
@@ -449,19 +508,19 @@ int QBizManager::Up_Fan(QString p)
 				if (low4.toDouble() >= low3.toDouble())
 					return 0;
 			}
-			my_trade.low = low1;
+			my_trade.low = low2;
 		}
 
 	if (low1.toDouble() >= low2.toDouble())
 		if (low1.toDouble() >= low3.toDouble())
 		{
 			if (low1.toDouble() >= low3.toDouble())
-				my_trade.low = low1;
+				my_trade.low = low2;
 		}
 
 	if (p.toDouble() < my_trade.low.toDouble()  && !my_trade.low.isEmpty())
 	{
-		numdddd++;
+		//my_now = QDateTime::currentDateTime();
 		return 2;
 	}
 
@@ -482,15 +541,26 @@ int QBizManager::Down_Fan(QString p)
 	QString high2 = trade_list.at(1).split(",").at(3).split(":").at(1);
 	QString high1 = trade_list.at(0).split(",").at(3).split(":").at(1);
 	
+	{
+		if (high3.toDouble() >= high2.toDouble())
+			if (high2.toDouble() >= high1.toDouble())
+			{
+				my_trade.high = high2;
+
+				if (p.toDouble() > my_trade.high.toDouble() && !my_trade.high.isEmpty())
+				{
+					return 2;
+				}
+			}
+	}
 
 	if (high3.toDouble() >= high2.toDouble())
 		if (high2.toDouble() >= high1.toDouble())
 		{
-			my_trade.high = high1;
+			//my_trade.high = high2.toDouble():high1.toDouble()? high2.toDouble() > high1.toDouble()  ;
 
 			if (p.toDouble() > my_trade.high.toDouble() && !my_trade.high.isEmpty())
 			{
-				numdddd++;
 				return 2;
 			}
 		}
@@ -498,11 +568,10 @@ int QBizManager::Down_Fan(QString p)
 	if (high3.toDouble() >= high2.toDouble())
 		if (high3.toDouble() >= high1.toDouble())
 		{
-			my_trade.high = high1;
+			my_trade.high = high2;
 
 			if (p.toDouble() > my_trade.high.toDouble() && !my_trade.high.isEmpty())
 			{
-				numdddd++;
 				return 2;
 			}
 		}
@@ -514,11 +583,11 @@ int QBizManager::Down_Fan(QString p)
 		{
 			if (high4.toDouble() >= high3.toDouble())
 				if (high4.toDouble() >= high2.toDouble())
-					my_trade.high = high1;
+					my_trade.high = high2;
 
 			if (p.toDouble() > my_trade.high.toDouble() && !my_trade.high.isEmpty())
 			{
-				numdddd++;
+				//my_now = QDateTime::currentDateTime();
 				return 2;
 			}
 		}
@@ -531,11 +600,11 @@ int QBizManager::Down_Fan(QString p)
 		{
 			if (high4.toDouble() >= high3.toDouble())
 				if (high4.toDouble() >= high2.toDouble())
-					my_trade.high = high1;
+					my_trade.high = high2;
 
 			if (p.toDouble() > my_trade.high.toDouble() && !my_trade.high.isEmpty())
 			{
-				numdddd++;
+			//	my_now = QDateTime::currentDateTime();
 				return 2;
 			}
 		}

@@ -75,6 +75,7 @@ private:
 	int Buy_Amount_Down();
 
 private:
+	bool Up_Fan1();
 	int Up_Fan(QString p);
 	int Down_Fan(QString p);
 
@@ -164,6 +165,8 @@ private:
 
 	//QString price_10;
 	//QString amount_10;
+
+	QDateTime my_now;// = QDateTime::currentDateTime();
 	QTimer m_pingTimer;
 	int numm = 0;
 
@@ -178,7 +181,7 @@ private:
 	int oneord;
 	int oneordfdsf;
 
-	int numdddd = 0;
+	
 };
 
 #endif // BITMEXWEBSOCKETCLIENT_H
