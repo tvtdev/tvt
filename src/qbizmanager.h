@@ -82,8 +82,8 @@ private:
 	bool Up_Check_Green_5();
 	bool Up_Check_Red();
 	bool Up_Check_Red_Front();
-	int Up_Fan(QString p);
-	int Down_Fan(QString p);
+	int Up(QString p);
+	int Down(QString p);
 
 signals:
     void walletInfoResult(QByteArray data);
@@ -141,7 +141,7 @@ private:
 	double m_price_amount_sell;
 	postion my_postion;
 
-	QString m_apiId = "dUQ0H4eqzj-2GpLEa7iZIvlv";
+	QString m_apiId = "C_H5fYynTYEY7LI_5do2XFov";
 
 
 	QDateTime my_now;// = QDateTime::currentDateTime();
