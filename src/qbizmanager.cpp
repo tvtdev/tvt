@@ -36,7 +36,7 @@ void QBizManager::doTransfer(const QString & source)
 
 			{
 				QUrlQuery param;
-				QString price = QString::number(price_buy.toDouble() - 15, 'f', 8);
+				QString price = QString::number(price_buy.toDouble() - 15, 'f', 1);
 				param.addQueryItem("price", price);
 				param.addQueryItem("symbol", "XBTUSD");
 				param.addQueryItem("orderQty", "1");
@@ -71,7 +71,7 @@ void QBizManager::doTransfer(const QString & source)
 			createOrder(param);
 			{
 				QUrlQuery param;
-				QString price = QString::number(price_buy.toDouble() + 15, 'f', 8);
+				QString price = QString::number(price_buy.toDouble() + 15, 'f', 1);
 				param.addQueryItem("price", price);
 				param.addQueryItem("symbol", "XBTUSD");
 				param.addQueryItem("orderQty", "1");
@@ -627,6 +627,18 @@ int QBizManager::Up_Fan(QString p)
 				return 2;
 			}
 		}
+
+	//if (low1.toDouble() <= low2.toDouble())
+	//	if (low2.toDouble() <= low3.toDouble())
+	//	{
+	//		QString low = low1;
+	//		if (p.toDouble() < low.toDouble())
+	//		{
+	//			text = "4第三个底部低于等于第二个底部，第二个上升很快 ，第1个回调。";
+	//			return 2;
+	//		}
+	//	}
+
 	return 0;
 
 	//if (!Down_Check_5())
