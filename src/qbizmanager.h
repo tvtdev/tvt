@@ -30,15 +30,7 @@ class QBizManager : public QObject
 public:
     QBizManager();
 	~QBizManager();
-    //enum RequestType {
-    //    REQUEST_WALLET,
-    //    REQUEST_CREATE_ORDER,
-    //    REQUEST_QUERY_ORDER,
-    //    REQUEST_CANCEL_ORDER,
-    //    REQUEST_ORDER_BOOK,
-    //};
-    //Q_ENUM(RequestType)
-
+   
 	struct price_amount
 	{
 		QString price;
@@ -110,6 +102,7 @@ private:
 	
 	bool bitmex_depth(QString &,QString coinType = "XBT", QString depth = "2");
 	bool bitmex_bucketed(QString &);
+	bool bitmex_bucketed_5(QString &);
 
 	bool parse_bucketed(const QString & source, QStringList& trade_list);
 
@@ -157,6 +150,7 @@ private:
 	struct_trade m_trade;
 	struct_trade my_trade;
 	QStringList  trade_list;
+	QStringList  m_trade_list_5;
 
 	QDateTime dfaf;
 

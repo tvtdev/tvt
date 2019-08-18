@@ -23,24 +23,21 @@ void QBizManager::doTransfer(const QString & source)
 
 		if (ret_up == 2)
 		{
+			if (oneord == 1)
+					return;		
 			
-				if (oneord == 1)
-					return;
-				
-			
-				QUrlQuery param;
-				param.addQueryItem("symbol", "XBTUSD");
-				param.addQueryItem("orderQty", "1");
-				param.addQueryItem("side", "Sell");
-				param.addQueryItem("ordType", "Market");
-				param.addQueryItem("text", text);
-				createOrder(param);
-				m_price_buy = "";
-				text = "";
-				oneord = 1;
-				m_TradeTimer_order.start();
-				return;
-			
+			QUrlQuery param;
+			param.addQueryItem("symbol", "XBTUSD");
+			param.addQueryItem("orderQty", "1");
+			param.addQueryItem("side", "Sell");
+			param.addQueryItem("ordType", "Market");
+			param.addQueryItem("text", text);
+			createOrder(param);
+			m_price_buy = "";
+			text = "";
+			oneord = 1;
+			m_TradeTimer_order.start();
+			return;			
 		}
 		
 		if (ret_down == 2)
@@ -48,20 +45,19 @@ void QBizManager::doTransfer(const QString & source)
 			if (oneord == 1)
 				return;
 
-				qDebug() << "buy  1";
-				QUrlQuery param;
-				param.addQueryItem("symbol", "XBTUSD");
-				param.addQueryItem("orderQty", "1");
-				param.addQueryItem("side", "Buy");
-				param.addQueryItem("ordType", "Market");
-				param.addQueryItem("text", text);
-				createOrder(param);
-				m_price_buy = "";
-				text = "";
-				oneord = 1;
-				m_TradeTimer_order.start();
-				return;
-			
+			qDebug() << "buy  1";
+			QUrlQuery param;
+			param.addQueryItem("symbol", "XBTUSD");
+			param.addQueryItem("orderQty", "1");
+			param.addQueryItem("side", "Buy");
+			param.addQueryItem("ordType", "Market");
+			param.addQueryItem("text", text);
+			createOrder(param);
+			m_price_buy = "";
+			text = "";
+			oneord = 1;
+			m_TradeTimer_order.start();
+			return;
 		}
 	}
 
@@ -279,7 +275,6 @@ bool QBizManager::bitmex_depth(QString & source, QString coinType, QString depth
 	source = QHttpManager::GetInstance().query("GET", FUNCTION_ORDER_BOOK, q, REQUEST_ORDER_BOOK, true);
 	if (source.length() < 50 || source.indexOf("!DOCTYPE html") != -1 || source.indexOf("<!DOCTYPE HTML") != -1 || source.indexOf("error") != -1 || source.indexOf("html>") != -1)
 	{
-		//qDebug() << "bitmex_depth" << source.mid(0, 10);
 		return  0;
 	}
 	QEventLoop loop;
@@ -294,7 +289,21 @@ bool QBizManager::bitmex_bucketed(QString & source)
 	QHttpManager::GetInstance().HttpGet("https://www.bitmex.com/api/v1/trade/bucketed?binSize=1m&partial=false&symbol=XBTUSD&count=100&reverse=true", source);
 	if (source.length() < 50 || source.indexOf("!DOCTYPE html") != -1 || source.indexOf("<!DOCTYPE HTML") != -1 || source.indexOf("error") != -1 || source.indexOf("html>") != -1)
 	{
-		//qDebug() << "bitmex_bucketed" << source.mid(0, 10);
+		return  0;
+	}
+	QEventLoop loop;
+	QTimer::singleShot(1500, &loop, SLOT(quit()));
+	loop.exec();
+	return  1;
+}
+
+
+
+bool QBizManager::bitmex_bucketed_5(QString & source)
+{
+	QHttpManager::GetInstance().HttpGet("https://www.bitmex.com/api/v1/trade/bucketed?binSize=5m&partial=false&symbol=XBTUSD&count=100&reverse=true", source);
+	if (source.length() < 50 || source.indexOf("!DOCTYPE html") != -1 || source.indexOf("<!DOCTYPE HTML") != -1 || source.indexOf("error") != -1 || source.indexOf("html>") != -1)
+	{
 		return  0;
 	}
 	QEventLoop loop;
@@ -335,9 +344,6 @@ void QBizManager::GetVolume(const QString & source)
 		m_trade.high = dataMap.toMap().value("high").toString();
 		m_trade.low = dataMap.toMap().value("low").toString();
 	}
-	
-	
-	//qDebug() << "volume." << my_postion.currentQty << " " << my_postion.unrealisedRoePcnt << m_trade.volume;
 }
 
 
@@ -373,13 +379,12 @@ int QBizManager::GetPrice(const QString & source, QStringList& buy_list, QString
 
 void QBizManager::trade()
 {
-	
-	oneordfdsf = 3;
-	//QDateTime now = QDateTime::currentDateTime();
-	
 	QString  soure;
 	bitmex_bucketed(soure);
 	parse_bucketed(soure, trade_list);
+
+	bitmex_bucketed_5(soure);
+	parse_bucketed(soure, m_trade_list_5);
 }
 
 
@@ -546,6 +551,8 @@ int QBizManager::Up_Fan(QString p)
 			QString high2 = trade_list.at(1).split(",").at(3).split(":").at(1);
 			if (high2.toDouble() - low2.toDouble() >= 12) //第二个上升很快
 			{
+				if (low1.toDouble() - low5.toDouble() >= 50) //第二个上升很快
+			
 				if (Up_Check()) //严格升趋势
 				{
 					QString low = low1;
