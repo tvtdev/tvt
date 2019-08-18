@@ -431,10 +431,6 @@ bool QBizManager::Up_Low_Check()
 
 bool QBizManager::Up_Check()
 {
-	if (trade_list.size() == 0)
-		return 0;
-	my_trade.low = "";
-
 	QString low5 = trade_list.at(4).split(",").at(4).split(":").at(1);
 	QString low4 = trade_list.at(3).split(",").at(4).split(":").at(1);
 	QString low3 = trade_list.at(2).split(",").at(4).split(":").at(1);
@@ -455,6 +451,33 @@ bool QBizManager::Up_Check()
 	if (num >= 1)
 		return 1;
 	
+	return 0;
+}
+
+
+
+bool QBizManager::Up_Check_5()
+{
+	QString low5 = m_trade_list_5.at(4).split(",").at(4).split(":").at(1);
+	QString low4 = m_trade_list_5.at(3).split(",").at(4).split(":").at(1);
+	QString low3 = m_trade_list_5.at(2).split(",").at(4).split(":").at(1);
+	QString low2 = m_trade_list_5.at(1).split(",").at(4).split(":").at(1);
+	QString low1 = m_trade_list_5.at(0).split(",").at(4).split(":").at(1);
+
+	int num = 0;
+
+	if (low4.toDouble() <= low3.toDouble())
+		num++;
+
+	if (low5.toDouble() <= low3.toDouble())
+		num++;
+
+	if (low5.toDouble() <= low4.toDouble())
+		num++;
+
+	if (num >= 1)
+		return 1;
+
 	return 0;
 }
 
@@ -501,13 +524,18 @@ int QBizManager::Up_Fan(QString p)
 {
 	if (trade_list.size() == 0)
 		return 0;
-	my_trade.low = "";
+	if (m_trade_list_5.size() == 0)
+		return 0;
+
 
 	QString low5 = trade_list.at(4).split(",").at(4).split(":").at(1);
 	QString low4 = trade_list.at(3).split(",").at(4).split(":").at(1);
 	QString low3 = trade_list.at(2).split(",").at(4).split(":").at(1);
 	QString low2 = trade_list.at(1).split(",").at(4).split(":").at(1);
 	QString low1 = trade_list.at(0).split(",").at(4).split(":").at(1);
+
+	if (!Down_Check_5())
+		return 0;
 
 	//标准梯度上升 ，第1个回调。无空缺
 	if (Up_Low_Check())
@@ -518,7 +546,7 @@ int QBizManager::Up_Fan(QString p)
 			if (p.toDouble() < low.toDouble())
 			{
 				qDebug() << "Up_Fan  3";
-				text = "标准梯度上升 ，第1个回调";
+				text = "1标准梯度上升 ，第1个回调";
 				return 2;
 			}
 		}
@@ -535,12 +563,10 @@ int QBizManager::Up_Fan(QString p)
 				if (p.toDouble() < low.toDouble())
 				{
 					qDebug() << "Up_Fan  3";
-					text = "//标准梯度上升 ，第1个回调。中间有空缺";
+					text = "2标准梯度上升 ，第1个回调。中间有空缺";
 					return 2;
 				}
 			}
-
-			
 		}
 	}
 
@@ -558,7 +584,7 @@ int QBizManager::Up_Fan(QString p)
 					QString low = low1;
 					if (p.toDouble() < low.toDouble() )
 					{
-						text = "第三个底部低于等于第二个底部，第二个上升很快 ，第1个回调。";
+						text = "3第三个底部低于等于第二个底部，第二个上升很快 ，第1个回调。";
 						return 2;
 					}
 				}
@@ -659,6 +685,37 @@ bool QBizManager::Down_Check()
 }
 
 
+
+//严格标准在上方
+bool QBizManager::Down_Check_5()
+{
+	QString high6 = m_trade_list_5.at(5).split(",").at(3).split(":").at(1);
+	QString high5 = m_trade_list_5.at(4).split(",").at(3).split(":").at(1);
+	QString high4 = m_trade_list_5.at(3).split(",").at(3).split(":").at(1);
+	QString high3 = m_trade_list_5.at(2).split(",").at(3).split(":").at(1);
+	QString high2 = m_trade_list_5.at(1).split(",").at(3).split(":").at(1);
+	QString high1 = m_trade_list_5.at(0).split(",").at(3).split(":").at(1);
+
+	int num = 0;
+	if (high4.toDouble() > high3.toDouble())
+		num++;
+
+	if (high5.toDouble() > high3.toDouble())
+		num++;
+
+	if (high5.toDouble() > high4.toDouble())
+		num++;
+
+	if (high6.toDouble() > high5.toDouble())
+		num++;
+
+	if (num >= 1)
+		return 1;
+
+	return 0;
+}
+
+
 //严格标准在上方
 bool QBizManager::Down_Check_Red()
 {
@@ -713,6 +770,8 @@ int QBizManager::Down_Fan(QString p)
 {
 	if (trade_list.size() == 0)
 		return 0;
+	if (m_trade_list_5.size() == 0)
+		return 0;
 
 	
 	QString high4 = trade_list.at(3).split(",").at(3).split(":").at(1);
@@ -720,6 +779,8 @@ int QBizManager::Down_Fan(QString p)
 	QString high2 = trade_list.at(1).split(",").at(3).split(":").at(1);
 	QString high1 = trade_list.at(0).split(",").at(3).split(":").at(1);
 	
+	if (!Up_Check_5())//分钟趋势
+		return 0;
 	//顶部平 突破 4个是一排
 	if (Down_High_Same())
 	{

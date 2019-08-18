@@ -69,6 +69,7 @@ private:
 private:
 	bool Down_High_Check();
 	bool Down_Check();
+	bool Down_Check_5();
 	bool Down_Check_Red();
 	bool Down_Check_Green_Front();
 	bool Down_High_Same();
@@ -76,6 +77,7 @@ private:
 
 	bool Up_Low_Check();
 	bool Up_Check();
+	bool Up_Check_5();
 	bool Up_Check_Red();
 	bool Up_Check_Red_Front();
 	int Up_Fan(QString p);
