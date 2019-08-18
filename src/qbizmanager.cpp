@@ -16,11 +16,11 @@ void QBizManager::doTransfer(const QString & source)
 	QString price_buy = buy_list.at(0).split(",").at(0);
 	QString amount_buy = buy_list.at(0).split(",").at(1);
 
-	if (my_postion.currentQty.toDouble() == 0)
+	
+	
+	if (my_postion.currentQty.toDouble() >= 0)
 	{
 		int ret_up = Up_Fan(price_sell);
-		int ret_down = Down_Fan(price_sell);
-
 		if (ret_up == 2)
 		{
 			if (oneord == 1)
@@ -33,13 +33,29 @@ void QBizManager::doTransfer(const QString & source)
 			param.addQueryItem("ordType", "Market");
 			param.addQueryItem("text", text);
 			createOrder(param);
+
+			{
+				QUrlQuery param;
+				QString price = QString::number(price_buy.toDouble() - 15, 'f', 8);
+				param.addQueryItem("price", price);
+				param.addQueryItem("symbol", "XBTUSD");
+				param.addQueryItem("orderQty", "1");
+				param.addQueryItem("side", "Buy");
+				param.addQueryItem("ordType", "Limit");
+				param.addQueryItem("text", text);
+				createOrder(param);
+			}
+
 			m_price_buy = "";
 			text = "";
 			oneord = 1;
 			m_TradeTimer_order.start();
 			return;			
 		}
-		
+	}
+	if (my_postion.currentQty.toDouble() <= 0)
+	{
+		int ret_down = Down_Fan(price_sell);
 		if (ret_down == 2)
 		{
 			if (oneord == 1)
@@ -53,14 +69,25 @@ void QBizManager::doTransfer(const QString & source)
 			param.addQueryItem("ordType", "Market");
 			param.addQueryItem("text", text);
 			createOrder(param);
+			{
+				QUrlQuery param;
+				QString price = QString::number(price_buy.toDouble() + 15, 'f', 8);
+				param.addQueryItem("price", price);
+				param.addQueryItem("symbol", "XBTUSD");
+				param.addQueryItem("orderQty", "1");
+				param.addQueryItem("side", "Sell");
+				param.addQueryItem("ordType", "Limit");
+				param.addQueryItem("text", text);
+				createOrder(param);
+			}
 			m_price_buy = "";
 			text = "";
 			oneord = 1;
 			m_TradeTimer_order.start();
 			return;
 		}
-	}
 
+	}
 	
 
 	return;
@@ -590,67 +617,79 @@ int QBizManager::Up_Fan(QString p)
 	QString low2 = trade_list.at(1).split(",").at(4).split(":").at(1);
 	QString low1 = trade_list.at(0).split(",").at(4).split(":").at(1);
 
+	if (low1.toDouble() >= low2.toDouble())
+		if (low2.toDouble() >= low3.toDouble())
+		{
+			QString low = low1;
+			if (p.toDouble() < low.toDouble())
+			{
+				text = "4第三个底部低于等于第二个底部，第二个上升很快 ，第1个回调。";
+				return 2;
+			}
+		}
+	return 0;
+
 	//if (!Down_Check_5())
 
 
 	//标准梯度上升 ，第1个回调。无空缺
-	if (Up_Low_Check())
-	{
-		if (Up_Check()) //严格升趋势
-		{
-			QString low = low2;
-			if (p.toDouble() < low.toDouble())
-			{
-				qDebug() << "Up_Fan  3";
-				text = "1标准梯度上升 ，第1个回调";
-				return 2;
-			}
-		}
-	}
+	//if (Up_Low_Check())
+	//{
+	//	if (Up_Check()) //严格升趋势
+	//	{
+	//		QString low = low2;
+	//		if (p.toDouble() < low.toDouble())
+	//		{
+	//			qDebug() << "Up_Fan  3";
+	//			text = "1标准梯度上升 ，第1个回调";
+	//			return 2;
+	//		}
+	//	}
+	//}
 
-	//标准梯度上升 ，第1个回调。中间有空缺 上升很快
-	if (Up_Low_Check())
-	{
-		if (Up_Check()) //严格升趋势
-		{
-			if (Up_Check_Red_Front()) //严格升趋势
-			{
-				QString low = low2;
-				if (p.toDouble() < low.toDouble())
-				{
-					qDebug() << "Up_Fan  3";
-					text = "2标准梯度上升 ，第1个回调。中间有空缺";
-					return 2;
-				}
-			}
-		}
-	}
+	////标准梯度上升 ，第1个回调。中间有空缺 上升很快
+	//if (Up_Low_Check())
+	//{
+	//	if (Up_Check()) //严格升趋势
+	//	{
+	//		if (Up_Check_Red_Front()) //严格升趋势
+	//		{
+	//			QString low = low2;
+	//			if (p.toDouble() < low.toDouble())
+	//			{
+	//				qDebug() << "Up_Fan  3";
+	//				text = "2标准梯度上升 ，第1个回调。中间有空缺";
+	//				return 2;
+	//			}
+	//		}
+	//	}
+	//}
 
 	//第三个底部低于等于第二个底部，第二个上升很快 ，第1个回调。
-	if (low3.toDouble() <= low2.toDouble())
-		if (low1.toDouble() > low2.toDouble())
-		{
-			QString high2 = trade_list.at(1).split(",").at(3).split(":").at(1);
-			if (high2.toDouble() - low2.toDouble() >= 12) //第二个上升很快
-			{
-				if (low1.toDouble() - low5.toDouble() >= 50) //第二个上升很快
-			
-				if (Up_Check()) //严格升趋势
-				{
-					QString low = low1;
-					if (p.toDouble() < low.toDouble() )
-					{
-						text = "3第三个底部低于等于第二个底部，第二个上升很快 ，第1个回调。";
-						return 2;
-					}
-				}
-			}
-		}
+	//if (low3.toDouble() <= low2.toDouble())
+	//	if (low1.toDouble() > low2.toDouble())
+	//	{
+	//		QString high2 = trade_list.at(1).split(",").at(3).split(":").at(1);
+	//		if (high2.toDouble() - low2.toDouble() >= 12) //第二个上升很快
+	//		{
+	//			if (low1.toDouble() - low5.toDouble() >= 50) //第二个上升很快
+	//		
+	//			if (Up_Check()) //严格升趋势
+	//			{
+	//				QString low = low1;
+	//				if (p.toDouble() < low.toDouble() )
+	//				{
+	//					text = "3第三个底部低于等于第二个底部，第二个上升很快 ，第1个回调。";
+	//					return 2;
+	//				}
+	//			}
+	//		}
+	//	}
 
 	
 
 	
-	if (Down_Check_Red_5())
+	//if (Down_Check_Red_5())
 	{
 		if (low1.toDouble() >= low2.toDouble())
 			if (low2.toDouble() >= low3.toDouble())
@@ -892,6 +931,17 @@ int QBizManager::Down_Fan(QString p)
 	QString high2 = trade_list.at(1).split(",").at(3).split(":").at(1);
 	QString high1 = trade_list.at(0).split(",").at(3).split(":").at(1);
 	
+	if (high3.toDouble() >= high2.toDouble())
+		if (high2.toDouble() >= high1.toDouble())
+		{
+			QString high = high1;
+			if (p.toDouble() > high1.toDouble())
+			{
+				text = "23标准梯度下降 ，第1个回调。第4，3 ，2红色，第1个绿色";
+				return 2;
+			}
+		}
+	return 0;
 	//if (!Up_Check_5())//分钟趋势
 	//	return 0;
 	//顶部平 突破 4个是一排
