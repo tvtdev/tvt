@@ -73,7 +73,7 @@ private:
 	bool Down_Check_1h();
 	bool Down_Check_Red();
  	bool Down_Check_Red_5();
-	bool Down_Check_Red_1h();
+	int Down_Check_Red_1h();
 	bool Down_Check_Green_Front();
 	bool Down_High_Same();
 
@@ -168,6 +168,8 @@ private:
 	int oneordfdsf;
 
 	QString text;
+
+	QString m_price;
 };
 
 #endif // BITMEXWEBSOCKETCLIENT_H
