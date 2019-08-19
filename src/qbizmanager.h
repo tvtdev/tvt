@@ -70,6 +70,7 @@ private:
 	bool Down_High_Check();
 	bool Down_Check();
 	bool Down_Check_5();
+	bool Down_Check_1h();
 	bool Down_Check_Red();
  	bool Down_Check_Red_5();
 	bool Down_Check_Red_1h();
@@ -80,6 +81,7 @@ private:
 	bool Up_Low_Check();
 	bool Up_Check();
 	bool Up_Check_5();
+	bool Up_Check_1h();
 	bool Up_Check_Green_5();
 	bool Up_Check_Green_1h();
 	bool Up_Check_Red();
