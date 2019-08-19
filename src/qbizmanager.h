@@ -71,7 +71,8 @@ private:
 	bool Down_Check();
 	bool Down_Check_5();
 	bool Down_Check_Red();
-	bool Down_Check_Red_5();
+ 	bool Down_Check_Red_5();
+	bool Down_Check_Red_1h();
 	bool Down_Check_Green_Front();
 	bool Down_High_Same();
 
@@ -80,6 +81,7 @@ private:
 	bool Up_Check();
 	bool Up_Check_5();
 	bool Up_Check_Green_5();
+	bool Up_Check_Green_1h();
 	bool Up_Check_Red();
 	bool Up_Check_Red_Front();
 	int Up(QString p);
@@ -107,6 +109,7 @@ private:
 	bool bitmex_depth(QString &,QString coinType = "XBT", QString depth = "2");
 	bool bitmex_bucketed(QString &);
 	bool bitmex_bucketed_5(QString &);
+	bool bitmex_bucketed_1h(QString &);
 
 	bool parse_bucketed(const QString & source, QStringList& trade_list);
 
@@ -155,6 +158,7 @@ private:
 	struct_trade my_trade;
 	QStringList  trade_list;
 	QStringList  m_trade_list_5;
+	QStringList  m_trade_list_1h;
 
 	QDateTime dfaf;
 
