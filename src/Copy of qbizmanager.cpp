@@ -16,15 +16,24 @@ void QBizManager::doTransfer(const QString & source)
 	QString price_buy = buy_list.at(0).split(",").at(0);
 	QString amount_buy = buy_list.at(0).split(",").at(1);
 
+<<<<<<< HEAD
 	
 	
 	if (my_postion.currentQty.toDouble() >= 0)
 	{
 		int ret_up = Up_Fan(price_sell);
+=======
+	if (my_postion.currentQty.toDouble() == 0)
+	{
+		int ret_up = Up(price_sell);
+		int ret_down = Down(price_sell);
+
+>>>>>>> 3fdd676a374332e381d799a9bf782a1e7f1a44fe
 		if (ret_up == 2)
 		{
 			if (oneord == 1)
 					return;		
+<<<<<<< HEAD
 			qDebug() << "sell  1";
 			QUrlQuery param;
 			param.addQueryItem("symbol", "XBTUSD");
@@ -46,16 +55,30 @@ void QBizManager::doTransfer(const QString & source)
 				createOrder(param);
 			}
 
+=======
+			qDebug() << "buy  1";
+			QUrlQuery param;
+			param.addQueryItem("symbol", "XBTUSD");
+			param.addQueryItem("orderQty", "1");
+			param.addQueryItem("side", "Buy");
+			param.addQueryItem("ordType", "Market");
+			param.addQueryItem("text", text);
+			createOrder(param);
+>>>>>>> 3fdd676a374332e381d799a9bf782a1e7f1a44fe
 			m_price_buy = "";
 			text = "";
 			oneord = 1;
 			m_TradeTimer_order.start();
 			return;			
 		}
+<<<<<<< HEAD
 	}
 	if (my_postion.currentQty.toDouble() <= 0)
 	{
 		int ret_down = Down_Fan(price_sell);
+=======
+		
+>>>>>>> 3fdd676a374332e381d799a9bf782a1e7f1a44fe
 		if (ret_down == 2)
 		{
 			if (oneord == 1)
@@ -65,6 +88,7 @@ void QBizManager::doTransfer(const QString & source)
 			QUrlQuery param;
 			param.addQueryItem("symbol", "XBTUSD");
 			param.addQueryItem("orderQty", "1");
+<<<<<<< HEAD
 			param.addQueryItem("side", "Buy");
 			param.addQueryItem("ordType", "Market");
 			param.addQueryItem("text", text);
@@ -80,14 +104,25 @@ void QBizManager::doTransfer(const QString & source)
 				param.addQueryItem("text", text);
 				createOrder(param);
 			}
+=======
+			param.addQueryItem("side", "Sell");
+			param.addQueryItem("ordType", "Market");
+			param.addQueryItem("text", text);
+			createOrder(param);
+>>>>>>> 3fdd676a374332e381d799a9bf782a1e7f1a44fe
 			m_price_buy = "";
 			text = "";
 			oneord = 1;
 			m_TradeTimer_order.start();
 			return;
 		}
+<<<<<<< HEAD
 
 	}
+=======
+	}
+
+>>>>>>> 3fdd676a374332e381d799a9bf782a1e7f1a44fe
 	
 
 	return;
@@ -326,7 +361,25 @@ bool QBizManager::bitmex_bucketed(QString & source)
 
 bool QBizManager::bitmex_bucketed_5(QString & source)
 {
+<<<<<<< HEAD
 	QHttpManager::GetInstance().HttpGet("https://www.bitmex.com/api/v1/trade/bucketed?binSize=5m&partial=false&symbol=XBTUSD&count=100&reverse=true", source);
+=======
+	QHttpManager::GetInstance().HttpGet("https://www.bitmex.com/api/v1/trade/bucketed?binSize=5m&partial=false&symbol=XBTUSD&count=20&reverse=true", source);
+	if (source.length() < 50 || source.indexOf("!DOCTYPE html") != -1 || source.indexOf("<!DOCTYPE HTML") != -1 || source.indexOf("error") != -1 || source.indexOf("html>") != -1)
+	{
+		return  0;
+	}
+	//QEventLoop loop;
+	//QTimer::singleShot(1500, &loop, SLOT(quit()));
+	//loop.exec();
+	return  1;
+}
+
+
+bool QBizManager::bitmex_bucketed_1h(QString & source)
+{
+	QHttpManager::GetInstance().HttpGet("https://www.bitmex.com/api/v1/trade/bucketed?binSize=1h&partial=false&symbol=XBTUSD&count=5&reverse=true", source);
+>>>>>>> 3fdd676a374332e381d799a9bf782a1e7f1a44fe
 	if (source.length() < 50 || source.indexOf("!DOCTYPE html") != -1 || source.indexOf("<!DOCTYPE HTML") != -1 || source.indexOf("error") != -1 || source.indexOf("html>") != -1)
 	{
 		return  0;
@@ -411,6 +464,13 @@ void QBizManager::trade()
 	soure = "";
 	bitmex_bucketed_5(soure);
 	parse_bucketed(soure, m_trade_list_5);
+<<<<<<< HEAD
+=======
+
+	soure = "";
+	bitmex_bucketed_1h(soure);
+	parse_bucketed(soure, m_trade_list_1h);
+>>>>>>> 3fdd676a374332e381d799a9bf782a1e7f1a44fe
 }
 
 
@@ -591,6 +651,55 @@ bool QBizManager::Up_Check_Green_5()
 	return 0;
 }
 
+<<<<<<< HEAD
+=======
+
+//严格标准在上方
+bool QBizManager::Up_Check_Green_1h()
+{
+	int num = 0;
+	{
+		QString open = m_trade_list_1h.at(0).split(",").at(2).split(":").at(1);
+		QString close = m_trade_list_1h.at(0).split(",").at(5).split(":").at(1);
+		if (open.toDouble() < close.toDouble())
+			num++;
+	}
+	//{
+	//	QString open = m_trade_list_5.at(1).split(",").at(2).split(":").at(1);
+	//	QString close = m_trade_list_5.at(1).split(",").at(5).split(":").at(1);
+	//	if (open.toDouble() < close.toDouble())
+	//		num++;
+	//}
+
+	//{
+	//	QString open = m_trade_list_5.at(2).split(",").at(2).split(":").at(1);
+	//	QString close = m_trade_list_5.at(2).split(",").at(5).split(":").at(1);
+	//	if (open.toDouble() < close.toDouble())
+	//		num++;
+	//}
+
+	//{
+	//	QString open = m_trade_list_5.at(3).split(",").at(2).split(":").at(1);
+	//	QString close = m_trade_list_5.at(3).split(",").at(5).split(":").at(1);
+	//	if (open.toDouble() > close.toDouble())
+	//		num++;
+	//}
+
+	//{
+	//	QString open = m_trade_list_5.at(4).split(",").at(2).split(":").at(1);
+	//	QString close = m_trade_list_5.at(4).split(",").at(5).split(":").at(1);
+	//	if (open.toDouble() > close.toDouble())
+	//		num++;
+	//}
+
+	if (num >= 1)
+		return 1;
+
+	return 0;
+}
+
+
+>>>>>>> 3fdd676a374332e381d799a9bf782a1e7f1a44fe
 //绿色
 bool QBizManager::Up_Check_Red_Front()
 {
@@ -603,13 +712,22 @@ bool QBizManager::Up_Check_Red_Front()
 }
 
 
+<<<<<<< HEAD
 int QBizManager::Up_Fan(QString p)
+=======
+int QBizManager::Down(QString p)
+>>>>>>> 3fdd676a374332e381d799a9bf782a1e7f1a44fe
 {
 	if (trade_list.size() == 0)
 		return 0;
 	if (m_trade_list_5.size() == 0)
 		return 0;
+<<<<<<< HEAD
 
+=======
+	if (m_trade_list_1h.size() == 0)
+		return 0;
+>>>>>>> 3fdd676a374332e381d799a9bf782a1e7f1a44fe
 
 	QString low5 = trade_list.at(4).split(",").at(4).split(":").at(1);
 	QString low4 = trade_list.at(3).split(",").at(4).split(":").at(1);
@@ -617,6 +735,7 @@ int QBizManager::Up_Fan(QString p)
 	QString low2 = trade_list.at(1).split(",").at(4).split(":").at(1);
 	QString low1 = trade_list.at(0).split(",").at(4).split(":").at(1);
 
+<<<<<<< HEAD
 	if (low1.toDouble() >= low2.toDouble())
 		if (low2.toDouble() >= low3.toDouble())
 		{
@@ -714,6 +833,87 @@ int QBizManager::Up_Fan(QString p)
 				}
 			}
 	}
+=======
+	//、、if (Down_Check_Red_1h())
+	QString hig1h = m_trade_list_1h.at(0).split(",").at(3).split(":").at(1);
+	if (p.toDouble() < hig1h.toDouble())
+	{
+		if (Down_Check_Red_5()) //前面2个5分钟是红色的
+		{
+			if (low1.toDouble() >= low2.toDouble())
+				if (low2.toDouble() >= low3.toDouble())
+				{
+					QString low = low1;
+					if (p.toDouble() < low.toDouble())
+					{
+						text = "1.两个五分钟是红色";
+						return 2;
+					}
+				}
+		}
+
+	}
+
+	return 0;
+	//标准梯度上升 ，第1个回调。无空缺
+	if (Up_Low_Check())
+	{
+		if (Up_Check()) //严格升趋势
+		{
+			QString low = low2;
+			if (p.toDouble() < low.toDouble())
+			{
+				qDebug() << "Up_Fan  3";
+				text = "1标准梯度上升 ，第1个回调";
+				return 2;
+			}
+		}
+	}
+
+	//标准梯度上升 ，第1个回调。中间有空缺 上升很快
+	if (Up_Low_Check())
+	{
+		if (Up_Check()) //严格升趋势
+		{
+			if (Up_Check_Red_Front()) //严格升趋势
+			{
+				QString low = low2;
+				if (p.toDouble() < low.toDouble())
+				{
+					qDebug() << "Up_Fan  3";
+					text = "2标准梯度上升 ，第1个回调。中间有空缺";
+					return 2;
+				}
+			}
+		}
+	}
+
+	//第三个底部低于等于第二个底部，第二个上升很快 ，第1个回调。
+	if (low3.toDouble() <= low2.toDouble())
+		if (low1.toDouble() > low2.toDouble())
+		{
+			QString high2 = trade_list.at(1).split(",").at(3).split(":").at(1);
+			if (high2.toDouble() - low2.toDouble() >= 12) //第二个上升很快
+			{
+				if (low1.toDouble() - low5.toDouble() >= 50) //第二个上升很快
+			
+				if (Up_Check()) //严格升趋势
+				{
+					QString low = low1;
+					if (p.toDouble() < low.toDouble() )
+					{
+						text = "3第三个底部低于等于第二个底部，第二个上升很快 ，第1个回调。";
+						return 2;
+					}
+				}
+			}
+		}
+
+	
+
+	
+
+>>>>>>> 3fdd676a374332e381d799a9bf782a1e7f1a44fe
 	return 0;
 	if (low1.toDouble() >= low2.toDouble())
 		if (low1.toDouble() >= low3.toDouble())
@@ -919,6 +1119,58 @@ bool QBizManager::Down_Check_Red_5()
 
 	return 0;
 }
+<<<<<<< HEAD
+=======
+
+
+
+//严格标准在上方
+bool QBizManager::Down_Check_Red_1h()
+{
+	int num = 0;
+	{
+		QString open = m_trade_list_1h.at(0).split(",").at(2).split(":").at(1);
+		QString close = m_trade_list_1h.at(0).split(",").at(5).split(":").at(1);
+		if (open.toDouble() > close.toDouble())
+			num++;
+	}
+
+	//{
+	//	QString open = m_trade_list_5.at(1).split(",").at(2).split(":").at(1);
+	//	QString close = m_trade_list_5.at(1).split(",").at(5).split(":").at(1);
+	//	if (open.toDouble() > close.toDouble())
+	//		num++;
+	//}
+
+	//{
+	//	QString open = m_trade_list_5.at(2).split(",").at(2).split(":").at(1);
+	//	QString close = m_trade_list_5.at(2).split(",").at(5).split(":").at(1);
+	//	if (open.toDouble() > close.toDouble())
+	//		num++;
+	//}
+
+	//{
+	//	QString open = m_trade_list_5.at(3).split(",").at(2).split(":").at(1);
+	//	QString close = m_trade_list_5.at(3).split(",").at(5).split(":").at(1);
+	//	if (open.toDouble() > close.toDouble())
+	//		num++;
+	//}
+
+	//{
+	//	QString open = m_trade_list_5.at(4).split(",").at(2).split(":").at(1);
+	//	QString close = m_trade_list_5.at(4).split(",").at(5).split(":").at(1);
+	//	if (open.toDouble() > close.toDouble())
+	//		num++;
+	//}
+
+	if (num >= 1)
+		return 1;
+
+	return 0;
+}
+
+
+>>>>>>> 3fdd676a374332e381d799a9bf782a1e7f1a44fe
 //绿色
 bool QBizManager::Down_Check_Green_Front()
 {
@@ -930,19 +1182,29 @@ bool QBizManager::Down_Check_Green_Front()
 	return 0;
 }
 
+<<<<<<< HEAD
 int QBizManager::Down_Fan(QString p)
+=======
+int QBizManager::Up(QString p)
+>>>>>>> 3fdd676a374332e381d799a9bf782a1e7f1a44fe
 {
 	if (trade_list.size() == 0)
 		return 0;
 	if (m_trade_list_5.size() == 0)
 		return 0;
+<<<<<<< HEAD
 
+=======
+	if (m_trade_list_1h.size() == 0)
+		return 0;
+>>>>>>> 3fdd676a374332e381d799a9bf782a1e7f1a44fe
 	
 	QString high4 = trade_list.at(3).split(",").at(3).split(":").at(1);
 	QString high3 = trade_list.at(2).split(",").at(3).split(":").at(1);
 	QString high2 = trade_list.at(1).split(",").at(3).split(":").at(1);
 	QString high1 = trade_list.at(0).split(",").at(3).split(":").at(1);
 	
+<<<<<<< HEAD
 	if (high3.toDouble() >= high2.toDouble())
 		if (high2.toDouble() >= high1.toDouble())
 		{
@@ -953,6 +1215,32 @@ int QBizManager::Down_Fan(QString p)
 				return 2;
 			}
 		}
+=======
+	//if (p.toDouble() > 10380)
+	//	return 0;
+
+	QString hig1h = m_trade_list_1h.at(0).split(",").at(3).split(":").at(1);
+	if (p.toDouble() > hig1h.toDouble())
+	{
+//	if (Up_Check_Green_1h())
+	//{
+		//if (Up_Check_Green_5())
+		{
+			if (high3.toDouble() >= high2.toDouble())
+				if (high2.toDouble() >= high1.toDouble())
+				{
+					QString high = high1;
+					if (p.toDouble() > high1.toDouble())
+					{
+						text = "1.五分钟绿色两个";
+						return 2;
+					}
+				}
+		}
+	}
+	
+
+>>>>>>> 3fdd676a374332e381d799a9bf782a1e7f1a44fe
 	return 0;
 	//if (!Up_Check_5())//分钟趋势
 	//	return 0;
@@ -993,6 +1281,7 @@ int QBizManager::Down_Fan(QString p)
 			}
 		}
 
+<<<<<<< HEAD
 	if (Up_Check_Green_5())
 	{
 		if (high3.toDouble() >= high2.toDouble())
@@ -1008,6 +1297,8 @@ int QBizManager::Down_Fan(QString p)
 	}
 
 	return 0;
+=======
+>>>>>>> 3fdd676a374332e381d799a9bf782a1e7f1a44fe
 
 	{
 	
