@@ -11,160 +11,12 @@ void QBizManager::doTransfer(const QString & source)
 	if (!GetPrice(source, buy_list, sell_list))
 		return;
 
-	
 	QString price_sell = sell_list.at(0).split(",").at(0);
 	QString amount_sell = sell_list.at(0).split(",").at(1);;
 	QString price_buy = buy_list.at(0).split(",").at(0);
 	QString amount_buy = buy_list.at(0).split(",").at(1);
 
-
-
-	if (my_postion.currentQty.toDouble() == 0)
-	{
-		if (amount_buy.toDouble() >= amount_sell.toDouble()  && amount_buy.length() >= 6 && amount_sell.length() <= 5 && m_price_buy.length() == 0)
-		{
-			//qDebug() << "Buy 1.";
-			m_price_buy = price_buy;
-			return;
-		}
-		if (price_buy >m_price_buy && price_buy.toDouble() - m_price_buy.toDouble() <= 2 && m_price_buy.length() != 0)
-		{
-			qDebug() << "Buy.";
-			QUrlQuery param;
-			QString price = QString::number(price_sell.toDouble()+1 , 'f', 1);
-			param.addQueryItem("price", price);
-			param.addQueryItem("symbol", "XBTUSD");
-			param.addQueryItem("orderQty", "1");
-			param.addQueryItem("side", "Buy");
-			param.addQueryItem("ordType", "Limit");
-			createOrder(param);
-			m_price_buy = "";
-
-			cancelAllAfter();
-
-		}
-		else
-		{
-			m_price_buy = "";
-		}
-
-
-	}
 	
-	if (my_postion.currentQty.toDouble() == 0)
-	{
-		if (amount_sell.toDouble() >= amount_buy.toDouble()  && amount_sell.length() >= 6 && amount_buy.length() <= 5 && m_price_sell.length() == 0)
-		{
-			//qDebug() << "Sell 21.";
-			m_price_sell = price_sell;
-			return;
-		}
-		if (price_sell < m_price_sell && m_price_sell.toDouble() - price_sell.toDouble() <= 12 && m_price_sell.length() != 0)
-		{
-			qDebug() << "Sell.";
-			QUrlQuery param;
-			QString price = QString::number(price_buy.toDouble() - 1, 'f', 1);
-			param.addQueryItem("price", price);
-			param.addQueryItem("symbol", "XBTUSD");
-			param.addQueryItem("orderQty", "1");
-			param.addQueryItem("side", "Sell");
-			param.addQueryItem("ordType", "Limit");
-			createOrder(param);
-			m_price_buy = "";
-			m_price_sell = "";
-
-			cancelAllAfter();
-		}
-		else
-		{
-			m_price_sell = "";
-		}
-	}
-//	return;
-	if (my_postion.currentQty.toDouble() > 0)
-	{
-		if (oneord == 1)
-			return;
-
-		qDebug() << "Sell.";
-		QUrlQuery param;
-		QString price = QString::number(price_buy.toDouble() - 1, 'f', 1);
-		param.addQueryItem("price", price);
-		param.addQueryItem("symbol", "XBTUSD");
-		param.addQueryItem("orderQty", "1");
-		param.addQueryItem("side", "Sell");
-		param.addQueryItem("ordType", "Limit");
-		createOrder(param);
-		m_price_buy = "";
-		m_price_sell = "";
-
-		cancelAllAfter();
-
-		oneord = 1;
-		m_TradeTimer_order.start();
-	}
-
-	if (my_postion.currentQty.toDouble() < 0)
-	{
-		if (oneord == 1)
-			return;
-
-		qDebug() << "Buy.";
-		QUrlQuery param;
-		QString price = QString::number(price_sell.toDouble() + 1, 'f', 1);
-		param.addQueryItem("price", price);
-		param.addQueryItem("symbol", "XBTUSD");
-		param.addQueryItem("orderQty", "1");
-		param.addQueryItem("side", "Buy");
-		param.addQueryItem("ordType", "Limit");
-		createOrder(param);
-		m_price_buy = "";
-
-		cancelAllAfter();
-
-		oneord = 1;
-		m_TradeTimer_order.start();
-	}
-
-	/*	}
-		else
-		{
-			m_price_buy = "";
-		}
-*/
-
-
-	return;
-	if (my_postion.currentQty.toDouble() > 0)
-	{
-		if (amount_sell.toDouble() <= amount_buy.toDouble()&& m_price_sell.length() == 0)
-		{
-		
-			m_price_sell = price_sell;
-			return;
-		}
-		if ( m_price_sell.length() != 0)
-		{
-			qDebug() << "Sell.";
-			QUrlQuery param;
-			QString price = QString::number(price_buy.toDouble() + 0.5, 'f', 1);
-			param.addQueryItem("price", price);
-			param.addQueryItem("symbol", "XBTUSD");
-			param.addQueryItem("orderQty", "1");
-			param.addQueryItem("side", "Sell");
-			param.addQueryItem("ordType", "Limit");
-			createOrder(param);
-			m_price_buy = "";
-			m_price_sell = "";
-
-			cancelAllAfter();
-		}
-		else
-		{
-			m_price_sell = "";
-		}
-	}
-	return;
 	
 	if (my_postion.currentQty.toDouble() >= 0)
 	{
@@ -438,14 +290,6 @@ void QBizManager::cancelOrder(QString orderId, QString clOrderId, QString commen
     q.addQueryItem("clOrdID",clOrderId);
     q.addQueryItem("text",comment);
 	QHttpManager::GetInstance().query("DELETE",FUNCTION_CANCEL_ORDER,q,REQUEST_CANCEL_ORDER,true);
-}
-
-
-void QBizManager::cancelAllAfter()
-{
-	QUrlQuery q;
-	q.addQueryItem("timeout", "60");
-	QHttpManager::GetInstance().query("POST", FUNCTION_cancelAllAfter_ORDER, q, REQUEST_CANCEL_ORDER, true);
 }
 
 bool QBizManager::bitmex_depth(QString & source, QString coinType, QString depth)

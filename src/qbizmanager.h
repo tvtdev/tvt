@@ -15,6 +15,8 @@
 #define FUNCTION_WALLET "/user/wallet"
 #define FUNCTION_CREATE_ORDER "/order"
 #define FUNCTION_closePosition_ORDER "/order/closePosition"
+#define FUNCTION_cancelAllAfter_ORDER "/order/cancelAllAfter"
+
 #define FUNCTION_QUERY_ORDER "/order"
 #define FUNCTION_CANCEL_ORDER "/order"
 #define FUNCTION_ORDER_BOOK "/orderBook/L2"
@@ -71,8 +73,7 @@ private:
 	bool Down_Check();
 	bool Down_Check_5();
 	bool Down_Check_Red();
- 	bool Down_Check_Red_5();
-	bool Down_Check_Red_1h();
+	bool Down_Check_Red_5();
 	bool Down_Check_Green_Front();
 	bool Down_High_Same();
 
@@ -81,11 +82,10 @@ private:
 	bool Up_Check();
 	bool Up_Check_5();
 	bool Up_Check_Green_5();
-	bool Up_Check_Green_1h();
 	bool Up_Check_Red();
 	bool Up_Check_Red_Front();
-	int Up(QString p);
-	int Down(QString p);
+	int Up_Fan(QString p);
+	int Down_Fan(QString p);
 
 signals:
     void walletInfoResult(QByteArray data);
@@ -105,11 +105,11 @@ private:
 	void closePosition(QUrlQuery param);
     void queryAllOrder(QUrlQuery param);
     void cancelOrder(QString orderId,QString clOrderId,QString comment);
+	void cancelAllAfter();
 	
 	bool bitmex_depth(QString &,QString coinType = "XBT", QString depth = "2");
 	bool bitmex_bucketed(QString &);
 	bool bitmex_bucketed_5(QString &);
-	bool bitmex_bucketed_1h(QString &);
 
 	bool parse_bucketed(const QString & source, QStringList& trade_list);
 
@@ -144,7 +144,7 @@ private:
 	double m_price_amount_sell;
 	postion my_postion;
 
-	QString m_apiId = "C_H5fYynTYEY7LI_5do2XFov";
+	QString m_apiId = "5y-a-6pLw8Qm-LfCujGxvvzq";;
 
 
 	QDateTime my_now;// = QDateTime::currentDateTime();
@@ -158,7 +158,6 @@ private:
 	struct_trade my_trade;
 	QStringList  trade_list;
 	QStringList  m_trade_list_5;
-	QStringList  m_trade_list_1h;
 
 	QDateTime dfaf;
 
