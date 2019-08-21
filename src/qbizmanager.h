@@ -70,6 +70,7 @@ private:
 	bool Down_High_Check();
 	bool Down_Check();
 	bool Down_Check_5();
+	bool Down_Check_volume_5();
 	bool Down_Check_1h();
 	bool Down_Check_Red();
  	bool Down_Check_Red_5();
@@ -77,6 +78,7 @@ private:
 	bool Down_Check_Green_Front();
 	bool Down_High_Same();
 
+	bool Down_Add();
 
 	bool Up_Low_Check();
 	bool Up_Check();
