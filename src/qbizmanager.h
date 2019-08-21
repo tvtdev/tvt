@@ -45,7 +45,7 @@ public:
 	{
 		QString currentQty;
 		QString unrealisedRoePcnt;
-		QString lastPrice;
+		QString avgCostPrice;
 	};
 
 	struct struct_trade

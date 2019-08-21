@@ -19,28 +19,59 @@ void QBizManager::doTransfer(const QString & source)
 
 
 
-	if (my_postion.currentQty.toDouble() == 0)
+	if (my_postion.currentQty.toDouble() <= 0)
 	{
-		if (amount_buy.toDouble() >= amount_sell.toDouble()  && amount_buy.length() >= 6 && amount_sell.length() <= 5 && m_price_buy.length() == 0)
+		if ( amount_buy.length() >= 7  && m_price_buy.length() == 0)
 		{
-			//qDebug() << "Buy 1.";
+			
 			m_price_buy = price_buy;
+
+			if (my_postion.currentQty.toDouble() == 0)
+			{
+				if (amount_sell.length() >= 7 && m_price_sell.length() == 0)
+				{
+					m_price_sell = price_sell;
+					return;
+				}
+				if (price_sell < m_price_sell && m_price_sell.toDouble() - price_sell.toDouble() <= 12 && m_price_sell.length() != 0)
+				{
+					qDebug() << "Sell.";
+					QUrlQuery param;
+					QString price = QString::number(price_buy.toDouble() + 0.5, 'f', 1);
+					param.addQueryItem("price", price);
+					param.addQueryItem("symbol", "XBTUSD");
+					param.addQueryItem("orderQty", "1");
+					param.addQueryItem("side", "Sell");
+					param.addQueryItem("ordType", "Limit");
+					createOrder(param);
+					m_price_buy = "";
+					m_price_sell = "";
+				}
+				else
+				{
+					m_price_sell = "";
+				}
+
+				if (amount_sell.length() < 7)
+				{
+					m_price_sell = "";
+				}
+			}
 			return;
 		}
 		if (price_buy >m_price_buy && price_buy.toDouble() - m_price_buy.toDouble() <= 2 && m_price_buy.length() != 0)
 		{
 			qDebug() << "Buy.";
 			QUrlQuery param;
-			QString price = QString::number(price_sell.toDouble()+1 , 'f', 1);
+			QString price = QString::number(price_sell.toDouble() - 0.5 , 'f', 1);
 			param.addQueryItem("price", price);
 			param.addQueryItem("symbol", "XBTUSD");
-			param.addQueryItem("orderQty", "1");
+			param.addQueryItem("orderQty", "30");
 			param.addQueryItem("side", "Buy");
 			param.addQueryItem("ordType", "Limit");
 			createOrder(param);
 			m_price_buy = "";
 
-			cancelAllAfter();
 
 		}
 		else
@@ -48,14 +79,17 @@ void QBizManager::doTransfer(const QString & source)
 			m_price_buy = "";
 		}
 
+		if (amount_buy.length() < 7)
+		{
+			m_price_buy = "";
+		}
 
 	}
 	
-	if (my_postion.currentQty.toDouble() == 0)
+	if (my_postion.currentQty.toDouble() >= 0)
 	{
-		if (amount_sell.toDouble() >= amount_buy.toDouble()  && amount_sell.length() >= 6 && amount_buy.length() <= 5 && m_price_sell.length() == 0)
+		if ( amount_sell.length() >= 7  && m_price_sell.length() == 0)
 		{
-			//qDebug() << "Sell 21.";
 			m_price_sell = price_sell;
 			return;
 		}
@@ -63,32 +97,37 @@ void QBizManager::doTransfer(const QString & source)
 		{
 			qDebug() << "Sell.";
 			QUrlQuery param;
-			QString price = QString::number(price_buy.toDouble() - 1, 'f', 1);
+			QString price = QString::number(price_buy.toDouble() + 0.5 , 'f', 1);
 			param.addQueryItem("price", price);
 			param.addQueryItem("symbol", "XBTUSD");
-			param.addQueryItem("orderQty", "1");
+			param.addQueryItem("orderQty", "30");
 			param.addQueryItem("side", "Sell");
 			param.addQueryItem("ordType", "Limit");
 			createOrder(param);
 			m_price_buy = "";
 			m_price_sell = "";
-
-			cancelAllAfter();
 		}
 		else
 		{
 			m_price_sell = "";
 		}
+
+		if (amount_sell.length() < 7 )
+		{
+			m_price_sell = "";
+		}
 	}
-//	return;
+	return;
+
+
 	if (my_postion.currentQty.toDouble() > 0)
 	{
 		if (oneord == 1)
 			return;
 
-		qDebug() << "Sell.";
+	
 		QUrlQuery param;
-		QString price = QString::number(price_buy.toDouble() - 1, 'f', 1);
+		QString price = QString::number(price_buy.toDouble() + 5.5, 'f', 1);
 		param.addQueryItem("price", price);
 		param.addQueryItem("symbol", "XBTUSD");
 		param.addQueryItem("orderQty", "1");
@@ -109,9 +148,9 @@ void QBizManager::doTransfer(const QString & source)
 		if (oneord == 1)
 			return;
 
-		qDebug() << "Buy.";
+		
 		QUrlQuery param;
-		QString price = QString::number(price_sell.toDouble() + 1, 'f', 1);
+		QString price = QString::number(price_sell.toDouble() - 5.5, 'f', 1);
 		param.addQueryItem("price", price);
 		param.addQueryItem("symbol", "XBTUSD");
 		param.addQueryItem("orderQty", "1");
@@ -119,19 +158,13 @@ void QBizManager::doTransfer(const QString & source)
 		param.addQueryItem("ordType", "Limit");
 		createOrder(param);
 		m_price_buy = "";
+		m_price_sell = "";
 
 		cancelAllAfter();
 
 		oneord = 1;
 		m_TradeTimer_order.start();
 	}
-
-	/*	}
-		else
-		{
-			m_price_buy = "";
-		}
-*/
 
 
 	return;
@@ -444,7 +477,7 @@ void QBizManager::cancelOrder(QString orderId, QString clOrderId, QString commen
 void QBizManager::cancelAllAfter()
 {
 	QUrlQuery q;
-	q.addQueryItem("timeout", "60");
+	q.addQueryItem("timeout", "66000");
 	QHttpManager::GetInstance().query("POST", FUNCTION_cancelAllAfter_ORDER, q, REQUEST_CANCEL_ORDER, true);
 }
 
@@ -472,9 +505,6 @@ bool QBizManager::bitmex_bucketed(QString & source)
 	{
 		return  0;
 	}
-	//QEventLoop loop;
-	//QTimer::singleShot(1500, &loop, SLOT(quit()));
-	//loop.exec();
 	return  1;
 }
 
@@ -487,9 +517,6 @@ bool QBizManager::bitmex_bucketed_5(QString & source)
 	{
 		return  0;
 	}
-	//QEventLoop loop;
-	//QTimer::singleShot(1500, &loop, SLOT(quit()));
-	//loop.exec();
 	return  1;
 }
 
