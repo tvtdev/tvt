@@ -16,7 +16,7 @@ void QBizManager::doTransfer(const QString & source)
 	QString price_buy = buy_list.at(0).split(",").at(0);
 	QString amount_buy = buy_list.at(0).split(",").at(1);
 
-	Down_Check_volume_5();
+	
 	m_price = price_sell;
 	if (my_postion.currentQty.toDouble() == 0)
 	{
