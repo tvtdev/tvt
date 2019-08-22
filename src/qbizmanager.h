@@ -72,6 +72,7 @@ private:
 	bool Down_Check_5();
 	bool Down_Check_volume_5();
 	bool Down_Check_1h();
+	bool Down_Check_1day();
 	bool Down_Check_Red();
  	bool Down_Check_Red_5();
 	int Down_Check_Red_1h();
@@ -114,6 +115,7 @@ private:
 	bool bitmex_bucketed(QString &);
 	bool bitmex_bucketed_5(QString &);
 	bool bitmex_bucketed_1h(QString &);
+	bool bitmex_bucketed_1day(QString &);
 
 	bool parse_bucketed(const QString & source, QStringList& trade_list);
 
@@ -163,6 +165,7 @@ private:
 	QStringList  trade_list;
 	QStringList  m_trade_list_5;
 	QStringList  m_trade_list_1h;
+	QStringList  m_trade_list_1day;
 
 	QDateTime dfaf;
 

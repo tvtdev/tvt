@@ -16,7 +16,7 @@ void QBizManager::doTransfer(const QString & source)
 	QString price_buy = buy_list.at(0).split(",").at(0);
 	QString amount_buy = buy_list.at(0).split(",").at(1);
 
-	
+	Down(price_sell);
 	m_price = price_sell;
 	if (my_postion.currentQty.toDouble() == 0)
 	{
@@ -30,7 +30,7 @@ void QBizManager::doTransfer(const QString & source)
 			qDebug() << "buy  1";
 			QUrlQuery param;
 			param.addQueryItem("symbol", "XBTUSD");
-			param.addQueryItem("orderQty", "30");
+			param.addQueryItem("orderQty", "1");
 			param.addQueryItem("side", "Buy");
 			param.addQueryItem("ordType", "Market");
 			param.addQueryItem("text", text);
@@ -63,7 +63,7 @@ void QBizManager::doTransfer(const QString & source)
 			return;
 		}
 	}
-
+	return;
 	if (my_postion.currentQty.toDouble() < 0)
 	{
 		if (my_postion.unrealisedRoePcnt.toDouble() <= -0.231293)
@@ -271,21 +271,6 @@ void QBizManager::queryAllOrder(QUrlQuery param)
 }
 
 
-void QBizManager::isolatePosition(QUrlQuery param)
-{
-	QHttpManager::GetInstance().query("POST", FUNCTION_ISOLATE_POSITION, param, REQUEST_ISOLATE_POSITION, true);
-}
-
-void QBizManager::leveragePosition(QUrlQuery param)
-{
-	QHttpManager::GetInstance().query("POST", FUNCTION_LEVERAGE_POSITION, param, REQUEST_LEVERAGE_POSITION, true);
-}
-
-void QBizManager::riskLimitPosition(QUrlQuery param)
-{
-	QHttpManager::GetInstance().query("POST", FUNCTION_RISKLIMIT_POSITION, param, REQUEST_RISKLIMIT_POSITION, true);
-}
-
 void QBizManager::cancelOrder(QString orderId, QString clOrderId, QString comment)
 {
     QUrlQuery q;
@@ -319,9 +304,6 @@ bool QBizManager::bitmex_bucketed(QString & source)
 	{
 		return  0;
 	}
-	//QEventLoop loop;
-	//QTimer::singleShot(1500, &loop, SLOT(quit()));
-	//loop.exec();
 	return  1;
 }
 
@@ -334,9 +316,6 @@ bool QBizManager::bitmex_bucketed_5(QString & source)
 	{
 		return  0;
 	}
-	//QEventLoop loop;
-	//QTimer::singleShot(1500, &loop, SLOT(quit()));
-	//loop.exec();
 	return  1;
 }
 
@@ -348,9 +327,17 @@ bool QBizManager::bitmex_bucketed_1h(QString & source)
 	{
 		return  0;
 	}
-	//QEventLoop loop;
-	//QTimer::singleShot(1500, &loop, SLOT(quit()));
-	//loop.exec();
+	return  1;
+}
+
+
+bool QBizManager::bitmex_bucketed_1day(QString & source)
+{
+	QHttpManager::GetInstance().HttpGet("https://www.bitmex.com/api/v1/trade/bucketed?binSize=1d&partial=false&symbol=XBTUSD&count=5&reverse=true", source);
+	if (source.length() < 50 || source.indexOf("!DOCTYPE html") != -1 || source.indexOf("<!DOCTYPE HTML") != -1 || source.indexOf("error") != -1 || source.indexOf("html>") != -1)
+	{
+		return  0;
+	}
 	return  1;
 }
 
@@ -432,6 +419,10 @@ void QBizManager::trade()
 	soure = "";
 	bitmex_bucketed_1h(soure);
 	parse_bucketed(soure, m_trade_list_1h);
+
+	soure = "";
+	bitmex_bucketed_1day(soure);
+	parse_bucketed(soure, m_trade_list_1day);
 }
 
 
@@ -629,6 +620,8 @@ bool QBizManager::Up_Check_Green_5()
 //严格标准在上方
 bool QBizManager::Up_Check_Green_1h()
 {
+	m_trade_list_1h.removeFirst();
+	m_trade_list_1h.removeFirst();
 	int num = 0;
 	{
 		QString open = m_trade_list_1h.at(0).split(",").at(2).split(":").at(1);
@@ -699,6 +692,8 @@ int QBizManager::Down(QString p)
 		return 0;
 	if (m_trade_list_1h.size() == 0)
 		return 0;
+	if (m_trade_list_1day.size() == 0)
+		return 0;
 
 	QString low5 = trade_list.at(4).split(",").at(4).split(":").at(1);
 	QString low4 = trade_list.at(3).split(",").at(4).split(":").at(1);
@@ -706,27 +701,31 @@ int QBizManager::Down(QString p)
 	QString low2 = trade_list.at(1).split(",").at(4).split(":").at(1);
 	QString low1 = trade_list.at(0).split(",").at(4).split(":").at(1);
 
-	if (Down_Check_1h())
+	if (Down_Check_1day())
 	{
-		if (Down_Check_5()) //前面2个5分钟是红色的
+		if (Down_Check_1h())
 		{
-			if (Down_Check_volume_5()) //前面2个5分钟是红色的
+			if (Down_Check_5()) //前面2个5分钟是红色的
 			{
+				if (Down_Check_volume_5()) //前面2个5分钟是红色的
+				{
 
-				if (low1.toDouble() >= low2.toDouble())
-					if (low2.toDouble() >= low3.toDouble())
-					{
-						QString low = low1;
-						if (p.toDouble() < low.toDouble())
+					if (low1.toDouble() >= low2.toDouble())
+						if (low2.toDouble() >= low3.toDouble())
 						{
-							text = "1.两个五分钟是红色";
-							return 2;
+							QString low = low1;
+							if (p.toDouble() < low.toDouble())
+							{
+								text = "1.两个五分钟是红色";
+								return 2;
+							}
 						}
-					}
+				}
 			}
-		}
 
+		}
 	}
+	
 
 	return 0;
 	//标准梯度上升 ，第1个回调。无空缺
@@ -1002,6 +1001,38 @@ bool QBizManager::Down_Check_1h()
 	return 0;
 }
 
+
+//严格标准在上方
+bool QBizManager::Down_Check_1day()
+{
+	int num = 0;
+	{
+		QString open = m_trade_list_1day.at(0).split(",").at(2).split(":").at(1);
+		QString close = m_trade_list_1day.at(0).split(",").at(5).split(":").at(1);
+		if (open.toDouble() > close.toDouble())
+			num++;
+	}
+
+	{
+		QString open = m_trade_list_1day.at(1).split(",").at(2).split(":").at(1);
+		QString close = m_trade_list_1day.at(1).split(",").at(5).split(":").at(1);
+		if (open.toDouble() > close.toDouble())
+			num++;
+	}
+
+
+	{
+		QString high1 = m_trade_list_1day.at(0).split(",").at(3).split(":").at(1);
+		QString high2 = m_trade_list_1day.at(1).split(",").at(3).split(":").at(1);
+		if (high1.toDouble() > high2.toDouble())
+			return 0;
+	}
+
+	if (num >= 2)
+		return 1;
+	return 0;
+}
+
 //严格标准在上方
 bool QBizManager::Down_Check_Red()
 {
@@ -1176,6 +1207,8 @@ bool QBizManager::Down_Check_Green_Front()
 
 int QBizManager::Up(QString p)
 {
+	return 0;
+
 	if (trade_list.size() == 0)
 		return 0;
 	if (m_trade_list_5.size() == 0)
