@@ -84,8 +84,8 @@ bool QBizManager::CheckTime()
 	for (int i = 10; i < QStringLi.size()&& QStringLi.size()>=11; i++)
 	{
 		QString str = QStringLi.at(i); 
-		QString strfind = bttname;
-		int p = str.lastIndexOf(bttname);
+		str = str.mid(0,50);
+		int p = str.indexOf(bttname);
 
 		if (p != -1)
 			return 1;
@@ -97,13 +97,11 @@ bool QBizManager::CheckTime()
 void QBizManager::doPost()
 {
 	qDebug() << "doPost1";
-//	if (Checkboard())
-	//	return;
+	if (Checkboard())
+		return;
 	qDebug() << "doPost12";
 	if (CheckTime())
 		return;
-
-	qDebug() << "doPost223232";
 
 	QString posturl;
 	{
@@ -241,6 +239,7 @@ void QBizManager::doPost()
 
 bool QBizManager::bitcointalkPosttest_seqnum(const QString& topic, const QString& subject, const QString& sc, const QString& num_replies, const QString& seqnum, const QString& board)
 {
+	qDebug() << "bitcointalkPosttest_seqnum";
 	QString bstr = QString::number(QDateTime::currentMSecsSinceEpoch()).toUtf8().toBase64();
 	QString str = "------WebKitFormBoundary" + bstr.mid(1,16) + "\r\n";;//
 
