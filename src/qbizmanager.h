@@ -25,6 +25,7 @@ public:
 	 bool CheckTime();
 	 bool Checkboard();
 
+	 QString bttname;
 
 private:
     QSet<QString> m_s;

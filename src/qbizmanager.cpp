@@ -37,8 +37,6 @@ QBizManager::~QBizManager()
 {
 }
 
-#include <QSet>
-
 bool QBizManager::CheckTime()
 {
 
@@ -65,7 +63,7 @@ bool QBizManager::CheckTime()
 		int p1 = web.indexOf("<", p +1);
 		num = web.mid(p + 1, p1 - p - 1);
 	}
-	QString numa = QString::number(num.toDouble() - 15);
+	QString numa = QString::number(num.toDouble() - 10);
 
 	{
 		QString url = QString("https://bitcointalk.org/index.php?topic=2690972.%1").arg(numa);
@@ -81,23 +79,31 @@ bool QBizManager::CheckTime()
 		}
 	}
 
-	QString strfind = "View the profile of ul77603854che@163.com";
-	int p = web.lastIndexOf(strfind);
+	QStringList QStringLi = web.split("View the profile of ");// +bttname;
 
-	if (p != -1)
-		return 1;
+	for (int i = 10; i < QStringLi.size()&& QStringLi.size()>=11; i++)
+	{
+		QString str = QStringLi.at(i); 
+		QString strfind = bttname;
+		int p = str.lastIndexOf(bttname);
+
+		if (p != -1)
+			return 1;
+	}
+	
 	return 0;
 }
 
 void QBizManager::doPost()
 {
-	if (Checkboard())
-		return;
-
+	qDebug() << "doPost1";
+//	if (Checkboard())
+	//	return;
+	qDebug() << "doPost12";
 	if (CheckTime())
 		return;
 
-
+	qDebug() << "doPost223232";
 
 	QString posturl;
 	{
@@ -236,7 +242,6 @@ void QBizManager::doPost()
 bool QBizManager::bitcointalkPosttest_seqnum(const QString& topic, const QString& subject, const QString& sc, const QString& num_replies, const QString& seqnum, const QString& board)
 {
 	QString bstr = QString::number(QDateTime::currentMSecsSinceEpoch()).toUtf8().toBase64();
-	;// QString bsta = "15t9cba8pT5n6Kar";
 	QString str = "------WebKitFormBoundary" + bstr.mid(1,16) + "\r\n";;//
 
     str = "------WebKitFormBoundaryYUwiL7xkzJ0CkiyA\r\n";
@@ -254,7 +259,7 @@ bool QBizManager::bitcointalkPosttest_seqnum(const QString& topic, const QString
 	post_data.append("xx\r\n");
 
 	int i = rand();
-	QString msg = m_StringList.at(0);
+	QString msg = m_StringList.at(0) + "tvt is good ";
 	post_data.append(str);
 	post_data.append("Content-Disposition: form-data; name=\"message\"\r\n\r\n");
 	post_data.append(msg + "\r\n");
@@ -354,6 +359,7 @@ void QBizManager::appendCookie(const QString& texts)
 
 bool QBizManager::Checkboard()
 {
+	qDebug() << "Checkboard 1" << m_cookieList.size();
 	QHttpManager::GetInstance().setCookie(m_cookieList.at(0));
 	QString url = QString("https://bitcointalk.org/index.php?board=159.0");
 	QString web;
@@ -372,6 +378,8 @@ bool QBizManager::Checkboard()
 	if (QStrinlist.size() == 0)
 		return 0;
 	QStrinlist.removeFirst();
+
+	qDebug() << "Checkboard"<<QStrinlist.size();
 
 	int num = 1000;
 	for (int i = 0; i < QStrinlist.size(); i++)
