@@ -12,25 +12,18 @@ public:
 public:
     static   QHttpManager&							GetInstance(){static QHttpManager cbm;return cbm;}
 
-	bool HttpPost(const QString &url, const QByteArray &send, QString& web, QString sign = 0);
-    bool HttpPostSubmitTransfer(const QString &url,const QByteArray &send,QString& web,QString sign=0);
+    bool HttpPost(const QString &url,const QByteArray &send,QString& web,QString sign=0);
     bool HttpGet(const QString& url,QString& web);
-    bool HttpGetIp(const QString& url,QString& web);
 
-	bool HttpPost_bitcointalktest(const QString &url, const QByteArray &send, const QString &str, QString& web);
-	bool HttpPost_bitcointalk(const QString &url, const QByteArray &send, const QString &str,  QString& web);
-	bool HttpGet_bitcointalk(const QString& url, QString& web);
-
-	void setCookie(const QString & cookie)
+	void SetCookie(const QString & cookie)
 	{
 		m_Cookie = cookie;
 	}
 private:
-        bool onFinished(QString& web);
-		QString m_Cookie;
+	bool onFinished(QString& web);
+	QString m_Cookie;
 
-//QNetworkAccessManager* manager;
-
+	QNetworkAccessManager* _manager;
     QUrl m_url;
 };
 

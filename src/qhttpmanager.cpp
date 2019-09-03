@@ -3,19 +3,24 @@
 QHttpManager::QHttpManager( QObject *parent) :
     QObject(parent)
 {
+	 _manager = new QNetworkAccessManager();
+
 }
 
 bool QHttpManager::HttpGet(const QString& url,QString& web)
  {
     QNetworkAccessManager* manager = new QNetworkAccessManager();
     QNetworkRequest request;
-	QSslConfiguration sslConfig = request.sslConfiguration();
-	sslConfig.setPeerVerifyMode(QSslSocket::QueryPeer);
-	request.setSslConfiguration(sslConfig);
+    QSslConfiguration config;
+    config.setPeerVerifyMode(QSslSocket::VerifyNone);
+    config.setProtocol(QSsl::TlsV1_1);
+    request.setSslConfiguration(config);
 
     request.setUrl(QUrl(url));
     request.setRawHeader("Accept", "text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,*/*;q=0.8");
     request.setRawHeader("Accept-Language", "zh-CN,zh;q=0.8,en;q=0.6");
+	request.setRawHeader("User-Agent", "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/74.0.3729.108 Safari/537.36");
+	request.setRawHeader("Cookie", "__cfduid=dc3aa35b1442cd77ab20bd50c94668dca1555571431; LLXR=1555571440; LLXUR=64c01c5ec62b; Rfr=https%3A%2F%2Fyobit.net%2Fen%2F; wallet_check_hide_zero=0; localechaten=en; 665ed720d93d161f21b64e9eddab748e=1; localechatcn=en; locale=en; 7a5f1a51f1e0be737b068d11a1b96636=1; locale_chat=en; marketbase=doge; chartmode=12H; PHPSESSID=e8s9dgqcbipqt43dgkalh4rrc6; s1=f%2FOiwLVLe08kVdAOdggBseNPLpigqGW09x9c6FzpP%2F9hMum3bi%2Bg7ovgR6hKEFMnLsuvdony0FRApyMUcItCBkgycrTq5qOGiD4wMt06oia7M4q61CS3PgNWp8Srhcg2WyGkeCrxTq5FKI28DO%2FHuS4c1gwNSo%2FttExhqfPAJ8%2FsrhJQzWb5lfpH2MaFA%2FlGJjx2k%2FP2yvj1EU11K1IaejjPWI1P1O%2BT05YegzEikBmQgYtxIh0ec9gd3CNEXU60yOlPDB5vS8zI54bC714O9kOAH%2FYivORFeTojvCWdhWR4XwlSrSBMn1lMCjQp3pWJUEgOu%2FbfPlpGW%2F1sNugiiqL7XWCxz6InMFT12ySWOYRnZqttQ5E0YGLdxSmtgoXblbZ8nBlWDWFYO9JbqPPA%2FQ5b0G%2BNEDM7D1mL19pwfE%2B5IlhGFFonlQCOeXTw4XnIEMs%2FWVqfdBMUU9kzn7dmmx7ZIAd8vSF8BeVJflW3GbZLSHIxWc0HQscAq5MU3sfffbXQ5Lf%2BFcWpT3V%2FPmBFgz6JWhH90xcaLjwxX3YdC3T3J8jayQOUni8EueRHP3esg5i9Ud3iwJ%2F2uFDSnqJII%2FA7Pe%2BDgS7PeVkDqBpPPDfFMZ4%2FahYCJCIqm721hfTpwuVPCFhJt5vHy0jyFnpKecjwX1ERWoQ4RLoZWtiJ0A0%3D; s2=JBycAFUti77TOs4O0gQGia%2BuCpIrBT23lieyntQJopbLEGJCkhJVSwDUAttgxVfCqrZr8wN4yzlPHNziJNQ2txu5j5i7uYhEL6L3KeR7nnAnnqxN%2F7oxF0DNsvISwF8KBePNQtp8jbPBqW5KnGNR2Xr7c8N4oOtZcG00fmXNZWnDI%2Buh1YMWj05n4vp%2F0KwxkVIUmotLtPn024z86kD7QE7AqnOj120mkiOegKfm0uHp8HkkKBL1BcSLXSrZlyLLocAsUXucw5UypwThXxViZ3JNLebc2iIHW0v5lOeyWnLx4czT9ak9OpSs6ZFf3pi9rU2vKzvwIMvabaMSP787mtfqfL2ANrUDmaSoA73J%2Fpp1xIIHKMiFnO0bMjG2T2E9ShmoMj7ALp0EFxgma%2Brq8qs%2FMk5qApn8G5eVGtbUBIZKJ9GAvb5ZhxILhrhjSGfRgTTtETehQM38e%2FK51zvLkpKBTTclytuRh4K0g9NQN5j3YFRpJFQWpkGvE%2Bhe0C%2F3mSlpe2Sf5C%2Fo0JSlqtoLlEE2GmNyEPqjzKEAtHOAdh7JO8ZOVbGHj31jLdw0wZjhcqmK9zwL4zdkvh8SVYUcgWL5tUZj4skM%2F0P8RqRMoxa4ZzQtUMBivQFcFPK63xCl%2B54QSd3nsjZfrl4cxGATSxTIzARBEkhg7eFjV74K6VQ%3D");
     QNetworkReply *reply =    manager->get(request);
 
     QTimer timer;
@@ -36,24 +41,28 @@ bool QHttpManager::HttpGet(const QString& url,QString& web)
     return true;
  }
 
-bool QHttpManager::HttpPostSubmitTransfer(const QString &url,const QByteArray &send,QString& web,QString sign)
+bool QHttpManager::HttpPost(const QString &url,const QByteArray &send,QString& web,QString sign)
 {
-    QNetworkAccessManager* manager = new QNetworkAccessManager();
+	QNetworkAccessManager* manager = new QNetworkAccessManager();
+
     QNetworkRequest request;
-	QSslConfiguration sslConfig = request.sslConfiguration();
-	sslConfig.setPeerVerifyMode(QSslSocket::QueryPeer);
-	request.setSslConfiguration(sslConfig);
+    QSslConfiguration config;
+    config.setPeerVerifyMode(QSslSocket::VerifyNone);
+    config.setProtocol(QSsl::TlsV1_1);
+    request.setSslConfiguration(config);
 
 
-    request.setUrl(QUrl(url));
-    QString  ContentTypeHeader = "application/x-www-form-urlencoded; charset=UTF-8";
-    request.setHeader(QNetworkRequest::ContentTypeHeader,ContentTypeHeader);
-    request.setHeader(QNetworkRequest::ContentLengthHeader,send.length());
+	request.setUrl(QUrl(url));
+	QString  ContentTypeHeader = "application/x-www-form-urlencoded";
+	request.setHeader(QNetworkRequest::ContentTypeHeader, ContentTypeHeader);
+	request.setHeader(QNetworkRequest::ContentLengthHeader, send.length());
 	request.setRawHeader("Accept", "text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,*/*;q=0.8");
 	request.setRawHeader("Accept-Language", "zh-CN,zh;q=0.8,en;q=0.6");
-	//request.setRawHeader("Authorization", sign.toAscii());// "__RequestVerificationToken=CuO9KlS5yVnK2EzTfK9VJP9J4WUYW4M0l9GCV-JPu9J4NcEe8kDHnA4kNeOmVC8kBqCBeiQTXK0IhMUAxPbmfoXEnyKj1VvW0N5Ijg2lUWo1; nlbi_1244263=sI3SV/GTQ3Aku5c1Pnz9kwAAAADeoU4hlTdMW8X4J+1cJ3GR; incap_ses_485_1244263=oQ4FKbw8HzKpao6YfhG7Bhakp1kAAAAAwUqY7Iq/idNLqY53cJzM3A==; incap_ses_426_1244263=Mnr2L776eVCnAStk/3TpBWuop1kAAAAASKktHIWKvpf+fiAbXImm9A==; Cryptopia=RCKGvHWX3ts5dMlJCJAPL3Av2I8J_z9hgDyREiJzY6GJrR_JCQvSRMBnM_cwYB9NmhDKBoKx_oNSR0l1mmC5tZ1Dn5Rf6vmyo0I9Q0GOHx9JEXzhQuBuMM-OdO56oZ9MLzgm3tNWXeM8fzBEZSUswriUHniwGAAqIGHt8ndRWiInKlNP_2Mf1A5G5Qp8UECAxNWjP1gmgeTviNIRmk7aR4gqpwVvBAZ3ta1U5vWDems6pSy8JaxN59KhpyV5BrrG01JaCXVvI6toFjZp6JGEKCEkSnjCYk9UAOpw29zu377Jf9TVvFyObfMLs0V_nmPSt5zA66ug3KuXMAilZQGsHfR2og-AEQg03ddmDfeFbdCOhufo3tW0bk2FGQ5tLgw63P_IWDpAcOR-kNirQX4Q1iEgWKBLKVAKGGEVPZzW3g0-92vnRhshenRe8KGXpetz8nFkdqFlyZF6-T95gpFtrsMiS4-fC1nUcolpqEmX8N0wq-KTpcdcLO9Lk9EVil7OQczPiqvxecm2CujfZ4Lf4ylvg599Nl8sB4j9R3-tx7AJTvIHj_QoOWFKC-Xdf-QfVXh56GDXBtn1sFILs_EX-I0EOM08xY78IZ9pZx_Km8otfA9De3Ch_ibMwf7nN7XM19WtWo7Z9TXdcQoWN9lWyA; visid_incap_1244263=+bVT8gDhTDGl3O2DykbMxOAZmVkAAAAAQUIPAAAAAACDD0SSFvUVU3cf/RqyoS3s; incap_ses_265_1244263=Btwvffktmij8/RSk0HmtA4e5p1kAAAAA6gkgf9h+vJmD6QytPZWzMA==; __asc=b7a9557f15e372d5f3dd893c159; __auc=ce80168e1581a727645194e4178");
-	//request.setRawHeader("Cookie", "__RequestVerificationToken=CuO9KlS5yVnK2EzTfK9VJP9J4WUYW4M0l9GCV-JPu9J4NcEe8kDHnA4kNeOmVC8kBqCBeiQTXK0IhMUAxPbmfoXEnyKj1VvW0N5Ijg2lUWo1; nlbi_1244263=sI3SV/GTQ3Aku5c1Pnz9kwAAAADeoU4hlTdMW8X4J+1cJ3GR; incap_ses_485_1244263=oQ4FKbw8HzKpao6YfhG7Bhakp1kAAAAAwUqY7Iq/idNLqY53cJzM3A==; incap_ses_426_1244263=Mnr2L776eVCnAStk/3TpBWuop1kAAAAASKktHIWKvpf+fiAbXImm9A==; Cryptopia=RCKGvHWX3ts5dMlJCJAPL3Av2I8J_z9hgDyREiJzY6GJrR_JCQvSRMBnM_cwYB9NmhDKBoKx_oNSR0l1mmC5tZ1Dn5Rf6vmyo0I9Q0GOHx9JEXzhQuBuMM-OdO56oZ9MLzgm3tNWXeM8fzBEZSUswriUHniwGAAqIGHt8ndRWiInKlNP_2Mf1A5G5Qp8UECAxNWjP1gmgeTviNIRmk7aR4gqpwVvBAZ3ta1U5vWDems6pSy8JaxN59KhpyV5BrrG01JaCXVvI6toFjZp6JGEKCEkSnjCYk9UAOpw29zu377Jf9TVvFyObfMLs0V_nmPSt5zA66ug3KuXMAilZQGsHfR2og-AEQg03ddmDfeFbdCOhufo3tW0bk2FGQ5tLgw63P_IWDpAcOR-kNirQX4Q1iEgWKBLKVAKGGEVPZzW3g0-92vnRhshenRe8KGXpetz8nFkdqFlyZF6-T95gpFtrsMiS4-fC1nUcolpqEmX8N0wq-KTpcdcLO9Lk9EVil7OQczPiqvxecm2CujfZ4Lf4ylvg599Nl8sB4j9R3-tx7AJTvIHj_QoOWFKC-Xdf-QfVXh56GDXBtn1sFILs_EX-I0EOM08xY78IZ9pZx_Km8otfA9De3Ch_ibMwf7nN7XM19WtWo7Z9TXdcQoWN9lWyA; visid_incap_1244263=+bVT8gDhTDGl3O2DykbMxOAZmVkAAAAAQUIPAAAAAACDD0SSFvUVU3cf/RqyoS3s; incap_ses_265_1244263=Btwvffktmij8/RSk0HmtA4e5p1kAAAAA6gkgf9h+vJmD6QytPZWzMA==; __asc=b7a9557f15e372d5f3dd893c159; __auc=ce80168e1581a727645194e4178");
-    QNetworkReply *reply = manager->post(request,send);
+    request.setRawHeader("Sign", sign.toLatin1());
+    request.setRawHeader("Key", "4101DFE9BDF6F2DA27ED3D8D06A2F5C2");
+	request.setRawHeader("User-Agent", "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/74.0.3729.108 Safari/537.36");
+	//request.setRawHeader("Cookie", "__cfduid=dc3aa35b1442cd77ab20bd50c94668dca1555571431; LLXR=1555571440; LLXUR=64c01c5ec62b; Rfr=https%3A%2F%2Fyobit.net%2Fen%2F; wallet_check_hide_zero=0; localechaten=en; 665ed720d93d161f21b64e9eddab748e=1; localechatcn=en; locale=en; marketbase=doge; locale_chat=en; chartmode=12H; PHPSESSID=5vcc768ku87ehltqt1ki26cqm7; s1=GwqGY5Y9yxGOllPJrefNDM%2FOB9EBBy7DFdpgw7ywZ4cUBEIJ1A4ZO1mSjnCA6RqHIjuH2tlanBgoUnGUlAnh6HleGcPz5iKfzH6RpgdmR6vmo5YrWWIOstPQw%2BPv8%2BELaofFmSxbCBQPdyI6kF0RdWEbJjZh0TOk%2FvWHXRweUPuU4%2FJd6KKpR%2FO3Hilt7VtOFSTCXsUODPPVldd8is5dFxpPq8Lcr7eL6nCh%2FCNwHPr2Ty9uixL6vbg8YOyIB%2Fsl8gwv3VW0b3mpL01FRKwaBHLWYtD7BMowi5XmVZLFuYqCWr4ogxC8Z61AECNzzFSQlb7dT6BfE7R06XXkt1xGMdbqgVS5wcAV2%2F2wq2lWSvdoEigkSvBRE686pZNbeTIk%2FBe6xQU6uq0XTeMHeZbGpp6nBYUJjZxeDD5R7JhuPRV%2BhGnFfPYFQa4rCSkvZGKFi5KXndL13yEFg%2Fv2GnDO4wE%2BvKDRuZnHUl%2Fet5caGLsIuJgVfFxa6rFG6l5mWyMK0NSf8p67T%2F6smelEJ0JSCsoDO7cCA019KzbMOn5wtiF9QmJrQBJ1ytvtP8m%2FTrwaCiK0Fnj%2F0Qwn%2B8AUUfkUdWqw1vUMJ600Y62%2BTmYJe%2BbRKfO7yb0AXPHVMV%2BQKAUjwFp7G4aSCAaBmmln8%2FfBwpUQDxh7hx3QBC%2BVNUmBEuY%3D; s2=Qsofv7DNnrKj035yBVmZ9luHmr69NIVOK5LrP2hrb7Bk7tV56iRkFI65%2BhGve59uDAinuU7%2F9a6Llfg5S7UNlKDmTazwwLpYPvwzG%2Bz8Za5%2BuCd3pdMZPYyh48CPNWHwMbP%2BpafuWrB8dESPb3PiWmLOIeAarkFnNgZgJ0j9wzP2ZJ54AKSsT8YElD8g5rh%2FqU8MGtgYLoNANppP14nilHYy1IhjQFiEoDD3cMCQxoGGwojLFjT6O5QwPNFj3IjjFAY5TnjBmliTxI%2BxP43N1GRJAyvM2X4Cx0QBDyfdjJ396t4CHyAqwbdyDA8o9cNgwsXpLjE8nd9H6woz%2B3rzD%2BhWvohytz7IBrmXQsh2RkjBdbZxHWY0FxWAz3xpa51amMH5UuT7n8Uk7%2FXJqODY%2BOEuZ7v%2F2Sh7WbvhhKEFjoUULNJILAsWg7i23p4HPQ4S4Oun7t0%2FYEA2mOUTakXenGUyO7CrdUr1yiGNfzLfZkZT5viENNfeCDvpsty%2Bga2vxoPzLiUcBZ%2F3RHiko%2B1%2FJitdY39vjT5GGl46nRZkjpjxlqwY3KPep%2BzWPkqMpy9J0h3BEXzVxB6z0FXHNGBuL63mx%2BWEGrSliqTphxunVC6CRIdAJrSkS%2FeDSTTDg7gwktt1hTHtIhxBWO%2F5ijNYvonoEawDdQMUsflp0Xwz%2FZs%3D");
+	QNetworkReply *reply = manager->post(request, send);
 
     QTimer timer;
     timer.setSingleShot(true);
@@ -67,203 +76,16 @@ bool QHttpManager::HttpPostSubmitTransfer(const QString &url,const QByteArray &s
     web = QString(responseData);
     reply->close();
     reply->abort();
-    manager->deleteResource(request);
-    manager->deleteLater();
-    delete manager;
+	manager->deleteResource(request);
+	manager->deleteLater();
+	delete manager;
 
     return true;
 }
 
 
-bool QHttpManager::HttpPost(const QString &url, const QByteArray &send, QString& web, QString sign)
-{
-	QNetworkAccessManager* manager = new QNetworkAccessManager();
-	QNetworkRequest request(url);
-	QSslConfiguration sslConfig = request.sslConfiguration();
-	sslConfig.setPeerVerifyMode(QSslSocket::QueryPeer);
-	request.setSslConfiguration(sslConfig);
-
-;
-	QString  ContentTypeHeader = "application/x-www-form-urlencoded; charset=UTF-8";
-	request.setHeader(QNetworkRequest::ContentTypeHeader, ContentTypeHeader);
-	request.setHeader(QNetworkRequest::ContentLengthHeader, send.length());
-	request.setRawHeader("Accept", "text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,*/*;q=0.8");
-	request.setRawHeader("X-Requested-With", "XMLHttpRequest");
-	request.setRawHeader("User-Agent", "Mozilla/5.0 (Windows NT 10.0; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/56.0.2924.87 Safari/537.36");// "__RequestVerificationToken=CuO9KlS5yVnK2EzTfK9VJP9J4WUYW4M0l9GCV-JPu9J4NcEe8kDHnA4kNeOmVC8kBqCBeiQTXK0IhMUAxPbmfoXEnyKj1VvW0N5Ijg2lUWo1; nlbi_1244263=sI3SV/GTQ3Aku5c1Pnz9kwAAAADeoU4hlTdMW8X4J+1cJ3GR; incap_ses_485_1244263=oQ4FKbw8HzKpao6YfhG7Bhakp1kAAAAAwUqY7Iq/idNLqY53cJzM3A==; incap_ses_426_1244263=Mnr2L776eVCnAStk/3TpBWuop1kAAAAASKktHIWKvpf+fiAbXImm9A==; Cryptopia=RCKGvHWX3ts5dMlJCJAPL3Av2I8J_z9hgDyREiJzY6GJrR_JCQvSRMBnM_cwYB9NmhDKBoKx_oNSR0l1mmC5tZ1Dn5Rf6vmyo0I9Q0GOHx9JEXzhQuBuMM-OdO56oZ9MLzgm3tNWXeM8fzBEZSUswriUHniwGAAqIGHt8ndRWiInKlNP_2Mf1A5G5Qp8UECAxNWjP1gmgeTviNIRmk7aR4gqpwVvBAZ3ta1U5vWDems6pSy8JaxN59KhpyV5BrrG01JaCXVvI6toFjZp6JGEKCEkSnjCYk9UAOpw29zu377Jf9TVvFyObfMLs0V_nmPSt5zA66ug3KuXMAilZQGsHfR2og-AEQg03ddmDfeFbdCOhufo3tW0bk2FGQ5tLgw63P_IWDpAcOR-kNirQX4Q1iEgWKBLKVAKGGEVPZzW3g0-92vnRhshenRe8KGXpetz8nFkdqFlyZF6-T95gpFtrsMiS4-fC1nUcolpqEmX8N0wq-KTpcdcLO9Lk9EVil7OQczPiqvxecm2CujfZ4Lf4ylvg599Nl8sB4j9R3-tx7AJTvIHj_QoOWFKC-Xdf-QfVXh56GDXBtn1sFILs_EX-I0EOM08xY78IZ9pZx_Km8otfA9De3Ch_ibMwf7nN7XM19WtWo7Z9TXdcQoWN9lWyA; visid_incap_1244263=+bVT8gDhTDGl3O2DykbMxOAZmVkAAAAAQUIPAAAAAACDD0SSFvUVU3cf/RqyoS3s; incap_ses_265_1244263=Btwvffktmij8/RSk0HmtA4e5p1kAAAAA6gkgf9h+vJmD6QytPZWzMA==; __asc=b7a9557f15e372d5f3dd893c159; __auc=ce80168e1581a727645194e4178");
-	request.setRawHeader("Cookie", "__cfduid=d64baeeeb5d6789e5118e7f692664c2ba1477227437; _ym_uid=1477227447927562658; localechatcn=en; wallet_check_hide_zero=0; Rfr=https%3A%2F%2Fyobit.net%2Fen%2Ftrade%2FLIZI%2FBTC; localechaten=en; s1=ba7rbh1GXZIkKo7ytPhTEwb7%2FrlRjDa6uNMF2EABS2EDH5HD5fDk%2ByLnQPVk571t5wUCbIVjujFspRZKYwvp5csyop1RfdAKbWCmfQSgSuBthNjaisD%2F6BVxzCKcmqvEsRdY78XW0J1EuV0tpGwd6vhHnGSox9BdqELbflJkEG1EqGLI%2F1MOvEQZqhIskoDU43B4SF3c9rNoeCby7HSswli9LkTwvDBMbRz2KJOPfaho7HhaJ8M1B4PfUlb8RpoVoBFDxG8aakXsKDlOacgWyegiosW5k7xb6HBxraV1yWHvFhdSR2BBPIxPhoFqw4FkIShny1bwevZUfoNwdpTdmRPHCrazvpLOvbzBHvT10E9EPbKAks%2FwdhrcQ8GvdqF9SRsB33lgN%2BSpy1nluhCxk2uRqgwnDf5Bgwnx0xXe7nKlvVqCxbfhPzgv%2BJlOmxEjG5685v7X52SXjz16NeqjAtwvZ5VGCfq68YUKPi7FB%2FEVFAVeLZd8TgmFPOLZfDIMzJULiDHqCpkGVg3UVomb%2BeRAXuyrJNYy8kNDSo3%2B15zXXG9hrjSlQZxpOFVlszwJwo68P%2FAQtlNUbS3GXvN5W9ivvWv2XoKF3ig5AAJotcOFFsB0%2FozfeJcz3spBhYK36wGHA7Xhhlk6fkXnRiIXGtiz59kewlZjhZ%2B%2FjZ9aWYo%3D; s2=hMeAGJvgpOR36NAADZzBBwLurT%2BtqARhag7I%2FvyjSm64EH8NxBr7iJ3oaiRtouJRWDd5h%2BrA3H%2B0JHEm9JJyrQd6qcYcG0q1Z63q5GloAiN3GsgTxJJ7pP2Bxgowf8uDnAg5E2Nugoso1Lpsmyx1RDq9skopTtLGAvpmOnXBT0XsxcyOXtUob1iWsTH5SFnJEkwvaR0xCs3b75YthsZAbuiJ1AZjN48vTcs7jqK0cVAQx4UepOFs39pYo5pEi%2FMM18T6lVJcG5bYieukat6PMvrzFDb3CKF%2F%2FvWLsdeEjVKVFrPALuZTlnP%2FNsv0C16R5R1WNFwlc94JOd1tfopVuj14Sma7pMuzrtaLwguX3fnQD9IECS7Fu244ol47Mo4dOGaBxxwPMYqQJPGg%2B6%2Fx1rsszldMmOHE2YjB0xMVwI%2B%2BQR1NQ9mPZGICoewQawVspHRo2QQ6bmJr1YhaW%2Frd4r5GRx%2FhYyVFJifTLbjr9Vav41Mc9TdSvFYJy0ayYa5Ep37cRCGz9Oiu%2F16zKqxpkuHil%2BpCDc0zWE0nEKc2QnjSEF43YqLIZgWj5q%2F2zEu8%2BHlbO28R4Tat1F0fAMrla9WLvprGPrUJ4%2FvdScbr5UHSgORnMGwaq8cum%2BTnKNdXbXhDMu7%2FkG6fIqGvh6kHtCyVG%2BWEuzVGhHKXgBCFetk%3D; _ym_isad=2; PHPSESSID=na4pvh3r6m871k2ig0b3csc4q7; c8dd96f3214c7a26d09a8102aaf6b231=1; chartmode=12H; locale_chat=en; 378162cf9e770468623322b3db697142=1; locale=en; _ym_visorc_27854913=w");
-	QNetworkReply *reply = manager->post(request, send);
-
-	QTimer timer;
-	timer.setSingleShot(true);
-	QEventLoop loop;
-
-	QObject::connect(reply, SIGNAL(finished()), &loop, SLOT(quit()));
-	loop.exec();
-
-	QByteArray responseData;
-	responseData = reply->readAll();
-	web = QString(responseData);
-	reply->close();
-	reply->abort();
-	manager->deleteResource(request);
-	manager->deleteLater();
-	delete manager;
-
-	return true;
-}
-
 bool QHttpManager::onFinished(QString& web)
 {
-//    if (reply->error() == QNetworkReply::NoError) {
-//        int statusCode = reply->attribute(QNetworkRequest::HttpStatusCodeAttribute).toInt();
-//        switch (statusCode) {
-//            case 301:
-//            case 302:
-//            case 307:
-//                   {
-//                    QString redirect = reply->attribute(QNetworkRequest::RedirectionTargetAttribute).toUrl().toString();
-//                    if(redirect.indexOf("http://")==-1)
-//                    {
-//                        QString tmp= "http://www.beyond.com";
-//                        tmp += redirect;
-//                        redirect = tmp;
-//                    }
-//                    HttpGet(redirect,web);
-//        }
-//            break;
 
-//            case 200:
-//                QByteArray responseData;
-//                responseData =  reply->readAll();
-//                web = QString(responseData);
-//                reply->close();
-//                break;
-//        }
-//    }else if(reply->error()==QNetworkReply::UnknownNetworkError)
-//    {
-//        int e = reply->error();
-//         //murl ="net e";
-//    }else  if(reply->error()==QNetworkReply::ServiceUnavailableError)
-//    {
-//        int e = reply->error();
-//        // murl ="dd";
-//    }else
-//    {
-//        int e = reply->error();
-//    }
 	return 0;
-}
-
-
-
-
-bool QHttpManager::HttpPost_bitcointalk(const QString &url, const QByteArray &send, const QString &str, QString& web)
-{
-	QNetworkAccessManager* manager = new QNetworkAccessManager();
-	QNetworkRequest request(url);
-	QSslConfiguration sslConfig = request.sslConfiguration();
-	sslConfig.setPeerVerifyMode(QSslSocket::QueryPeer);
-	request.setSslConfiguration(sslConfig);
-	
-	request.setUrl(QUrl(url));
-	QString  ContentTypeHeader = "multipart/form-data; boundary=" +str.mid(2, str.length() - 4);
-	request.setHeader(QNetworkRequest::ContentTypeHeader, ContentTypeHeader);
-	request.setHeader(QNetworkRequest::ContentLengthHeader, send.length());
-	request.setRawHeader("Accept", "text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,*/*;q=0.8");
-	request.setRawHeader("User-Agent", "Mozilla/5.0 (Windows NT 10.0; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/56.0.2924.87 Safari/537.36");// "__RequestVerificationToken=CuO9KlS5yVnK2EzTfK9VJP9J4WUYW4M0l9GCV-JPu9J4NcEe8kDHnA4kNeOmVC8kBqCBeiQTXK0IhMUAxPbmfoXEnyKj1VvW0N5Ijg2lUWo1; nlbi_1244263=sI3SV/GTQ3Aku5c1Pnz9kwAAAADeoU4hlTdMW8X4J+1cJ3GR; incap_ses_485_1244263=oQ4FKbw8HzKpao6YfhG7Bhakp1kAAAAAwUqY7Iq/idNLqY53cJzM3A==; incap_ses_426_1244263=Mnr2L776eVCnAStk/3TpBWuop1kAAAAASKktHIWKvpf+fiAbXImm9A==; Cryptopia=RCKGvHWX3ts5dMlJCJAPL3Av2I8J_z9hgDyREiJzY6GJrR_JCQvSRMBnM_cwYB9NmhDKBoKx_oNSR0l1mmC5tZ1Dn5Rf6vmyo0I9Q0GOHx9JEXzhQuBuMM-OdO56oZ9MLzgm3tNWXeM8fzBEZSUswriUHniwGAAqIGHt8ndRWiInKlNP_2Mf1A5G5Qp8UECAxNWjP1gmgeTviNIRmk7aR4gqpwVvBAZ3ta1U5vWDems6pSy8JaxN59KhpyV5BrrG01JaCXVvI6toFjZp6JGEKCEkSnjCYk9UAOpw29zu377Jf9TVvFyObfMLs0V_nmPSt5zA66ug3KuXMAilZQGsHfR2og-AEQg03ddmDfeFbdCOhufo3tW0bk2FGQ5tLgw63P_IWDpAcOR-kNirQX4Q1iEgWKBLKVAKGGEVPZzW3g0-92vnRhshenRe8KGXpetz8nFkdqFlyZF6-T95gpFtrsMiS4-fC1nUcolpqEmX8N0wq-KTpcdcLO9Lk9EVil7OQczPiqvxecm2CujfZ4Lf4ylvg599Nl8sB4j9R3-tx7AJTvIHj_QoOWFKC-Xdf-QfVXh56GDXBtn1sFILs_EX-I0EOM08xY78IZ9pZx_Km8otfA9De3Ch_ibMwf7nN7XM19WtWo7Z9TXdcQoWN9lWyA; visid_incap_1244263=+bVT8gDhTDGl3O2DykbMxOAZmVkAAAAAQUIPAAAAAACDD0SSFvUVU3cf/RqyoS3s; incap_ses_265_1244263=Btwvffktmij8/RSk0HmtA4e5p1kAAAAA6gkgf9h+vJmD6QytPZWzMA==; __asc=b7a9557f15e372d5f3dd893c159; __auc=ce80168e1581a727645194e4178");
-	request.setRawHeader("Cookie", m_Cookie.toUtf8());
-	QNetworkReply *reply = manager->post(request, send);
-
-	QTimer timer;
-	timer.setSingleShot(true);
-	QEventLoop loop;
-
-	QObject::connect(reply, SIGNAL(finished()), &loop, SLOT(quit()));
-	loop.exec();
-
-	QByteArray responseData;
-	responseData = reply->readAll();
-	web = QString(responseData);
-	reply->close();
-	reply->abort();
-	manager->deleteResource(request);
-	manager->deleteLater();
-	delete manager;
-
-	return true;
-}
-
-
-bool QHttpManager::HttpGet_bitcointalk(const QString& url, QString& web)
-{
-	QNetworkAccessManager* manager = new QNetworkAccessManager();
-	QNetworkRequest request(url);
-	QSslConfiguration sslConfig = request.sslConfiguration();
-	sslConfig.setPeerVerifyMode(QSslSocket::QueryPeer);
-	request.setSslConfiguration(sslConfig);
-
-	request.setUrl(QUrl(url));
-	request.setRawHeader("Accept", "text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,*/*;q=0.8");
-	request.setRawHeader("Accept-Language", "zh-CN,zh;q=0.8,en;q=0.6");
-	request.setRawHeader("Cookie", m_Cookie.toUtf8());
-	QNetworkReply *reply = manager->get(request);
-
-	QTimer timer;
-	timer.setSingleShot(true);
-	QEventLoop loop;
-
-	QObject::connect(reply, SIGNAL(finished()), &loop, SLOT(quit()));
-	loop.exec();
-
-	QByteArray responseData;
-	responseData = reply->readAll();
-	web = QString(responseData);
-	reply->close();
-	reply->abort();
-
-	delete manager;
-
-	return true;
-}
-
-
-bool QHttpManager::HttpPost_bitcointalktest(const QString &url, const QByteArray &send, const QString &str, QString& web)
-{
-	QNetworkAccessManager* manager = new QNetworkAccessManager();
-	QNetworkRequest request(url);
-	QSslConfiguration sslConfig = request.sslConfiguration();
-	sslConfig.setPeerVerifyMode(QSslSocket::QueryPeer);
-	request.setSslConfiguration(sslConfig);
-
-	request.setUrl(QUrl(url));
-	QString  ContentTypeHeader = "multipart/form-data; boundary=" + str.mid(2, str.length() - 4);
-	request.setHeader(QNetworkRequest::ContentTypeHeader, ContentTypeHeader);
-	request.setHeader(QNetworkRequest::ContentLengthHeader, send.length());
-
-
-//	request.setRawHeader("Referer", "https://bitcointalk.org/index.php?action=post;topic=3643128.80;num_replies=82");
-
-	request.setRawHeader("Origin", "https://bitcointalk.org");
-	request.setRawHeader("Accept", "text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,*/*;q=0.8");
-	request.setRawHeader("User-Agent", "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/62.0.3202.62 Safari/537.36");// "__RequestVerificationToken=CuO9KlS5yVnK2EzTfK9VJP9J4WUYW4M0l9GCV-JPu9J4NcEe8kDHnA4kNeOmVC8kBqCBeiQTXK0IhMUAxPbmfoXEnyKj1VvW0N5Ijg2lUWo1; nlbi_1244263=sI3SV/GTQ3Aku5c1Pnz9kwAAAADeoU4hlTdMW8X4J+1cJ3GR; incap_ses_485_1244263=oQ4FKbw8HzKpao6YfhG7Bhakp1kAAAAAwUqY7Iq/idNLqY53cJzM3A==; incap_ses_426_1244263=Mnr2L776eVCnAStk/3TpBWuop1kAAAAASKktHIWKvpf+fiAbXImm9A==; Cryptopia=RCKGvHWX3ts5dMlJCJAPL3Av2I8J_z9hgDyREiJzY6GJrR_JCQvSRMBnM_cwYB9NmhDKBoKx_oNSR0l1mmC5tZ1Dn5Rf6vmyo0I9Q0GOHx9JEXzhQuBuMM-OdO56oZ9MLzgm3tNWXeM8fzBEZSUswriUHniwGAAqIGHt8ndRWiInKlNP_2Mf1A5G5Qp8UECAxNWjP1gmgeTviNIRmk7aR4gqpwVvBAZ3ta1U5vWDems6pSy8JaxN59KhpyV5BrrG01JaCXVvI6toFjZp6JGEKCEkSnjCYk9UAOpw29zu377Jf9TVvFyObfMLs0V_nmPSt5zA66ug3KuXMAilZQGsHfR2og-AEQg03ddmDfeFbdCOhufo3tW0bk2FGQ5tLgw63P_IWDpAcOR-kNirQX4Q1iEgWKBLKVAKGGEVPZzW3g0-92vnRhshenRe8KGXpetz8nFkdqFlyZF6-T95gpFtrsMiS4-fC1nUcolpqEmX8N0wq-KTpcdcLO9Lk9EVil7OQczPiqvxecm2CujfZ4Lf4ylvg599Nl8sB4j9R3-tx7AJTvIHj_QoOWFKC-Xdf-QfVXh56GDXBtn1sFILs_EX-I0EOM08xY78IZ9pZx_Km8otfA9De3Ch_ibMwf7nN7XM19WtWo7Z9TXdcQoWN9lWyA; visid_incap_1244263=+bVT8gDhTDGl3O2DykbMxOAZmVkAAAAAQUIPAAAAAACDD0SSFvUVU3cf/RqyoS3s; incap_ses_265_1244263=Btwvffktmij8/RSk0HmtA4e5p1kAAAAA6gkgf9h+vJmD6QytPZWzMA==; __asc=b7a9557f15e372d5f3dd893c159; __auc=ce80168e1581a727645194e4178");
-	request.setRawHeader("Cookie", m_Cookie.toUtf8());
-	QNetworkReply *reply = manager->post(request, send);
-
-	QTimer timer;
-	timer.setSingleShot(true);
-	QEventLoop loop;
-
-	QObject::connect(reply, SIGNAL(finished()), &loop, SLOT(quit()));
-	loop.exec();
-
-	QByteArray responseData;
-	responseData = reply->readAll();
-	web = QString(responseData);
-	reply->close();
-	reply->abort();
-	manager->deleteResource(request);
-	manager->deleteLater();
-	delete manager;
-
-	return true;
 }

@@ -1,4 +1,4 @@
-#ifndef QBIZMANAGER_H
+﻿#ifndef QBIZMANAGER_H
 #define QBIZMANAGER_H
 #include <QObject>
 #include "qhttpmanager.h"
@@ -8,53 +8,76 @@
 #include <QSet>
 
 
+
+
 class QBizManager : public QObject
 {
- Q_OBJECT
 public:
-    QBizManager( );
+	QBizManager();
 
-     ~QBizManager();
+	~QBizManager();
 public:
-     bool initDb();
-  
+	bool init();
+	//bool initBuy();
+	QString GetRate(int rate);
 
-	 bool bitcointalkPosttest_seqnum(const QString& topic, const QString& subject, const QString& sc, const QString& num_replies, const QString& seqnum, const QString& board);
-	 void doPost();
-	 void appendCookie(const QString& topic);
-	 bool CheckTime();
-	 bool Checkboard();
+	QString yobit_make_trade(const QString& price, const QString& amount, const QString& type,const QString & pair="tvt_doge");
+	QString yobit_ActiveOrders_List(int pair=0);
+	QString yobit_CancelOrder(const QString  & order);
+	QString yobit_CreateYobicode(const QString  & a);
 
-	 QString bttname;
+	QString yobit_getInfo();
+	bool yobit_depth(QString & source);
+	QString yobit_trades();
+	
+	int GetPriceInt(const QString & source);
+	QString GetBalance(const QString & bal,int price);
+	void doTransfer();
+	int doCancle(int type =0);
+	int doCancleAll(bool b= false);
 
+	int CancelVol(const QStringList& sell_list);
+	int CancelOrder_My(const QStringList& buy_list );
+	int CancelOrder_Mytwp(const QStringList& buy_list);
+
+	void GetBalance();
+
+	int GetPrice(const QString & source,  QStringList& buy_list, QStringList& sell_list);
+	double GenAmount();
+	int GetMaxOrder(const QStringList& buy_list);
+
+	int doBuyMax(const QStringList& buy_list, const QStringList& sell_list);
+	int GetMaxOrderBuy(const QStringList& buy_list);
+	double GetBuyMaxOrder(const QStringList& buy_list);
+	
+
+	int doBuy(const QStringList& buy_list,double );
+	int doBuyAll(const QStringList& buy_list);
+	void makeBuyOrder(const QString& buy_list);
+
+	//void doSell(const QStringList& buy_list);
+	void AddTradeVolume(const QStringList& buy_list, const  QStringList& sell_list,int vol=1);
+
+	void make_bids_eth(const QStringList& buy_list, const  QStringList& sell_list);
+
+	void AddTradeVolume_make_my(const QStringList& buy_list, const  QStringList& sell_list);
+
+	int Amount_Eth( const QStringList& buy_list);
+	void make_bids_doge(const QStringList& buy_list, const  QStringList& sell_list);
 private:
-    QSet<QString> m_s;
-    int tnum;
+	QString secret ;
+	QString m_doge_balance;
+	QString m_doge_balance_include;
+	QStringList m_buyList;
+    
+	double m_oenoen;
+	int   m_cancleAll;
 
-
-
-    QString accessKey;//= "abf17cf7-c12b-4075-9652-3590f4c9b6c5";
-    QString secretKey;//= "fdfbc556-3f5d-477c-b8d1-9c4248930878";
-
-
-    QString apiKey;// = "3644892";
-    QString secret_key;//= "654EEF232C3A0C168B0219B919FFBE8F";
-
-    QString m_amount;
-    QString m_qujian;
-
-public:
-    bool  bok;
-    bool  bhuobi;
-
-	QStringList m_StringList;
-
-	QStringList m_cookieList;
-	int m_cookienum;
-
+	double m_dogeea;
 
 };
 
 
 
 #endif // QBIZMANAGER_H
+
