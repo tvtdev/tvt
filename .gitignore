@@ -13,3 +13,4 @@ bitmex.*
 tvt/*
 .vs
 .qmake.stash
+Win32/
