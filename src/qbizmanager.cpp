@@ -841,6 +841,7 @@ int QBizManager::Amount_Eth( const QStringList& buy_list)
 		total += amount.toDouble();
 	}
 	return total;
+
 }
 
 
