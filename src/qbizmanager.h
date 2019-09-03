@@ -40,6 +40,9 @@ public:
 	int CancelOrder_My(const QStringList& buy_list );
 	int CancelOrder_Mytwp(const QStringList& buy_list);
 
+	int CancelOrder_low(const QStringList& buy_list);
+	int total_Order_low(const QStringList orders_list, const QStringList& buy_list);
+
 	void GetBalance();
 
 	int GetPrice(const QString & source,  QStringList& buy_list, QStringList& sell_list);
