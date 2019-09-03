@@ -71,6 +71,7 @@ private:
 	bool Down_Check();
 	bool Down_Check_5();
 	bool Down_Check_volume_5();
+	bool Down_Check_volume_1h();
 	bool Down_Check_1h();
 	bool Down_Check_1day();
 	bool Down_Check_Red();
