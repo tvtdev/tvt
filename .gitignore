@@ -4,12 +4,15 @@ src/qhttpmanager.h
 src/main.cpp
 src/*.txt
 debug/
+debug/*
 enc_temp_folder/
 release/
 x64/
+x64/*
 v
 v.*
 bitmex.*
 tvt/*
 .vs
 .qmake.stash
+Win32/
