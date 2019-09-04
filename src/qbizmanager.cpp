@@ -579,6 +579,83 @@ bool QBizManager::Up_Check_1h()
 	return 0;
 }
 
+
+
+
+
+//严格标准在上方
+bool QBizManager::Up_Check_volume_1h()
+{
+	if (m_trade_list_5.size() == 0)
+		return 0;
+
+	QString volume9 = m_trade_list_1h.at(8).split(",").at(7).split(":").at(1);
+	QString volume8 = m_trade_list_1h.at(7).split(",").at(7).split(":").at(1);
+	QString volume7 = m_trade_list_1h.at(6).split(",").at(7).split(":").at(1);
+	QString volume6 = m_trade_list_1h.at(5).split(",").at(7).split(":").at(1);
+	QString volume5 = m_trade_list_1h.at(4).split(",").at(7).split(":").at(1);
+	QString volume4 = m_trade_list_1h.at(3).split(",").at(7).split(":").at(1);
+	QString volume3 = m_trade_list_1h.at(2).split(",").at(7).split(":").at(1);
+	QString volume2 = m_trade_list_1h.at(1).split(",").at(7).split(":").at(1);
+	QString volume1 = m_trade_list_1h.at(0).split(",").at(7).split(":").at(1);
+
+	if (volume1.toDouble() > 200000000)
+		return 0;
+
+	if (volume2.toDouble() > 200000000)
+		return 0;
+
+	if (volume3.toDouble() > 200000000)
+		return 0;
+
+	if (volume4.toDouble() > 200000000)
+		return 0;
+
+	if (volume5.toDouble() > 200000000)
+		return 0;
+
+	if (volume6.toDouble() > 200000000)
+		return 0;
+	return 1;
+}
+
+
+//严格标准在上方
+bool QBizManager::Up_Check_volume_5()
+{
+	if (m_trade_list_5.size() == 0)
+		return 0;
+
+	QString volume9 = m_trade_list_1h.at(8).split(",").at(7).split(":").at(1);
+	QString volume8 = m_trade_list_1h.at(7).split(",").at(7).split(":").at(1);
+	QString volume7 = m_trade_list_1h.at(6).split(",").at(7).split(":").at(1);
+	QString volume6 = m_trade_list_1h.at(5).split(",").at(7).split(":").at(1);
+	QString volume5 = m_trade_list_1h.at(4).split(",").at(7).split(":").at(1);
+	QString volume4 = m_trade_list_1h.at(3).split(",").at(7).split(":").at(1);
+	QString volume3 = m_trade_list_1h.at(2).split(",").at(7).split(":").at(1);
+	QString volume2 = m_trade_list_1h.at(1).split(",").at(7).split(":").at(1);
+	QString volume1 = m_trade_list_1h.at(0).split(",").at(7).split(":").at(1);
+
+	if (volume1.toDouble() > 200000000)
+		return 0;;
+
+	if (volume2.toDouble() > 200000000)
+		return 0;;
+
+	if (volume3.toDouble() > 200000000)
+		return 0;;
+
+	if (volume4.toDouble() > 200000000)
+		return 0;;
+
+	if (volume5.toDouble() > 200000000)
+		return 0;;
+
+	if (volume6.toDouble() > 200000000)
+		return 0;
+	return 1;
+}
+
 //严格标准在上方
 bool QBizManager::Up_Check_Red()
 {
@@ -1040,22 +1117,22 @@ bool QBizManager::Down_Check_volume_1h()
 	QString volume2 = m_trade_list_1h.at(1).split(",").at(7).split(":").at(1);
 	QString volume1 = m_trade_list_1h.at(0).split(",").at(7).split(":").at(1);
 
-	if (volume1.toDouble() > 200000000)
+	if (volume1.toDouble() > 300000000)
 		return 0;;
 
-	if (volume2.toDouble() > 200000000)
+	if (volume2.toDouble() > 300000000)
 		return 0;;
 
-	if (volume3.toDouble() > 200000000)
+	if (volume3.toDouble() > 300000000)
 		return 0;;
 
-	if (volume4.toDouble() > 200000000)
+	if (volume4.toDouble() > 300000000)
 		return 0;;
 
-	if (volume5.toDouble() > 200000000)
+	if (volume5.toDouble() > 300000000)
 		return 0;;
 
-	if (volume6.toDouble() > 200000000)
+	if (volume6.toDouble() > 300000000)
 		return 0;
 	return 1;
 }
@@ -1310,17 +1387,23 @@ int QBizManager::Up(QString p)
 			qDebug() << "Up_Check_1h  2";
 			if (Up_Check_5())//5分钟行情  一致
 			{
-				qDebug() << "Up_Check_1h  2";
-				if (high3.toDouble() >= high2.toDouble())
-					if (high2.toDouble() >= high1.toDouble())
+				if (Up_Check_volume_1h()) //前面2个5分钟是红色的
+				{
+					if (Up_Check_volume_5()) //前面2个5分钟是红色的
 					{
-						QString high = high1;
-						if (p.toDouble() > high1.toDouble())
-						{
-							text = "1.五分钟绿色两个";
-							return 2;
-						}
+						qDebug() << "Up_Check_1h  2";
+						if (high3.toDouble() >= high2.toDouble())
+							if (high2.toDouble() >= high1.toDouble())
+							{
+								QString high = high1;
+								if (p.toDouble() > high1.toDouble())
+								{
+									text = "1.五分钟绿色两个";
+									return 2;
+								}
+							}
 					}
+				}
 			}
 		}
 	}
