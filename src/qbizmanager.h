@@ -86,6 +86,7 @@ private:
 	bool Up_Check();
 	bool Up_Check_5();
 	bool Up_Check_1h();
+	bool Up_Check_1day();
 	bool Up_Check_Green_5();
 	bool Up_Check_Green_1h();
 	bool Up_Check_Red();

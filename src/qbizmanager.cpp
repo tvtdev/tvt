@@ -653,8 +653,6 @@ bool QBizManager::Up_Check_Green_5()
 //严格标准在上方
 bool QBizManager::Up_Check_Green_1h()
 {
-	//m_trade_list_1h.removeFirst();
-	//m_trade_list_1h.removeFirst();
 	int num = 0;
 	{
 		QString open = m_trade_list_1h.at(0).split(",").at(2).split(":").at(1);
@@ -663,42 +661,47 @@ bool QBizManager::Up_Check_Green_1h()
 			num++;
 	}
 
+
+
 	{
-		QString low1 = m_trade_list_1h.at(0).split(",").at(4).split(":").at(1);
-		QString low2 = m_trade_list_1h.at(1).split(",").at(4).split(":").at(1);
-		if (low1.toDouble() < low2.toDouble())
+		QString open = m_trade_list_1h.at(1).split(",").at(2).split(":").at(1);
+		QString close = m_trade_list_1h.at(1).split(",").at(5).split(":").at(1);
+		if (open.toDouble() < close.toDouble())
+			num++;
+	}
+
+	{
+		QString open = m_trade_list_1h.at(2).split(",").at(2).split(":").at(1);
+		QString close = m_trade_list_1h.at(2).split(",").at(5).split(":").at(1);
+		if (open.toDouble() < close.toDouble())
+			num++;
+	}
+
+	{
+		QString open = m_trade_list_1h.at(3).split(",").at(2).split(":").at(1);
+		QString close = m_trade_list_1h.at(3).split(",").at(5).split(":").at(1);
+		if (open.toDouble() > close.toDouble())
+			num++;
+	}
+
+	{
+		QString open = m_trade_list_1h.at(4).split(",").at(2).split(":").at(1);
+		QString close = m_trade_list_1h.at(4).split(",").at(5).split(":").at(1);
+		if (open.toDouble() > close.toDouble())
+			num++;
+	}
+
+
+
+	{
+		QString high1 = m_trade_list_1h.at(1).split(",").at(3).split(":").at(1);
+		QString high2 = m_trade_list_1h.at(2).split(",").at(3).split(":").at(1);
+		if (high1.toDouble() < high2.toDouble())
 			return 0;
 	}
 
-	//{
-	//	QString open = m_trade_list_5.at(1).split(",").at(2).split(":").at(1);
-	//	QString close = m_trade_list_5.at(1).split(",").at(5).split(":").at(1);
-	//	if (open.toDouble() < close.toDouble())
-	//		num++;
-	//}
 
-	//{
-	//	QString open = m_trade_list_5.at(2).split(",").at(2).split(":").at(1);
-	//	QString close = m_trade_list_5.at(2).split(",").at(5).split(":").at(1);
-	//	if (open.toDouble() < close.toDouble())
-	//		num++;
-	//}
-
-	//{
-	//	QString open = m_trade_list_5.at(3).split(",").at(2).split(":").at(1);
-	//	QString close = m_trade_list_5.at(3).split(",").at(5).split(":").at(1);
-	//	if (open.toDouble() > close.toDouble())
-	//		num++;
-	//}
-
-	//{
-	//	QString open = m_trade_list_5.at(4).split(",").at(2).split(":").at(1);
-	//	QString close = m_trade_list_5.at(4).split(",").at(5).split(":").at(1);
-	//	if (open.toDouble() > close.toDouble())
-	//		num++;
-	//}
-
-	if (num >= 1)
+	if (num >= 2)
 		return 1;
 
 	return 0;
@@ -1301,6 +1304,7 @@ int QBizManager::Up(QString p)
 	
 	if (Up_Check_1day()) //1小时 行情
 	{
+		qDebug() << "Up_Check_1day  2";
 		if (Up_Check_1h()) //1小时 行情
 		{
 			qDebug() << "Up_Check_1h  2";
