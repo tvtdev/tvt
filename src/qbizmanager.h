@@ -59,7 +59,7 @@ public:
 	void doTransfer(const QString & source);
 	void GetPostion(const QString & source);
 	void GetVolume(const QString & source);
-
+	void doTrade(const QString & source);
 private:
 	int Sell_Amount_Up();
 	int Sell_Amount_Down();
@@ -179,6 +179,8 @@ private:
 	QString text;
 
 	QString m_price;
+
+	int nummt;
 };
 
 #endif // BITMEXWEBSOCKETCLIENT_H

@@ -16,33 +16,49 @@ void QBizManager::doTransfer(const QString & source)
 	QString price_buy = buy_list.at(0).split(",").at(0);
 	QString amount_buy = buy_list.at(0).split(",").at(1);
 
-	//Up(price_sell);
 	m_price = price_sell;
-	if (my_postion.currentQty.toDouble() == 0)
+
 	{
 		int ret_up = Up(price_sell);
 		int ret_down = Down(price_sell);
 
-		if (ret_up == 2)
 		{
-			if (oneord == 1)
-					return;		
-			qDebug() << "buy  1";
-			QUrlQuery param;
-			param.addQueryItem("symbol", "XBTUSD");
-			param.addQueryItem("orderQty", "1");
-			param.addQueryItem("side", "Buy");
-			param.addQueryItem("ordType", "Market");
-			param.addQueryItem("text", text);
-			createOrder(param);
+			if (amount_buy.length() <= 6 && amount_sell.length() <= 6)
+			{
+				nummt++;
+			}
 
-			m_price_buy = "";
-			text = "";
-			oneord = 1;
-			m_TradeTimer_order.start();
-			return;			
+
+			if (amount_buy.length() >= 7 || amount_sell.length() >= 7)
+			{
+				nummt = 0;
+			}
+
+
+			if (nummt > 6)
+			{
+				text = "amount < 6";
+				if (oneord == 1)
+					return;
+				qDebug() << "buy  1";
+				QUrlQuery param;
+				param.addQueryItem("symbol", "XBTUSD");
+				param.addQueryItem("orderQty", "1");
+				param.addQueryItem("side", "Buy");
+				param.addQueryItem("ordType", "Market");
+				param.addQueryItem("text", text);
+				createOrder(param);
+
+				m_price_buy = "";
+				text = "";
+				oneord = 1;
+				m_TradeTimer_order.start();
+				return;
+			}
+
 		}
-		
+		return;
+
 		if (ret_down == 2)
 		{
 			if (oneord == 1)
@@ -62,6 +78,33 @@ void QBizManager::doTransfer(const QString & source)
 			m_TradeTimer_order.start();
 			return;
 		}
+
+		if (ret_down == 3)
+		{
+			if (amount_buy.length() <= 6 && amount_sell.length() <= 6)
+			{
+				text = "amount < 6";
+				if (oneord == 1)
+					return;
+
+				qDebug() << "sell  1";
+				QUrlQuery param;
+				param.addQueryItem("symbol", "XBTUSD");
+				param.addQueryItem("orderQty", "1");
+				param.addQueryItem("side", "Sell");
+				param.addQueryItem("ordType", "Market");
+				param.addQueryItem("text", text);
+				createOrder(param);
+				m_price_buy = "";
+				text = "";
+				oneord = 1;
+				m_TradeTimer_order.start();
+			}
+			return;
+		}
+
+	
+
 	}
 	return;
 	if (my_postion.currentQty.toDouble() < 0)
@@ -189,6 +232,7 @@ QBizManager::QBizManager()
 
 	 oneord = 0;
 	 oneordfdsf = 0;
+	 numm = 0;
 	 
 }
 
@@ -223,7 +267,10 @@ void QBizManager::textMessageReceived(const QString &message)
 					m_pingTimer.start();
 					m_webSocket.sendTextMessage(QString(R"({"op": "subscribe", "args": ["orderBook10:XBTUSD"]})"));
 					m_webSocket.sendTextMessage(QString(R"({"op": "subscribe", "args": ["position"]})"));
-					m_webSocket.sendTextMessage(QString(R"({"op": "subscribe", "args": ["tradeBin1m:XBTUSD"]})"));					
+					m_webSocket.sendTextMessage(QString(R"({"op": "subscribe", "args": ["tradeBin1m:XBTUSD"]})"));	
+					m_webSocket.sendTextMessage(QString(R"({"op": "subscribe", "args": ["trade:XBTUSD"]})"));
+
+
 				}
 			}
 		}
@@ -242,6 +289,12 @@ void QBizManager::textMessageReceived(const QString &message)
 			if (message.indexOf("orderBook10") != -1)
 			{
 				doTransfer(message);
+			}
+			else
+
+			if (message.indexOf("trade") != -1)
+			{
+				doTrade(message);
 			}
 		}
 	}
@@ -342,6 +395,25 @@ bool QBizManager::bitmex_bucketed_1day(QString & source)
 }
 
 void QBizManager::GetPostion(const QString & source )
+{
+	{
+		QJsonDocument jDoc = QJsonDocument::fromJson(source.toUtf8());
+		QJsonObject jObj = jDoc.object();
+		if (!jObj.isEmpty())
+		{
+			auto jObjmap = jObj.toVariantMap();
+			auto data = jObjmap["data"].toList();
+			if (data.size() == 0)
+				return;
+			auto dataMap = data.at(0);
+			my_postion.currentQty = dataMap.toMap().value("currentQty").toString();
+			my_postion.unrealisedRoePcnt = dataMap.toMap().value("unrealisedRoePcnt").toString();
+		}
+	}
+}
+
+
+void QBizManager::doTrade(const QString & source)
 {
 	{
 		QJsonDocument jDoc = QJsonDocument::fromJson(source.toUtf8());
@@ -538,6 +610,7 @@ bool QBizManager::Up_Check_5()
 //严格标准在上方
 bool QBizManager::Up_Check_1day()
 {
+	return 1;
 	int num = 0;
 	{
 		QString open = m_trade_list_1day.at(0).split(",").at(2).split(":").at(1);
@@ -808,6 +881,7 @@ int QBizManager::Down(QString p)
 	if (m_trade_list_1day.size() == 0)
 		return 0;
 
+	int ret = 0;
 	QString low5 = trade_list.at(4).split(",").at(4).split(":").at(1);
 	QString low4 = trade_list.at(3).split(",").at(4).split(":").at(1);
 	QString low3 = trade_list.at(2).split(",").at(4).split(":").at(1);
@@ -816,8 +890,10 @@ int QBizManager::Down(QString p)
 
 	if (Down_Check_1day())
 	{
+		ret = 3;
 		if (Down_Check_1h())
 		{
+			ret = 4;
 			if (Down_Check_5()) //前面2个5分钟是红色的
 			{
 				if (Down_Check_volume_1h()) //前面2个5分钟是红色的
@@ -844,7 +920,7 @@ int QBizManager::Down(QString p)
 	}
 	
 
-	return 0;
+	return ret;
 	//标准梯度上升 ，第1个回调。无空缺
 	if (Up_Low_Check())
 	{
@@ -1163,6 +1239,7 @@ bool QBizManager::Down_Check_1h()
 //严格标准在上方
 bool QBizManager::Down_Check_1day()
 {
+	return 1;
 	int num = 0;
 	{
 		QString open = m_trade_list_1day.at(0).split(",").at(2).split(":").at(1);
@@ -1374,6 +1451,7 @@ int QBizManager::Up(QString p)
 	if (m_trade_list_1day.size() == 0)
 		return 0;
 
+	int ret = 0;
 	QString high4 = trade_list.at(3).split(",").at(3).split(":").at(1);
 	QString high3 = trade_list.at(2).split(",").at(3).split(":").at(1);
 	QString high2 = trade_list.at(1).split(",").at(3).split(":").at(1);
@@ -1381,9 +1459,11 @@ int QBizManager::Up(QString p)
 	
 	if (Up_Check_1day()) //1小时 行情
 	{
+		ret = 3;
 		qDebug() << "Up_Check_1day  2";
 		if (Up_Check_1h()) //1小时 行情
 		{
+			ret = 4;
 			qDebug() << "Up_Check_1h  2";
 			if (Up_Check_5())//5分钟行情  一致
 			{
@@ -1408,7 +1488,7 @@ int QBizManager::Up(QString p)
 		}
 	}
 	
-	return 0;
+	return ret;
 	
 	if (Up_Check_1h())
 	{
