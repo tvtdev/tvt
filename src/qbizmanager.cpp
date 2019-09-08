@@ -18,174 +18,51 @@ void QBizManager::doTransfer(const QString & source)
 
 	m_price = price_sell;
 
+	
+	
+
+		
+	if (amount_buy.length() <= 6 && amount_sell.length() <= 6)
 	{
-		int ret_up = Up(price_sell);
-		int ret_down = Down(price_sell);
-
-		{
-			if (amount_buy.length() <= 6 && amount_sell.length() <= 6)
-			{
-				nummt++;
-			}
+		nummt++;
+	}
 
 
-			if (amount_buy.length() >= 7 || amount_sell.length() >= 7)
-			{
-				nummt = 0;
-			}
+	if (amount_buy.length() >= 7 || amount_sell.length() >= 7)
+	{
+		nummt = 0;
+	}
 
 
-			if (nummt > 6)
-			{
-				text = "amount < 6";
-				if (oneord == 1)
-					return;
-				qDebug() << "buy  1";
-				QUrlQuery param;
-				param.addQueryItem("symbol", "XBTUSD");
-				param.addQueryItem("orderQty", "1");
-				param.addQueryItem("side", "Buy");
-				param.addQueryItem("ordType", "Market");
-				param.addQueryItem("text", text);
-				createOrder(param);
+	if (nummt > 6)
+	{
 
-				m_price_buy = "";
-				text = "";
-				oneord = 1;
-				m_TradeTimer_order.start();
-				return;
-			}
+		int ret = Side();
 
-		}
-		return;
-
-		if (ret_down == 2)
-		{
-			if (oneord == 1)
-				return;
-
-			qDebug() << "sell  1";
-			QUrlQuery param;
-			param.addQueryItem("symbol", "XBTUSD");
-			param.addQueryItem("orderQty", "1");
+		text = "amount < 6";
+		if (oneord == 1)
+			return;
+		qDebug() << "buy  1";
+		QUrlQuery param;
+		param.addQueryItem("symbol", "XBTUSD");
+		param.addQueryItem("orderQty", "1");
+		if (ret == 1)
 			param.addQueryItem("side", "Sell");
-			param.addQueryItem("ordType", "Market");
-			param.addQueryItem("text", text);
-			createOrder(param);
-			m_price_buy = "";
-			text = "";
-			oneord = 1;
-			m_TradeTimer_order.start();
-			return;
-		}
+		else if (ret == 2)
+			param.addQueryItem("side", "Buy"); 
 
-		if (ret_down == 3)
-		{
-			if (amount_buy.length() <= 6 && amount_sell.length() <= 6)
-			{
-				text = "amount < 6";
-				if (oneord == 1)
-					return;
+		param.addQueryItem("ordType", "Market");
+		param.addQueryItem("text", text);
+		createOrder(param);
 
-				qDebug() << "sell  1";
-				QUrlQuery param;
-				param.addQueryItem("symbol", "XBTUSD");
-				param.addQueryItem("orderQty", "1");
-				param.addQueryItem("side", "Sell");
-				param.addQueryItem("ordType", "Market");
-				param.addQueryItem("text", text);
-				createOrder(param);
-				m_price_buy = "";
-				text = "";
-				oneord = 1;
-				m_TradeTimer_order.start();
-			}
-			return;
-		}
-
+		m_price_buy = "";
+		text = "";
+		oneord = 1;
+		m_TradeTimer_order.start();
+		return;		
 	
-
-	}
-	return;
-	if (my_postion.currentQty.toDouble() < 0)
-	{
-		if (my_postion.unrealisedRoePcnt.toDouble() <= -0.231293)
-		{			
-			//int ret_down = Down_Add();
-
-		//	if (ret_down == 2)
-			{
-				if (oneord == 1)
-					return;
-				text = "down add";
-				qDebug() << "sell  1";
-				QUrlQuery param;
-				param.addQueryItem("symbol", "XBTUSD");
-				param.addQueryItem("orderQty", "1");
-				param.addQueryItem("side", "Sell");
-				param.addQueryItem("ordType", "Market");
-				param.addQueryItem("text", text);
-				createOrder(param);
-				m_price_buy = "";
-				text = "";
-				oneord = 1;
-				m_TradeTimer_order.start();
-				return;
-			}
-		}
 	}
 
-
-	return;
-	{
-		if (my_postion.currentQty.toDouble() > 0 )
-		{
-			if (price_buy.toDouble() > m_trade.low.toDouble()-1)
-			{
-				//qDebug() << "doTransfer. bao zhang 1.";
-				return;
-			}
-
-			//qDebug() << "doTransfer. 1.  " << m_trade.volume << my_postion.currentQty << my_postion.unrealisedRoePcnt << price_buy << m_trade.high;
-			QUrlQuery param;
-			param.addQueryItem("symbol", "XBTUSD");
-			closePosition(param);
-
-			my_postion.currentQty = "0";
-			my_postion.unrealisedRoePcnt = "0";
-			m_trade.volume = "0";
-		}
-		else if (my_postion.currentQty.toDouble() < 0 )
-		{	
-			/*if (m_trade.volume.toDouble() <= 2100000)
-				return;*/
-
-			if (price_sell.toDouble() < m_trade.high.toDouble())
-			{
-				//qDebug() << "doTransfer. bao die 1.";
-				//dfaf = QDateTime::currentDateTime();
-				return;
-			}
-
-		/*	if (price_sell.toDouble() < m_trade.high.toDouble())
-			{
-				qDebug() << "doTransfer. bao die 1.";
-				dfaf = QDateTime::currentDateTime();
-				return;
-			}*/
-
-			//qDebug() << "doTransfer 2  " << m_trade.volume << my_postion.currentQty << my_postion.unrealisedRoePcnt<< price_sell<< m_trade.low;
-			QUrlQuery param;
-			param.addQueryItem("symbol", "XBTUSD");
-			closePosition(param);
-
-			my_postion.currentQty = "0";
-			my_postion.unrealisedRoePcnt = "0";
-			m_trade.volume = "0";			
-		}
-
-	
-	}	
 }
 
 QBizManager::QBizManager()
@@ -290,12 +167,9 @@ void QBizManager::textMessageReceived(const QString &message)
 			{
 				doTransfer(message);
 			}
-			else
-
-			if (message.indexOf("trade") != -1)
-			{
+			else if (message.indexOf("trade") != -1)
 				doTrade(message);
-			}
+			
 		}
 	}
 }
@@ -425,8 +299,16 @@ void QBizManager::doTrade(const QString & source)
 			if (data.size() == 0)
 				return;
 			auto dataMap = data.at(0);
-			my_postion.currentQty = dataMap.toMap().value("currentQty").toString();
-			my_postion.unrealisedRoePcnt = dataMap.toMap().value("unrealisedRoePcnt").toString();
+
+			struct_trade st;
+			st.side = dataMap.toMap().value("side").toString();
+			if(m_trade.size()<=100)
+				m_trade.push_front(st);
+			else if (m_trade.size() >= 100)
+			{
+				m_trade.push_front(st);
+				m_trade.pop_back();
+			}
 		}
 	}
 }
@@ -442,10 +324,10 @@ void QBizManager::GetVolume(const QString & source)
 		auto jObjmap = jObj.toVariantMap();
 		auto data = jObjmap["data"].toList();
 		auto dataMap = data.at(0);
-		m_trade.volume = dataMap.toMap().value("volume").toString();
-		m_trade.close = dataMap.toMap().value("close").toString();
-		m_trade.high = dataMap.toMap().value("high").toString();
-		m_trade.low = dataMap.toMap().value("low").toString();
+		m_tradeBin1m.volume = dataMap.toMap().value("volume").toString();
+		m_tradeBin1m.close = dataMap.toMap().value("close").toString();
+		m_tradeBin1m.high = dataMap.toMap().value("high").toString();
+		m_tradeBin1m.low = dataMap.toMap().value("low").toString();
 	}
 }
 
@@ -1630,4 +1512,27 @@ bool QBizManager::Down_High_Same()
 				return 1;
 
 	return 0;
+}
+
+int QBizManager::Side()
+{
+	int sellnum = 0;
+	int buynum = 0;
+	for (int i = 0; i < 10; i++)
+	{
+		QString str = m_trade.at(i).side;
+		if (str == "Sell")
+			sellnum++;
+
+		if (str == "Buy")
+			buynum++;
+	}
+
+
+	if (sellnum > 7)
+		return 1;
+
+	if (buynum >7)
+		return 2;
+
 }

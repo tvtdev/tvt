@@ -46,7 +46,7 @@ public:
 		QString lastPrice;
 	};
 
-	struct struct_trade
+	struct struct_tradeBin
 	{
 		QString high;
 		QString low;
@@ -54,7 +54,16 @@ public:
 		QString volume;
 		QString time;
 	};
-	
+
+		
+	struct struct_trade
+	{
+		QString price;
+		QString size;
+		QString side;
+		QString timestamp;
+	};
+
 public:
 	void doTransfer(const QString & source);
 	void GetPostion(const QString & source);
@@ -125,6 +134,7 @@ private:
 
 	int GetPrice(const QString & source, QStringList& buy_list, QStringList& sell_list);
 
+	int Side();
 	//void oneAmount();
 	//void queryAllPosition(QUrlQuery param);
 	void isolatePosition(QUrlQuery param);
@@ -154,7 +164,7 @@ private:
 	double m_price_amount_sell;
 	postion my_postion;
 
-	QString m_apiId = "C_H5fYynTYEY7LI_5do2XFov";
+	QString m_apiId = "YtSuYvksV2H8rZzerd73bP4U";
 
 
 	QDateTime my_now;// = QDateTime::currentDateTime();
@@ -164,12 +174,15 @@ private:
 
 	QTimer m_TradeTimer_order;
 	QTimer m_TradeTimer;
-	struct_trade m_trade;
-	struct_trade my_trade;
+	struct_tradeBin m_tradeBin1m;
+	struct_tradeBin my_trade;
 	QStringList  trade_list;
 	QStringList  m_trade_list_5;
 	QStringList  m_trade_list_1h;
 	QStringList  m_trade_list_1day;
+
+	QList<struct_trade>  m_trade;
+
 
 	QDateTime dfaf;
 
