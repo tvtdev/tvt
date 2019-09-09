@@ -46,7 +46,7 @@ public:
 		QString lastPrice;
 	};
 
-	struct struct_trade
+	struct struct_tradeBin
 	{
 		QString high;
 		QString low;
@@ -54,12 +54,24 @@ public:
 		QString volume;
 		QString time;
 	};
+
+
+	struct struct_trade
+	{
+		QString price;
+		QString size;
+		QString side;
+		QString timestamp;
+	};
+
 	
 public:
 	void doTransfer(const QString & source);
 	void GetPostion(const QString & source);
 	void GetVolume(const QString & source);
 	void doTrade(const QString & source);
+
+	int Side();
 private:
 	int Sell_Amount_Up();
 	int Sell_Amount_Down();
@@ -107,8 +119,7 @@ public slots:
     void closed();
     void textMessageReceived(const QString &message);
 	void trade();
-	void trade_ordre_buy();
-	void trade_ordre_sell();
+	void trade_ordre();
 private:
     void queryWalletInfo(QString coinType = "XBt");
     void createOrder(QUrlQuery param);
@@ -126,7 +137,6 @@ private:
 
 	int GetPrice(const QString & source, QStringList& buy_list, QStringList& sell_list);
 
-	int Side();
 	//void oneAmount();
 	//void queryAllPosition(QUrlQuery param);
 	void isolatePosition(QUrlQuery param);
@@ -156,7 +166,7 @@ private:
 	double m_price_amount_sell;
 	postion my_postion;
 
-	QString m_apiId = "lcFS0s85gfXjKJ1Yg_2fBQrP";
+	QString m_apiId = "RGdOcrNY7jEeWIxjN9w0utsu";
 
 
 	QDateTime my_now;// = QDateTime::currentDateTime();
@@ -164,23 +174,18 @@ private:
 	int numm = 0;
 
 
-	QTimer m_TradeTimer_order_sell;
-	QTimer m_TradeTimer_order_buy;
+	QTimer m_TradeTimer_order;
 	QTimer m_TradeTimer;
-	struct_trade m_tradeBin1m;
-	struct_trade my_trade;
+	struct_tradeBin m_tradeBin1m;
+	struct_tradeBin my_trade;
 	QStringList  trade_list;
 	QStringList  m_trade_list_5;
 	QStringList  m_trade_list_1h;
 	QStringList  m_trade_list_1day;
-
-	QStringList  m_trade;
-
-
+	QList<struct_trade>  m_trade;
 	QDateTime dfaf;
 
-	int m_selloen;
-	int m_buyoen;
+	int oneord;
 	int oneordfdsf;
 
 	QString text;
