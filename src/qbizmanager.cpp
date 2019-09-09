@@ -17,10 +17,11 @@ void QBizManager::doTransfer(const QString & source)
 	QString amount_buy = buy_list.at(0).split(",").at(1);
 
 	m_price = price_sell;
+	int ret_up = Up(price_sell);
+	int ret_down = Down(price_sell);
 	//if (my_postion.currentQty.toDouble() == 0)
 	//{
-	//	int ret_up = Up(price_sell);
-	//	int ret_down = Down(price_sell);
+
 
 	//	if (ret_up == 2)
 	//	{
@@ -1632,7 +1633,7 @@ int QBizManager::Side()
 	}
 
 
-	if (fadf < 30)
+	if (fadf < 80)
 	{
 		if (sellnum > buynum * 1.2)
 		{
