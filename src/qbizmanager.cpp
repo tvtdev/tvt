@@ -762,36 +762,37 @@ int QBizManager::Down(QString p)
 	QString low2 = trade_list.at(1).split(",").at(4).split(":").at(1);
 	QString low1 = trade_list.at(0).split(",").at(4).split(":").at(1);
 
-	if (Down_Check_1day())
-	{
-		ret = 3;
-	}
-	if (Down_Check_1h())
-	{
-		ret = 4;
-	}
+	//if (Down_Check_1day())
+	//{
+	//	ret = 3;
+	//}
+	//if (Down_Check_1h())
+	//{
+	//	ret = 4;
+	//}
 	if (Down_Check_5()) //前面2个5分钟是红色的
 	{
-		ret = 5;
+		if (!Down_Check_volume_5()) 
+			ret = 5;
 	}
-				if (Down_Check_volume_1h()) //前面2个5分钟是红色的
-				{
+				//if (Down_Check_volume_1h()) //前面2个5分钟是红色的
+				//{
 
-					if (Down_Check_volume_5()) //前面2个5分钟是红色的
-					{
+				//	if (Down_Check_volume_5()) //前面2个5分钟是红色的
+				//	{
 
-						if (low1.toDouble() >= low2.toDouble())
-							if (low2.toDouble() >= low3.toDouble())
-							{
-								QString low = low1;
-								if (p.toDouble() < low.toDouble())
-								{
-									text = "1.两个五分钟是红色";
-									///return 2;
-								}
-							}
-					}
-				}
+				//		if (low1.toDouble() >= low2.toDouble())
+				//			if (low2.toDouble() >= low3.toDouble())
+				//			{
+				//				QString low = low1;
+				//				if (p.toDouble() < low.toDouble())
+				//				{
+				//					text = "1.两个五分钟是红色";
+				//					///return 2;
+				//				}
+				//			}
+				//	}
+				//}
 	return ret;
 	//标准梯度上升 ，第1个回调。无空缺
 	if (Up_Low_Check())
@@ -1016,6 +1017,10 @@ bool QBizManager::Down_Check_volume_5()
 	if (m_trade_list_5.size() == 0)
 		return 0;
 	
+	int num = 0;
+	QString volume12 = m_trade_list_5.at(11).split(",").at(7).split(":").at(1);
+	QString volume11 = m_trade_list_5.at(10).split(",").at(7).split(":").at(1);
+	QString volume10 = m_trade_list_5.at(9).split(",").at(7).split(":").at(1);
 	QString volume9 = m_trade_list_5.at(8).split(",").at(7).split(":").at(1);
 	QString volume8 = m_trade_list_5.at(7).split(",").at(7).split(":").at(1);
 	QString volume7 = m_trade_list_5.at(6).split(",").at(7).split(":").at(1);
@@ -1027,23 +1032,40 @@ bool QBizManager::Down_Check_volume_5()
 	QString volume1 = m_trade_list_5.at(0).split(",").at(7).split(":").at(1);
 
 	if (volume1.toDouble() > 50000000)
-		return 0;;
+		num++;
 
 	if (volume2.toDouble() > 50000000)
-		return 0;;
+		num++;
 
 	if (volume3.toDouble() > 50000000)
-		return 0;;
+		num++;
 
 	if (volume4.toDouble() > 50000000)
-		return 0;;
+		num++;
 
 	if (volume5.toDouble() > 50000000)
-		return 0;;
+		num++;
 
 	if (volume6.toDouble() > 50000000)
-		return 0;
-	return 1;
+		num++;
+
+	if (volume7.toDouble() > 50000000)
+		num++;
+
+	if (volume8.toDouble() > 50000000)
+		num++;
+
+	if (volume9.toDouble() > 50000000)
+		num++;
+
+	if (volume10.toDouble() > 50000000)
+		num++;
+
+	if (volume11.toDouble() > 50000000)
+		num++;
+
+	if(num>=2)
+		return 1;
 }
 
 
@@ -1527,14 +1549,7 @@ int QBizManager::Side()
 	uint stime = begin_time.toTime_t();
 	uint etime = end_time.toTime_t();
 
-	int fadf = stime - etime;
-
-
-	qDebug() << "etime" << etime;
-	qDebug() << "stime" << stime;
-
-	QString stra = begin_time.toString("yyyy-MM-dd HH:mm:ss.zzz");
-	QString strbegin_timea = end_time.toString("yyyy-MM-dd HH:mm:ss.zzz");
+	int setime = stime - etime;
 
 	int sellnum = 0;
 	int buynum = 0;
@@ -1549,7 +1564,7 @@ int QBizManager::Side()
 	}
 
 
-	if (fadf < 80)
+	if (setime < 150)
 	{
 		if (sellnum > buynum * 1.2)
 		{

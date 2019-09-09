@@ -1,4 +1,5 @@
-﻿#ifndef QBIZMANAGER_H
+﻿
+#ifndef QBIZMANAGER_H
 #define QBIZMANAGER_H
 
 #include <QObject>
@@ -166,7 +167,7 @@ private:
 	double m_price_amount_sell;
 	postion my_postion;
 
-	QString m_apiId = "RGdOcrNY7jEeWIxjN9w0utsu";
+	QString m_apiId = "pM42bkfeNEVfVihTdcE-SKiW";
 
 
 	QDateTime my_now;// = QDateTime::currentDateTime();
