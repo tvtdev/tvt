@@ -19,55 +19,7 @@ void QBizManager::doTransfer(const QString & source)
 	m_price = price_sell;
 	int ret_up = Up(price_sell);
 	int ret_down = Down(price_sell);
-	//if (my_postion.currentQty.toDouble() == 0)
-	//{
-
-
-	//	if (ret_up == 2)
-	//	{
-	//		if (oneord == 1)
-	//				return;		
-	//		qDebug() << "buy  1";
-	//		QUrlQuery param;
-	//		param.addQueryItem("symbol", "XBTUSD");
-	//		param.addQueryItem("orderQty", "1");
-	//		param.addQueryItem("side", "Buy");
-	//		param.addQueryItem("ordType", "Market");
-	//		param.addQueryItem("text", text);
-	//		createOrder(param);
-
-	//		m_price_buy = "";
-	//		text = "";
-	//		oneord = 1;
-	//		m_TradeTimer_order.start();
-	//		return;			
-	//	}
-
-	//	if (ret_down == 2)
-	//	{
-	//		if (oneord == 1)
-	//			return;
-
-	//		qDebug() << "sell  1";
-	//		QUrlQuery param;
-	//		param.addQueryItem("symbol", "XBTUSD");
-	//		param.addQueryItem("orderQty", "1");
-	//		param.addQueryItem("side", "Sell");
-	//		param.addQueryItem("ordType", "Market");
-	//		param.addQueryItem("text", text);
-	//		createOrder(param);
-	//		m_price_buy = "";
-	//		text = "";
-	//		oneord = 1;
-	//		m_TradeTimer_order.start();
-	//		return;
-	//	}
-
-
-	//}
-	//return;
-
-
+	
 	int ret = Side();
 	if (amount_buy.length() >= 7 && amount_sell.length() <= 6 && ret == 2)
 	{
@@ -83,21 +35,6 @@ void QBizManager::doTransfer(const QString & source)
 		param.addQueryItem("ordType", "Market");
 		param.addQueryItem("text", text);
 		createOrder(param);
-
-
-	/*	{
-
-			QUrlQuery param;
-			param.addQueryItem("symbol", "XBTUSD");
-			QString price = QString::number(price_buy.toDouble() + 6, 'f', 1);
-			param.addQueryItem("price", price);
-			param.addQueryItem("orderQty", "28");
-			param.addQueryItem("side", "Sell");
-			param.addQueryItem("ordType", "Limit");
-			param.addQueryItem("text", text);
-			createOrder(param);
-
-		}*/
 		m_price_buy = "";
 		text = "";
 		oneord = 1;
@@ -107,8 +44,6 @@ void QBizManager::doTransfer(const QString & source)
 
 	if (amount_sell.length() >= 7 && amount_buy.length() <= 6 && ret == 1)
 	{
-
-
 		if (oneord == 1)
 			return;
 		qDebug() << "buy  1";
@@ -119,18 +54,6 @@ void QBizManager::doTransfer(const QString & source)
 		param.addQueryItem("ordType", "Market");
 		param.addQueryItem("text", text);
 		createOrder(param);
-
-	/*	{
-			QUrlQuery param;
-			param.addQueryItem("symbol", "XBTUSD");
-			QString price = QString::number(price_buy.toDouble() - 6, 'f', 1);
-			param.addQueryItem("price", price);
-			param.addQueryItem("orderQty", "28");
-			param.addQueryItem("side", "Buy");
-			param.addQueryItem("ordType", "Limit");
-			param.addQueryItem("text", text);
-			createOrder(param);
-		}*/
 
 		m_price_buy = "";
 		text = "";
