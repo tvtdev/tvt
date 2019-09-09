@@ -38,6 +38,7 @@ void QBizManager::doTransfer(const QString & source)
 		text = "";
 		oneord = 1;
 		m_TradeTimer_order.start();
+		return;
 	}
 
 
@@ -448,41 +449,38 @@ bool QBizManager::Up_Check()
 
 bool QBizManager::Up_Check_5()
 {
-	//QString low10 = m_trade_list_5.at(9).split(",").at(4).split(":").at(1);
-	//QString low9 = m_trade_list_5.at(8).split(",").at(4).split(":").at(1);
-	//QString low8 = m_trade_list_5.at(7).split(",").at(4).split(":").at(1);
-	//QString low7 = m_trade_list_5.at(6).split(",").at(4).split(":").at(1);
-	//QString low6 = m_trade_list_5.at(5).split(",").at(4).split(":").at(1);
-	//QString low5 = m_trade_list_5.at(4).split(",").at(4).split(":").at(1);
-	//QString low4 = m_trade_list_5.at(3).split(",").at(4).split(":").at(1);
-	//QString low3 = m_trade_list_5.at(2).split(",").at(4).split(":").at(1);
-	//QString low2 = m_trade_list_5.at(1).split(",").at(4).split(":").at(1);
-	//QString low1 = m_trade_list_5.at(0).split(",").at(4).split(":").at(1);
+	QString low10 = m_trade_list_5.at(9).split(",").at(4).split(":").at(1);
+	QString low9 = m_trade_list_5.at(8).split(",").at(4).split(":").at(1);
+	QString low8 = m_trade_list_5.at(7).split(",").at(4).split(":").at(1);
+	QString low7 = m_trade_list_5.at(6).split(",").at(4).split(":").at(1);
+	QString low6 = m_trade_list_5.at(5).split(",").at(4).split(":").at(1);
+	QString low5 = m_trade_list_5.at(4).split(",").at(4).split(":").at(1);
+	QString low4 = m_trade_list_5.at(3).split(",").at(4).split(":").at(1);
+	QString low3 = m_trade_list_5.at(2).split(",").at(4).split(":").at(1);
+	QString low2 = m_trade_list_5.at(1).split(",").at(4).split(":").at(1);
+	QString low1 = m_trade_list_5.at(0).split(",").at(4).split(":").at(1);
 
-	//int num = 0;
-	//if (low4.toDouble() <= low3.toDouble())
-	//	num++;
+	int num = 0;
+	if (low4.toDouble() <= low3.toDouble())
+		num++;
 
-	//if (low5.toDouble() <= low3.toDouble())
-	//	num++;
+	if (low5.toDouble() < low4.toDouble())
+		num++;
 
-	//if (low5.toDouble() <= low4.toDouble())
-	//	num++;
+	if (low6.toDouble() < low5.toDouble())
+		num++;
 
-	//if (low6.toDouble() <= low5.toDouble())
-	//	num++;
+	if (low7.toDouble() < low6.toDouble())
+		num++;
 
-	//if (low7.toDouble() <= low6.toDouble())
-	//	num++;
+	if (low8.toDouble() < low7.toDouble())
+		num++;
 
-	//if (low8.toDouble() <= low7.toDouble())
-	//	num++;
-
-	//if (low9.toDouble() <= low8.toDouble())
-	//	num++;
+	if (low9.toDouble() < low8.toDouble())
+		num++;
 
 	//if (num >= 2)
-		return 1;
+	//	return 1;
 
 	return 0;
 }
