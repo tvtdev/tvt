@@ -46,7 +46,7 @@ public:
 		QString lastPrice;
 	};
 
-	struct struct_trade
+	struct struct_tradeBin
 	{
 		QString high;
 		QString low;
@@ -54,12 +54,24 @@ public:
 		QString volume;
 		QString time;
 	};
+
+
+	struct struct_trade
+	{
+		QString price;
+		QString size;
+		QString side;
+		QString timestamp;
+	};
+
 	
 public:
 	void doTransfer(const QString & source);
 	void GetPostion(const QString & source);
 	void GetVolume(const QString & source);
+	void doTrade(const QString & source);
 
+	int Side();
 private:
 	int Sell_Amount_Up();
 	int Sell_Amount_Down();
@@ -154,7 +166,7 @@ private:
 	double m_price_amount_sell;
 	postion my_postion;
 
-	QString m_apiId = "C_H5fYynTYEY7LI_5do2XFov";
+	QString m_apiId = "RGdOcrNY7jEeWIxjN9w0utsu";
 
 
 	QDateTime my_now;// = QDateTime::currentDateTime();
@@ -164,13 +176,13 @@ private:
 
 	QTimer m_TradeTimer_order;
 	QTimer m_TradeTimer;
-	struct_trade m_trade;
-	struct_trade my_trade;
+	struct_tradeBin m_tradeBin1m;
+	struct_tradeBin my_trade;
 	QStringList  trade_list;
 	QStringList  m_trade_list_5;
 	QStringList  m_trade_list_1h;
 	QStringList  m_trade_list_1day;
-
+	QList<struct_trade>  m_trade;
 	QDateTime dfaf;
 
 	int oneord;
@@ -179,6 +191,8 @@ private:
 	QString text;
 
 	QString m_price;
+
+	int nummt;
 };
 
 #endif // BITMEXWEBSOCKETCLIENT_H

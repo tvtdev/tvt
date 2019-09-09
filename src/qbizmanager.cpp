@@ -16,133 +16,127 @@ void QBizManager::doTransfer(const QString & source)
 	QString price_buy = buy_list.at(0).split(",").at(0);
 	QString amount_buy = buy_list.at(0).split(",").at(1);
 
-	//Up(price_sell);
 	m_price = price_sell;
-	if (my_postion.currentQty.toDouble() == 0)
+	//if (my_postion.currentQty.toDouble() == 0)
+	//{
+	//	int ret_up = Up(price_sell);
+	//	int ret_down = Down(price_sell);
+
+	//	if (ret_up == 2)
+	//	{
+	//		if (oneord == 1)
+	//				return;		
+	//		qDebug() << "buy  1";
+	//		QUrlQuery param;
+	//		param.addQueryItem("symbol", "XBTUSD");
+	//		param.addQueryItem("orderQty", "1");
+	//		param.addQueryItem("side", "Buy");
+	//		param.addQueryItem("ordType", "Market");
+	//		param.addQueryItem("text", text);
+	//		createOrder(param);
+
+	//		m_price_buy = "";
+	//		text = "";
+	//		oneord = 1;
+	//		m_TradeTimer_order.start();
+	//		return;			
+	//	}
+
+	//	if (ret_down == 2)
+	//	{
+	//		if (oneord == 1)
+	//			return;
+
+	//		qDebug() << "sell  1";
+	//		QUrlQuery param;
+	//		param.addQueryItem("symbol", "XBTUSD");
+	//		param.addQueryItem("orderQty", "1");
+	//		param.addQueryItem("side", "Sell");
+	//		param.addQueryItem("ordType", "Market");
+	//		param.addQueryItem("text", text);
+	//		createOrder(param);
+	//		m_price_buy = "";
+	//		text = "";
+	//		oneord = 1;
+	//		m_TradeTimer_order.start();
+	//		return;
+	//	}
+
+
+	//}
+	//return;
+
+
+	int ret = Side();
+	if (amount_buy.length() >= 7 && amount_sell.length() <= 6 && ret == 2)
 	{
-		int ret_up = Up(price_sell);
-		int ret_down = Down(price_sell);
 
-		if (ret_up == 2)
-		{
-			if (oneord == 1)
-					return;		
-			qDebug() << "buy  1";
-			QUrlQuery param;
-			param.addQueryItem("symbol", "XBTUSD");
-			param.addQueryItem("orderQty", "1");
-			param.addQueryItem("side", "Buy");
-			param.addQueryItem("ordType", "Market");
-			param.addQueryItem("text", text);
-			createOrder(param);
 
-			m_price_buy = "";
-			text = "";
-			oneord = 1;
-			m_TradeTimer_order.start();
-			return;			
-		}
-		
-		if (ret_down == 2)
-		{
-			if (oneord == 1)
-				return;
-
-			qDebug() << "sell  1";
-			QUrlQuery param;
-			param.addQueryItem("symbol", "XBTUSD");
-			param.addQueryItem("orderQty", "1");
-			param.addQueryItem("side", "Sell");
-			param.addQueryItem("ordType", "Market");
-			param.addQueryItem("text", text);
-			createOrder(param);
-			m_price_buy = "";
-			text = "";
-			oneord = 1;
-			m_TradeTimer_order.start();
+		if (oneord == 1)
 			return;
-		}
-	}
-	return;
-	if (my_postion.currentQty.toDouble() < 0)
-	{
-		if (my_postion.unrealisedRoePcnt.toDouble() <= -0.231293)
-		{			
-			//int ret_down = Down_Add();
+		qDebug() << "buy  1";
+		QUrlQuery param;
+		param.addQueryItem("symbol", "XBTUSD");
+		param.addQueryItem("orderQty", "1");
+		param.addQueryItem("side", "Buy");
+		param.addQueryItem("ordType", "Market");
+		param.addQueryItem("text", text);
+		createOrder(param);
 
-		//	if (ret_down == 2)
-			{
-				if (oneord == 1)
-					return;
-				text = "down add";
-				qDebug() << "sell  1";
-				QUrlQuery param;
-				param.addQueryItem("symbol", "XBTUSD");
-				param.addQueryItem("orderQty", "1");
-				param.addQueryItem("side", "Sell");
-				param.addQueryItem("ordType", "Market");
-				param.addQueryItem("text", text);
-				createOrder(param);
-				m_price_buy = "";
-				text = "";
-				oneord = 1;
-				m_TradeTimer_order.start();
-				return;
-			}
-		}
+
+	/*	{
+
+			QUrlQuery param;
+			param.addQueryItem("symbol", "XBTUSD");
+			QString price = QString::number(price_buy.toDouble() + 6, 'f', 1);
+			param.addQueryItem("price", price);
+			param.addQueryItem("orderQty", "28");
+			param.addQueryItem("side", "Sell");
+			param.addQueryItem("ordType", "Limit");
+			param.addQueryItem("text", text);
+			createOrder(param);
+
+		}*/
+		m_price_buy = "";
+		text = "";
+		oneord = 1;
+		m_TradeTimer_order.start();
 	}
 
 
-	return;
+	if (amount_sell.length() >= 7 && amount_buy.length() <= 6 && ret == 1)
 	{
-		if (my_postion.currentQty.toDouble() > 0 )
-		{
-			if (price_buy.toDouble() > m_trade.low.toDouble()-1)
-			{
-				//qDebug() << "doTransfer. bao zhang 1.";
-				return;
-			}
 
-			//qDebug() << "doTransfer. 1.  " << m_trade.volume << my_postion.currentQty << my_postion.unrealisedRoePcnt << price_buy << m_trade.high;
+
+		if (oneord == 1)
+			return;
+		qDebug() << "buy  1";
+		QUrlQuery param;
+		param.addQueryItem("symbol", "XBTUSD");
+		param.addQueryItem("orderQty", "1");
+		param.addQueryItem("side", "Sell");
+		param.addQueryItem("ordType", "Market");
+		param.addQueryItem("text", text);
+		createOrder(param);
+
+	/*	{
 			QUrlQuery param;
 			param.addQueryItem("symbol", "XBTUSD");
-			closePosition(param);
+			QString price = QString::number(price_buy.toDouble() - 6, 'f', 1);
+			param.addQueryItem("price", price);
+			param.addQueryItem("orderQty", "28");
+			param.addQueryItem("side", "Buy");
+			param.addQueryItem("ordType", "Limit");
+			param.addQueryItem("text", text);
+			createOrder(param);
+		}*/
 
-			my_postion.currentQty = "0";
-			my_postion.unrealisedRoePcnt = "0";
-			m_trade.volume = "0";
-		}
-		else if (my_postion.currentQty.toDouble() < 0 )
-		{	
-			/*if (m_trade.volume.toDouble() <= 2100000)
-				return;*/
-
-			if (price_sell.toDouble() < m_trade.high.toDouble())
-			{
-				//qDebug() << "doTransfer. bao die 1.";
-				//dfaf = QDateTime::currentDateTime();
-				return;
-			}
-
-		/*	if (price_sell.toDouble() < m_trade.high.toDouble())
-			{
-				qDebug() << "doTransfer. bao die 1.";
-				dfaf = QDateTime::currentDateTime();
-				return;
-			}*/
-
-			//qDebug() << "doTransfer 2  " << m_trade.volume << my_postion.currentQty << my_postion.unrealisedRoePcnt<< price_sell<< m_trade.low;
-			QUrlQuery param;
-			param.addQueryItem("symbol", "XBTUSD");
-			closePosition(param);
-
-			my_postion.currentQty = "0";
-			my_postion.unrealisedRoePcnt = "0";
-			m_trade.volume = "0";			
-		}
-
-	
-	}	
+		m_price_buy = "";
+		text = "";
+		oneord = 1;
+		m_TradeTimer_order.start();
+		return;
+	}
 }
 
 QBizManager::QBizManager()
@@ -189,6 +183,7 @@ QBizManager::QBizManager()
 
 	 oneord = 0;
 	 oneordfdsf = 0;
+	 numm = 0;
 	 
 }
 
@@ -223,7 +218,8 @@ void QBizManager::textMessageReceived(const QString &message)
 					m_pingTimer.start();
 					m_webSocket.sendTextMessage(QString(R"({"op": "subscribe", "args": ["orderBook10:XBTUSD"]})"));
 					m_webSocket.sendTextMessage(QString(R"({"op": "subscribe", "args": ["position"]})"));
-					m_webSocket.sendTextMessage(QString(R"({"op": "subscribe", "args": ["tradeBin1m:XBTUSD"]})"));					
+					m_webSocket.sendTextMessage(QString(R"({"op": "subscribe", "args": ["tradeBin1m:XBTUSD"]})"));		
+					m_webSocket.sendTextMessage(QString(R"({"op": "subscribe", "args": ["trade:XBTUSD"]})"));
 				}
 			}
 		}
@@ -243,6 +239,8 @@ void QBizManager::textMessageReceived(const QString &message)
 			{
 				doTransfer(message);
 			}
+			else if (message.indexOf("trade") != -1)
+				doTrade(message);
 		}
 	}
 }
@@ -365,17 +363,49 @@ void QBizManager::GetVolume(const QString & source)
 {
 	QJsonDocument jDoc = QJsonDocument::fromJson(source.toUtf8());
 	QJsonObject jObj = jDoc.object();
-	if (!jObj.isEmpty()) 
+	if (!jObj.isEmpty())
 	{
 		auto jObjmap = jObj.toVariantMap();
 		auto data = jObjmap["data"].toList();
 		auto dataMap = data.at(0);
-		m_trade.volume = dataMap.toMap().value("volume").toString();
-		m_trade.close = dataMap.toMap().value("close").toString();
-		m_trade.high = dataMap.toMap().value("high").toString();
-		m_trade.low = dataMap.toMap().value("low").toString();
+		m_tradeBin1m.volume = dataMap.toMap().value("volume").toString();
+		m_tradeBin1m.close = dataMap.toMap().value("close").toString();
+		m_tradeBin1m.high = dataMap.toMap().value("high").toString();
+		m_tradeBin1m.low = dataMap.toMap().value("low").toString();
 	}
 }
+
+
+
+void QBizManager::doTrade(const QString & source)
+{
+	{
+		QJsonDocument jDoc = QJsonDocument::fromJson(source.toUtf8());
+		QJsonObject jObj = jDoc.object();
+		if (!jObj.isEmpty())
+		{
+			auto jObjmap = jObj.toVariantMap();
+			auto data = jObjmap["data"].toList();
+			if (data.size() == 0)
+				return;
+			auto dataMap = data.at(0);
+
+			struct_trade st;
+			st.side = dataMap.toMap().value("side").toString();
+			st.price = dataMap.toMap().value("price").toString();
+			st.size = dataMap.toMap().value("size").toString();
+			st.timestamp = dataMap.toMap().value("timestamp").toString();
+			if (m_trade.size() <= 100)
+				m_trade.push_front(st);
+			else if (m_trade.size() >= 100)
+			{
+				m_trade.push_front(st);
+				m_trade.pop_back();
+			}
+		}
+	}
+}
+
 
 
 bool QBizManager::parse_bucketed(const QString & source, QStringList& trade_list)
@@ -538,6 +568,7 @@ bool QBizManager::Up_Check_5()
 //严格标准在上方
 bool QBizManager::Up_Check_1day()
 {
+//	return 1;
 	int num = 0;
 	{
 		QString open = m_trade_list_1day.at(0).split(",").at(2).split(":").at(1);
@@ -808,6 +839,7 @@ int QBizManager::Down(QString p)
 	if (m_trade_list_1day.size() == 0)
 		return 0;
 
+	int ret = 0;
 	QString low5 = trade_list.at(4).split(",").at(4).split(":").at(1);
 	QString low4 = trade_list.at(3).split(",").at(4).split(":").at(1);
 	QString low3 = trade_list.at(2).split(",").at(4).split(":").at(1);
@@ -816,8 +848,10 @@ int QBizManager::Down(QString p)
 
 	if (Down_Check_1day())
 	{
+		ret = 3;
 		if (Down_Check_1h())
 		{
+			ret = 4;
 			if (Down_Check_5()) //前面2个5分钟是红色的
 			{
 				if (Down_Check_volume_1h()) //前面2个5分钟是红色的
@@ -844,7 +878,7 @@ int QBizManager::Down(QString p)
 	}
 	
 
-	return 0;
+	return ret;
 	//标准梯度上升 ，第1个回调。无空缺
 	if (Up_Low_Check())
 	{
@@ -1163,6 +1197,7 @@ bool QBizManager::Down_Check_1h()
 //严格标准在上方
 bool QBizManager::Down_Check_1day()
 {
+	//return 1;
 	int num = 0;
 	{
 		QString open = m_trade_list_1day.at(0).split(",").at(2).split(":").at(1);
@@ -1374,16 +1409,19 @@ int QBizManager::Up(QString p)
 	if (m_trade_list_1day.size() == 0)
 		return 0;
 
+	int ret = 0;
 	QString high4 = trade_list.at(3).split(",").at(3).split(":").at(1);
 	QString high3 = trade_list.at(2).split(",").at(3).split(":").at(1);
 	QString high2 = trade_list.at(1).split(",").at(3).split(":").at(1);
 	QString high1 = trade_list.at(0).split(",").at(3).split(":").at(1);
-	
+	qDebug() << "Up_Check_1day  ";
 	if (Up_Check_1day()) //1小时 行情
 	{
+		ret = 3;
 		qDebug() << "Up_Check_1day  2";
 		if (Up_Check_1h()) //1小时 行情
 		{
+			ret = 4;
 			qDebug() << "Up_Check_1h  2";
 			if (Up_Check_5())//5分钟行情  一致
 			{
@@ -1408,7 +1446,7 @@ int QBizManager::Up(QString p)
 		}
 	}
 	
-	return 0;
+	return ret;
 	
 	if (Up_Check_1h())
 	{
@@ -1550,4 +1588,92 @@ bool QBizManager::Down_High_Same()
 				return 1;
 
 	return 0;
+}
+
+
+
+int QBizManager::Side()
+{
+	if (m_trade.size() <= 9)
+		return 0;
+
+	QString strAa = m_trade.at(0).timestamp;
+	strAa.replace("T", " ");
+	strAa.replace("Z", "");
+	QString strAFAa = m_trade.at(m_trade.size() - 1).timestamp;
+	strAFAa.replace("T", " ");
+	strAFAa.replace("Z", "");
+
+	QDateTime begin_time = QDateTime::fromString(strAa, "yyyy-MM-dd HH:mm:ss.zzz");
+	QDateTime end_time = QDateTime::fromString(strAFAa, "yyyy-MM-dd HH:mm:ss.zzz");
+
+	uint stime = begin_time.toTime_t();
+	uint etime = end_time.toTime_t();
+
+	int fadf = stime - etime;
+
+
+	qDebug() << "etime" << etime;
+	qDebug() << "stime" << stime;
+
+	QString stra = begin_time.toString("yyyy-MM-dd HH:mm:ss.zzz");
+	QString strbegin_timea = end_time.toString("yyyy-MM-dd HH:mm:ss.zzz");
+
+	int sellnum = 0;
+	int buynum = 0;
+	for (int i = 0; i < m_trade.size(); i++)
+	{
+		QString str = m_trade.at(i).side;
+		if (str == "Sell")
+			sellnum++;
+
+		if (str == "Buy")
+			buynum++;
+	}
+
+
+	if (fadf < 30)
+	{
+		if (sellnum > buynum * 1.2)
+		{
+			text = "sell < 7";
+			QString strAaprice = m_trade.at(0).price;
+			QString strAFAaprice = m_trade.at(m_trade.size() - 1).price;
+
+			if (strAaprice<strAFAaprice)
+				return 1;
+		}
+
+		if (1.2 * sellnum < buynum)
+		{
+			text = "buyy < 7";
+			return 2;
+		}
+
+	}
+
+	//if (sellnum > 67)
+	//{
+	//	text = "amount < 6";
+
+	//	QString strAaprice = m_trade.at(0).price;
+	//	QString strAFAaprice = m_trade.at(m_trade.size() - 1).price;
+
+	//	if(strAaprice.toDouble()+0.5<strAFAaprice.toDouble())
+	//	return 1;
+	//}
+	//	
+
+	//if (buynum >67)
+	//{
+	//	text = "amount < 6";
+	//	QString strAaprice = m_trade.at(0).price;
+	//	QString strAFAaprice = m_trade.at(m_trade.size() - 1).price;
+
+	//	if (strAaprice.toDouble() > strAFAaprice.toDouble() + 0.5)
+	//		return 2;
+	//}
+
+	return 0;
+
 }
