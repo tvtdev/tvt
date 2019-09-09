@@ -1066,6 +1066,8 @@ bool QBizManager::Down_Check_volume_5()
 
 	if(num>=2)
 		return 1;
+
+	return 0;
 }
 
 
@@ -1564,22 +1566,24 @@ int QBizManager::Side()
 	}
 
 
-	if (setime < 150)
+	if (setime < 80)
 	{
-		if (sellnum > buynum * 1.2)
+		if (sellnum > buynum * 1.5)
 		{
 			text = "sell < 7";
-			QString strAaprice = m_trade.at(0).price;
-			QString strAFAaprice = m_trade.at(m_trade.size() - 1).price;
-
-			if (strAaprice<strAFAaprice)
+			QString begin_price = m_trade.at(0).price;
+			QString end_price = m_trade.at(m_trade.size() - 1).price;
+			if (begin_price.toDouble() +0.5 < end_price.toDouble() )
 				return 1;
 		}
 
-		if (1.2 * sellnum < buynum)
+		if (buynum > 1.5 * sellnum )
 		{
 			text = "buy < 7";
-			return 2;
+			QString begin_price = m_trade.at(0).price;
+			QString end_price = m_trade.at(m_trade.size() - 1).price;
+			if (begin_price.toDouble() > end_price.toDouble() + 0.5)
+				return 2;
 		}
 
 	}
