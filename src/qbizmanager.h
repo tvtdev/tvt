@@ -137,6 +137,8 @@ private:
 	bool bitmex_USD_Index(QString &);
 
 	bool parse_bucketed(const QString & source, QStringList& trade_list);
+	bool parse_USDT(const QString & source, QStringList& trade_list);
+	
 
 	int GetPrice(const QString & source, QStringList& buy_list, QStringList& sell_list);
 

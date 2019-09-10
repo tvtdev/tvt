@@ -358,6 +358,38 @@ bool QBizManager::parse_bucketed(const QString & source, QStringList& trade_list
 	return 0;
 }
 
+bool QBizManager::parse_USDT(const QString & source, QStringList& trade_list)
+{
+	int pp = source.indexOf("data");
+	int p = source.indexOf("timestamp", pp);
+	int p2 = source.indexOf("indicators", p + 10);
+	QString timestamp = source.mid(p+12,p2-p);
+
+	QStringList timestamp_list = timestamp.split(",");
+	
+	 p = source.indexOf("high", pp);
+	 p2 = source.indexOf("low", p + 10);
+	QString high = source.mid(p+7, p2 - p);
+
+	QStringList high_list = high.split(",");
+
+
+	p = source.indexOf("low", pp);
+	p2 = source.indexOf("open", p + 10);
+	QString low = source.mid(p + 6, p2 - p);
+	QStringList low_list = low.split(",");
+
+	p = source.indexOf("open", pp);
+	p2 = source.indexOf("close", p + 10);
+	QString open = source.mid(p + 7, p2 - p);
+	QStringList open_list = open.split(",");
+
+	p = source.indexOf("close", pp);
+	QString close = source.mid(p + 8);
+	QStringList close_list = close.split(",");
+	return 0;
+}
+
 int QBizManager::GetPrice(const QString & source, QStringList& buy_list, QStringList& sell_list)
 {
 	int pp = source.indexOf("data");
@@ -395,8 +427,8 @@ void QBizManager::trade()
 	bitmex_bucketed_1day(soure);
 	parse_bucketed(soure, m_trade_list_1day);
 
-	//bitmex_USD_Index(soure);
-	//parse_bucketed(soure, m_trade_list_1day);
+	bitmex_USD_Index(soure);
+	parse_USDT(soure, m_trade_list_1day);
 }
 
 
