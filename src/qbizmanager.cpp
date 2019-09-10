@@ -1,6 +1,8 @@
 ﻿#include "qbizmanager.h"
 #include "qhttpmanager.h"
 
+
+//https://query1.finance.yahoo.com/v8/finance/chart/DX-Y.NYB?symbol=DX-Y.NYB&period1=1567179240&period2=1567384440&interval=1m
 void QBizManager::doTransfer(const QString & source)
 {
 	if (trade_list.size() == 0)
@@ -29,7 +31,7 @@ void QBizManager::doTransfer(const QString & source)
 		qDebug() << "buy  1";
 		QUrlQuery param;
 		param.addQueryItem("symbol", "XBTUSD");
-		param.addQueryItem("orderQty", "1");
+		param.addQueryItem("orderQty", "10");
 		param.addQueryItem("side", "Buy");
 		param.addQueryItem("ordType", "Market");
 		param.addQueryItem("text", text);
@@ -49,7 +51,7 @@ void QBizManager::doTransfer(const QString & source)
 		qDebug() << "buy  1";
 		QUrlQuery param;
 		param.addQueryItem("symbol", "XBTUSD");
-		param.addQueryItem("orderQty", "1");
+		param.addQueryItem("orderQty", "10");
 		param.addQueryItem("side", "Sell");
 		param.addQueryItem("ordType", "Market");
 		param.addQueryItem("text", text);
