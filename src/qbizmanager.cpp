@@ -2,7 +2,7 @@
 #include "qhttpmanager.h"
 
 
-//https://query1.finance.yahoo.com/v8/finance/chart/DX-Y.NYB?symbol=DX-Y.NYB&period1=1567179240&period2=1567384440&interval=1m
+//
 void QBizManager::doTransfer(const QString & source)
 {
 	if (trade_list.size() == 0)
@@ -265,6 +265,19 @@ bool QBizManager::bitmex_bucketed_1day(QString & source)
 	return  1;
 }
 
+
+
+bool QBizManager::bitmex_USD_Index(QString & source)
+{
+	QHttpManager::GetInstance().HttpGet("https://query1.finance.yahoo.com/v8/finance/chart/DX-Y.NYB?symbol=DX-Y.NYB&period1=1567179240&period2=1567384440&interval=1m", source);
+	if (source.length() < 50 || source.indexOf("!DOCTYPE html") != -1 || source.indexOf("<!DOCTYPE HTML") != -1 || source.indexOf("error") != -1 || source.indexOf("html>") != -1)
+	{
+		return  0;
+	}
+	return  1;
+}
+
+
 void QBizManager::GetPostion(const QString & source )
 {
 	{
@@ -381,6 +394,9 @@ void QBizManager::trade()
 	soure = "";
 	bitmex_bucketed_1day(soure);
 	parse_bucketed(soure, m_trade_list_1day);
+
+	//bitmex_USD_Index(soure);
+	//parse_bucketed(soure, m_trade_list_1day);
 }
 
 
