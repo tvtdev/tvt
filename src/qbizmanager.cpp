@@ -11,14 +11,20 @@ void QBizManager::doTransfer(const QString & source)
 	QString price_buy = m_trade.at(0).price;
 	
 	int ret = Side();
+	
+
+	if (sideret == 2)
+		if (ret == 0)
+			ptr++;
 
 	if (sideret == 2)
 	{
-
+		
 		if (price_buy.toDouble() < m_pricedfafd.toDouble())
 		{
 			nummafads++;
 			m_pricedfafd = price_buy;
+
 		}
 
 	}
@@ -49,6 +55,14 @@ void QBizManager::doTransfer(const QString & source)
 			m_TradeTimer_order.start();
 			return;
 		}
+	}
+
+	if (ptr >= 2000)
+	{
+		ptr = 0;
+		sideret = 0;
+		nummafads = 0;
+		m_pricedfafd = "100000";
 	}
 	return;
 	
@@ -88,6 +102,9 @@ QBizManager::QBizManager()
 	connect(&m_TradeTimer_order, &QTimer::timeout, this, &QBizManager::trade_ordre);
 
 
+
+
+
 	 m_price_buy = "";
 	 m_price_sell = "";
 	 m_price_amount_buy = 0;
@@ -106,6 +123,7 @@ QBizManager::QBizManager()
 
 	 sideret = 0;
 	 nummafads = 0;
+	 ptr = 0;
 	 
 }
 
@@ -438,6 +456,8 @@ void QBizManager::trade_ordre()
 	oneord = 3;
 	m_TradeTimer_order.stop();
 }
+
+
 
 bool QBizManager::Up_Low_Check()
 {
@@ -1607,14 +1627,15 @@ int QBizManager::Side()
 	QString end_price = m_trade.at(m_trade.size() - 1).price;
 	double begin_end =   end_price.toDouble() - begin_price.toDouble();
 
-	double vol = 0;
-	for (int i = 0; i < m_trade.size(); i++)
-	{
-		vol += m_trade.at(i).size.toDouble();
-	}
+	//double vol = 0;
+	//for (int i = 0; i < m_trade.size(); i++)
+	//{
+	//	vol += m_trade.at(i).size.toDouble();
+	//}
 
-	if (setime < 180 && begin_end>5&& vol >= 5053325)
+	if (setime < 50 && begin_end>6)
 	{
+		qDebug() << "Side  1";
 		sideret = 2;
 		return 1;
 	}

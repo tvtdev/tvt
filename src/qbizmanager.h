@@ -139,12 +139,11 @@ private:
 	bool parse_bucketed(const QString & source, QStringList& trade_list);
 	bool parse_USDT(const QString & source, QStringList& trade_list);
 	int GetPrice(const QString & source, QStringList& buy_list, QStringList& sell_list);
-	void leveragePosition(QUrlQuery param);
+
 
 private:
 		QTimer m_TradeTimer_order;
 		QTimer m_TradeTimer;
-		QTimer m_Timer_trade;
 private:
 	bool m_signed;// = false;
 	int m_currentTotalRequests;// = 0;
@@ -199,6 +198,9 @@ private:
 	int nummafads;
 
 	int sideret;;
+
+
+	int ptr;
 };
 
 #endif // BITMEXWEBSOCKETCLIENT_H
