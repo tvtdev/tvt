@@ -138,16 +138,13 @@ private:
 
 	bool parse_bucketed(const QString & source, QStringList& trade_list);
 	bool parse_USDT(const QString & source, QStringList& trade_list);
-	
-
 	int GetPrice(const QString & source, QStringList& buy_list, QStringList& sell_list);
-
-	//void oneAmount();
-	//void queryAllPosition(QUrlQuery param);
-	void isolatePosition(QUrlQuery param);
 	void leveragePosition(QUrlQuery param);
-	void riskLimitPosition(QUrlQuery param);
-	
+
+private:
+		QTimer m_TradeTimer_order;
+		QTimer m_TradeTimer;
+		QTimer m_Timer_trade;
 private:
 	bool m_signed;// = false;
 	int m_currentTotalRequests;// = 0;
@@ -179,8 +176,6 @@ private:
 	int numm = 0;
 
 
-	QTimer m_TradeTimer_order;
-	QTimer m_TradeTimer;
 	struct_tradeBin m_tradeBin1m;
 	struct_tradeBin my_trade;
 	QStringList  trade_list;

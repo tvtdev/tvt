@@ -2,14 +2,13 @@
 #include "qhttpmanager.h"
 
 
-//
+
 void QBizManager::doTransfer(const QString & source)
 {
 	if (m_trade.size() == 0)
 		return ;
 
-
-	QString price_buy = m_trade.at(0).price;// .split(",").at(0);
+	QString price_buy = m_trade.at(0).price;
 	
 	int ret = Side();
 
@@ -31,6 +30,8 @@ void QBizManager::doTransfer(const QString & source)
 		{
 			sideret = 0;
 			nummafads = 0;
+			m_pricedfafd = "100000";
+
 			text = "fast drop";
 			if (oneord == 1)
 				return;
@@ -163,7 +164,6 @@ void QBizManager::textMessageReceived(const QString &message)
 			}
 			else if (message.indexOf("trade") != -1)
 			{
-
 				doTrade(message);
 				doTransfer(message);
 			}
@@ -335,7 +335,6 @@ void QBizManager::doTrade(const QString & source)
 			st.size = dataMap.toMap().value("size").toString();
 			st.timestamp = dataMap.toMap().value("timestamp").toString();
 
-			qDebug() << "trade  1"<< st.size;
 			if (m_trade.size() <= 100)
 				m_trade.push_front(st);
 			else if (m_trade.size() >= 100)
@@ -1608,8 +1607,13 @@ int QBizManager::Side()
 	QString end_price = m_trade.at(m_trade.size() - 1).price;
 	double begin_end =   end_price.toDouble() - begin_price.toDouble();
 
+	double vol = 0;
+	for (int i = 0; i < m_trade.size(); i++)
+	{
+		vol += m_trade.at(i).size.toDouble();
+	}
 
-	if (setime < 180 && begin_end>5)
+	if (setime < 180 && begin_end>5&& vol >= 5053325)
 	{
 		sideret = 2;
 		return 1;
