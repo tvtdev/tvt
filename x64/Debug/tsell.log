@@ -1,8 +1,0 @@
-﻿C:\Program Files (x86)\MSBuild\Microsoft.Cpp\v4.0\V140\Microsoft.CppBuild.targets(392,5): warning MSB8028: The intermediate directory (x64\Debug\) contains files shared from another project (sslechoclient.vcxproj, tv.vcxproj).  This can lead to incorrect clean and rebuild behavior.
-  qbizmanager.cpp
-src\qbizmanager.cpp(143): warning C4100: “error”: 未引用的形参
-src\qbizmanager.cpp(143): warning C4100: “httpStatus”: 未引用的形参
-src\qbizmanager.cpp(219): warning C4189: “loop”: 局部变量已初始化但不引用
-src\qbizmanager.cpp(221): warning C4189: “g_int_buy_price”: 局部变量已初始化但不引用
-  tsell.vcxproj -> E:\tvt\tsell\debug\tv.exe
-  tsell.vcxproj -> debug\tv.pdb (Full PDB)

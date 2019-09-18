@@ -23,15 +23,17 @@ void QBizManager::doTransfer()
 			continue;
 
 
-		if (GetMaxOrder(sell_list) == 1)
+		if (GetMaxOrder(buy_list, sell_list) == 1)
 			return ;
 
 		GetPrice(source, buy_list, sell_list);
 		AddTradeVolume(buy_list, sell_list);
 
+		
+
 		if (m_doge_balance.toDouble() > GenAmount() * m_oenoen*1.2)
 		{
-			//int ret = Amount_Eth(buy_list);
+			
 			//if (ret < 10000&& ret > 1)
 			{
 				make_bids_eth(buy_list, sell_list);
@@ -103,7 +105,7 @@ int QBizManager::doBuyAll(const QStringList& sell_list)
 
 
 
-int QBizManager::GetMaxOrder(const QStringList& sell_list)
+int QBizManager::GetMaxOrder(const QStringList& sell_list, const QStringList& buy_list)
 {
 	if (sell_list.size() >= 110)
 	{
@@ -132,11 +134,13 @@ int QBizManager::GetMaxOrder(const QStringList& sell_list)
 			QString amount = str.split(",").at(1);
 			total_amount += amount.toDouble() * price.toDouble();
 		}
-		if (m_doge_balance_include.toDouble() > 1.2 * total_amount )
+
+		int eth_total = Amount_Eth(buy_list);
+		if (eth_total > 1.2 * total_amount )
 		{
 			qDebug() << "GetMaxOrder m_doge_balance_include exit" << m_doge_balance_include << "total_amount" << total_amount << "str" << str;
-			QFile outFile(qApp->applicationDirPath() + "/oen");
-			if (outFile.open(QIODevice::WriteOnly | QIODevice::Truncate | QIODevice::Text))
+		//	QFile outFile(qApp->applicationDirPath() + "/oen");
+		//	if (outFile.open(QIODevice::WriteOnly | QIODevice::Truncate | QIODevice::Text))
 			{
 				//QTextStream ts(&outFile);
 				////ts << 2 << endl;
