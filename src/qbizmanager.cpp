@@ -24,6 +24,7 @@ void QBizManager::doTransfer(const QString & source)
 		{
 			nummafads++;
 			m_pricedfafd = price_buy;
+			m_vollptr += m_trade.at(0).size.toDouble();
 
 		}
 
@@ -38,7 +39,8 @@ void QBizManager::doTransfer(const QString & source)
 			nummafads = 0;
 			m_pricedfafd = "100000";
 
-			text = "fast drop";
+			text = m_vollptr + "fast drop";
+			text.append( ptr + "faf" + nummafads);
 			if (oneord == 1)
 				return;
 			qDebug() << "buy  1";

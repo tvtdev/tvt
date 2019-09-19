@@ -199,7 +199,7 @@ private:
 
 	int sideret;;
 
-
+	int m_vollptr;
 	int ptr;
 };
 
