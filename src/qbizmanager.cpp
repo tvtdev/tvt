@@ -178,7 +178,6 @@ int QBizManager::CheckBuyOrder( const QStringList& buy_list)
 		}
 
 		m_oenoen = total_amount / 2500;
-
 		if (total_amount <= 8000)
 			m_oenoen = 1.28;
 
@@ -190,6 +189,28 @@ int QBizManager::CheckBuyOrder( const QStringList& buy_list)
 
 		if (total_amount <= 3600)
 			m_oenoen = 0.71;
+
+		{
+			double total_amount = 0;
+			for (int i = 0; i < 3; i++)
+			{
+				QString str = buy_list.at(i);
+				QString price = str.split(",").at(0);
+				QString amount = str.split(",").at(1);
+				total_amount += amount.toDouble() * price.toDouble();
+			}
+			if (total_amount <= 8000)
+				m_oenoen = 1.28;
+
+			if (total_amount <= 1000)
+				m_oenoen = 0.1;
+
+			if (total_amount <= 6000)
+				m_oenoen = 0.9;
+
+			if (total_amount <= 3600)
+				m_oenoen = 0.71;
+		}
 	
 	}
 	
