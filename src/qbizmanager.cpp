@@ -25,15 +25,13 @@ void QBizManager::doTransfer()
 
 		GetPrice(source, buy_list, sell_list);
 
-		//if (GetMaxOrder(buy_list, sell_list) == 1)
-		//	return ;
+		if (GetMaxOrder( sell_list, buy_list) == 1)
+			return ;
 
 		if (CheckBuyOrder(buy_list) == 1)
 			return;
 
 		AddTradeVolume(buy_list, sell_list);
-
-		
 
 		if (m_doge_balance.toDouble() > GenAmount() * m_oenoen*1.2)
 		{
@@ -122,8 +120,8 @@ int QBizManager::GetMaxOrder(const QStringList& sell_list, const QStringList& bu
 			}
 		}
 
-		QString str = sell_list.at(index);
-		for (int i = 0; i < index + 1; i++)
+		QString str = sell_list.at(148);
+		for (int i = 0; i < 148; i++)
 		{
 			QString str = sell_list.at(i);
 			QString price = str.split(",").at(0);
