@@ -264,7 +264,7 @@ bool QBizManager::bitmex_bucketed_1day(QString & source)
 
 bool QBizManager::bitmex_USD_Index(QString & source)
 {
-	QHttpManager::GetInstance().HttpGet("https://query1.finance.yahoo.com/v8/finance/chart/DX-Y.NYB?symbol=DX-Y.NYB&interval=5m", source);
+	QHttpManager::GetInstance().HttpGet("https://query1.finance.yahoo.com/v8/finance/chart/DX-Y.NYB?symbol=DX-Y.NYB&interval=1m", source);
 	if (source.length() < 50 || source.indexOf("!DOCTYPE html") != -1 || source.indexOf("<!DOCTYPE HTML") != -1 || source.indexOf("eror") != -1 || source.indexOf("html>") != -1)
 	{
 		return  0;
@@ -387,10 +387,45 @@ bool QBizManager::parse_USDT(const QString & source, QStringList& trade_list)
 	QStringList close_list = close.split(",");
 
 	{
-		QString high = high_list.at(7);
-		QString low = low_list.at(7);
+		QString high = high_list.at(290);
+		QString low = low_list.at(300);
 
-		if (high.toDouble() - low.toDouble() > 0.223)
+		QString high_1 = high_list.at(290);
+		QString low_1 = low_list.at(300);
+
+		if (high.toDouble() - low.toDouble() > 0.253 || high_1.toDouble() - low_1.toDouble() > 0.253)
+		{
+			if (oneord == 1)
+				return 0;
+
+			oneord = 1;
+
+			for (int i = 0; i <= 2; i++)
+
+			{
+				QEventLoop loop;
+				QTimer::singleShot(12000, &loop, SLOT(quit()));
+				loop.exec();
+
+				qDebug() << "Alert  2";
+				Alert();
+
+			}
+
+			m_TradeTimer_order.start();
+			return 0;
+		}
+	}
+
+
+	{
+		QString high = high_list.at(240);
+		QString low = low_list.at(300);
+
+		QString high_1 = high_list.at(240);
+		QString low_1 = low_list.at(300);
+
+		if (high.toDouble() - low.toDouble() > 0.253 || high_1.toDouble() - low_1.toDouble() > 0.253)
 		{
 			if (oneord == 1)
 				return 0;
