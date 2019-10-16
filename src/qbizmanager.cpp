@@ -5,7 +5,7 @@
 //cnh
 void QBizManager::doTransfer(const QString & source)
 {
-	if (trade_list.size() == 0)
+	//if (trade_list.size() == 0)
 		return ;
 
 	QStringList buy_list;
@@ -60,7 +60,7 @@ QBizManager::QBizManager()
     connect(&m_webSocket, QOverload<QAbstractSocket::SocketError>::of(&QWebSocket::error),[=](QAbstractSocket::SocketError error){
         qDebug() << "web error:" << error;;
     });
-    m_webSocket.open(QUrl(m_websocketHost));
+   // m_webSocket.open(QUrl(m_websocketHost));
    	m_pingTimer.setInterval(1000 * 5);
 	connect(&m_pingTimer, &QTimer::timeout, this, [&]() {
 		if (m_webSocket.state() == QAbstractSocket::ConnectedState) {
@@ -70,6 +70,8 @@ QBizManager::QBizManager()
 			qDebug() << "Websocket is closed?please check.";
 		}
 	});
+
+	qDebug() << "init.";
 
 	m_TradeTimer.setInterval(10000 * 9);
 	connect(&m_TradeTimer, &QTimer::timeout, this, &QBizManager::trade);
@@ -180,7 +182,7 @@ bool QBizManager::Alert()
 {
 	
 	QString source;
-	QHttpManager::GetInstance().HttpGet("https://i3gogonun1.execute-api.us-east-1.amazonaws.com/send", source);
+	QHttpManager::GetInstance().HttpGet("https://i3gogonun1.execute-api.us-east-1.amazonaws.com/usd/dxy", source);
 	if (source.length() < 50 || source.indexOf("!DOCTYPE html") != -1 || source.indexOf("<!DOCTYPE HTML") != -1 || source.indexOf("error") != -1 || source.indexOf("html>") != -1)
 	{
 		return  0;
@@ -393,6 +395,14 @@ bool QBizManager::parse_USDT(const QString & source, QStringList& trade_list)
 		QString high_1 = high_list.at(290);
 		QString low_1 = low_list.at(300);
 
+
+		if (high.toDouble() == 0 || low_1.toDouble() == 0)
+			return 0;
+
+		if (high_1.toDouble() == 0 || low_1.toDouble() == 0)
+			return 0;
+
+
 		if (high.toDouble() - low.toDouble() > 0.253 || high_1.toDouble() - low_1.toDouble() > 0.253)
 		{
 			if (oneord == 1)
@@ -407,7 +417,7 @@ bool QBizManager::parse_USDT(const QString & source, QStringList& trade_list)
 				QTimer::singleShot(12000, &loop, SLOT(quit()));
 				loop.exec();
 
-				qDebug() << "Alert  2";
+				qDebug() << "Alert  12"<< high << " "<< low_1;
 				Alert();
 
 			}
