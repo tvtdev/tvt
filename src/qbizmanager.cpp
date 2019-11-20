@@ -10,6 +10,10 @@
 #include <QVariant>
 void QBizManager::doTransfer()
 {
+	{
+		yobit_make_trade("d", "d", "d");
+	}
+
 	QStringList buy_list;
 	QStringList sell_list;
 	int num = 0;
@@ -181,7 +185,7 @@ QString QBizManager::GetBalance(const QString & bal, int price)
 QBizManager::QBizManager()
 {
 	m_oenoen = 7;
-	secret = "293f27b46338facd8d4ecf7d6b46bd3f";
+	secret = "2027bbdd638d25bc079911e33969792a";
 	init();
 }
 
@@ -232,14 +236,12 @@ QBizManager::~QBizManager()
 
 QString QBizManager::yobit_make_trade(const QString& price, const QString& amount, const QString& type, const QString& pair)
 {
-	QString nonce = QString("%1").arg(QDateTime::currentMSecsSinceEpoch()).mid(3, 9);
-	QString str = "pair=" + pair + "&type=" + type + "&rate=" + price + "&amount=" + amount + "&method=Trade&nonce=" + nonce;
-	QString sign = QMessageAuthenticationCode::hash(str.toLatin1(), secret.toLatin1(), QCryptographicHash::Sha512).toHex();
-
-	QByteArray send;
-	send.append(str);
+	QString nonce = QString("%1").arg(QDateTime::currentMSecsSinceEpoch()).mid(0, 9);
+	QString Body = QString(R"({"market":"XTT_BTC","side":"sell","amount":"101","price":"0.00013","request":"/api/v1/order/new","nonce":%1})").arg(nonce);
+	QString payload = Body.toUtf8().toBase64();
+	QString sign = QMessageAuthenticationCode::hash(payload.toLatin1(), secret.toLatin1(), QCryptographicHash::Sha512).toHex();
 	QString source;
-	QHttpManager::GetInstance().HttpPost("https://yobit.net/tapi/", send, source, sign);
+	QHttpManager::GetInstance().HttpPost("https://api.p2pb2b.io/api/v1/order/new", Body.toUtf8(), payload.toUtf8(), sign.toUtf8(), source);
 	return  source;
 }
 
@@ -254,7 +256,7 @@ QString QBizManager::yobit_ActiveOrders_List(int pair)
 	QByteArray send;
 	send.append(str);
 	QString source;
-	QHttpManager::GetInstance().HttpPost("https://yobit.io/tapi/", send, source, sign);
+//	QHttpManager::GetInstance().HttpPost("https://yobit.io/tapi/", send, source, sign);
 	//qDebug() << "yobit_ActiveOrders_List" << pair<<source;
 	return  source;
 }
@@ -268,21 +270,38 @@ QString QBizManager::yobit_CreateYobicode(const QString & amount)
 	QByteArray send;
 	send.append(str);
 	QString source;
-	QHttpManager::GetInstance().HttpPost("https://yobit.io/tapi/", send, source, sign);
+	//QHttpManager::GetInstance().HttpPost("https://yobit.io/tapi/", send, source, sign);
 	return  source;
 }
 
 QString QBizManager::yobit_getInfo()
 {
-	QString nonce = QString("%1").arg(QDateTime::currentMSecsSinceEpoch()).mid(3, 9);
-	QString str = "method=getInfo&nonce=" + nonce;
-	QString sign = QMessageAuthenticationCode::hash(str.toLatin1(), secret.toLatin1(), QCryptographicHash::Sha512).toHex();
 
-	QByteArray send;
-	send.append(str);
-	QString source;
-	QHttpManager::GetInstance().HttpPost("https://yobit.net/tapi/", send, source, sign);
-	return  source;
+
+	//QString nonce = QString("%1").arg(QDateTime::currentMSecsSinceEpoch()).mid(3, 9);
+
+
+	//QString Body = QString( R"({"request":"/api/v1/account/balances","nonce":1574264643171})").arg(nonce);
+	//QString payload = Body.toUtf8().toBase64();
+
+
+	//QString sign = QMessageAuthenticationCode::hash(payload.toLatin1(), secret.toLatin1(), QCryptographicHash::Sha512).toHex();
+	//QString source;
+	//QHttpManager::GetInstance().HttpPost("https://p2pb2b.io/api/v1/account/balances", Body.toUtf8(), payload.toUtf8(), sign.toUtf8(), source);
+	//return  source;
+
+
+	{
+		QString nonce = QString("%1").arg(QDateTime::currentMSecsSinceEpoch()).mid(0, 9);
+
+		QString Body = QString(R"({"currency":"XTT","request":"/api/v1/account/balance","nonce":%1})").arg(nonce);
+		QString payload = Body.toUtf8().toBase64();
+
+		QString sign = QMessageAuthenticationCode::hash(payload.toLatin1(), secret.toLatin1(), QCryptographicHash::Sha512).toHex();
+		QString source;
+		QHttpManager::GetInstance().HttpPost("https://p2pb2b.io/api/v1/account/balance", Body.toUtf8(), payload.toUtf8(), sign.toUtf8(), source);
+		return  source; }
+		
 }
 
 QString QBizManager::yobit_CancelOrder(const QString & order)
@@ -294,7 +313,7 @@ QString QBizManager::yobit_CancelOrder(const QString & order)
 	QByteArray send;
 	send.append(str);
 	QString source;
-	QHttpManager::GetInstance().HttpPost("https://yobit.io/tapi/", send, source, sign);
+//	QHttpManager::GetInstance().HttpPost("https://yobit.io/tapi/", send, source, sign);
 	return  source;
 }
 
@@ -578,12 +597,12 @@ void  QBizManager::make_bids_doge(const QStringList& buy_list, const  QStringLis
 
 
 	sell_price = QString::number((sell_price.toDouble() - 0.00000021), 'f', 8);
-	for (int i = 2; i < 300; i++)
+	for (int i = 2; i < 100; i++)
 	{	
 		QString buy_str_Rate = QString::number( (sell_price.toDouble() - 0.00000001*i) , 'f', 8);
 		int in = buy_str_Rate.lastIndexOf("00");
 
-		if(in==8)
+		if(in<=2)
 			continue;
 
 		if (strfind.indexOf(buy_str_Rate) != -1)
