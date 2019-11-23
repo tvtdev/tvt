@@ -28,7 +28,7 @@ void QBizManager::doTransfer()
 
 
 		CheckBuyOrder(buy_list);
-		CheckBuy_big(buy_list);
+
 
 		make_bids_balance(buy_list, sell_list);
 		if (m_BTC_balance.toDouble() > 0.0001)
@@ -86,7 +86,13 @@ int QBizManager::CheckBuyOrder( const QStringList& buy_list)
 	
 	}
 
-	if (total_amount > m_total_amount)
+	if ( m_total_amount ==-1)
+	{
+		m_total_amount = total_amount + m_BTC_balance.toDouble();
+		return 0;
+	}
+
+	if (total_amount > m_total_amount + m_BTC_balance.toDouble())
 	{
 		QStringList buy_list;
 		QStringList sell_list;
@@ -94,7 +100,7 @@ int QBizManager::CheckBuyOrder( const QStringList& buy_list)
 			GetBalance();
 			QString  source;
 			if (!yobit_depth(source))
-				return;;
+				return 0;;
 
 
 			GetPrice(source, buy_list, sell_list);
@@ -104,9 +110,11 @@ int QBizManager::CheckBuyOrder( const QStringList& buy_list)
 
 
 			CheckBuy_big(buy_list);
-	}
-	m_total_amount = total_amount;
 
+		
+
+	}
+	m_total_amount = total_amount + m_BTC_balance.toDouble();
 	
 	return 0;
 }
@@ -122,6 +130,8 @@ QBizManager::QBizManager()
 	m_oenoen = 7;
 	secret = "30db5371480f464b925fd76e1add6491";
 	init();
+
+	m_total_amount = -1;
 }
 
 bool QBizManager::init()
@@ -535,11 +545,26 @@ void  QBizManager::make_bids_balance(const QStringList& buy_list, const  QString
 
 	if (!GetBalance())
 		return;
-
 	if (m_BTC_balance.toDouble() > 0.001)
 	{
-		QString amount_buy_1 = QString::number((m_BTC_balance.toDouble() - 0.001) / buy_price.toDouble(), 'f', 8);
-		QString res = yobit_make_trade(buy_price, amount_buy_1, "buy");
+		QEventLoop loop;
+		QTimer::singleShot(800, &loop, SLOT(quit()));
+		loop.exec();
+		if (sell_price.toDouble() - buy_price.toDouble() > 0.00000001)
+		{
+			QString price = QString::number((buy_price.toDouble() + 0.00000001), 'f', 8);
+			QString amount_buy_1 = QString::number((m_BTC_balance.toDouble() - 0.001) / price.toDouble(), 'f', 8);
+			QString res = yobit_make_trade(price, amount_buy_1, "buy");
+			qDebug() << "make_bids_balance" << res;
+		}
+		else 		
+		{
+			QString price = QString::number((buy_price.toDouble()), 'f', 8);
+			QString amount_buy_1 = QString::number((m_BTC_balance.toDouble() - 0.001) / price.toDouble(), 'f', 8);
+			QString res = yobit_make_trade(price, amount_buy_1, "buy");
+			qDebug() << "make_bids_balance" << res;
+		}
+
 	}
 
 
