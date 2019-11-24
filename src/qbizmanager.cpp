@@ -23,9 +23,7 @@ void QBizManager::doTransfer()
 	
 		GetPrice(source, buy_list, sell_list);
 
-
-		CancelVol(buy_list);
-
+	
 
 		CheckBuyOrder(buy_list);
 
@@ -49,6 +47,13 @@ void QBizManager::doTransfer()
 			}
 
 			make_bids_doge(buy_list, sell_list);
+		}
+
+
+		if (m_BTC_balance.toDouble() < 0.00013)
+		{			
+			if(CancelVol(buy_list))
+				CheckBuy_big(buy_list);
 		}
 	}
 	return;
@@ -106,10 +111,8 @@ int QBizManager::CheckBuyOrder( const QStringList& buy_list)
 			GetPrice(source, buy_list, sell_list);
 
 
-			CancelVol(buy_list);
-
-
-			CheckBuy_big(buy_list);
+			if(CancelVol(buy_list))
+				CheckBuy_big(buy_list);
 
 		
 
@@ -437,27 +440,31 @@ void  QBizManager::make_bids_eth(const QStringList& buy_list, const  QStringList
 
 int QBizManager::CancelVol(const QStringList& sell_list)
 {
-	QString orders = yobit_ActiveOrders_List(0);
-	if (orders.indexOf("{\"success\":1}") != -1)
-		return 0;
-	QStringList orders_list = orders.mid(3).split("orderId");
-	if (orders_list.size() == 0)
+	for(int i=0;i<=3;i++)
 	{
-		return 0;
-	}
+		QString orders = yobit_ActiveOrders_List(0);
+		if (orders.indexOf("{\"success\":1}") != -1)
+			return 0;
+		QStringList orders_list = orders.mid(3).split("orderId");
+		if (orders_list.size() == 1)
+		{
+			return 1;
+		}
 
-	for (int i = 1; i < orders_list.size() && orders_list.size() != 1; i++)
-	{
-		QString price = orders_list.at(i).split(",").at(2).split(":").at(1);
-		price = price.replace("\"", "");
-
-	
-
+		for (int i = 1; i < orders_list.size() && orders_list.size() != 1; i++)
+		{
+			QString price = orders_list.at(i).split(",").at(2).split(":").at(1);
+			price = price.replace("\"", "");
 			QString OrderId = orders_list.at(i).mid(2, 10);
-			qDebug() << yobit_CancelOrder(OrderId);
-	
+			yobit_CancelOrder(OrderId);
+			QEventLoop loop;
+			QTimer::singleShot(800, &loop, SLOT(quit()));
+			loop.exec();
+
+		}
+		
 	}
-	return orders_list.size();
+	return false;
 }
 
 
