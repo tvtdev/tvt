@@ -1,0 +1,6 @@
+﻿  qbizmanager.cpp
+src\qbizmanager.cpp(53): warning C4100: “error”: 未引用的形参
+src\qbizmanager.cpp(53): warning C4100: “httpStatus”: 未引用的形参
+src\qbizmanager.cpp(155): warning C4189: “g_int_buy_price”: 局部变量已初始化但不引用
+  sslechoclient.vcxproj -> C:\Users\admin\Desktop\sslechoclient\debug\sslechoclient.exe
+  sslechoclient.vcxproj -> debug\sslechoclient.pdb (Full PDB)
