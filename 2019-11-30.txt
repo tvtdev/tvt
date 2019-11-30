@@ -1,0 +1,12 @@
+2019-11-30 17:10:15 Debug: doTransfer
+
+2019-11-30 17:10:37 Debug: doTransfer
+
+2019-11-30 17:12:13 Debug: doTransfer
+
+2019-11-30 17:12:23 Debug: doTransfer
+
+2019-11-30 17:12:25 Debug: doTransfer
+
+2019-11-30 17:12:25 Debug: doTransfer 1
+
