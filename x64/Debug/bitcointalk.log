@@ -1,5 +1,0 @@
-﻿C:\Program Files (x86)\MSBuild\Microsoft.Cpp\v4.0\V140\Microsoft.CppBuild.targets(392,5): warning MSB8028: The intermediate directory (x64\Debug\) contains files shared from another project (sslechoclient.vcxproj, tsell.vcxproj, tv.vcxproj).  This can lead to incorrect clean and rebuild behavior.
-  qbizmanager.cpp
-src\qbizmanager.cpp(261): warning C4189: “i”: 局部变量已初始化但不引用
-  bitcointalk.vcxproj -> E:\tvt\bitcointalk\debug\tv.exe
-  bitcointalk.vcxproj -> debug\tv.pdb (Full PDB)
