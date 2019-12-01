@@ -845,7 +845,7 @@ int  QBizManager::make_bids_doge_sell(const QStringList& buy_list, const  QStrin
 	}
 
 
-	return 1;
+	return ret;
 }
 
 
@@ -880,7 +880,7 @@ int  QBizManager::make_bids_doge_buy(const QStringList& buy_list, const  QString
 		}
 	}
 
-	return 1;
+	return ret;
 }
 //
 //void  QBizManager::make_bids_doge_buy(const QStringList& buy_list, const  QStringList& sell_list)
