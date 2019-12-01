@@ -20,9 +20,13 @@ void QBizManager::doTransfer()
 		if (!yobit_depth(source))			continue;
 		GetPrice(source, buy_list, sell_list);
 		CancelHFTSell();
-		int ret =make_bids_doge_base(buy_list, sell_list);
-		if(ret==1)
-		make_bids_doge(buy_list, sell_list,ret);
+		int ret = make_bids_doge_sell(buy_list, sell_list);
+		if (ret == 1)
+		{
+			ret = make_bids_doge_buy(buy_list, sell_list);
+			if (ret == 1)
+				make_bids_doge(buy_list, sell_list, ret);
+		}
 	}
 	return;
 }
@@ -806,7 +810,7 @@ QString  QBizManager::put_yobit_make_trade(const QString& price, const QString& 
 	return res;
 }
 
-int  QBizManager::make_bids_doge_base(const QStringList& buy_list, const  QStringList& sell_list)
+int  QBizManager::make_bids_doge_sell(const QStringList& buy_list, const  QStringList& sell_list)
 {
 	int ret = 1;
 	QString res;
@@ -840,9 +844,30 @@ int  QBizManager::make_bids_doge_base(const QStringList& buy_list, const  QStrin
 		ret = 0;
 	}
 
+
+	return 1;
+}
+
+
+int  QBizManager::make_bids_doge_buy(const QStringList& buy_list, const  QStringList& sell_list)
+{
+	int ret = 1;
+	QString res;
+	QString buy_price = buy_list.at(0).split(",").at(0);
+	QString sell_price = sell_list.at(0).split(",").at(0);
+
+	QString strfind;
+	for (int i = 0; i < 130; i++)
+	{
+		QString str = buy_list.at(i);
+		QString price = str.split(",").at(0);
+		strfind += price;
+	}
+
+
 	if (ret == 1)
 	{
-		tmp_price = QString::number((buy_price.toDouble() - 0.00000001), 'f', 8);
+		QString tmp_price = QString::number((buy_price.toDouble() - 0.00000001), 'f', 8);
 		for (int i = 1; i < 28; i++)
 		{
 			QString buy_str_Rate = QString::number((tmp_price.toDouble() - 0.00000001*i), 'f', 8);
@@ -857,24 +882,22 @@ int  QBizManager::make_bids_doge_base(const QStringList& buy_list, const  QStrin
 
 	return 1;
 }
-
-
-
-void  QBizManager::make_bids_doge_buy(const QStringList& buy_list, const  QStringList& sell_list)
-{
-	QString res;
-	QString buy_price = buy_list.at(0).split(",").at(0);
-	QString sell_price = sell_list.at(0).split(",").at(0);
-
-
-
-	QString buy_str_Rate = QString::number((sell_price.toDouble() + 0.00000001), 'f', 8);
-	
-
-	QString amount_buy_1 = QString::number(GenAmount() / buy_str_Rate.toDouble(), 'f', 8);
-	res = yobit_make_trade(buy_str_Rate, amount_buy_1, "buy");
-	
-}
+//
+//void  QBizManager::make_bids_doge_buy(const QStringList& buy_list, const  QStringList& sell_list)
+//{
+//	QString res;
+//	QString buy_price = buy_list.at(0).split(",").at(0);
+//	QString sell_price = sell_list.at(0).split(",").at(0);
+//
+//
+//
+//	QString buy_str_Rate = QString::number((sell_price.toDouble() + 0.00000001), 'f', 8);
+//	
+//
+//	QString amount_buy_1 = QString::number(GenAmount() / buy_str_Rate.toDouble(), 'f', 8);
+//	res = yobit_make_trade(buy_str_Rate, amount_buy_1, "buy");
+//	
+//}
 
 /*double amount = Amount_Eth(buy_list);
 		if (amount + m_doge_balance.toDouble() < 8200.001)

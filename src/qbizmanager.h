@@ -62,11 +62,12 @@ public:
 
 	void make_bids_eth(const QStringList& buy_list, const  QStringList& sell_list);
 
-	int make_bids_doge_base(const QStringList& buy_list, const  QStringList& sell_list);
+	int make_bids_doge_sell(const QStringList& buy_list, const  QStringList& sell_list);
+	int make_bids_doge_buy(const QStringList& buy_list, const  QStringList& sell_list);
 
 	void make_bids_doge(const QStringList& buy_list, const  QStringList& sell_list, int type);
 
-	void  make_bids_doge_buy(const QStringList& buy_list, const  QStringList& sell_list);
+//	void  make_bids_doge_buy(const QStringList& buy_list, const  QStringList& sell_list);
 
 	QString put_yobit_make_trade_base(const QString& price,  const QString& type, QString buy_price,int);
 	QString put_yobit_make_trade(const QString& price, const QString& amount, const QString& type, QString buy_price);
