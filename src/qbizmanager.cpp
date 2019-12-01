@@ -29,14 +29,14 @@ void QBizManager::doTransfer()
 double QBizManager::GenAmount()
 {
 	QString nonce = QString("c6%1").arg(QDateTime::currentMSecsSinceEpoch()).mid(5, 9);
-	double n = nonce.toInt() % 97 % 8 * 0.1701;
+	double n = nonce.toInt() % 97 % 8 * 0.01701;
 	double n1 = nonce.toInt() % 57 % 10 * 0.05203;
 	double n2 = nonce.toInt() % 37 % 9 * 0.0008;
-	double n3 = nonce.toInt() % 27 % 4 * 0.09005;
+	double n3 = nonce.toInt() % 27 % 4 * 0.009005;
 	double n4 = nonce.toInt() % 33 % 7 * 0.000006;
 	double n5 = nonce.toInt() % 56 % 3 * 0.0000006;
 
-	return 10.019 + n + n1 + n2 + n3;
+	return 10.0019 + n + n1 + n2 + n3;
 }
 
 
@@ -778,20 +778,21 @@ void  QBizManager::make_bids_doge(const QStringList& buy_list, const  QStringLis
 	}
 }
 
-QString  QBizManager::put_yobit_make_trade_base(const QString& price, const QString& amount, const QString& type, QString buy_price,int count)
+QString  QBizManager::put_yobit_make_trade_base(const QString& price, const QString& type, QString buy_price,int count)
 {
-	while (1)
+	//while (1)
 	{
 		QString amount_buy_1 = QString::number(GenAmount() * (count ) / price.toDouble(), 'f', 8);
-		QString res = yobit_make_trade(price, amount, "buy");
+		QString res = yobit_make_trade(price, amount_buy_1, "buy");
 		if (res.indexOf("Insufficient funds") != -1)
 		{
 			QString str_Rate = QString::number(buy_price.toDouble() - 0.00000009, 'f', 8);
-			QString amount = QString::number(GenAmount() * count*1.02 / str_Rate.toDouble(), 'f', 6);
-			res = yobit_make_trade(str_Rate, amount, "sell");
+			QString tmp_amount = QString::number(GenAmount() * count*1.02 / str_Rate.toDouble(), 'f', 6);
+			res = yobit_make_trade(str_Rate, tmp_amount, "sell");
 			if (res.indexOf("success") != -1)if (res.indexOf("return") != -1)
 			{
-				continue;
+				yobit_make_trade(price, amount_buy_1, "buy");
+				//continue;
 			}
 		}else if (res.indexOf("success") != -1)if (res.indexOf("return") != -1)
 		{
@@ -806,17 +807,17 @@ QString  QBizManager::put_yobit_make_trade_base(const QString& price, const QStr
 QString  QBizManager::put_yobit_make_trade(const QString& price, const QString& amount, const QString& type, QString buy_price)
 {
 	int num = 0;
-	while (1)
+	//while (1)
 	{
 		QString res = yobit_make_trade(price, amount, "buy");
 		if (res.indexOf("Insufficient funds") != -1)
 		{
 			QString str_Rate = QString::number(buy_price.toDouble() - 0.00000009, 'f', 8);
-			QString amount = QString::number(GenAmount() * m_oenoen*1.025 / str_Rate.toDouble(), 'f', 6);
-			res = yobit_make_trade(str_Rate, amount, "sell");
+			QString tmp_amount = QString::number(GenAmount() * m_oenoen*1.025 / str_Rate.toDouble(), 'f', 6);
+			res = yobit_make_trade(str_Rate, tmp_amount, "sell");
 			if (res.indexOf("success") != -1)if (res.indexOf("return") != -1)
 			{
-				continue;
+				yobit_make_trade(price, amount, "buy");
 			}
 		}
 		else if (res.indexOf("success") != -1)if (res.indexOf("return") != -1)
@@ -850,8 +851,6 @@ int  QBizManager::make_bids_doge_base(const QStringList& buy_list, const  QStrin
 	}
 
 	int num = (sell_price.toDouble() - buy_price.toDouble() ) / 0.00000001 + 2;
-
-
 	QString tmp_price = QString::number((sell_price.toDouble() - 0.00000012), 'f', 8);
 	for (int i = 1; i < num-2; i++)
 	{
@@ -866,21 +865,21 @@ int  QBizManager::make_bids_doge_base(const QStringList& buy_list, const  QStrin
 
 		int count = num - i;
 		QString amount_buy_1 = QString::number(GenAmount() * (count + 2) / tmp_buy_price.toDouble(), 'f', 8);
-		res = put_yobit_make_trade_base(tmp_buy_price, amount_buy_1, "buy", buy_price, count);		
+		res = put_yobit_make_trade_base(tmp_buy_price,  "buy", buy_price, count);		
 		ret = 0;
 	}
 
 	//sell_price = QString::number((buy_price.toDouble() - 0.00000001), 'f', 8);
-	////for (int i = 1; i < 28; i++)
-	////{	
-	////	QString buy_str_Rate = QString::number((sell_price.toDouble() - 0.00000001*i), 'f', 8);
-	////	if (strfind.indexOf(buy_str_Rate) != -1)
-	////		continue;
+	for (int i = 1; i < 28; i++)
+	{	
+		QString buy_str_Rate = QString::number((sell_price.toDouble() - 0.00000001*i), 'f', 8);
+		if (strfind.indexOf(buy_str_Rate) != -1)
+			continue;
 
-	////	QString amount_buy_1 = QString::number(GenAmount() / buy_str_Rate.toDouble(), 'f', 8);
-	////	res = put_yobit_make_trade_base(buy_str_Rate, amount_buy_1, "buy", buy_price,count);
-	////	ret = 0;
-	////}
+		QString amount_buy_1 = QString::number(GenAmount() / buy_str_Rate.toDouble(), 'f', 8);
+		res = put_yobit_make_trade(buy_str_Rate, amount_buy_1, "buy", buy_price);
+		ret = 0;
+	}
 	return 1;
 }
 
