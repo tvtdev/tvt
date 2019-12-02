@@ -699,6 +699,7 @@ int QBizManager::CancelHFTSell()
 			num++;
 			QString OrderId = orders_list.at(i).mid(6, 16);
 			QString res = yobit_CancelOrder(OrderId);
+			num++;
 		}
 		if (num == 0)			return 0;
 	}
@@ -871,9 +872,10 @@ int  QBizManager::make_bids_doge_buy(const QStringList& buy_list, const  QString
 		for (int i = 1; i < 28; i++)
 		{
 			QString buy_str_Rate = QString::number((tmp_price.toDouble() - 0.00000001*i), 'f', 8);
+			if (buy_str_Rate.mid(6).indexOf("00") != -1)
+				continue;
 			if (strfind.indexOf(buy_str_Rate) != -1)
 				continue;
-
 			QString amount_buy_1 = QString::number(GenAmount() / buy_str_Rate.toDouble(), 'f', 8);
 			res = put_yobit_make_trade(buy_str_Rate, amount_buy_1, "buy", buy_price);
 			ret = 0;
