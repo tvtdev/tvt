@@ -339,6 +339,7 @@ bool QBizManager::yobit_depth(QString & source)
 		qDebug() << "yobit_depth" << source.mid(0, 10);
 		return  0;
 	}
+	//qDebug() << "yobit_depth" << source.mid(0, 20);
 	return  1;
 }
 
@@ -688,11 +689,13 @@ void  QBizManager::make_bids_doge(const QStringList& buy_list, const  QStringLis
 		{
 			if (CancelHFT())
 			{
+				qDebug() << "CancelHFT i++;" << index_price<< i;// << " " << res.mid(0, 13);
 				i++;
 			}
 		}
-		if (res.indexOf("success") != -1)if (res.indexOf("0,") != -1)
+		if (res.indexOf("success\":0,") != -1)
 		{
+			qDebug() << "CancelHFT i++;" << index_price << res;// << " " << res.mid(0, 13);
 			return;
 		}
 	}
