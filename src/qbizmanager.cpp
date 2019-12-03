@@ -215,7 +215,7 @@ QString QBizManager::GetBalance(const QString & bal, int price)
 QBizManager::QBizManager()
 {
 	m_oenoen = 7;
-	secret = "293f27b46338facd8d4ecf7d6b46bd3f";
+	secret = "b2c30df9247a4310162023220675ebb6";
 	init();
 }
 
