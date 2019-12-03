@@ -20,7 +20,8 @@ void QBizManager::doTransfer()
 		if (!yobit_depth(source))			continue;
 		GetPrice(source, buy_list, sell_list);
 		CancelHFTSell();
-		CancelHFT();
+		if (!CancelHFT())			continue;
+		
 		int ret = make_bids_doge_sell(buy_list, sell_list);
 		if (ret == 1)
 		{
@@ -621,12 +622,9 @@ int QBizManager::CancelHFT()
 		QString order_str = bids_orders.first();
 		QString OrderId = order_str.mid(6, 16);
 		QString res = yobit_CancelOrder(OrderId);
-		qDebug() << "CancelHFT yobit_CancelOrder" << res.mid(0,18);
-		
 		if (res.indexOf("success") != -1)
 		{
-			qDebug() << "CancelHFT";
-			return 1;
+			return 0;
 		}
 	}
 	return 0;	
@@ -684,18 +682,17 @@ void  QBizManager::make_bids_doge(const QStringList& buy_list, const  QStringLis
 	{
 		QString index_price = QString::number((tmp_price.toDouble() - 0.00000001*i), 'f', 8);
 		QString amount = QString::number(GenAmount() / index_price.toDouble(), 'f', 0) + ".1313289";
-		res = put_yobit_make_trade(index_price, amount, "buy", buy_price); qDebug() <<"make_bids_doge"<< index_price<<" "<<res.mid(0,13);
+		res = put_yobit_make_trade(index_price, amount, "buy", buy_price); 
 		if (res.indexOf("success") != -1)if (res.indexOf("return") != -1)
 		{
 			if (CancelHFT())
 			{
-				qDebug() << "CancelHFT i++;" << index_price<< i;// << " " << res.mid(0, 13);
 				i++;
 			}
 		}
 		if (res.indexOf("success\":0,") != -1)
 		{
-			qDebug() << "CancelHFT i++;" << index_price << res;// << " " << res.mid(0, 13);
+			qDebug() << "make_bids_doge success\":0" << index_price << res;// << " " << res.mid(0, 13);
 			return;
 		}
 	}
