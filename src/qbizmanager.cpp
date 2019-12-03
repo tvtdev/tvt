@@ -10,6 +10,7 @@
 #include <QVariant>
 void QBizManager::doTransfer()
 {
+	qsrand(time(NULL));
 	QStringList buy_list;
 	QStringList sell_list;
 	int num = 0;
@@ -21,7 +22,6 @@ void QBizManager::doTransfer()
 		GetPrice(source, buy_list, sell_list);
 		CancelHFTSell();
 		if (!CancelHFT())			continue;
-		
 		int ret = make_bids_doge_sell(buy_list, sell_list);
 		if (ret == 1)
 		{
@@ -602,7 +602,7 @@ int QBizManager::CancelHFT()
 	if (orders.indexOf("{\"success\":1}") != -1)			return 0;
 
 	QStringList orders_list = orders.mid(3).split("status");
-	if (orders_list.size() == 0)	{			return 0;		}
+	if (orders_list.size() == 0) { qDebug() << orders.mid(0, 10); return 0; }
 
 	QStringList bids_orders;
 	for (int i = 0; i < orders_list.size(); i++)
@@ -615,15 +615,21 @@ int QBizManager::CancelHFT()
 		}
 	}
 
-	if (bids_orders.size() <= 30) { return 1; }
+	if (bids_orders.size() <= 50) { return 1; }
 	
-	if (bids_orders.length() > 30)
+	if (bids_orders.length() > 50)
 	{
 		QString order_str = bids_orders.first();
 		QString OrderId = order_str.mid(6, 16);
 		QString res = yobit_CancelOrder(OrderId);
 		if (res.indexOf("success") != -1)
 		{
+			qDebug() << "CancelHFT success";
+			return 0;
+		}
+		if (res.indexOf("success\":0,") != -1)
+		{
+			qDebug() << "CancelHFT success\":0" <<  res;// << " " << res.mid(0, 13);
 			return 0;
 		}
 	}
@@ -678,9 +684,10 @@ void  QBizManager::make_bids_doge(const QStringList& buy_list, const  QStringLis
 	QString sell_price = sell_list.at(0).split(",").at(0);
 	
 	QString tmp_price = QString::number((buy_price.toDouble() - 0.00000001), 'f', 8);
-	for (int i = 2; i < 28; )
+	for (int i = 1; i < 28; )
 	{
-		QString index_price = QString::number((tmp_price.toDouble() - 0.00000001*i), 'f', 8);
+		int n = qrand() % 28;
+		QString index_price = QString::number((tmp_price.toDouble() - 0.00000001*n), 'f', 8);
 		QString amount = QString::number(GenAmount() / index_price.toDouble(), 'f', 0) + ".1313289";
 		res = put_yobit_make_trade(index_price, amount, "buy", buy_price); 
 		if (res.indexOf("success") != -1)if (res.indexOf("return") != -1)
