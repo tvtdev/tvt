@@ -215,7 +215,7 @@ QString QBizManager::GetBalance(const QString & bal, int price)
 QBizManager::QBizManager()
 {
 	m_oenoen = 7;
-	secret = "b2c30df9247a4310162023220675ebb6";
+	secret = "760f4a0e0218488bf626c00ff0fc166d";
 	init();
 }
 
@@ -597,9 +597,9 @@ int   QStringList_find_count(const QStringList& orders_list, QString str)
 int QBizManager::CancelHFT()
 {
 	QString orders = yobit_ActiveOrders_List("tvt_doge");
+	if (orders.indexOf("{\"success\":1}") != -1)			return 1;
 	orders = orders.mid(15);
 	orders = orders.left(orders.length() - 7);
-	if (orders.indexOf("{\"success\":1}") != -1)			return 0;
 
 	QStringList orders_list = orders.mid(3).split("status");
 	if (orders_list.size() == 0) { qDebug() << orders.mid(0, 10); return 0; }
@@ -768,8 +768,7 @@ int  QBizManager::make_bids_doge_sell(const QStringList& buy_list, const  QStrin
 			continue;
 
 		int count = num - i;
-		QString amount_buy_1 = QString::number(GenAmount() * (count + 2) / tmp_buy_price.toDouble(), 'f', 8);
-		res = put_yobit_make_trade_base(tmp_buy_price,  "buy", buy_price, count);		
+		res = put_yobit_make_trade_base(tmp_buy_price,  "buy", buy_price, count*2);		
 		ret = 0;
 	}
 
