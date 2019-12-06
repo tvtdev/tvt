@@ -295,7 +295,7 @@ QString QBizManager::GetBalance(const QString & bal, int price)
 QBizManager::QBizManager()
 {
 	m_oenoen = 7;
-	secret = "b5ea2b63c823f7ccf3ce4d284de1ac83";
+	
 	init();
 }
 
@@ -307,13 +307,11 @@ bool QBizManager::init()
 
 
 	QSettings m_settingsa(qApp->applicationDirPath() + "/yobit.ini", QSettings::IniFormat);
-	m_oenoen = m_settingsa.value("yobit/cur").toDouble();
-
+	secret = m_settingsa.value("yobit/secret").toString();
+	QString key = m_settingsa.value("yobit/key").toString();
+	QHttpManager::GetInstance().SetKey(key);
 
 	m_oenoen =  1.2;
-
-	m_settingsa.setValue("yobit/cur", QString::number(m_oenoen));
-
 	GetBalance();
 
 	return true;
