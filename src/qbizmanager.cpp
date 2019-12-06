@@ -16,19 +16,33 @@ void QBizManager::doTransfer()
 	int num = 0;
 	while (1)
 	{
+		CancelHFTSell();
+		if (!CancelHFT())			continue;
+
 		GetBalance();
 		QString  source;
 		if (!yobit_depth(source))			continue;
 		GetPrice(source, buy_list, sell_list);
-		CancelHFTSell();
-		if (!CancelHFT())			continue;
-		int ret = make_bids_doge_sell(buy_list, sell_list);
-		if (ret == 1)
+	
+		if ( m_doge_balance.toDouble() < 500.001)
 		{
-			ret = make_bids_doge_buy(buy_list, sell_list);
+			qDebug() << "doBduyAll  1 fd exit" << m_doge_balance;
+			CheckBuy_big(buy_list);
+
+			int ret = make_bids_doge_sell(buy_list, sell_list);
 			if (ret == 1)
-				make_bids_doge(buy_list, sell_list);
+				ret = make_bids_doge_buy(buy_list, sell_list);
 		}
+		else
+		{
+			int ret = make_bids_doge_sell(buy_list, sell_list);
+			if (ret == 1)
+			{
+				ret = make_bids_doge_buy(buy_list, sell_list);
+				if (ret == 1)
+					make_bids_doge(buy_list, sell_list);
+			}
+		}	
 	}
 	return;
 }
@@ -80,6 +94,72 @@ int QBizManager::Amount_Eth(const QStringList& buy_list)
 }
 
 
+
+int QBizManager::CheckBuy_big(const QStringList& buy_list)
+{
+	if (buy_list.size() >= 110)
+	{
+		//for (int i = 0; i < 1; i++)
+		//{
+		//	QString str = buy_list.at(i);
+		//	QString price = str.split(",").at(0);
+		//	QString amount = str.split(",").at(1);
+
+		//	if (amount.toDouble() * price.toDouble() > 100)
+		//	{
+		//		QString buy_str_Rate_1 = QString::number(price.toDouble() - 0.00000001, 'f', 8);
+		//		QString amount_buy_1 = QString::number((amount.toDouble() * price.toDouble() - 10) / buy_str_Rate_1.toDouble(), 'f', 0);
+		//		yobit_make_trade(buy_str_Rate_1, amount_buy_1, "sell");
+		//	}
+		//}
+
+
+		for (int i = 0; i < 2; i++)
+		{
+			QString str = buy_list.at(i);
+			QString price = str.split(",").at(0);
+			QString amount = str.split(",").at(1);
+
+			if (amount.toDouble() * price.toDouble() > 1000)
+			{
+				QString buy_str_Rate_1 = QString::number(price.toDouble() - 0.00000001, 'f', 8);
+				QString amount_buy_1 = QString::number(500/ buy_str_Rate_1.toDouble(), 'f', 0);
+				qDebug() << yobit_make_trade(buy_str_Rate_1, amount_buy_1, "sell");
+			}
+		}
+
+
+		//for (int i = 0; i < 5; i++)
+		//{
+		//	QString str = buy_list.at(i);
+		//	QString price = str.split(",").at(0);
+		//	QString amount = str.split(",").at(1);
+
+		//	if (amount.toDouble() * price.toDouble() > 1000)
+		//	{
+		//		QString buy_str_Rate_1 = QString::number(price.toDouble() - 0.00000001, 'f', 8);
+		//		QString amount_buy_1 = QString::number(amount.toDouble() + 10, 'f', 0);
+		//		yobit_make_trade(buy_str_Rate_1, amount_buy_1, "sell");
+		//	}
+		//}
+
+
+		/*for (int i = 0; i < 15; i++)
+		{
+		QString str = buy_list.at(i);
+		QString price = str.split(",").at(0);
+		QString amount = str.split(",").at(1);
+		if (amount.toDouble() * price.toDouble() > 5000)
+		{
+		QString buy_str_Rate_1 = QString::number(price.toDouble() - 0.00000001, 'f', 8);
+		QString amount_buy_1 = QString::number(amount.toDouble() + 10, 'f', 0);
+		yobit_make_trade(buy_str_Rate_1, amount_buy_1, "sell");
+		}
+		}*/
+	}
+
+	return 0;
+}
 
 int QBizManager::doBuyAll(const QStringList& sell_list)
 {
@@ -215,7 +295,7 @@ QString QBizManager::GetBalance(const QString & bal, int price)
 QBizManager::QBizManager()
 {
 	m_oenoen = 7;
-	secret = "760f4a0e0218488bf626c00ff0fc166d";
+	secret = "b5ea2b63c823f7ccf3ce4d284de1ac83";
 	init();
 }
 
@@ -726,16 +806,16 @@ QString  QBizManager::put_yobit_make_trade_base(const QString& price, const QStr
 QString  QBizManager::put_yobit_make_trade(const QString& price, const QString& amount, const QString& type, QString buy_price)
 {
 	QString res = yobit_make_trade(price, amount, "buy");
-	if (res.indexOf("Insufficient funds") != -1)
-	{
-		QString str_Rate = QString::number(buy_price.toDouble() - 0.00000009, 'f', 8);
-		QString tmp_amount = QString::number(GenAmount() * m_oenoen*1.025 / str_Rate.toDouble(), 'f', 6);
-		res = yobit_make_trade(str_Rate, tmp_amount, "sell");
-		if (res.indexOf("success") != -1)if (res.indexOf("return") != -1)
-		{
-			res = yobit_make_trade(price, amount, "buy");
-		}
-	}
+	//if (res.indexOf("Insufficient funds") != -1)
+	//{
+	//	QString str_Rate = QString::number(buy_price.toDouble() - 0.00000009, 'f', 8);
+	//	QString tmp_amount = QString::number(GenAmount() * m_oenoen*1.025 / str_Rate.toDouble(), 'f', 6);
+	//	res = yobit_make_trade(str_Rate, tmp_amount, "sell");
+	//	if (res.indexOf("success") != -1)if (res.indexOf("return") != -1)
+	//	{
+	//		res = yobit_make_trade(price, amount, "buy");
+	//	}
+	//}
 	return res;
 }
 
@@ -763,12 +843,11 @@ int  QBizManager::make_bids_doge_sell(const QStringList& buy_list, const  QStrin
 		if (tmp_buy_price >= tmp_price)
 			continue;
 
-
 		if (strfind.indexOf(tmp_buy_price) != -1)
 			continue;
 
 		int count = num - i;
-		res = put_yobit_make_trade_base(tmp_buy_price,  "buy", buy_price, count*2);		
+		res = put_yobit_make_trade_base(tmp_buy_price,  "buy", buy_price, 1);		
 		ret = 0;
 	}
 
@@ -811,65 +890,3 @@ int  QBizManager::make_bids_doge_buy(const QStringList& buy_list, const  QString
 
 	return ret;
 }
-//
-//void  QBizManager::make_bids_doge_buy(const QStringList& buy_list, const  QStringList& sell_list)
-//{
-//	QString res;
-//	QString buy_price = buy_list.at(0).split(",").at(0);
-//	QString sell_price = sell_list.at(0).split(",").at(0);
-//
-//
-//
-//	QString buy_str_Rate = QString::number((sell_price.toDouble() + 0.00000001), 'f', 8);
-//	
-//
-//	QString amount_buy_1 = QString::number(GenAmount() / buy_str_Rate.toDouble(), 'f', 8);
-//	res = yobit_make_trade(buy_str_Rate, amount_buy_1, "buy");
-//	
-//}
-
-/*double amount = Amount_Eth(buy_list);
-		if (amount + m_doge_balance.toDouble() < 8200.001)
-		{
-			if (m_doge_balance_include.toDouble() < 8200.001)
-			{
-				CancelHFTSell();
-				CancelVol(buy_list);
-
-				AddTradeVolume(buy_list, sell_list);
-				if (m_doge_balance.toDouble() > GenAmount() * m_oenoen*1.5)
-				{
- 					make_bids_eth(buy_list, sell_list);
-				}
-				continue;
-			}else
-			{
-				if (amount > 100)
-				{
-					doCancleAll(1);
-				}
-
-				if (m_doge_balance.toDouble() >1000.001)
-				{
-
-				}
-			}
-		}
-		
-	
-		
-		if (amount + m_doge_balance.toDouble()  >8200.001)
-		{
-			if (amount > 100)
-			{
-				doCancleAll(1);
-			}
-
-			if (m_doge_balance.toDouble() >1000.001)
-			{
-				CancelHFTSell();
-				make_bids_doge_header(buy_list, sell_list);
-				make_bids_doge(buy_list, sell_list);
-			}
-		}
-		*/
