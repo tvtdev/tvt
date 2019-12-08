@@ -30,7 +30,7 @@ void QBizManager::doTransfer()
 		
 		
 			
-			if(m_doge_balance_include.toDouble()<50)
+			if(amount<50)
 			{
 
 				AddTradeVolume(buy_list, sell_list);
