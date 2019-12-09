@@ -1,0 +1,216 @@
+2019-12-02 11:48:48 Debug: yobit_depth "{\"tvt_doge\":{\"asks\":"
+
+2019-12-02 11:48:49 Debug: make_bids_doge "0.00002843"   "{\"success\":1,"
+
+2019-12-02 11:48:50 Debug: CancelHFT yobit_CancelOrder "{\"success\":1,\"retu"
+
+2019-12-02 11:48:50 Debug: CancelHFT
+
+2019-12-02 11:48:50 Debug: yobit_depth "{\"tvt_doge\":{\"asks\":"
+
+2019-12-02 11:48:51 Debug: make_bids_doge "0.00002843"   "{\"success\":1,"
+
+2019-12-02 11:48:52 Debug: CancelHFT yobit_CancelOrder "{\"success\":1,\"retu"
+
+2019-12-02 11:48:52 Debug: CancelHFT
+
+2019-12-02 11:48:52 Debug: yobit_depth "{\"tvt_doge\":{\"asks\":"
+
+2019-12-02 11:48:53 Debug: make_bids_doge "0.00002843"   "{\"success\":1,"
+
+2019-12-02 11:48:54 Debug: CancelHFT yobit_CancelOrder "{\"success\":1,\"retu"
+
+2019-12-02 11:48:54 Debug: CancelHFT
+
+2019-12-02 11:48:54 Debug: yobit_depth "{\"tvt_doge\":{\"asks\":"
+
+2019-12-02 11:48:55 Debug: make_bids_doge "0.00002843"   "{\"success\":1,"
+
+2019-12-02 11:48:56 Debug: CancelHFT yobit_CancelOrder "{\"success\":1,\"retu"
+
+2019-12-02 11:48:56 Debug: CancelHFT
+
+2019-12-02 11:48:56 Debug: yobit_depth "{\"tvt_doge\":{\"asks\":"
+
+2019-12-02 11:48:57 Debug: make_bids_doge "0.00002843"   "{\"success\":1,"
+
+2019-12-02 11:48:58 Debug: CancelHFT yobit_CancelOrder "{\"success\":1,\"retu"
+
+2019-12-02 11:48:58 Debug: CancelHFT
+
+2019-12-02 11:48:58 Debug: yobit_depth "{\"tvt_doge\":{\"asks\":"
+
+2019-12-02 11:48:59 Debug: make_bids_doge "0.00002843"   "{\"success\":1,"
+
+2019-12-02 11:48:59 Debug: CancelHFT yobit_CancelOrder "{\"success\":1,\"retu"
+
+2019-12-02 11:48:59 Debug: CancelHFT
+
+2019-12-02 11:49:00 Debug: yobit_depth "{\"tvt_doge\":{\"asks\":"
+
+2019-12-02 11:49:01 Debug: make_bids_doge "0.00002843"   "{\"success\":1,"
+
+2019-12-02 11:49:01 Debug: CancelHFT yobit_CancelOrder "{\"success\":1,\"retu"
+
+2019-12-02 11:49:01 Debug: CancelHFT
+
+2019-12-02 11:49:02 Debug: yobit_depth "{\"tvt_doge\":{\"asks\":"
+
+2019-12-02 11:49:03 Debug: make_bids_doge "0.00002843"   "{\"success\":1,"
+
+2019-12-02 11:49:03 Debug: CancelHFT yobit_CancelOrder "{\"success\":1,\"retu"
+
+2019-12-02 11:49:03 Debug: CancelHFT
+
+2019-12-02 11:49:04 Debug: yobit_depth "{\"tvt_doge\":{\"asks\":"
+
+2019-12-02 11:49:05 Debug: make_bids_doge "0.00002843"   "{\"success\":1,"
+
+2019-12-02 11:49:05 Debug: CancelHFT yobit_CancelOrder "{\"success\":1,\"retu"
+
+2019-12-02 11:49:05 Debug: CancelHFT
+
+2019-12-02 11:49:06 Debug: yobit_depth "{\"tvt_doge\":{\"asks\":"
+
+2019-12-02 11:49:07 Debug: make_bids_doge "0.00002843"   "{\"success\":1,"
+
+2019-12-02 11:49:07 Debug: CancelHFT yobit_CancelOrder "{\"success\":1,\"retu"
+
+2019-12-02 11:49:07 Debug: CancelHFT
+
+2019-12-02 11:49:08 Debug: yobit_depth "{\"tvt_doge\":{\"asks\":"
+
+2019-12-02 11:49:09 Debug: make_bids_doge "0.00002843"   "{\"success\":1,"
+
+2019-12-02 11:49:09 Debug: CancelHFT yobit_CancelOrder "{\"success\":1,\"retu"
+
+2019-12-02 11:49:09 Debug: CancelHFT
+
+2019-12-02 11:49:10 Debug: yobit_depth "{\"tvt_doge\":{\"asks\":"
+
+2019-12-02 11:49:11 Debug: make_bids_doge "0.00002843"   "{\"success\":1,"
+
+2019-12-02 11:49:11 Debug: CancelHFT yobit_CancelOrder "{\"success\":1,\"retu"
+
+2019-12-02 11:49:11 Debug: CancelHFT
+
+2019-12-02 11:49:12 Debug: yobit_depth "{\"tvt_doge\":{\"asks\":"
+
+2019-12-02 11:49:13 Debug: make_bids_doge "0.00002843"   "{\"success\":1,"
+
+2019-12-02 11:49:14 Debug: CancelHFT yobit_CancelOrder "{\"success\":1,\"retu"
+
+2019-12-02 11:49:14 Debug: CancelHFT
+
+2019-12-02 11:49:14 Debug: yobit_depth "{\"tvt_doge\":{\"asks\":"
+
+2019-12-02 11:49:15 Debug: make_bids_doge "0.00002843"   "{\"success\":1,"
+
+2019-12-02 11:49:16 Debug: CancelHFT yobit_CancelOrder "{\"success\":1,\"retu"
+
+2019-12-02 11:49:16 Debug: CancelHFT
+
+2019-12-02 11:49:16 Debug: yobit_depth "{\"tvt_doge\":{\"asks\":"
+
+2019-12-02 11:49:17 Debug: make_bids_doge "0.00002843"   "{\"success\":1,"
+
+2019-12-02 11:49:18 Debug: CancelHFT yobit_CancelOrder "{\"success\":1,\"retu"
+
+2019-12-02 11:49:18 Debug: CancelHFT
+
+2019-12-02 11:49:18 Debug: yobit_depth "{\"tvt_doge\":{\"asks\":"
+
+2019-12-02 11:49:19 Debug: make_bids_doge "0.00002843"   "{\"success\":1,"
+
+2019-12-02 11:49:20 Debug: CancelHFT yobit_CancelOrder "{\"success\":1,\"retu"
+
+2019-12-02 11:49:20 Debug: CancelHFT
+
+2019-12-02 11:49:21 Debug: yobit_depth "{\"tvt_doge\":{\"asks\":"
+
+2019-12-02 11:49:22 Debug: make_bids_doge "0.00002843"   "{\"success\":1,"
+
+2019-12-02 11:49:22 Debug: CancelHFT yobit_CancelOrder "{\"success\":1,\"retu"
+
+2019-12-02 11:49:22 Debug: CancelHFT
+
+2019-12-02 11:49:23 Debug: yobit_depth "{\"tvt_doge\":{\"asks\":"
+
+2019-12-02 11:49:24 Debug: make_bids_doge "0.00002843"   "{\"success\":1,"
+
+2019-12-02 11:49:24 Debug: CancelHFT yobit_CancelOrder "{\"success\":1,\"retu"
+
+2019-12-02 11:49:24 Debug: CancelHFT
+
+2019-12-02 11:49:25 Debug: yobit_depth "{\"tvt_doge\":{\"asks\":"
+
+2019-12-02 11:49:26 Debug: make_bids_doge "0.00002843"   "{\"success\":1,"
+
+2019-12-02 11:49:26 Debug: CancelHFT yobit_CancelOrder "{\"success\":1,\"retu"
+
+2019-12-02 11:49:26 Debug: CancelHFT
+
+2019-12-02 11:49:27 Debug: yobit_depth "{\"tvt_doge\":{\"asks\":"
+
+2019-12-02 11:49:28 Debug: make_bids_doge "0.00002843"   "{\"success\":1,"
+
+2019-12-02 11:49:28 Debug: CancelHFT yobit_CancelOrder "{\"success\":1,\"retu"
+
+2019-12-02 11:49:28 Debug: CancelHFT
+
+2019-12-02 11:49:29 Debug: yobit_depth "{\"tvt_doge\":{\"asks\":"
+
+2019-12-02 11:49:30 Debug: make_bids_doge "0.00002843"   "{\"success\":1,"
+
+2019-12-02 11:49:30 Debug: CancelHFT yobit_CancelOrder "{\"success\":1,\"retu"
+
+2019-12-02 11:49:30 Debug: CancelHFT
+
+2019-12-02 11:49:31 Debug: yobit_depth "{\"tvt_doge\":{\"asks\":"
+
+2019-12-02 11:49:32 Debug: make_bids_doge "0.00002843"   "{\"success\":1,"
+
+2019-12-02 11:49:32 Debug: CancelHFT yobit_CancelOrder "{\"success\":1,\"retu"
+
+2019-12-02 11:49:32 Debug: CancelHFT
+
+2019-12-02 11:49:33 Debug: yobit_depth "{\"tvt_doge\":{\"asks\":"
+
+2019-12-02 11:49:34 Debug: make_bids_doge "0.00002843"   "{\"success\":1,"
+
+2019-12-02 11:49:34 Debug: CancelHFT yobit_CancelOrder "{\"success\":1,\"retu"
+
+2019-12-02 11:49:34 Debug: CancelHFT
+
+2019-12-02 11:49:35 Debug: yobit_depth "{\"tvt_doge\":{\"asks\":"
+
+2019-12-02 11:49:35 Debug: make_bids_doge "0.00002843"   "{\"success\":1,"
+
+2019-12-02 11:49:36 Debug: CancelHFT yobit_CancelOrder "{\"success\":1,\"retu"
+
+2019-12-02 11:49:36 Debug: CancelHFT
+
+2019-12-02 11:49:37 Debug: yobit_depth "{\"tvt_doge\":{\"asks\":"
+
+2019-12-02 11:49:38 Debug: make_bids_doge "0.00002843"   "{\"success\":1,"
+
+2019-12-02 11:49:38 Debug: CancelHFT yobit_CancelOrder "{\"success\":1,\"retu"
+
+2019-12-02 11:49:38 Debug: CancelHFT
+
+2019-12-02 11:49:39 Debug: yobit_depth "{\"tvt_doge\":{\"asks\":"
+
+2019-12-02 11:49:40 Debug: make_bids_doge "0.00002843"   "{\"success\":1,"
+
+2019-12-02 11:49:40 Debug: CancelHFT yobit_CancelOrder "{\"success\":1,\"retu"
+
+2019-12-02 11:49:40 Debug: CancelHFT
+
+2019-12-02 11:49:41 Debug: yobit_depth "{\"tvt_doge\":{\"asks\":"
+
+2019-12-02 11:49:42 Debug: make_bids_doge "0.00002843"   "{\"success\":1,"
+
+2019-12-02 11:49:42 Debug: CancelHFT yobit_CancelOrder "{\"success\":1,\"retu"
+
+2019-12-02 11:49:42 Debug: CancelHFT
+
