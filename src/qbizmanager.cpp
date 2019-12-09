@@ -626,7 +626,7 @@ void  QBizManager::make_bids_doge(const QStringList& buy_list, const  QStringLis
 	QString buy_price = buy_list.at(0).split(",").at(0);
 	QString sell_price = sell_list.at(0).split(",").at(0);	
 	{
-		QString buy_str_Rate_1 = QString::number(sell_price.toDouble() + 0.00000001, 'f', 8);
+		QString buy_str_Rate_1 = QString::number(buy_price.toDouble() + 0.00000001, 'f', 8);
 		QString amount_buy_1 = QString::number( GenAmount()  / buy_str_Rate_1.toDouble(), 'f', 0);
 		res = yobit_make_trade(buy_str_Rate_1, amount_buy_1, "buy");
 	}
