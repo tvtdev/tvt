@@ -45,11 +45,11 @@ public:
 	int GetPrice(const QString & source,  QStringList& buy_list, QStringList& sell_list);
 	double GenAmount();
 	int GetMaxOrder(const QStringList& sell_list, const QStringList& buy_list);
-	int CheckBuyOrder( const QStringList& buy_list);
+	//int CheckBuyOrder( const QStringList& buy_list);
 
 	int doBuyMax(const QStringList& buy_list, const QStringList& sell_list);
 	int GetMaxOrderBuy(const QStringList& buy_list);
-	double GetBuyMaxOrder(const QStringList& buy_list);
+	int CheckBuyOrder(const QStringList& sell_list, const QStringList& buy_list);
 	
 
 	int doBuy(const QStringList& buy_list,double );
